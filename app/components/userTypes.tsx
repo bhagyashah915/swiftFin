@@ -74,9 +74,9 @@ export default function UserTypes() {
     };
 
     return (
-        <section className="py-20 bg-neutral-slate text-white bg-grid-pattern overflow-hidden">
-            <div className="container mx-auto px-6 md:px-12">
-                <div className="flex flex-col lg:flex-row items-center gap-12">
+        <section className="py-16 md:py-20 bg-neutral-slate text-white bg-grid-pattern overflow-hidden">
+            <div className="container mx-auto px-4 sm:px-6 md:px-12">
+                <div className="flex flex-col lg:flex-row items-center gap-8 md:gap-12">
                     <motion.div
                         className="flex-1"
                         initial={{ opacity: 0, x: -20 }}
@@ -84,20 +84,20 @@ export default function UserTypes() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
                     >
-                        <h2 className="text-primary-teal font-bold tracking-wide uppercase text-sm mb-3">Who is it for?</h2>
-                        <h3 className="text-6xl md:text-7xl font-bold mb-6">
+                        <h2 className="text-primary-teal font-bold tracking-wide uppercase text-xs sm:text-sm mb-3">Who is it for?</h2>
+                        <h3 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 md:mb-6">
                             Built for <span className="text-primary-teal">Everyone</span>
                         </h3>
-                        <p className="text-gray-300 text-lg mb-8 leading-relaxed">
+                        <p className="text-gray-300 text-base sm:text-lg md:text-xl mb-6 md:mb-8 leading-relaxed">
                             Whether you&apos;re a student managing pocket money or a professional planning investments,
                             SwiftFin adapts to your unique financial needs. Join thousands who trust us with their finances.
                         </p>
-                        <AnimatedDownloadButton className="inline-block px-8 py-3" text="Download" />
+                        <AnimatedDownloadButton className="inline-block px-6 sm:px-8 py-3 w-full sm:w-auto" text="Download" />
                     </motion.div>
 
                     <div className="flex-1 w-full relative">
                         {/* Carousel Container */}
-                        <div className="relative h-[400px] md:h-[450px] overflow-hidden">
+                        <div className="relative h-[350px] sm:h-[400px] md:h-[450px] overflow-hidden">
                             <AnimatePresence initial={false} custom={direction}>
                                 <motion.div
                                     key={currentIndex}
@@ -122,12 +122,12 @@ export default function UserTypes() {
                                             paginate(-1);
                                         }
                                     }}
-                                    className="absolute w-full grid grid-cols-1 sm:grid-cols-2 gap-6"
+                                    className="absolute w-full grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6"
                                 >
                                     {users.map((user, index) => (
                                         <motion.div
                                             key={index}
-                                            className="relative p-8 rounded-2xl overflow-hidden cursor-grab active:cursor-grabbing"
+                                            className="relative p-6 sm:p-8 rounded-2xl overflow-hidden cursor-grab active:cursor-grabbing"
                                             style={{ background: user.bgImage }}
                                             initial={{ opacity: 0.7, scale: 0.95 }}
                                             animate={{
@@ -143,16 +143,16 @@ export default function UserTypes() {
 
                                             {/* Content */}
                                             <div className="relative z-10">
-                                                <h4 className="font-sora text-2xl font-bold mb-3 text-white drop-shadow-lg">
+                                                <h4 className="font-sora text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-white drop-shadow-lg">
                                                     {user.title}
                                                 </h4>
-                                                <p className="font-inter text-white/90 text-sm leading-relaxed drop-shadow">
+                                                <p className="font-inter text-white/90 text-sm sm:text-base leading-relaxed drop-shadow">
                                                     {user.description}
                                                 </p>
                                             </div>
 
                                             {/* Decorative element */}
-                                            <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-white/10 rounded-full"></div>
+                                            <div className="absolute -bottom-4 -right-4 w-20 h-20 sm:w-24 sm:h-24 bg-white/10 rounded-full"></div>
                                         </motion.div>
                                     ))}
                                 </motion.div>
@@ -160,7 +160,7 @@ export default function UserTypes() {
                         </div>
 
                         {/* Navigation Dots */}
-                        <div className="flex justify-center gap-2 mt-8">
+                        <div className="flex justify-center gap-2 mt-6 sm:mt-8">
                             {users.map((_, index) => (
                                 <button
                                     key={index}

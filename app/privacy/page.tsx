@@ -270,9 +270,7 @@ export default function PrivacyPolicy() {
                         <ul className="text-gray-600 space-y-2">
                             <li><strong>Privacy Email:</strong> privacy@swiftfin.com</li>
                             <li><strong>Support Email:</strong> support@swiftfin.com</li>
-                            <li><strong>Phone:</strong> +91 98765 43210</li>
-                            <li><strong>Address:</strong> SwiftFin Technologies Pvt. Ltd., Mumbai, India</li>
-                        </ul>
+                            <li><strong>Phone:</strong> +91 98765 43210</li>                        </ul>
                     </section>
 
                 </div>

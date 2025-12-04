@@ -215,7 +215,7 @@ export default function TermsOfService() {
                         <ul className="text-gray-600 space-y-2">
                             <li><strong>Email:</strong> support@swiftfin.com</li>
                             <li><strong>Phone:</strong> +91 98765 43210</li>
-                            <li><strong>Address:</strong> SwiftFin Technologies Pvt. Ltd., Mumbai, India</li>
+
                         </ul>
                     </section>
 

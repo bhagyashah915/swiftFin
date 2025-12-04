@@ -38,23 +38,23 @@ export default function Features() {
     ];
 
     return (
-        <section id="features" className="py-20 bg-gray-50">
-            <div className="container mx-auto px-6 md:px-12">
-                <div className="text-center max-w-3xl mx-auto mb-16">
-                    <h2 className="text-primary-teal font-bold tracking-wide uppercase text-sm mb-3">Features</h2>
-                    <h3 className="font-sora text-5xl md:text-6xl font-bold text-neutral-slate mb-6">
+        <section id="features" className="py-16 md:py-20 bg-gray-50">
+            <div className="container mx-auto px-4 sm:px-6 md:px-12">
+                <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+                    <h2 className="text-primary-teal font-bold tracking-wide uppercase text-xs sm:text-sm mb-3">Features</h2>
+                    <h3 className="font-sora text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-slate mb-4 md:mb-6 px-4">
                         Everything You Need to Manage Your Finances
                     </h3>
-                    <p className="font-inter text-gray-600 text-lg">
+                    <p className="font-inter text-gray-600 text-base sm:text-lg px-4">
                         SwiftFin provides a complete suite of tools designed to help you take control of your financial life.
                     </p>
                 </div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                     {features.map((feature, index) => (
                         <motion.div
                             key={index}
-                            className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:border-primary-teal hover:shadow-lg transition-all duration-300 relative overflow-hidden"
+                            className="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-gray-100 hover:border-primary-teal hover:shadow-lg transition-all duration-300 relative overflow-hidden"
                             initial={{ opacity: 0, y: 50, rotateX: -10 }}
                             whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
                             viewport={{ once: true, margin: "-50px" }}
@@ -68,16 +68,16 @@ export default function Features() {
                             <div className="absolute top-0 left-0 w-full h-1 bg-linear-to-r from-transparent via-primary-teal to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500"></div>
 
                             {/* FIXED ICON WRAPPER → ONLY REMOVED hover:bg-primary-teal */}
-                            <div className="w-16 h-16 bg-teal-50 rounded-xl flex items-center justify-center mb-6 hover:scale-110 transition-all duration-300 shadow-inner">
+                            <div className="w-14 h-14 sm:w-16 sm:h-16 bg-teal-50 rounded-xl flex items-center justify-center mb-5 sm:mb-6 hover:scale-110 transition-all duration-300 shadow-inner">
                                 <div className="hover:text-primary-teal transition-colors">
                                     {feature.icon}
                                 </div>
                             </div>
 
-                            <h4 className="font-sora text-xl font-bold text-neutral-slate mb-3 hover:text-primary-teal transition-colors">
+                            <h4 className="font-sora text-lg sm:text-xl font-bold text-neutral-slate mb-2 sm:mb-3 hover:text-primary-teal transition-colors">
                                 {feature.title}
                             </h4>
-                            <p className="font-inter text-gray-600 leading-relaxed">
+                            <p className="font-inter text-gray-600 leading-relaxed text-sm sm:text-base">
                                 {feature.description}
                             </p>
                         </motion.div>

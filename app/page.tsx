@@ -5,7 +5,6 @@ import Features from "./components/features";
 import HowItWorks from "./components/howItWorks";
 import UserTypes from "./components/userTypes";
 import Security from "./components/security";
-import Pricing from "./components/pricing";
 import FAQ from "./components/faq";
 
 export default function Home() {
@@ -18,7 +17,6 @@ export default function Home() {
       <HowItWorks />
       <UserTypes />
       <Security />
-      <Pricing />
       <FAQ />
     </main>
   );
