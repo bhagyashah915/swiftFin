@@ -3,6 +3,7 @@
 import { Download, UserPlus, Rocket, CheckCircle2 } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import Link from "next/link";
 
 export default function HowItWorks() {
     const sectionRef = useRef<HTMLElement>(null);
@@ -18,33 +19,33 @@ export default function HowItWorks() {
             icon: <Download className="w-10 h-10 text-white" />,
             title: "Download SwiftFin",
             description: "Get the app from Play Store or App Store. Quick and easy installation on any device.",
-            color: "from-teal-400 to-teal-600"
+            color: "from-[#20C997] to-[#17a2b8]"
         },
         {
             icon: <UserPlus className="w-10 h-10 text-white" />,
             title: "Launch & Explore",
             description: "Open the app and explore the intuitive interface. No complex setup required.",
-            color: "from-blue-400 to-blue-600"
+            color: "from-[#3b82f6] to-[#6366f1]"
         },
         {
             icon: <Rocket className="w-10 h-10 text-white" />,
             title: "Start Managing",
             description: "Begin tracking expenses, managing EMIs, and monitoring investments effortlessly.",
-            color: "from-orange-400 to-orange-600"
+            color: "from-[#FD7E14] to-[#ea580c]"
         },
         {
             icon: <CheckCircle2 className="w-10 h-10 text-white" />,
             title: "Achieve Financial Goals",
             description: "Watch your financial health improve with personalized insights and smart recommendations.",
-            color: "from-green-400 to-green-600"
+            color: "from-[#198754] to-[#16a34a]"
         }
     ];
 
     return (
-        <section ref={sectionRef} id="how-it-works" className="py-20 md:py-32 bg-gradient-to-b from-white via-gray-50 to-white relative overflow-hidden">
+        <section ref={sectionRef} id="how-it-works" className="py-20 md:py-28 bg-gradient-to-b from-white via-gray-50 to-white relative overflow-hidden">
             {/* Background decorative elements */}
-            <div className="absolute top-20 right-10 w-72 h-72 bg-teal-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
-            <div className="absolute bottom-20 left-10 w-72 h-72 bg-orange-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+            <div className="absolute top-20 right-10 w-72 h-72 bg-[#20C997]/10 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-pulse"></div>
+            <div className="absolute bottom-20 left-10 w-72 h-72 bg-[#FD7E14]/10 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-pulse" style={{ animationDelay: '2s' }}></div>
 
             <div className="container mx-auto px-6 md:px-12 relative z-10">
                 <motion.div
@@ -54,17 +55,19 @@ export default function HowItWorks() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
                 >
-                    <h2 className="text-primary-teal font-bold tracking-wide uppercase text-sm mb-3">How It Works</h2>
-                    <h3 className="font-sora text-5xl md:text-6xl font-bold text-neutral-slate mb-6">
-                        Your Journey to <span className="text-gradient-primary">Financial Freedom</span>
-                    </h3>
+                    <span className="inline-block text-[#FD7E14] font-semibold text-sm uppercase tracking-wider mb-4">
+                        How It Works
+                    </span>
+                    <h2 className="font-sora text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#495057] mb-6">
+                        Your Journey to <span className="text-[#20C997]">Financial Freedom</span>
+                    </h2>
                     <p className="font-inter text-gray-600 text-lg">
                         Get started with SwiftFin in just a few simple steps and take control of your finances today
                     </p>
                 </motion.div>
 
                 {/* Roadmap */}
-                <div className="relative max-w-5xl mx-auto pb-24">
+                <div className="relative max-w-5xl mx-auto pb-16">
                     {/* Animated Progress Line */}
                     <svg className="absolute left-1/2 top-0 bottom-0 w-1 -translate-x-1/2 hidden lg:block" style={{ height: "100%" }}>
                         <line x1="50%" y1="0" x2="50%" y2="100%" stroke="#e5e7eb" strokeWidth="3" />
@@ -78,7 +81,7 @@ export default function HowItWorks() {
                         <defs>
                             <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
                                 <stop offset="0%" stopColor="#20C997" />
-                                <stop offset="50%" stopColor="#1D4ED8" />
+                                <stop offset="50%" stopColor="#3b82f6" />
                                 <stop offset="100%" stopColor="#FD7E14" />
                             </linearGradient>
                         </defs>
@@ -107,7 +110,7 @@ export default function HowItWorks() {
                                         <div className="relative z-10">
                                             <div className={`inline-flex items-center gap-3 mb-4 ${index % 2 === 0 ? "lg:flex-row-reverse" : ""}`}>
                                                 <span className="text-6xl font-bold text-gray-100">0{index + 1}</span>
-                                                <h4 className="font-sora text-2xl font-bold text-neutral-slate">{step.title}</h4>
+                                                <h4 className="font-sora text-2xl font-bold text-[#495057]">{step.title}</h4>
                                             </div>
                                             <p className="font-inter text-gray-600 leading-relaxed text-lg">{step.description}</p>
                                         </div>
@@ -141,7 +144,7 @@ export default function HowItWorks() {
                                         </div>
 
                                         <motion.div
-                                            className="absolute -bottom-2 -right-2 w-10 h-10 bg-success-green rounded-full flex items-center justify-center border-4 border-white shadow-lg"
+                                            className="absolute -bottom-2 -right-2 w-10 h-10 bg-[#198754] rounded-full flex items-center justify-center border-4 border-white shadow-lg"
                                             initial={{ scale: 0 }}
                                             whileInView={{ scale: 1 }}
                                             viewport={{ once: true }}
@@ -159,15 +162,18 @@ export default function HowItWorks() {
 
                     {/* Final CTA */}
                     <motion.div
-                        className="text-center mt-32 relative z-20"
+                        className="text-center mt-20 relative z-20"
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.8 }}
                     >
-                        <div className="inline-block bg-gradient-to-r from-primary-teal to-blue-500 text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg hover:shadow-2xl transition-shadow cursor-pointer">
+                        <Link
+                            href="/download"
+                            className="inline-block bg-gradient-to-r from-[#20C997] to-[#17a2b8] text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg hover:shadow-2xl transition-shadow cursor-pointer"
+                        >
                             Ready to get started? Download now!
-                        </div>
+                        </Link>
                     </motion.div>
                 </div>
             </div>
