@@ -1,5 +1,6 @@
 import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
     return (
@@ -8,9 +9,13 @@ export default function Footer() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-12 md:mb-16">
                     <div className="col-span-1">
                         <div className="flex items-center gap-2 mb-4 md:mb-6">
-                            <div className="w-8 h-8 bg-primary-teal rounded-lg flex items-center justify-center text-white font-bold">
-                                S
-                            </div>
+                            <Image
+                                src="/images/logo.png"
+                                alt="SwiftFin Logo"
+                                width={40}
+                                height={40}
+                                className="w-10 h-10 object-contain"
+                            />
                             <h2 className="font-bold text-2xl">SwiftFin</h2>
                         </div>
                         <p className="text-gray-400 mb-4 md:mb-6 leading-relaxed text-sm sm:text-base">

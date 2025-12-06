@@ -4,6 +4,7 @@ import Link from "next/link";
 import AnimatedDownloadButton from "./AnimatedDownloadButton";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import Image from "next/image";
 
 export default function Navbar() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -12,9 +13,13 @@ export default function Navbar() {
         <nav className="w-full flex justify-between items-center px-6 py-4 shadow-sm bg-white sticky top-0 z-50">
             <Link href="/" className="flex items-center gap-2">
                 {/* Logo placeholder - replacing text with logo later if needed */}
-                <div className="w-8 h-8 bg-primary-teal rounded-lg flex items-center justify-center text-white font-bold">
-                    S
-                </div>
+                <Image
+                    src="/images/logo.png"
+                    alt="SwiftFin Logo"
+                    width={40}
+                    height={40}
+                    className="w-10 h-10 object-contain"
+                />
                 <h1 className="font-bold text-2xl text-neutral-slate">SwiftFin</h1>
             </Link>
 
@@ -41,38 +46,44 @@ export default function Navbar() {
             </button>
 
             {/* Mobile Menu */}
+            {/* Mobile Menu */}
             {mobileMenuOpen && (
-                <div className="absolute top-full left-0 w-full bg-white shadow-lg md:hidden border-t border-gray-100">
-                    <div className="flex flex-col p-6 gap-4">
+                <div className="fixed inset-x-0 top-[72px] bottom-0 bg-white z-40 md:hidden overflow-y-auto animate-fade-in-up">
+                    <div className="flex flex-col p-6 gap-4 min-h-full">
                         <Link
                             href="/#features"
-                            className="py-3 px-4 text-neutral-slate hover:text-primary-teal hover:bg-teal-50 rounded-lg transition-colors font-medium"
+                            className="py-4 px-4 text-lg text-neutral-slate hover:text-primary-teal hover:bg-teal-50 rounded-lg transition-colors font-medium border-b border-gray-50"
                             onClick={() => setMobileMenuOpen(false)}
                         >
                             Features
                         </Link>
                         <Link
                             href="/#how-it-works"
-                            className="py-3 px-4 text-neutral-slate hover:text-primary-teal hover:bg-teal-50 rounded-lg transition-colors font-medium"
+                            className="py-4 px-4 text-lg text-neutral-slate hover:text-primary-teal hover:bg-teal-50 rounded-lg transition-colors font-medium border-b border-gray-50"
                             onClick={() => setMobileMenuOpen(false)}
                         >
                             How it Works
                         </Link>
                         <Link
                             href="/who-is-it-for"
-                            className="py-3 px-4 text-neutral-slate hover:text-primary-teal hover:bg-teal-50 rounded-lg transition-colors font-medium"
+                            className="py-4 px-4 text-lg text-neutral-slate hover:text-primary-teal hover:bg-teal-50 rounded-lg transition-colors font-medium border-b border-gray-50"
                             onClick={() => setMobileMenuOpen(false)}
                         >
                             Who Is It For
                         </Link>
                         <Link
                             href="/about"
-                            className="py-3 px-4 text-neutral-slate hover:text-primary-teal hover:bg-teal-50 rounded-lg transition-colors font-medium"
+                            className="py-4 px-4 text-lg text-neutral-slate hover:text-primary-teal hover:bg-teal-50 rounded-lg transition-colors font-medium border-b border-gray-50"
                             onClick={() => setMobileMenuOpen(false)}
                         >
                             About Us
                         </Link>
-                        <AnimatedDownloadButton className="w-full py-3 text-base shadow-lg mt-2" text="Download" />
+                        <div className="mt-4">
+                            <AnimatedDownloadButton className="w-full py-4 text-lg shadow-lg" text="Download" />
+                        </div>
+
+                        {/* Extra padding at bottom for safe area */}
+                        <div className="h-10"></div>
                     </div>
                 </div>
             )}

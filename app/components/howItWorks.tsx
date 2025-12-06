@@ -166,7 +166,7 @@ export default function HowItWorks() {
                         transition={{ duration: 0.6, delay: 0.8 }}
                     >
                         <div className="inline-block bg-gradient-to-r from-primary-teal to-blue-500 text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg hover:shadow-2xl transition-shadow cursor-pointer">
-                            Ready to get started? Download now! 🚀
+                            Ready to get started? Download now!
                         </div>
                     </motion.div>
                 </div>

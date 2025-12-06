@@ -28,8 +28,12 @@ export default function About() {
     ];
 
     return (
-        <section className="py-16 md:py-20 bg-white">
-            <div className="container mx-auto px-4 sm:px-6 md:px-12">
+        <section className="py-16 md:py-20 bg-gradient-mesh relative overflow-hidden">
+            {/* Background elements */}
+            <div className="absolute top-20 left-10 w-64 h-64 bg-teal-400/10 rounded-full blur-3xl animate-pulse"></div>
+            <div className="absolute bottom-20 right-10 w-64 h-64 bg-blue-400/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+
+            <div className="container mx-auto px-4 sm:px-6 md:px-12 relative z-10">
                 <div className="max-w-6xl mx-auto">
                     {/* Header */}
                     <motion.div
@@ -48,12 +52,14 @@ export default function About() {
                             Track expenses effortlessly, monitor EMIs, manage investments, and receive personalized insights
                             to make smarter financial decisions.
                         </p>
-                        <a
+                        <motion.a
                             href="#faq"
-                            className="inline-flex items-center justify-center px-6 sm:px-8 py-3 text-sm sm:text-base font-semibold font-inter text-white bg-primary-teal rounded-full hover:bg-teal-600 transition-colors duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                            className="inline-flex items-center justify-center px-6 sm:px-8 py-3 text-sm sm:text-base font-semibold font-inter text-white bg-primary-teal rounded-full shadow-lg hover:shadow-xl"
+                            whileHover={{ scale: 1.05, backgroundColor: "#14b8a6" }}
+                            whileTap={{ scale: 0.95 }}
                         >
                             View FAQ
-                        </a>
+                        </motion.a>
                     </motion.div>
 
                     {/* Values Grid - Mobile Optimized */}
@@ -61,25 +67,22 @@ export default function About() {
                         {values.map((value, index) => (
                             <motion.div
                                 key={index}
-                                className="bg-gray-50 p-5 sm:p-6 rounded-2xl border border-gray-100 transition-all group cursor-pointer relative overflow-hidden"
-                                initial={{ opacity: 0, y: 20 }}
+                                className="bg-white/60 backdrop-blur-md p-5 sm:p-6 rounded-2xl border border-white/50 shadow-sm hover:shadow-xl transition-all group cursor-pointer relative overflow-hidden"
+                                initial={{ opacity: 0, y: 30 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.5, delay: index * 0.1 }}
                                 whileHover={{
-                                    y: -12,
-                                    scale: 1.03,
-                                    boxShadow: "0 20px 40px -10px rgba(13, 148, 136, 0.15)",
-                                    borderColor: "rgba(13, 148, 136, 0.4)",
-                                    transition: { duration: 0.3, type: "spring", stiffness: 300 }
+                                    y: -8,
+                                    borderColor: "rgba(13, 148, 136, 0.3)",
                                 }}
                             >
-                                <div className="absolute inset-0 bg-linear-to-br from-transparent to-teal-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                <div className="absolute inset-0 bg-linear-to-br from-teal-50/0 to-teal-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
                                 <motion.div
                                     className="w-12 h-12 sm:w-14 sm:h-14 bg-primary-teal/10 rounded-2xl flex items-center justify-center text-primary-teal mb-4 sm:mb-5 relative z-10"
                                     whileHover={{
-                                        rotate: [0, -10, 10, -10, 0],
+                                        rotate: [0, -10, 10, -5, 5, 0],
                                         scale: 1.1,
                                         backgroundColor: "rgba(13, 148, 136, 1)",
                                         color: "white",

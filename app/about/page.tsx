@@ -3,7 +3,7 @@ import { ArrowLeft } from "lucide-react";
 
 export default function About() {
     return (
-        <div className="bg-white relative">
+        <div className="bg-gradient-mesh min-h-screen relative">
             <Link href="/" className="absolute top-6 left-6 z-10 flex items-center text-gray-600 hover:text-primary-teal transition-colors">
                 <ArrowLeft className="w-5 h-5 mr-2" />
                 Back to Home

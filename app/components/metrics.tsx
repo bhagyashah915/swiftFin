@@ -62,7 +62,7 @@ export default function Metrics() {
                                     <div className="text-primary-teal mb-4 group-hover:scale-110 transition-transform">
                                         {metric.icon}
                                     </div>
-                                    <div className="font-sora text-4xl lg:text-5xl font-bold text-white mb-2">
+                                    <div className="font-sora text-2xl sm:text-4xl lg:text-5xl font-bold text-white mb-2">
                                         {inView && (
                                             <>
                                                 {metric.prefix}

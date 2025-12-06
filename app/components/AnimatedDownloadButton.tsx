@@ -13,7 +13,7 @@ interface AnimatedDownloadButtonProps {
 export default function AnimatedDownloadButton({
     className = "",
     text = "Download Now",
-    href,
+    href = "/download",
     onClick,
 }: AnimatedDownloadButtonProps) {
     const ButtonContent = (
