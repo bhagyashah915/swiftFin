@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight, Check } from "lucide-react";
 import Link from "next/link";
 import AnimatedDownloadButton from "./AnimatedDownloadButton";
 import { useState, useEffect } from "react";
@@ -13,33 +14,30 @@ export default function UserTypes() {
         {
             title: "Students",
             description: "Track expenses, manage pocket money, and build healthy financial habits early.",
-            bgImage: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+            bgImage: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+            benefits: ["Smart budgeting for college life", "Pocket money tracker", "Savings goals for wishlists"]
         },
         {
             title: "Working Professionals",
             description: "Manage salary, track investments, and plan for future financial goals.",
-            bgImage: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)"
+            bgImage: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+            benefits: ["Salary & tax planning", "Investment portfolio tracking", "Expense analytics & insights"]
         },
         {
             title: "Freelancers",
             description: "Monitor project income, track business expenses, and manage irregular cash flow.",
-            bgImage: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)"
+            bgImage: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
+            benefits: ["Income & invoice tracking", "Business expense separation", "Cash flow visualization"]
         },
         {
             title: "Small Business Owners",
             description: "Manage business finances, track EMIs, and monitor investment portfolios.",
-            bgImage: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)"
+            bgImage: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
+            benefits: ["GST & tax reports", "Inventory & EMI management", "Multi-account aggregation"]
         }
     ];
 
-    // Auto-rotate every 4 seconds
-    useEffect(() => {
-        const timer = setInterval(() => {
-            setDirection(1);
-            setCurrentIndex((prev) => (prev + 1) % users.length);
-        }, 4000);
-        return () => clearInterval(timer);
-    }, [users.length]);
+
 
     const slideVariants = {
         enter: (direction: number) => ({
@@ -74,7 +72,7 @@ export default function UserTypes() {
     };
 
     return (
-        <section className="py-16 md:py-20 bg-neutral-slate text-white bg-grid-pattern overflow-hidden">
+        <section className="py-20 md:py-32 bg-neutral-slate text-white bg-grid-pattern overflow-hidden">
             <div className="container mx-auto px-4 sm:px-6 md:px-12">
                 <div className="flex flex-col lg:flex-row items-center gap-8 md:gap-12">
                     <motion.div
@@ -122,19 +120,18 @@ export default function UserTypes() {
                                             paginate(-1);
                                         }
                                     }}
-                                    className="absolute w-full grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6"
+                                    className="absolute w-full grid grid-cols-1 gap-4 sm:gap-6 max-w-md mx-auto left-0 right-0"
                                 >
                                     {users.map((user, index) => (
                                         <motion.div
                                             key={index}
-                                            className="relative p-6 sm:p-8 rounded-2xl overflow-hidden cursor-grab active:cursor-grabbing"
+                                            className="relative p-6 sm:p-8 rounded-2xl overflow-hidden cursor-grab active:cursor-grabbing shadow-xl"
                                             style={{ background: user.bgImage }}
-                                            initial={{ opacity: 0.7, scale: 0.95 }}
+                                            initial={{ opacity: 0, scale: 0.9 }}
                                             animate={{
-                                                opacity: index === currentIndex || index === (currentIndex + 1) % users.length ||
-                                                    index === (currentIndex + 2) % users.length || index === (currentIndex + 3) % users.length ? 1 : 0.7,
-                                                scale: index === currentIndex || index === (currentIndex + 1) % users.length ||
-                                                    index === (currentIndex + 2) % users.length || index === (currentIndex + 3) % users.length ? 1 : 0.95
+                                                opacity: index === currentIndex ? 1 : 0,
+                                                scale: index === currentIndex ? 1 : 0.9,
+                                                display: index === currentIndex ? 'block' : 'none'
                                             }}
                                             transition={{ duration: 0.3 }}
                                         >
@@ -146,9 +143,19 @@ export default function UserTypes() {
                                                 <h4 className="font-sora text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-white drop-shadow-lg">
                                                     {user.title}
                                                 </h4>
-                                                <p className="font-inter text-white/90 text-sm sm:text-base leading-relaxed drop-shadow">
+                                                <p className="font-inter text-white/90 text-sm sm:text-base leading-relaxed drop-shadow mb-6">
                                                     {user.description}
                                                 </p>
+                                                <ul className="space-y-2">
+                                                    {user.benefits.map((benefit, i) => (
+                                                        <li key={i} className="flex items-center gap-2 text-white/95 text-sm font-medium">
+                                                            <div className="bg-white/20 p-1 rounded-full">
+                                                                <Check className="w-3 h-3" />
+                                                            </div>
+                                                            {benefit}
+                                                        </li>
+                                                    ))}
+                                                </ul>
                                             </div>
 
                                             {/* Decorative element */}

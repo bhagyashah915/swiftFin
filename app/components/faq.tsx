@@ -32,7 +32,7 @@ export default function FAQ() {
     ];
 
     return (
-        <section id="faq" className="py-20 bg-white section-highlight">
+        <section id="faq" className="py-20 md:py-32 bg-white section-highlight">
             <div className="container mx-auto px-6 md:px-12">
                 <motion.div
                     className="text-center max-w-3xl mx-auto mb-16"
@@ -41,8 +41,8 @@ export default function FAQ() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
                 >
-                    <h2 className="text-primary-teal font-bold tracking-wide uppercase text-sm mb-3 font-inter">FAQ</h2>
-                    <h3 className="font-sora text-6xl md:text-7xl font-bold text-neutral-slate mb-6">
+                    <h2 className="text-primary-teal font-bold tracking-wide uppercase text-4xl mb-3 font-inter">FAQ</h2>
+                    <h3 className="font-sora text-2xl md:text-2xl font-bold text-neutral-slate mb-6">
                         Frequently Asked <span className="text-gradient-primary"> Questions </span>
                     </h3>
                     <p className="font-inter text-gray-600 text-lg">

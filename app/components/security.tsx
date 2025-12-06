@@ -23,7 +23,7 @@ export default function Security() {
     ];
 
     return (
-        <section id="security" className="py-20 bg-white">
+        <section id="security" className="py-20 md:py-32 bg-white">
             <div className="container mx-auto px-6 md:px-12">
                 <div className="max-w-6xl mx-auto">
                     <div className="bg-linear-to-br from-teal-50 via-white to-orange-50 rounded-3xl p-12 md:p-16 border border-teal-100 shadow-xl relative overflow-hidden">

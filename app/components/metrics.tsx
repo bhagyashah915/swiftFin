@@ -45,7 +45,7 @@ export default function Metrics() {
     ];
 
     return (
-        <section className="bg-neutral-slate py-20 bg-grid-pattern" ref={ref}>
+        <section className="bg-neutral-slate py-20 md:py-32 bg-grid-pattern" ref={ref}>
             <div className="container mx-auto px-6 md:px-12">
                 <div className="flex flex-col lg:flex-row items-center gap-12">
                     {/* Stats Grid - Left Side */}

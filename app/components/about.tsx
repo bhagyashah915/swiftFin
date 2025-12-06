@@ -28,7 +28,7 @@ export default function About() {
     ];
 
     return (
-        <section className="py-16 md:py-20 bg-gradient-mesh relative overflow-hidden">
+        <section className="py-20 md:py-32 bg-gradient-mesh relative overflow-hidden">
             {/* Background elements */}
             <div className="absolute top-20 left-10 w-64 h-64 bg-teal-400/10 rounded-full blur-3xl animate-pulse"></div>
             <div className="absolute bottom-20 right-10 w-64 h-64 bg-blue-400/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
@@ -43,7 +43,7 @@ export default function About() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
                     >
-                        <h2 className="text-primary-teal font-bold tracking-wide uppercase text-xs sm:text-sm mb-3 font-inter">About SwiftFin</h2>
+                        <h2 className="text-primary-teal font-bold tracking-wide uppercase text-4xl sm:text-4xl mb-3 font-inter">About SwiftFin</h2>
                         <h3 className="font-sora text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-slate mb-4 md:mb-6 px-4">
                             Your Personal Finance Companion
                         </h3>
