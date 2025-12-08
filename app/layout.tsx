@@ -3,6 +3,7 @@ import { Inter, Sora } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
+import SmoothScroll from "./components/smooth-scroll";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -33,6 +34,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${sora.variable} antialiased font-sans`}
       >
+        <SmoothScroll />
         <Navbar />
         {children}
         <Footer />
