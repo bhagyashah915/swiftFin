@@ -1,130 +1,547 @@
 "use client";
 
-import Link from "next/link";
-import { motion } from "framer-motion";
-import Image from "next/image";
-import AnimatedDownloadButton from "./AnimatedDownloadButton";
+// @ts-nocheck - Three.js types will be available after npm install
+import { Canvas, useFrame, useLoader } from '@react-three/fiber';
+import { OrbitControls, PerspectiveCamera } from '@react-three/drei';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { useRef, useMemo, useEffect, useState } from 'react';
+import * as THREE from 'three';
 
-export default function Hero() {
+// Unified dark particle color
+const PARTICLE_COLOR = "#0D9488"; // Dark teal
+
+// Mouse position for individual particle interaction
+const mousePos = { x: 0, y: 0, active: false };
+
+// Particle Blob Component with Mouse Interaction
+function ParticleBlob({ position, scale = 1 }: { position: [number, number, number], scale?: number }) {
+    const particlesRef = useRef<THREE.Points>(null);
+    const particlesCount = 15000;
+
+    const { basePositions, currentPositions } = useMemo(() => {
+        const basePos = new Float32Array(particlesCount * 3);
+        const currPos = new Float32Array(particlesCount * 3);
+
+        for (let i = 0; i < particlesCount; i++) {
+            const theta = Math.random() * Math.PI * 2;
+            const phi = Math.acos((Math.random() * 2) - 1);
+            const radius = 1.5 + Math.random() * 0.5;
+
+            basePos[i * 3] = radius * Math.sin(phi) * Math.cos(theta) * scale;
+            basePos[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta) * scale;
+            basePos[i * 3 + 2] = radius * Math.cos(phi) * scale;
+
+            currPos[i * 3] = basePos[i * 3];
+            currPos[i * 3 + 1] = basePos[i * 3 + 1];
+            currPos[i * 3 + 2] = basePos[i * 3 + 2];
+        }
+
+        return { basePositions: basePos, currentPositions: currPos };
+    }, [scale]);
+
+    const positions = useMemo(() => new Float32Array(basePositions), [basePositions]);
+
+    useFrame((state) => {
+        if (particlesRef.current) {
+            const time = state.clock.getElapsedTime();
+            particlesRef.current.rotation.y = time * 0.05;
+
+            const lerpFactor = 0.08; // Smooth interpolation factor
+
+            for (let i = 0; i < particlesCount; i++) {
+                const i3 = i * 3;
+                const x = basePositions[i3];
+                const y = basePositions[i3 + 1];
+                const z = basePositions[i3 + 2];
+
+                // Calculate target position
+                let targetX, targetY, targetZ;
+
+                // Individual particle cursor interaction
+                if (mousePos.active) {
+                    const particleWorldX = position[0] + x;
+                    const particleWorldY = position[1] + y;
+
+                    const dx = mousePos.x - particleWorldX;
+                    const dy = mousePos.y - particleWorldY;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    // Each particle responds based on its individual distance
+                    const repulsionRadius = 2;
+                    if (distance < repulsionRadius) {
+                        const force = (1 - distance / repulsionRadius) * 0.3;
+                        targetX = x - (dx / distance) * force;
+                        targetY = y + Math.sin(time * 2 + x) * 0.002 - (dy / distance) * force;
+                        targetZ = z + force * 0.2;
+                    } else {
+                        targetX = x;
+                        targetY = y + Math.sin(time * 2 + x) * 0.002;
+                        targetZ = z;
+                    }
+                } else {
+                    targetX = x;
+                    targetY = y + Math.sin(time * 2 + x) * 0.002;
+                    targetZ = z;
+                }
+
+                // Smooth lerp from current position to target position
+                currentPositions[i3] += (targetX - currentPositions[i3]) * lerpFactor;
+                currentPositions[i3 + 1] += (targetY - currentPositions[i3 + 1]) * lerpFactor;
+                currentPositions[i3 + 2] += (targetZ - currentPositions[i3 + 2]) * lerpFactor;
+
+                // Apply smoothed positions
+                positions[i3] = currentPositions[i3];
+                positions[i3 + 1] = currentPositions[i3 + 1];
+                positions[i3 + 2] = currentPositions[i3 + 2];
+            }
+            particlesRef.current.geometry.attributes.position.needsUpdate = true;
+        }
+    });
+
     return (
-        <section className="relative min-h-screen pt-16 pb-10 md:pt-24 md:pb-20 lg:pt-28 lg:pb-28 overflow-hidden bg-gradient-to-br from-white via-teal-50/30 to-white">
-            {/* Abstract Circle - Bottom Left, showing only top-right portion */}
-            <div className="absolute -bottom-[280px] -left-[200px] md:-bottom-[480px] md:-left-[400px] lg:-bottom-[550px] lg:-left-[450px] w-[600px] h-[600px] md:w-[1200px] md:h-[1200px] lg:w-[1500px] lg:h-[1500px] pointer-events-none">
-                <div className="absolute inset-12 md:inset-28 lg:inset-36 bg-gradient-to-tr from-teal-100 to-teal-50 rounded-full" />
-                <div className="absolute inset-16 md:inset-40 lg:inset-52 bg-gradient-to-tr from-teal-400 to-teal-500 rounded-full opacity-90" />
-                <div className="absolute inset-20 md:inset-48 lg:inset-60 bg-teal-600 rounded-full" />
-            </div>
+        <points ref={particlesRef} position={position}>
+            <bufferGeometry>
+                <bufferAttribute
+                    attach="attributes-position"
+                    count={particlesCount}
+                    array={positions}
+                    itemSize={3}
+                    args={[]}
+                />
+            </bufferGeometry>
+            <pointsMaterial
+                size={0.03}
+                color={PARTICLE_COLOR}
+                transparent
+                opacity={0.7}
+                blending={THREE.AdditiveBlending}
+                depthWrite={false}
+            />
+        </points>
+    );
+}
 
-            <div className="container mx-auto px-4 sm:px-6 md:px-10 relative z-10">
-                <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12 xl:gap-16 w-full max-w-7xl mx-auto">
+// Seamless Organic Bridge with Dense Particles
+function OrganicBridge({ start, end }: { start: [number, number, number], end: [number, number, number] }) {
+    const bridgeRef = useRef<THREE.Points>(null);
+    const particlesCount = 5000; // Increased for density
 
-                    {/* Left Side - Mobile Image */}
-                    <div className="relative order-2 lg:order-1 flex-shrink-0 mt-6 lg:mt-0">
-                        {/* Mobile Image with Fade Up Animation */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 60 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 1, ease: "easeOut" }}
-                            className="relative z-10"
+    const particleData = useMemo(() => {
+        return Array.from({ length: particlesCount }, () => ({
+            t: Math.random(),
+            theta: Math.random() * Math.PI * 2,
+            phi: Math.random() * Math.PI * 2,
+            radiusMult: 0.3 + Math.random() * 0.7,
+            speed: 0.15 + Math.random() * 0.25,
+            offset: Math.random() * Math.PI * 2
+        }));
+    }, [particlesCount]);
+
+    const { positions, currentPositions } = useMemo(() => {
+        const pos = new Float32Array(particlesCount * 3);
+        const currPos = new Float32Array(particlesCount * 3);
+
+        for (let i = 0; i < particlesCount; i++) {
+            const data = particleData[i];
+            const t = data.t;
+
+            const x = start[0] + (end[0] - start[0]) * t;
+            const y = start[1] + (end[1] - start[1]) * t;
+            const z = start[2] + (end[2] - start[2]) * t;
+
+            // Seamless blending - wider at ends to merge with blobs
+            const edgeFactor = Math.min(t * 4, (1 - t) * 4, 1);
+            const baseRadius = (0.25 + edgeFactor * 0.6) * data.radiusMult;
+
+            const spreadX = Math.cos(data.theta) * baseRadius;
+            const spreadY = Math.sin(data.theta) * baseRadius;
+            const spreadZ = (Math.random() - 0.5) * 0.4;
+
+            pos[i * 3] = x + spreadX;
+            pos[i * 3 + 1] = y + spreadY;
+            pos[i * 3 + 2] = z + spreadZ;
+
+            currPos[i * 3] = pos[i * 3];
+            currPos[i * 3 + 1] = pos[i * 3 + 1];
+            currPos[i * 3 + 2] = pos[i * 3 + 2];
+        }
+
+        return { positions: pos, currentPositions: currPos };
+    }, [start, end, particleData]);
+
+    useFrame((state) => {
+        if (bridgeRef.current) {
+            const time = state.clock.getElapsedTime();
+            const positions = bridgeRef.current.geometry.attributes.position.array as Float32Array;
+            const lerpFactor = 0.08; // Smooth interpolation factor
+
+            for (let i = 0; i < particlesCount; i++) {
+                const i3 = i * 3;
+                const data = particleData[i];
+
+                let t = (data.t + time * data.speed * 0.08) % 1;
+
+                const x = start[0] + (end[0] - start[0]) * t;
+                const y = start[1] + (end[1] - start[1]) * t;
+                const z = start[2] + (end[2] - start[2]) * t;
+
+                // Seamless edge blending
+                const edgeFactor = Math.min(t * 4, (1 - t) * 4, 1);
+                const pulse = Math.sin(time + data.offset) * 0.08;
+                const radius = (0.25 + edgeFactor * 0.6 + pulse) * data.radiusMult;
+
+                const animTheta = data.theta + time * 0.25;
+                let spreadX = Math.cos(animTheta) * radius;
+                let spreadY = Math.sin(animTheta) * radius;
+                let spreadZ = Math.sin(time * 0.4 + data.phi) * 0.2;
+
+                // Calculate target position
+                let targetX = x + spreadX;
+                let targetY = y + spreadY;
+                let targetZ = z + spreadZ;
+
+                // Individual particle cursor interaction
+                if (mousePos.active) {
+                    const particleWorldX = x + spreadX;
+                    const particleWorldY = y + spreadY;
+
+                    const dx = mousePos.x - particleWorldX;
+                    const dy = mousePos.y - particleWorldY;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    const repulsionRadius = 1.5;
+                    if (distance < repulsionRadius) {
+                        const force = (1 - distance / repulsionRadius) * 0.4;
+                        targetX -= (dx / distance) * force;
+                        targetY -= (dy / distance) * force;
+                        targetZ += force * 0.3;
+                    }
+                }
+
+                // Smooth lerp from current position to target position
+                currentPositions[i3] += (targetX - currentPositions[i3]) * lerpFactor;
+                currentPositions[i3 + 1] += (targetY - currentPositions[i3 + 1]) * lerpFactor;
+                currentPositions[i3 + 2] += (targetZ - currentPositions[i3 + 2]) * lerpFactor;
+
+                // Apply smoothed positions
+                positions[i3] = currentPositions[i3];
+                positions[i3 + 1] = currentPositions[i3 + 1];
+                positions[i3 + 2] = currentPositions[i3 + 2];
+            }
+
+            bridgeRef.current.geometry.attributes.position.needsUpdate = true;
+        }
+    });
+
+    return (
+        <points ref={bridgeRef}>
+            <bufferGeometry>
+                <bufferAttribute
+                    attach="attributes-position"
+                    count={particlesCount}
+                    array={positions}
+                    itemSize={3}
+                    args={[]}
+                />
+            </bufferGeometry>
+            <pointsMaterial
+                size={0.028}
+                color={PARTICLE_COLOR}
+                transparent
+                opacity={0.65}
+                blending={THREE.AdditiveBlending}
+                depthWrite={false}
+            />
+        </points>
+    );
+}
+
+// 3D Model with Smooth Interactive Rotation
+function Model({ path, position, rotation, scale, color, cardColor }: {
+    path: string,
+    position: [number, number, number],
+    rotation?: [number, number, number],
+    scale?: number,
+    color?: string,
+    cardColor?: string
+}) {
+    const gltf = useLoader(GLTFLoader, path);
+    const modelRef = useRef<THREE.Group>(null);
+    const [isDragging, setIsDragging] = useState(false);
+    const [targetRotation, setTargetRotation] = useState(0);
+    const [currentRotation, setCurrentRotation] = useState(0);
+    const [lastMouseX, setLastMouseX] = useState(0);
+
+    useEffect(() => {
+        if (modelRef.current && (color || cardColor)) {
+            modelRef.current.traverse((child: any) => {
+                if (child.isMesh && child.material) {
+                    const isCard = child.name.toLowerCase().includes('card') ||
+                                   child.parent?.name.toLowerCase().includes('card');
+
+                    const targetColor = isCard && cardColor ? cardColor : color;
+
+                    if (targetColor) {
+                        if (child.material.userData?.isShared !== false) {
+                            child.material = child.material.clone();
+                            child.material.userData.isShared = false;
+                        }
+
+                        child.material.color.set(targetColor);
+
+                        if (isCard && cardColor) {
+                            child.material.metalness = 0.5;
+                            child.material.roughness = 0.3;
+                            child.material.emissive = new THREE.Color(cardColor);
+                            child.material.emissiveIntensity = 0.1;
+                        } else {
+                            child.material.metalness = 0.3;
+                            child.material.roughness = 0.4;
+                        }
+
+                        child.material.needsUpdate = true;
+                    }
+                }
+            });
+        }
+    }, [color, cardColor]);
+
+    const handlePointerDown = (e: any) => {
+        e.stopPropagation();
+        setIsDragging(true);
+        setLastMouseX(e.clientX);
+    };
+
+    const handlePointerUp = () => {
+        setIsDragging(false);
+    };
+
+    const handlePointerMove = (e: any) => {
+        if (isDragging) {
+            const deltaX = e.clientX - lastMouseX;
+            setTargetRotation(prev => prev + deltaX * 0.01);
+            setLastMouseX(e.clientX);
+        }
+    };
+
+    useFrame((state) => {
+        if (modelRef.current) {
+            // Smooth damping for rotation
+            const dampingFactor = 0.1;
+            const newRotation = currentRotation + (targetRotation - currentRotation) * dampingFactor;
+            setCurrentRotation(newRotation);
+
+            const autoRotation = Math.sin(state.clock.getElapsedTime() * 0.3) * 0.1;
+            modelRef.current.rotation.y = autoRotation + newRotation;
+            modelRef.current.position.y = position[1] + Math.sin(state.clock.getElapsedTime() * 0.5) * 0.1;
+        }
+    });
+
+    useEffect(() => {
+        if (isDragging) {
+            window.addEventListener('pointerup', handlePointerUp);
+            window.addEventListener('pointermove', handlePointerMove);
+            return () => {
+                window.removeEventListener('pointerup', handlePointerUp);
+                window.removeEventListener('pointermove', handlePointerMove);
+            };
+        }
+    }, [isDragging, lastMouseX]);
+
+    return (
+        <primitive
+            ref={modelRef}
+            object={gltf.scene}
+            position={position}
+            rotation={rotation}
+            scale={scale || 1}
+            onPointerDown={handlePointerDown}
+        />
+    );
+}
+
+// Scene Component
+function Scene() {
+    return (
+        <>
+            <PerspectiveCamera makeDefault position={[0, 0, 8]} fov={50} />
+            <OrbitControls
+                enableZoom={false}
+                enablePan={false}
+                enableRotate={false}
+                minPolarAngle={Math.PI / 3}
+                maxPolarAngle={Math.PI / 1.5}
+            />
+
+            {/* Lighting */}
+            <ambientLight intensity={0.5} />
+            <directionalLight position={[10, 10, 5]} intensity={1} />
+            <pointLight position={[-10, -10, -5]} intensity={0.5} color="#14B8A6" />
+            <pointLight position={[10, 10, 5]} intensity={0.5} color="#0EA5E9" />
+
+            {/* Left - Wallet Model with Particle Blob */}
+            <group position={[-4.5, 0, 0]}>
+                <Model
+                    path="/models/wallet_fbx_1/scene.gltf"
+                    position={[0, 0, 0]}
+                    rotation={[0, Math.PI / 4, 0]}
+                    scale={1.2}
+                    color="#5EEAD4"
+                    cardColor="#A855F7"
+                />
+                <ParticleBlob position={[0, 0, 0]} scale={1.2} />
+            </group>
+
+            {/* Right - Smartphone Model with Particle Blob */}
+            <group position={[4.5, 0, 0]}>
+                <Model
+                    path="/models/moto_e_2020_smartphone/scene.gltf"
+                    position={[0, 0, 0]}
+                    rotation={[0, -Math.PI / 6, 0]}
+                    scale={1.8}
+                />
+                <ParticleBlob position={[0, 0, 0]} scale={1.2} />
+            </group>
+
+            {/* Seamless Organic Particle Bridge */}
+            <OrganicBridge start={[-4.5, 0, 0]} end={[4.5, 0, 0]} />
+        </>
+    );
+}
+
+// Main Hero Component
+export default function Hero() {
+    const headingRef = useRef<HTMLHeadingElement>(null);
+
+    useEffect(() => {
+        const handleMouseMove = (e: MouseEvent) => {
+            // Convert screen coordinates to 3D world coordinates
+            const x = (e.clientX / window.innerWidth) * 2 - 1;
+            const y = -(e.clientY / window.innerHeight) * 2 + 1;
+
+            mousePos.x = x * 5; // Scale to match scene coordinates
+            mousePos.y = y * 5;
+            mousePos.active = true;
+
+            // Interactive text effect
+            if (headingRef.current) {
+                const rect = headingRef.current.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+
+                const deltaX = (e.clientX - centerX) / (rect.width / 2);
+                const deltaY = (e.clientY - centerY) / (rect.height / 2);
+
+                const maxTilt = 8; // degrees
+                const rotateY = deltaX * maxTilt;
+                const rotateX = -deltaY * maxTilt;
+
+                headingRef.current.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+            }
+        };
+
+        const handleMouseLeave = () => {
+            mousePos.active = false;
+
+            // Reset text transform
+            if (headingRef.current) {
+                headingRef.current.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+            }
+        };
+
+        window.addEventListener('mousemove', handleMouseMove);
+        window.addEventListener('mouseleave', handleMouseLeave);
+
+        return () => {
+            window.removeEventListener('mousemove', handleMouseMove);
+            window.removeEventListener('mouseleave', handleMouseLeave);
+        };
+    }, []);
+
+    return (
+        <section className="relative w-full h-screen overflow-hidden bg-white">
+            <Canvas
+                style={{ width: '100%', height: '100%', pointerEvents: 'auto' }}
+                gl={{
+                    antialias: true,
+                    alpha: true,
+                    powerPreference: 'high-performance'
+                }}
+            >
+                <Scene />
+            </Canvas>
+
+            {/* Premium Text Overlay */}
+            <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
+                <div className="text-center space-y-4 md:space-y-8 px-4 max-w-5xl">
+                    {/* Main Headline */}
+                    <div className="space-y-2 md:space-y-4 pointer-events-auto">
+                        <h1
+                            ref={headingRef}
+                            className="text-5xl sm:text-6xl md:text-8xl font-bold bg-linear-to-r from-teal-600 via-cyan-500 to-blue-600 bg-clip-text text-transparent leading-relaxed pb-2 transition-transform duration-150 ease-out cursor-default select-none"
+                            style={{ transformStyle: 'preserve-3d' }}
                         >
-                            {/* Glow effect behind phone */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-teal-400/20 to-transparent blur-3xl scale-110" />
-                            <Image
-                                src="/heroMobile.png"
-                                alt="SwiftFin Mobile App"
-                                width={600}
-                                height={1200}
-                                className="relative w-64 sm:w-80 md:w-[420px] lg:w-[480px] xl:w-[550px] h-auto drop-shadow-[0_35px_60px_rgba(0,0,0,0.25)]"
-                                priority
-                            />
-                        </motion.div>
+                            <span style={{ fontFamily: "var(--font-cedarville), cursive" }}>Swift</span>
+                            <span>Fin</span>
+                        </h1>
+                        <p className="text-xl sm:text-2xl md:text-4xl font-light text-slate-700">
+                            The Future of Digital Finance
+                        </p>
                     </div>
 
-                    {/* Right Side - Text Content */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.3 }}
-                        className="flex flex-col items-center lg:items-start text-center lg:text-left max-w-2xl order-1 lg:order-2 flex-shrink-0 w-full"
-                    >
-                        {/* Premium Badge */}
-                        <motion.span
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.5, delay: 0.5 }}
-                            className="inline-flex items-center gap-2 px-4 py-2 mb-6 md:mb-8 text-xs md:text-sm font-semibold tracking-wide text-teal-700 bg-gradient-to-r from-teal-50 to-emerald-50 rounded-full border border-teal-200/60 shadow-sm"
-                        >
-                            <span className="w-2 h-2 bg-teal-500 rounded-full animate-pulse" />
-                            Smart Finance Management
-                        </motion.span>
+                    {/* Subtitle */}
+                    <p className="text-base sm:text-lg md:text-xl text-slate-600 max-w-xl md:max-w-2xl mx-auto leading-relaxed px-2">
+                        Experience seamless transactions between your wallet and devices.
+                        <span className="hidden sm:inline"> Powered by next-generation blockchain technology.</span>
+                    </p>
 
-                        {/* Title */}
-                        <h1 className="font-sora text-3xl sm:text-4xl md:text-6xl lg:text-6xl xl:text-7xl font-bold text-neutral-slate mb-4 md:mb-6 leading-[1.1] tracking-tight">
-                            Master Your{" "}
-                            <span className="text-gradient-primary relative">
-                                Money
-                                <svg className="absolute -bottom-1 md:-bottom-2 left-0 w-full h-2 md:h-3 text-teal-400/30" viewBox="0 0 200 12" preserveAspectRatio="none">
-                                    <path d="M0 9c50-6 100-6 200 0" stroke="currentColor" strokeWidth="4" fill="none" strokeLinecap="round"/>
-                                </svg>
-                            </span>
-                            <br />
-                            <span className="text-gray-400">Effortlessly</span>
-                        </h1>
+                    {/* Animated Ticker */}
+                    <div className="relative overflow-hidden pt-2 md:pt-4 w-full max-w-sm sm:max-w-md md:max-w-2xl mx-auto">
+                        {/* Fade overlays */}
+                        <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-16 md:w-20 bg-linear-to-r from-white to-transparent z-10"></div>
+                        <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-16 md:w-20 bg-linear-to-l from-white to-transparent z-10"></div>
 
-                        {/* Subtitle */}
-                        <p className="font-inter text-base md:text-lg lg:text-xl text-gray-600 mb-6 md:mb-10 leading-relaxed max-w-lg px-2 md:px-0">
-                            The all-in-one financial companion that helps you track expenses,
-                            manage EMIs, grow investments, and achieve your financial goals with
-                            <span className="text-teal-600 font-medium"> AI-powered insights</span>.
-                        </p>
-
-                        {/* Buttons */}
-                        <div className="flex flex-col md:flex-row gap-3 md:gap-4 mb-6 md:mb-10 w-full max-w-md lg:max-w-none md:w-auto px-4 md:px-0">
-                            <AnimatedDownloadButton className="w-full md:w-auto shadow-lg shadow-teal-500/25 hover:shadow-xl hover:shadow-teal-500/30 transition-shadow" />
-
-                            <Link
-                                href="#features"
-                                className="group px-6 md:px-8 py-3 md:py-4 bg-white text-neutral-slate border-2 border-gray-200 font-semibold text-sm md:text-base rounded-2xl hover:border-teal-400 hover:text-teal-600 transition-all text-center flex items-center justify-center gap-2 whitespace-nowrap w-full md:w-auto"
-                            >
-                                Explore Features
-                                <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                </svg>
-                            </Link>
-                        </div>
-
-                        {/* Trust Indicators */}
-                        <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 md:gap-6 text-xs md:text-sm text-gray-600 font-inter px-2 md:px-0">
-                            <div className="flex items-center gap-2 md:gap-2.5 bg-white/80 backdrop-blur-sm px-3 md:px-4 py-1.5 md:py-2 rounded-full shadow-sm border border-gray-100">
-                                <div className="w-6 h-6 md:w-8 md:h-8 bg-green-100 rounded-full flex items-center justify-center">
-                                    <svg className="w-3 h-3 md:w-4 md:h-4 text-green-600" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                                    </svg>
-                                </div>
-                                <span className="font-medium">100% Free</span>
-                            </div>
-
-                            <div className="flex items-center gap-2 md:gap-2.5 bg-white/80 backdrop-blur-sm px-3 md:px-4 py-1.5 md:py-2 rounded-full shadow-sm border border-gray-100">
-                                <div className="w-6 h-6 md:w-8 md:h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                                    <svg className="w-3 h-3 md:w-4 md:h-4 text-blue-600" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                                    </svg>
-                                </div>
-                                <span className="font-medium whitespace-nowrap">Bank-Grade Security</span>
-                            </div>
-
-                            <div className="flex items-center gap-2 md:gap-2.5 bg-white/80 backdrop-blur-sm px-3 md:px-4 py-1.5 md:py-2 rounded-full shadow-sm border border-gray-100">
-                                <div className="w-6 h-6 md:w-8 md:h-8 bg-purple-100 rounded-full flex items-center justify-center">
-                                    <svg className="w-3 h-3 md:w-4 md:h-4 text-purple-600" viewBox="0 0 20 20" fill="currentColor">
-                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                    </svg>
-                                </div>
-                                <span className="font-medium">4.9 Rating</span>
+                        {/* Ticker content */}
+                        <div className="flex animate-ticker whitespace-nowrap">
+                            <div className="flex gap-6 sm:gap-8 px-4">
+                                <span className="text-slate-700 text-sm sm:text-base font-medium">⚡ Instant Transfers</span>
+                                <span className="text-slate-700 text-sm sm:text-base font-medium">🔒 Bank-Grade Security</span>
+                                <span className="text-slate-700 text-sm sm:text-base font-medium">💰 Zero Fees</span>
+                                <span className="text-slate-700 text-sm sm:text-base font-medium">⚡ Instant Transfers</span>
+                                <span className="text-slate-700 text-sm sm:text-base font-medium">🔒 Bank-Grade Security</span>
+                                <span className="text-slate-700 text-sm sm:text-base font-medium">💰 Zero Fees</span>
+                                <span className="text-slate-700 text-sm sm:text-base font-medium">⚡ Instant Transfers</span>
+                                <span className="text-slate-700 text-sm sm:text-base font-medium">🔒 Bank-Grade Security</span>
+                                <span className="text-slate-700 text-sm sm:text-base font-medium">💰 Zero Fees</span>
                             </div>
                         </div>
-                    </motion.div>
+                    </div>
+
+                    {/* CTA Hint */}
+                    <p className="text-xs sm:text-sm text-slate-500 pt-4 md:pt-8">
+                        <span className="hidden sm:inline">Drag to explore • </span>Interactive 3D Experience
+                    </p>
                 </div>
             </div>
+
+            {/* Ticker Animation Styles */}
+            <style jsx>{`
+                @keyframes ticker {
+                    0% {
+                        transform: translateX(0);
+                    }
+                    100% {
+                        transform: translateX(-33.333%);
+                    }
+                }
+                .animate-ticker {
+                    animation: ticker 15s linear infinite;
+                }
+                .animate-ticker:hover {
+                    animation-play-state: paused;
+                }
+            `}</style>
+
         </section>
     );
 }

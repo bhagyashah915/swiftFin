@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Sora } from "next/font/google";
+import { Inter, Sora, Cedarville_Cursive } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
@@ -18,6 +18,13 @@ const sora = Sora({
   display: "swap",
 });
 
+const cedarvilleCursive = Cedarville_Cursive({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-cedarville",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "SwiftFin - Smart Finance Management for Everyone",
   description: "Track expenses, manage EMIs, monitor investments, and get personalized finance tips - all in one powerful app. Free forever.",
@@ -31,7 +38,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${sora.variable} antialiased font-sans`}
+        className={`${inter.variable} ${sora.variable} ${cedarvilleCursive.variable} antialiased font-sans`}
       >
         <Navbar />
         {children}

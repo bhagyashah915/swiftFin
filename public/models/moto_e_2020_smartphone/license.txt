@@ -1,0 +1,11 @@
+Model Information:
+* title:	Moto E 2020 smartphone
+* source:	https://sketchfab.com/3d-models/moto-e-2020-smartphone-737df53dc18e439ca94540926ab0bea9
+* author:	pricrich (https://sketchfab.com/pricrich681)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Moto E 2020 smartphone" (https://sketchfab.com/3d-models/moto-e-2020-smartphone-737df53dc18e439ca94540926ab0bea9) by pricrich (https://sketchfab.com/pricrich681) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

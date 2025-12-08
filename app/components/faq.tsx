@@ -1,79 +1,178 @@
 "use client";
 
-import { ChevronDown } from "lucide-react";
-import { motion } from "framer-motion";
+import { ChevronRight, Sparkles, MessageCircle } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 
 export default function FAQ() {
+    const [activeIndex, setActiveIndex] = useState<number | null>(null);
+    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
     const faqs = [
         {
             question: "Is SwiftFin free to use?",
-            answer: "Yes! SwiftFin is completely free to use with all core features. We also offer premium plans with advanced analytics and unlimited cloud storage."
+            answer: "Yes! SwiftFin is completely free with all core features. Premium plans are available for advanced analytics.",
+
         },
         {
             question: "How secure is my financial data?",
-            answer: "Your data is protected with bank-grade 256-bit encryption. We use industry-standard security protocols and never share your information with third parties."
+            answer: "Your data is protected with 256-bit encryption. We never share information with third parties.",
+
         },
         {
-            question: "Can I track multiple accounts and investments?",
-            answer: "Absolutely! You can add unlimited bank accounts, credit cards, and investment portfolios. SwiftFin consolidates everything into one easy-to-use dashboard."
+            question: "Can I track multiple accounts?",
+            answer: "Absolutely! Add unlimited bank accounts, credit cards, and investment portfolios in one dashboard.",
+
         },
         {
             question: "Does SwiftFin work offline?",
-            answer: "Yes, you can add expenses and view your data offline. All changes will sync automatically when you're back online."
+            answer: "Yes, add expenses offline and everything syncs automatically when you're back online.",
+
         },
         {
             question: "How does receipt scanning work?",
-            answer: "Simply take a photo of your receipt, and our AI will automatically extract the amount, date, and category. You can review and edit before saving."
+            answer: "Take a photo and our AI extracts amount, date, and category automatically.",
+
         },
         {
-            question: "Can I export my financial reports?",
-            answer: "Yes! You can export your expense reports, investment summaries, and EMI schedules in PDF or CSV format anytime."
+            question: "Can I export financial reports?",
+            answer: "Yes! Export expense reports and summaries in PDF or CSV format anytime.",
+
         }
     ];
 
     return (
-        <section id="faq" className="py-20 md:py-32 bg-white section-highlight">
-            <div className="container mx-auto px-6 md:px-12">
+        <section id="faq" className="py-20 md:py-24 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
+            <div className="container mx-auto px-4 sm:px-6 md:px-12">
+                {/* Header */}
                 <motion.div
-                    className="text-center max-w-3xl mx-auto mb-16"
+                    className="text-center max-w-4xl mx-auto mb-16 md:mb-20"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
                 >
-                    <h2 className="text-primary-teal font-bold tracking-wide uppercase text-4xl mb-3 font-inter">FAQ</h2>
-                    <h3 className="font-sora text-2xl md:text-2xl font-bold text-neutral-slate mb-6">
-                        Frequently Asked <span className="text-gradient-primary"> Questions </span>
-                    </h3>
-                    <p className="font-inter text-gray-600 text-lg">
-                        Got questions? We&apos;ve got answers.
+                    <motion.div
+                        className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#FD7E14]/10 rounded-full mb-6"
+                        whileHover={{ scale: 1.05 }}
+                    >
+                        <Sparkles className="w-4 h-4 text-[#FD7E14]" />
+                        <span className="text-sm font-bold uppercase tracking-wider text-[#FD7E14]">FAQ</span>
+                    </motion.div>
+                    <h2 className="font-sora text-3xl sm:text-4xl md:text-5xl font-bold text-[#495057] mb-6 leading-tight">
+                        Got Questions?
+                    </h2>
+                    <p className="font-inter text-gray-600 text-lg leading-relaxed">
+                        Click on any question to reveal the answer
                     </p>
                 </motion.div>
 
-                <div className="max-w-3xl mx-auto space-y-4">
+                {/* Interactive FAQ Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl mx-auto">
                     {faqs.map((faq, index) => (
                         <motion.div
                             key={index}
-                            className="rounded-xl overflow-hidden bg-white shadow-sm border border-gray-200 hover:border-primary-teal transition-colors"
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
+                            initial={{ opacity: 0, y: 30, rotateX: -10 }}
+                            whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: index * 0.05 }}
+                            transition={{ duration: 0.5, delay: index * 0.08 }}
+                            onMouseEnter={() => setHoveredIndex(index)}
+                            onMouseLeave={() => setHoveredIndex(null)}
+                            onClick={() => setActiveIndex(activeIndex === index ? null : index)}
+                            className="cursor-pointer perspective-1000"
                         >
-                            <details className="group">
-                                <summary className="flex justify-between items-center p-6 cursor-pointer bg-white list-none focus:outline-none transition-colors">
-                                    <span className="font-sora font-bold text-neutral-slate text-lg pr-4">{faq.question}</span>
-                                    <span className="transition-transform duration-300 group-open:rotate-180 shrink-0">
-                                        <ChevronDown className="w-5 h-5 text-primary-teal" />
-                                    </span>
-                                </summary>
-                                <div className="px-6 pb-6 font-inter text-gray-600 leading-relaxed bg-white">
-                                    {faq.answer}
-                                </div>
-                            </details>
+                            <motion.div
+                                className={`relative h-48 rounded-2xl transition-all duration-300 ${activeIndex === index
+                                    ? 'bg-[#20C997] shadow-xl shadow-[#20C997]/20'
+                                    : 'bg-white border border-gray-100 shadow-md hover:shadow-lg'
+                                    }`}
+                                animate={{
+                                    scale: hoveredIndex === index ? 1.02 : 1,
+                                    rotateY: activeIndex === index ? 0 : 0
+                                }}
+                                whileTap={{ scale: 0.98 }}
+                            >
+                                {/* Front - Question */}
+                                <AnimatePresence mode="wait">
+                                    {activeIndex !== index ? (
+                                        <motion.div
+                                            key="question"
+                                            initial={{ opacity: 0 }}
+                                            animate={{ opacity: 1 }}
+                                            exit={{ opacity: 0 }}
+                                            className="absolute inset-0 p-6 flex flex-col"
+                                        >
+                                            <motion.span
+                                                className="text-4xl mb-3"
+                                                animate={{
+                                                    rotate: hoveredIndex === index ? [0, -10, 10, 0] : 0,
+                                                    scale: hoveredIndex === index ? 1.2 : 1
+                                                }}
+                                                transition={{ duration: 0.4 }}
+                                            >
+                                                {faq.emoji}
+                                            </motion.span>
+                                            <h3 className="font-sora font-bold text-[#495057] text-lg md:text-xl flex-1">
+                                                {faq.question}
+                                            </h3>
+                                            <div className="flex items-center gap-2 text-sm text-[#20C997] font-medium">
+                                                <span>Click to reveal</span>
+                                                <motion.div
+                                                    animate={{ x: hoveredIndex === index ? [0, 5, 0] : 0 }}
+                                                    transition={{ duration: 0.5, repeat: hoveredIndex === index ? Infinity : 0 }}
+                                                >
+                                                    <ChevronRight className="w-4 h-4" />
+                                                </motion.div>
+                                            </div>
+                                        </motion.div>
+                                    ) : (
+                                        <motion.div
+                                            key="answer"
+                                            initial={{ opacity: 0, scale: 0.9 }}
+                                            animate={{ opacity: 1, scale: 1 }}
+                                            exit={{ opacity: 0, scale: 0.9 }}
+                                            className="absolute inset-0 p-6 flex flex-col justify-center"
+                                        >
+                                            <p className="font-inter text-white leading-relaxed">
+                                                {faq.answer}
+                                            </p>
+                                            <span className="mt-3 text-white/70 text-sm">
+                                                Click to close
+                                            </span>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+
+                                {/* Decorative corner */}
+                                <motion.div
+                                    className={`absolute top-0 right-0 w-16 h-16 rounded-bl-full ${activeIndex === index ? 'bg-white/10' : 'bg-[#20C997]/5'
+                                        }`}
+                                    animate={{ scale: hoveredIndex === index ? 1.2 : 1 }}
+                                />
+                            </motion.div>
                         </motion.div>
                     ))}
                 </div>
+
+                {/* Contact CTA */}
+                <motion.div
+                    className="text-center mt-12"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.5 }}
+                >
+                    <p className="text-gray-500 mb-4">Still have questions?</p>
+                    <motion.a
+                        href="/contact"
+                        className="inline-flex items-center gap-2 px-6 py-3 bg-[#495057] text-white font-semibold rounded-full"
+                        whileHover={{ scale: 1.05, backgroundColor: "#3d4349" }}
+                        whileTap={{ scale: 0.98 }}
+                    >
+                        <MessageCircle className="w-5 h-5" />
+                        Contact Support
+                    </motion.a>
+                </motion.div>
             </div>
         </section>
     );
