@@ -82,12 +82,16 @@ export default function Features() {
         const diff = index - activeIndex;
         const normalized = ((diff % features.length) + features.length) % features.length;
 
-        if (normalized === 0) return { x: 0, z: 100, scale: 1, opacity: 1, rotateY: 0 };
-        if (normalized === 1) return { x: 280, z: 0, scale: 0.85, opacity: 0.5, rotateY: -15 };
-        if (normalized === features.length - 1) return { x: -280, z: 0, scale: 0.85, opacity: 0.5, rotateY: 15 };
-        if (normalized === 2) return { x: 450, z: -100, scale: 0.7, opacity: 0.3, rotateY: -25 };
-        if (normalized === features.length - 2) return { x: -450, z: -100, scale: 0.7, opacity: 0.3, rotateY: 25 };
-        return { x: 0, z: -200, scale: 0.5, opacity: 0, rotateY: 0 };
+        // Center/Active card - full size and brightness
+        if (normalized === 0) return { x: 0, z: 100, scale: 1, opacity: 1, rotateY: 0, blur: 0 };
+        // Adjacent cards - slightly smaller, no transparency, subtle rotation
+        if (normalized === 1) return { x: 300, z: 0, scale: 0.85, opacity: 0.9, rotateY: -20, blur: 1 };
+        if (normalized === features.length - 1) return { x: -300, z: 0, scale: 0.85, opacity: 0.9, rotateY: 20, blur: 1 };
+        // Further cards - smaller but still visible
+        if (normalized === 2) return { x: 520, z: -80, scale: 0.7, opacity: 0.7, rotateY: -30, blur: 2 };
+        if (normalized === features.length - 2) return { x: -520, z: -80, scale: 0.7, opacity: 0.7, rotateY: 30, blur: 2 };
+        // Hidden cards (behind)
+        return { x: 0, z: -200, scale: 0.5, opacity: 0, rotateY: 0, blur: 4 };
     };
 
     return (
@@ -151,45 +155,57 @@ export default function Features() {
                                             {/* Notch */}
                                             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-6 bg-[#2d3238] rounded-b-2xl z-20" />
 
-                                            {/* Screen with glassmorphism */}
-                                            <div className="relative rounded-4xl overflow-hidden h-[380px] md:h-[480px] bg-linear-to-br from-white/95 to-gray-50/95 backdrop-blur-xl">
-                                                {/* Translucent overlay gradient */}
-                                                <div className="absolute inset-0 bg-linear-to-br from-primary-teal/10 via-transparent to-blue-500/10" />
+                                            {/* Screen with solid gradient background */}
+                                            <div className="relative rounded-4xl overflow-hidden h-[380px] md:h-[480px]"
+                                                style={{
+                                                    background: "linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%)"
+                                                }}>
+                                                {/* Animated gradient overlay */}
+                                                <motion.div
+                                                    className="absolute inset-0"
+                                                    style={{
+                                                        background: "linear-gradient(135deg, rgba(32, 201, 151, 0.15) 0%, rgba(16, 185, 129, 0.1) 50%, rgba(6, 182, 212, 0.15) 100%)"
+                                                    }}
+                                                    animate={isActive ? {
+                                                        opacity: [0.5, 0.8, 0.5]
+                                                    } : {}}
+                                                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                                                />
 
-                                                {/* Glassmorphism top bar */}
-                                                <div className="absolute top-0 left-0 right-0 h-16 bg-white/40 backdrop-blur-md border-b border-white/20 z-10 flex items-center justify-center">
-                                                    <div className="w-12 h-1 bg-gray-300 rounded-full" />
+                                                {/* Top bar with solid background */}
+                                                <div className="absolute top-0 left-0 right-0 h-16 bg-black/40 border-b border-white/10 z-10 flex items-center justify-center">
+                                                    <div className="w-12 h-1 bg-white/30 rounded-full" />
                                                 </div>
 
                                                 {/* Content */}
-                                                <div className="relative z-10 p-6 h-full flex flex-col justify-center items-center text-center pt-20">
-                                                    {/* Icon with 3D effect */}
+                                                <div className="relative z-10 p-6 h-full flex flex-col justify-center items-center text-center pt-20 text-white">
+                                                    {/* Icon with 3D effect and glow */}
                                                     <motion.div
-                                                        className="w-20 h-20 rounded-2xl bg-linear-to-br from-primary-teal to-emerald-600 flex items-center justify-center mb-6 text-white shadow-lg"
+                                                        className="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary-teal via-emerald-500 to-cyan-500 flex items-center justify-center mb-6 text-white shadow-lg"
                                                         animate={isActive ? {
                                                             y: [0, -10, 0],
                                                             rotateZ: [0, 5, -5, 0],
-                                                            scale: [1, 1.05, 1]
-                                                        } : {}}
+                                                            scale: [1, 1.1, 1]
+                                                        } : { scale: 1 }}
                                                         transition={{
                                                             duration: 3,
                                                             repeat: Infinity,
                                                             ease: "easeInOut"
                                                         }}
                                                         style={{
-                                                            boxShadow: '0 10px 25px -5px rgba(32, 201, 151, 0.5)'
+                                                            boxShadow: isActive ? '0 0 40px 10px rgba(32, 201, 151, 0.4), 0 10px 25px -5px rgba(32, 201, 151, 0.5)' : '0 10px 25px -5px rgba(32, 201, 151, 0.5)'
                                                         }}
                                                     >
                                                         {feature.icon}
                                                     </motion.div>
 
                                                     {/* Title */}
-                                                    <h3 className="font-sora font-bold text-neutral-slate text-xl md:text-2xl mb-3">
+                                                    <h3 className="font-sora font-bold text-white text-xl md:text-2xl mb-3">
                                                         {feature.title}
                                                     </h3>
 
                                                     {/* Description */}
-                                                    <p className="font-inter text-gray-600 text-sm leading-relaxed mb-6 px-2">
+                                                    <p className="font-inter text-gray-300 text-sm leading-relaxed mb-6 px-2">
                                                         {feature.description}
                                                     </p>
 
@@ -197,16 +213,16 @@ export default function Features() {
                                                     <div className="w-full space-y-2">
                                                         {feature.details.map((detail, idx) => (
                                                             <motion.div
-                                                                key={idx}
+                                                                key={`feature-detail-${idx}`}
                                                                 initial={{ opacity: 0, x: -10 }}
                                                                 animate={isActive ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
-                                                                transition={{ delay: idx * 0.1 }}
-                                                                className="flex items-center gap-2 bg-white/60 backdrop-blur-sm rounded-lg p-2 border border-white/40"
+                                                                transition={{ delay: idx * 0.15 }}
+                                                                className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-lg p-2 border border-white/20"
                                                             >
-                                                                <div className="w-5 h-5 rounded-full bg-primary-teal flex items-center justify-center shrink-0">
+                                                                <div className="w-5 h-5 rounded-full bg-gradient-to-br from-primary-teal to-emerald-500 flex items-center justify-center shrink-0">
                                                                     <Check className="w-3 h-3 text-white" />
                                                                 </div>
-                                                                <span className="text-xs font-medium text-gray-700 text-left">{detail}</span>
+                                                                <span className="text-xs font-medium text-gray-200 text-left">{detail}</span>
                                                             </motion.div>
                                                         ))}
                                                     </div>
@@ -224,8 +240,8 @@ export default function Features() {
                                                 </div>
 
                                                 {/* Decorative circles */}
-                                                <div className="absolute bottom-10 right-0 w-32 h-32 border border-primary-teal/10 rounded-full" />
-                                                <div className="absolute bottom-5 right-5 w-20 h-20 border border-primary-teal/20 rounded-full" />
+                                                <div className="absolute bottom-10 right-0 w-32 h-32 border border-primary-teal/30 rounded-full" />
+                                                <div className="absolute bottom-5 right-5 w-20 h-20 border border-primary-teal/40 rounded-full" />
                                             </div>
                                         </div>
 
