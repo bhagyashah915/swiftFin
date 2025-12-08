@@ -67,9 +67,9 @@ export default function UserTypes() {
     const currentUser = users[currentIndex];
 
     return (
-        <section className="py-20 md:py-28 bg-[#495057]">
+        <section className="py-20 md:py-24 bg-[#495057]">
             <div className="container mx-auto px-4 sm:px-6 md:px-12">
-                <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+                <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
 
                     {/* Left Content */}
                     <motion.div
@@ -79,13 +79,15 @@ export default function UserTypes() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
                     >
-                        <span className="inline-block text-[#20C997] font-semibold text-sm uppercase tracking-wider mb-4">
-                            Who is it for?
-                        </span>
-                        <h2 className="font-sora text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
+                        <div className="inline-block px-4 py-1.5 rounded-full bg-[#20C997]/10 mb-4">
+                            <span className="text-[#20C997] font-bold text-sm uppercase tracking-widest">
+                                Who is it for?
+                            </span>
+                        </div>
+                        <h2 className="font-sora text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
                             Built for Everyone
                         </h2>
-                        <p className="font-inter text-gray-300 text-lg leading-relaxed mb-8">
+                        <p className="font-inter text-gray-300 text-lg leading-relaxed mb-8 max-w-xl">
                             Whether you&apos;re a student managing pocket money or a professional planning investments,
                             SwiftFin adapts to your unique financial needs.
                         </p>

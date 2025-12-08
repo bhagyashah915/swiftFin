@@ -11,20 +11,20 @@ export default function Security() {
     ];
 
     return (
-        <section id="security" className="py-20 md:py-28 bg-[#f8f9fa]">
+        <section id="security" className="py-20 md:py-24 bg-[#f8f9fa]">
             <div className="container mx-auto px-4 sm:px-6 md:px-12">
                 <div className="max-w-4xl mx-auto text-center">
 
                     {/* Shield Icon */}
                     <motion.div
-                        className="mb-8"
+                        className="mb-10"
                         initial={{ scale: 0 }}
                         whileInView={{ scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ type: "spring", stiffness: 200 }}
                     >
-                        <div className="inline-flex items-center justify-center w-20 h-20 bg-[#20C997] rounded-full shadow-lg">
-                            <Shield className="w-10 h-10 text-white" />
+                        <div className="inline-flex items-center justify-center w-24 h-24 bg-[#20C997] rounded-full shadow-lg">
+                            <Shield className="w-12 h-12 text-white" />
                         </div>
                     </motion.div>
 
@@ -35,13 +35,15 @@ export default function Security() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
                     >
-                        <span className="inline-block text-[#198754] font-semibold text-sm uppercase tracking-wider mb-4">
-                            Security
-                        </span>
-                        <h2 className="font-sora text-3xl sm:text-4xl md:text-5xl font-bold text-[#495057] mb-6">
+                        <div className="inline-block px-4 py-1.5 rounded-full bg-[#198754]/10 mb-4">
+                            <span className="text-[#198754] font-bold text-sm uppercase tracking-widest">
+                                Security
+                            </span>
+                        </div>
+                        <h2 className="font-sora text-3xl sm:text-4xl md:text-5xl font-bold text-[#495057] mb-6 leading-tight">
                             Your Data is Safe with Us
                         </h2>
-                        <p className="font-inter text-gray-600 text-lg leading-relaxed max-w-2xl mx-auto mb-10">
+                        <p className="font-inter text-gray-600 text-lg leading-relaxed max-w-3xl mx-auto mb-10">
                             We use state-of-the-art security measures to ensure your financial information
                             remains private and protected at all times.
                         </p>

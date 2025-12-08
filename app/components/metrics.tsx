@@ -42,7 +42,7 @@ export default function Metrics() {
     ];
 
     return (
-        <section ref={ref} className="py-20 md:py-28 bg-[#495057] relative overflow-hidden">
+        <section ref={ref} className="py-20 md:py-24 bg-[#495057] relative overflow-hidden">
             {/* Animated background */}
             <div className="absolute inset-0 pointer-events-none">
                 {/* Teal gradient orb */}
@@ -70,24 +70,24 @@ export default function Metrics() {
             <div className="container mx-auto px-4 sm:px-6 md:px-12 relative z-10">
                 {/* Header */}
                 <motion.div
-                    className="text-center max-w-3xl mx-auto mb-16"
+                    className="text-center max-w-4xl mx-auto mb-16 md:mb-20"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
                 >
                     <motion.div
-                        className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-6"
+                        className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-6"
                         whileHover={{ scale: 1.05 }}
                     >
                         <Sparkles className="w-4 h-4 text-[#20C997]" />
-                        <span className="text-sm font-semibold text-[#20C997]">Our Impact</span>
+                        <span className="text-sm font-bold uppercase tracking-wider text-[#20C997]">Our Impact</span>
                     </motion.div>
 
-                    <h2 className="font-sora text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+                    <h2 className="font-sora text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
                         Trusted by <span className="text-[#20C997]">Millions</span>
                     </h2>
-                    <p className="font-inter text-gray-300 text-lg">
+                    <p className="font-inter text-gray-300 text-lg max-w-2xl mx-auto">
                         SwiftFin is helping users across India take control of their financial future
                     </p>
                 </motion.div>
