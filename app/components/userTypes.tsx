@@ -113,8 +113,8 @@ export default function UserTypes() {
                                 <motion.div
                                     key={index}
                                     className={`relative p-5 rounded-2xl cursor-pointer transition-all duration-500 overflow-hidden group ${currentIndex === index
-                                            ? 'bg-white/15 backdrop-blur-md border border-white/30'
-                                            : 'bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10'
+                                        ? 'bg-white/15 backdrop-blur-md border border-white/30'
+                                        : 'bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10'
                                         }`}
                                     onMouseEnter={() => {
                                         setDirection(index > currentIndex ? 1 : -1);
@@ -129,8 +129,8 @@ export default function UserTypes() {
                                     <div className="flex items-center gap-4">
                                         {/* Icon */}
                                         <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${currentIndex === index
-                                                ? 'bg-[#20C997] text-white'
-                                                : 'bg-white/10 text-white/70 group-hover:bg-white/20'
+                                            ? 'bg-[#20C997] text-white'
+                                            : 'bg-white/10 text-white/70 group-hover:bg-white/20'
                                             }`}>
                                             {user.icon}
                                         </div>
@@ -180,39 +180,6 @@ export default function UserTypes() {
                                     </AnimatePresence>
                                 </motion.div>
                             ))}
-                        </div>
-
-                        {/* Navigation Dots */}
-                        <div className="flex items-center justify-center gap-4 mt-8">
-                            <button
-                                onClick={() => paginate(-1)}
-                                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors"
-                            >
-                                <ChevronLeft className="w-5 h-5" />
-                            </button>
-
-                            <div className="flex gap-2">
-                                {users.map((_, index) => (
-                                    <button
-                                        key={index}
-                                        onClick={() => {
-                                            setDirection(index > currentIndex ? 1 : -1);
-                                            setCurrentIndex(index);
-                                        }}
-                                        className={`h-2 rounded-full transition-all duration-300 ${index === currentIndex
-                                                ? 'w-8 bg-[#20C997]'
-                                                : 'w-2 bg-white/30 hover:bg-white/50'
-                                            }`}
-                                    />
-                                ))}
-                            </div>
-
-                            <button
-                                onClick={() => paginate(1)}
-                                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors"
-                            >
-                                <ChevronRight className="w-5 h-5" />
-                            </button>
                         </div>
                     </div>
                 </div>

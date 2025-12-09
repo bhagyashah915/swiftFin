@@ -1,84 +1,188 @@
 "use client";
 
-import { Download, UserPlus, Rocket, CheckCircle2 } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { Download, UserPlus, Rocket, CheckCircle2, Sparkles, TrendingUp, Shield, Zap } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useState, useRef } from "react";
 
 const steps = [
     {
         id: 1,
-        icon: <Download className="w-6 h-6" />,
+        icon: <Download className="w-5 h-5" />,
         title: "Download SwiftFin",
         description: "Get the app from Play Store or App Store. Quick and easy installation on any device.",
-        color: "#20C997",
-        coinGradient: "from-[#20C997] to-[#198754]"
+        position: { left: "15%", top: "75%" },
+        mobileOrder: 1,
+        decorIcon: <Sparkles className="w-8 h-8" />
     },
     {
         id: 2,
-        icon: <UserPlus className="w-6 h-6" />,
+        icon: <UserPlus className="w-5 h-5" />,
         title: "Launch & Explore",
         description: "Open the app and explore the intuitive interface. No complex setup required.",
-        color: "#FD7E14",
-        coinGradient: "from-[#FD7E14] to-[#ea580c]"
+        position: { left: "35%", top: "45%" },
+        mobileOrder: 2,
+        decorIcon: <TrendingUp className="w-8 h-8" />
     },
     {
         id: 3,
-        icon: <Rocket className="w-6 h-6" />,
+        icon: <Rocket className="w-5 h-5" />,
         title: "Start Managing",
         description: "Begin tracking expenses, managing EMIs, and monitoring investments effortlessly.",
-        color: "#198754",
-        coinGradient: "from-[#198754] to-[#16a34a]"
+        position: { left: "60%", top: "25%" },
+        mobileOrder: 3,
+        decorIcon: <Shield className="w-8 h-8" />
     },
     {
         id: 4,
-        icon: <CheckCircle2 className="w-6 h-6" />,
+        icon: <CheckCircle2 className="w-5 h-5" />,
         title: "Achieve Goals",
         description: "Watch your financial health improve with personalized insights and smart recommendations.",
-        color: "#20C997",
-        coinGradient: "from-[#20C997] to-[#14b8a6]"
+        position: { left: "85%", top: "55%" },
+        mobileOrder: 4,
+        decorIcon: <Zap className="w-8 h-8" />
     }
 ];
 
 export default function HowItWorks() {
-    const [activeStep, setActiveStep] = useState<number | null>(null);
-    const [collectedCoins, setCollectedCoins] = useState<number[]>([]);
+    const [hoveredStep, setHoveredStep] = useState<number | null>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
 
-    const handleCoinClick = (index: number) => {
-        setActiveStep(index);
-        if (!collectedCoins.includes(index)) {
-            setTimeout(() => {
-                setCollectedCoins(prev => [...prev, index]);
-            }, 100);
-        }
-    };
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start end", "end start"]
+    });
 
-    const resetWallet = () => {
-        setCollectedCoins([]);
-        setActiveStep(null);
-    };
-
-    // Split steps for left and right
-    const leftSteps = steps.filter((_, i) => i % 2 === 0); // Steps 1, 3
-    const rightSteps = steps.filter((_, i) => i % 2 === 1); // Steps 2, 4
+    // Parallax transforms
+    const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+    const roadY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
+    const floatY1 = useTransform(scrollYProgress, [0, 1], ["0%", "-20%"]);
+    const floatY2 = useTransform(scrollYProgress, [0, 1], ["0%", "-35%"]);
+    const roadProgress = useTransform(scrollYProgress, [0.2, 0.8], [0, 1]);
 
     return (
-        <section id="how-it-works" className="py-20 md:py-28 bg-gradient-to-b from-gray-50 via-white to-gray-50 relative overflow-hidden">
-            {/* Subtle background elements */}
-            <div className="absolute inset-0 pointer-events-none">
+        <section
+            id="how-it-works"
+            ref={containerRef}
+            className="py-20 md:py-28 relative overflow-hidden"
+            style={{ background: "linear-gradient(180deg, #ffffff 0%, #f0fdf9 50%, #ffffff 100%)" }}
+        >
+            {/* Background Pattern Layer - Parallax */}
+            <motion.div
+                className="absolute inset-0 pointer-events-none"
+                style={{ y: bgY }}
+            >
+                {/* Dot pattern */}
+                <div
+                    className="absolute inset-0 opacity-30"
+                    style={{
+                        backgroundImage: "radial-gradient(#20C997 1px, transparent 1px)",
+                        backgroundSize: "30px 30px"
+                    }}
+                />
+
+                {/* Large gradient orbs */}
                 <motion.div
-                    className="absolute top-20 left-1/4 w-96 h-96 rounded-full bg-[#20C997]/5 blur-3xl"
-                    animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
+                    className="absolute top-0 left-0 w-[600px] h-[600px] rounded-full bg-gradient-to-br from-[#20C997]/10 to-transparent blur-3xl"
+                    animate={{
+                        scale: [1, 1.2, 1],
+                        opacity: [0.3, 0.5, 0.3]
+                    }}
+                    transition={{ duration: 8, repeat: Infinity }}
+                />
+                <motion.div
+                    className="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full bg-gradient-to-tl from-[#20C997]/15 to-transparent blur-3xl"
+                    animate={{
+                        scale: [1, 1.3, 1],
+                        opacity: [0.2, 0.4, 0.2]
+                    }}
+                    transition={{ duration: 10, repeat: Infinity, delay: 2 }}
+                />
+                <motion.div
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-gradient-to-br from-[#FD7E14]/5 to-transparent blur-3xl"
+                    animate={{
+                        scale: [1, 1.1, 1],
+                        opacity: [0.2, 0.3, 0.2]
+                    }}
+                    transition={{ duration: 12, repeat: Infinity, delay: 4 }}
+                />
+            </motion.div>
+
+            {/* Floating decorative elements - Parallax */}
+            <motion.div
+                className="absolute inset-0 pointer-events-none hidden lg:block"
+                style={{ y: floatY1 }}
+            >
+                <motion.div
+                    className="absolute top-[20%] left-[5%] w-16 h-16 rounded-full border-2 border-[#20C997]/20"
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                />
+                <motion.div
+                    className="absolute top-[60%] right-[8%] w-24 h-24 rounded-full border-2 border-[#20C997]/15"
+                    animate={{ rotate: -360 }}
+                    transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+                />
+                <motion.div
+                    className="absolute bottom-[30%] left-[10%] w-8 h-8 bg-[#20C997]/10 rounded-lg rotate-45"
+                    animate={{
+                        y: [0, -20, 0],
+                        rotate: [45, 135, 45]
+                    }}
                     transition={{ duration: 6, repeat: Infinity }}
                 />
+            </motion.div>
+
+            <motion.div
+                className="absolute inset-0 pointer-events-none hidden lg:block"
+                style={{ y: floatY2 }}
+            >
                 <motion.div
-                    className="absolute bottom-20 right-1/4 w-80 h-80 rounded-full bg-[#FD7E14]/5 blur-3xl"
-                    animate={{ scale: [1, 1.3, 1], opacity: [0.2, 0.4, 0.2] }}
-                    transition={{ duration: 8, repeat: Infinity, delay: 2 }}
+                    className="absolute top-[35%] right-[15%] w-12 h-12 rounded-full bg-[#20C997]/5"
+                    animate={{
+                        scale: [1, 1.3, 1],
+                        opacity: [0.5, 0.8, 0.5]
+                    }}
+                    transition={{ duration: 4, repeat: Infinity }}
                 />
-            </div>
+                <motion.div
+                    className="absolute bottom-[45%] left-[20%] w-20 h-20 rounded-full border border-[#20C997]/10"
+                    animate={{
+                        scale: [1, 1.2, 1]
+                    }}
+                    transition={{ duration: 5, repeat: Infinity }}
+                />
+
+                {/* Decorative icons floating */}
+                {steps.map((step, index) => {
+                    const positions = [
+                        { top: "15%", left: "8%" },
+                        { top: "25%", right: "12%" },
+                        { bottom: "35%", left: "15%" },
+                        { bottom: "20%", right: "10%" }
+                    ];
+                    return (
+                        <motion.div
+                            key={index}
+                            className="absolute text-[#20C997]/10"
+                            style={positions[index]}
+                            animate={{
+                                y: [0, -15, 0],
+                                rotate: [0, 10, -10, 0]
+                            }}
+                            transition={{
+                                duration: 5 + index,
+                                repeat: Infinity,
+                                delay: index * 0.5
+                            }}
+                        >
+                            {step.decorIcon}
+                        </motion.div>
+                    );
+                })}
+            </motion.div>
 
             {/* Header */}
-            <div className="container mx-auto px-6 md:px-12 relative z-10 mb-12 md:mb-16">
+            <div className="container mx-auto px-6 md:px-12 relative z-10 mb-16 md:mb-20">
                 <motion.div
                     className="text-center max-w-4xl mx-auto"
                     initial={{ opacity: 0, y: 20 }}
@@ -86,347 +190,322 @@ export default function HowItWorks() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
                 >
-                    <div className="inline-block px-4 py-1.5 rounded-full bg-[#FD7E14]/10 mb-4 border border-[#FD7E14]/20">
-                        <span className="text-[#FD7E14] font-bold text-sm uppercase tracking-widest">
+                    <motion.div
+                        className="inline-block px-4 py-1.5 rounded-full bg-[#20C997]/10 mb-4 border border-[#20C997]/20"
+                        whileHover={{ scale: 1.05 }}
+                    >
+                        <span className="text-[#20C997] font-bold text-sm uppercase tracking-widest">
                             How It Works
                         </span>
-                    </div>
+                    </motion.div>
                     <h2 className="font-sora text-3xl sm:text-4xl md:text-5xl font-bold text-[#495057] mb-6 leading-tight">
-                        Collect Your <span className="text-[#20C997]">Financial Coins</span>
+                        Your Journey to <span className="text-[#20C997]">Financial Freedom</span>
                     </h2>
                     <p className="font-inter text-gray-600 text-lg leading-relaxed max-w-2xl mx-auto">
-                        Click on each coin to discover the steps to financial freedom
+                        Follow the roadmap to take control of your finances in just 4 simple steps
                     </p>
                 </motion.div>
             </div>
 
-            {/* Main Layout: Left Steps - Wallet - Right Steps */}
-            <div className="container mx-auto px-4 sm:px-6 md:px-12 relative z-10">
-                <div className="max-w-6xl mx-auto">
+            {/* Desktop Roadmap Layout */}
+            <div className="container mx-auto px-6 md:px-12 relative z-10 hidden lg:block">
+                <motion.div
+                    className="relative h-[500px] max-w-6xl mx-auto"
+                    style={{ y: roadY }}
+                >
+                    {/* SVG Curved Road */}
+                    <svg
+                        viewBox="0 0 1200 400"
+                        className="absolute inset-0 w-full h-full"
+                        preserveAspectRatio="xMidYMid meet"
+                    >
+                        {/* Road shadow */}
+                        <path
+                            d="M 50 320 Q 200 320 280 200 Q 360 80 500 100 Q 640 120 720 180 Q 800 240 900 200 Q 1000 160 1150 220"
+                            fill="none"
+                            stroke="#20C997"
+                            strokeWidth="56"
+                            strokeLinecap="round"
+                            opacity="0.1"
+                        />
 
-                    {/* Desktop: 3-Column Layout */}
-                    <div className="hidden lg:grid lg:grid-cols-5 gap-8 items-center min-h-[500px]">
+                        {/* Main road */}
+                        <path
+                            d="M 50 320 Q 200 320 280 200 Q 360 80 500 100 Q 640 120 720 180 Q 800 240 900 200 Q 1000 160 1150 220"
+                            fill="none"
+                            stroke="url(#roadGradient)"
+                            strokeWidth="40"
+                            strokeLinecap="round"
+                        />
 
-                        {/* Left Steps (1 & 3) */}
-                        <div className="col-span-1 space-y-6">
-                            {leftSteps.map((step, i) => {
-                                const originalIndex = i * 2; // 0, 2
-                                const isActive = activeStep === originalIndex;
-                                const isCollected = collectedCoins.includes(originalIndex);
+                        {/* Animated progress line */}
+                        <motion.path
+                            d="M 50 320 Q 200 320 280 200 Q 360 80 500 100 Q 640 120 720 180 Q 800 240 900 200 Q 1000 160 1150 220"
+                            fill="none"
+                            stroke="#20C997"
+                            strokeWidth="4"
+                            strokeLinecap="round"
+                            initial={{ pathLength: 0 }}
+                            whileInView={{ pathLength: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 2, ease: "easeInOut" }}
+                        />
 
-                                return (
-                                    <motion.div
-                                        key={step.id}
-                                        initial={{ opacity: 0, x: -50 }}
-                                        whileInView={{ opacity: 1, x: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: originalIndex * 0.2, duration: 0.5 }}
-                                        onClick={() => handleCoinClick(originalIndex)}
-                                        className="cursor-pointer"
-                                    >
-                                        <motion.div
-                                            className={`relative p-6 rounded-2xl border-2 transition-all ${isActive
-                                                    ? 'bg-white border-[#20C997] shadow-xl'
-                                                    : isCollected
-                                                        ? 'bg-gray-50 border-gray-200 opacity-60'
-                                                        : 'bg-white border-gray-100 hover:border-[#20C997]/50 hover:shadow-lg'
-                                                }`}
-                                            whileHover={{ scale: isCollected ? 1 : 1.02 }}
-                                            animate={isActive ? { scale: 1.05 } : {}}
-                                        >
-                                            {/* Coin badge */}
-                                            <motion.div
-                                                className={`absolute -top-3 -right-3 w-10 h-10 rounded-full bg-gradient-to-br ${step.coinGradient} flex items-center justify-center text-white font-bold shadow-lg`}
-                                                animate={isActive ? {
-                                                    scale: [1, 1.2, 1],
-                                                    rotate: [0, 10, -10, 0]
-                                                } : {}}
-                                                transition={{ duration: 0.5 }}
-                                            >
-                                                {isCollected ? "✓" : originalIndex + 1}
-                                            </motion.div>
+                        {/* Road center line (dashed) */}
+                        <path
+                            d="M 50 320 Q 200 320 280 200 Q 360 80 500 100 Q 640 120 720 180 Q 800 240 900 200 Q 1000 160 1150 220"
+                            fill="none"
+                            stroke="white"
+                            strokeWidth="3"
+                            strokeDasharray="15 20"
+                            strokeLinecap="round"
+                            opacity="0.6"
+                        />
 
-                                            <div className="flex items-center gap-3 mb-3">
-                                                <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${step.coinGradient} flex items-center justify-center text-white`}>
-                                                    {step.icon}
-                                                </div>
-                                                <span className="text-xs font-bold uppercase tracking-wider text-gray-400">Step {originalIndex + 1}</span>
-                                            </div>
-                                            <h3 className="font-sora font-bold text-[#495057] text-lg mb-2">{step.title}</h3>
+                        {/* Road edge lines */}
+                        <path
+                            d="M 50 320 Q 200 320 280 200 Q 360 80 500 100 Q 640 120 720 180 Q 800 240 900 200 Q 1000 160 1150 220"
+                            fill="none"
+                            stroke="#495057"
+                            strokeWidth="44"
+                            strokeLinecap="round"
+                            opacity="0.3"
+                        />
 
-                                            <AnimatePresence>
-                                                {isActive && (
-                                                    <motion.p
-                                                        initial={{ opacity: 0, height: 0 }}
-                                                        animate={{ opacity: 1, height: "auto" }}
-                                                        exit={{ opacity: 0, height: 0 }}
-                                                        className="font-inter text-gray-600 text-sm leading-relaxed"
-                                                    >
-                                                        {step.description}
-                                                    </motion.p>
-                                                )}
-                                            </AnimatePresence>
-                                        </motion.div>
-                                    </motion.div>
-                                );
-                            })}
-                        </div>
+                        {/* Gradient definition */}
+                        <defs>
+                            <linearGradient id="roadGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stopColor="#495057" />
+                                <stop offset="50%" stopColor="#3d4349" />
+                                <stop offset="100%" stopColor="#495057" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
 
-                        {/* Center Wallet */}
-                        <div className="col-span-3 flex items-center justify-center">
-                            <motion.div
-                                className="relative"
-                                initial={{ opacity: 0, scale: 0.8 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.8, type: "spring" }}
-                            >
-                                {/* Wallet glow */}
-                                <motion.div
-                                    className="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#20C997]/20 to-[#FD7E14]/20 blur-3xl"
-                                    animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0.8, 0.5] }}
-                                    transition={{ duration: 4, repeat: Infinity }}
-                                />
+                    {/* Step Pins with Hover Cards */}
+                    {steps.map((step, index) => {
+                        const pinPositions = [
+                            { x: "4%", y: "75%" },
+                            { x: "28%", y: "20%" },
+                            { x: "58%", y: "40%" },
+                            { x: "92%", y: "48%" }
+                        ];
 
-                                {/* Wallet body */}
-                                <div className="relative w-72 h-48 md:w-80 md:h-56 rounded-3xl bg-gradient-to-br from-[#495057] via-[#3d4349] to-[#343a40] shadow-2xl overflow-hidden"
-                                    style={{
-                                        boxShadow: "0 25px 80px rgba(0,0,0,0.3), 0 0 40px rgba(32, 201, 151, 0.15)"
-                                    }}
-                                >
-                                    {/* Wallet flap */}
-                                    <div className="absolute top-0 left-0 right-0 h-12 md:h-14 bg-gradient-to-b from-[#3d4349] to-[#495057] border-b-2 border-[#343a40]">
-                                        {/* Clasp */}
-                                        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-10 h-5 rounded-full bg-gradient-to-b from-[#20C997] to-[#198754] border-2 border-[#343a40]" />
-                                    </div>
+                        const isHovered = hoveredStep === index;
+                        const cardPosition = index % 2 === 0 ? "bottom" : "top";
 
-                                    {/* Wallet interior pattern */}
-                                    <div className="absolute inset-0 opacity-5">
-                                        <div className="absolute inset-0" style={{
-                                            backgroundImage: "repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.1) 10px, rgba(255,255,255,0.1) 20px)"
-                                        }} />
-                                    </div>
-
-                                    {/* Collected coins display */}
-                                    <div className="absolute bottom-6 left-6 right-6 flex items-center justify-center gap-3">
-                                        {steps.map((step, i) => (
-                                            <motion.div
-                                                key={i}
-                                                className={`w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br ${step.coinGradient} flex items-center justify-center text-white font-bold shadow-lg border-2 border-white/20`}
-                                                initial={{ scale: 0, opacity: 0, y: -50 }}
-                                                animate={collectedCoins.includes(i) ? {
-                                                    scale: 1,
-                                                    opacity: 1,
-                                                    y: 0,
-                                                    transition: { delay: 0.3, type: "spring", stiffness: 200 }
-                                                } : {
-                                                    scale: 0.5,
-                                                    opacity: 0.2,
-                                                    y: 0
-                                                }}
-                                                style={{
-                                                    boxShadow: collectedCoins.includes(i) ? `0 0 15px ${step.color}40` : "none"
-                                                }}
-                                            >
-                                                {collectedCoins.includes(i) ? (
-                                                    <motion.span
-                                                        initial={{ scale: 0 }}
-                                                        animate={{ scale: 1 }}
-                                                        transition={{ delay: 0.5 }}
-                                                    >
-                                                        ✓
-                                                    </motion.span>
-                                                ) : (
-                                                    <span className="opacity-50">{i + 1}</span>
-                                                )}
-                                            </motion.div>
-                                        ))}
-                                    </div>
-
-                                    {/* SwiftFin branding */}
-                                    <div className="absolute top-16 left-1/2 -translate-x-1/2 text-center">
-                                        <span className="font-sora font-bold text-white/40 text-xl tracking-wider">SwiftFin</span>
-                                    </div>
-
-                                    {/* Stitching details */}
-                                    <div className="absolute left-3 top-16 bottom-3 w-px border-l-2 border-dashed border-white/10" />
-                                    <div className="absolute right-3 top-16 bottom-3 w-px border-l-2 border-dashed border-white/10" />
-                                </div>
-                            </motion.div>
-                        </div>
-
-                        {/* Right Steps (2 & 4) */}
-                        <div className="col-span-1 space-y-6">
-                            {rightSteps.map((step, i) => {
-                                const originalIndex = i * 2 + 1; // 1, 3
-                                const isActive = activeStep === originalIndex;
-                                const isCollected = collectedCoins.includes(originalIndex);
-
-                                return (
-                                    <motion.div
-                                        key={step.id}
-                                        initial={{ opacity: 0, x: 50 }}
-                                        whileInView={{ opacity: 1, x: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: originalIndex * 0.2, duration: 0.5 }}
-                                        onClick={() => handleCoinClick(originalIndex)}
-                                        className="cursor-pointer"
-                                    >
-                                        <motion.div
-                                            className={`relative p-6 rounded-2xl border-2 transition-all ${isActive
-                                                    ? 'bg-white border-[#FD7E14] shadow-xl'
-                                                    : isCollected
-                                                        ? 'bg-gray-50 border-gray-200 opacity-60'
-                                                        : 'bg-white border-gray-100 hover:border-[#FD7E14]/50 hover:shadow-lg'
-                                                }`}
-                                            whileHover={{ scale: isCollected ? 1 : 1.02 }}
-                                            animate={isActive ? { scale: 1.05 } : {}}
-                                        >
-                                            {/* Coin badge */}
-                                            <motion.div
-                                                className={`absolute -top-3 -left-3 w-10 h-10 rounded-full bg-gradient-to-br ${step.coinGradient} flex items-center justify-center text-white font-bold shadow-lg`}
-                                                animate={isActive ? {
-                                                    scale: [1, 1.2, 1],
-                                                    rotate: [0, -10, 10, 0]
-                                                } : {}}
-                                                transition={{ duration: 0.5 }}
-                                            >
-                                                {isCollected ? "✓" : originalIndex + 1}
-                                            </motion.div>
-
-                                            <div className="flex items-center gap-3 mb-3">
-                                                <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${step.coinGradient} flex items-center justify-center text-white`}>
-                                                    {step.icon}
-                                                </div>
-                                                <span className="text-xs font-bold uppercase tracking-wider text-gray-400">Step {originalIndex + 1}</span>
-                                            </div>
-                                            <h3 className="font-sora font-bold text-[#495057] text-lg mb-2">{step.title}</h3>
-
-                                            <AnimatePresence>
-                                                {isActive && (
-                                                    <motion.p
-                                                        initial={{ opacity: 0, height: 0 }}
-                                                        animate={{ opacity: 1, height: "auto" }}
-                                                        exit={{ opacity: 0, height: 0 }}
-                                                        className="font-inter text-gray-600 text-sm leading-relaxed"
-                                                    >
-                                                        {step.description}
-                                                    </motion.p>
-                                                )}
-                                            </AnimatePresence>
-                                        </motion.div>
-                                    </motion.div>
-                                );
-                            })}
-                        </div>
-                    </div>
-
-                    {/* Mobile Layout */}
-                    <div className="lg:hidden space-y-6">
-                        {/* Mobile Wallet */}
-                        <div className="flex justify-center mb-8">
-                            <div className="relative w-64 h-40 rounded-2xl bg-gradient-to-br from-[#495057] to-[#343a40] shadow-xl overflow-hidden">
-                                <div className="absolute top-0 left-0 right-0 h-10 bg-gradient-to-b from-[#3d4349] to-[#495057] border-b-2 border-[#343a40]">
-                                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-8 h-4 rounded-full bg-gradient-to-b from-[#20C997] to-[#198754]" />
-                                </div>
-                                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-center gap-2">
-                                    {steps.map((step, i) => (
-                                        <motion.div
-                                            key={i}
-                                            className={`w-10 h-10 rounded-full bg-gradient-to-br ${step.coinGradient} flex items-center justify-center text-white text-sm font-bold`}
-                                            animate={collectedCoins.includes(i) ? { scale: 1, opacity: 1 } : { scale: 0.6, opacity: 0.3 }}
-                                        >
-                                            {collectedCoins.includes(i) ? "✓" : i + 1}
-                                        </motion.div>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Mobile Steps */}
-                        {steps.map((step, index) => (
+                        return (
                             <motion.div
                                 key={step.id}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
+                                className="absolute"
+                                style={{
+                                    left: pinPositions[index].x,
+                                    top: pinPositions[index].y,
+                                    transform: "translate(-50%, -100%)"
+                                }}
+                                initial={{ opacity: 0, y: 30, scale: 0.5 }}
+                                whileInView={{ opacity: 1, y: 0, scale: 1 }}
                                 viewport={{ once: true }}
-                                transition={{ delay: index * 0.1 }}
-                                onClick={() => handleCoinClick(index)}
-                                className={`p-5 rounded-2xl border-2 cursor-pointer ${activeStep === index
-                                        ? 'bg-white border-[#20C997] shadow-lg'
-                                        : collectedCoins.includes(index)
-                                            ? 'bg-gray-50 border-gray-200 opacity-60'
-                                            : 'bg-white border-gray-100'
-                                    }`}
+                                transition={{
+                                    delay: 0.5 + index * 0.2,
+                                    duration: 0.6,
+                                    type: "spring",
+                                    stiffness: 200
+                                }}
+                                onMouseEnter={() => setHoveredStep(index)}
+                                onMouseLeave={() => setHoveredStep(null)}
                             >
-                                <div className="flex items-start gap-4">
-                                    <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${step.coinGradient} flex items-center justify-center text-white flex-shrink-0`}>
-                                        {collectedCoins.includes(index) ? <span className="text-lg">✓</span> : step.icon}
-                                    </div>
-                                    <div className="flex-1">
-                                        <span className="text-xs font-bold uppercase tracking-wider text-gray-400">Step {index + 1}</span>
-                                        <h3 className="font-sora font-bold text-[#495057] text-lg">{step.title}</h3>
-                                        <p className="font-inter text-gray-600 text-sm mt-1">{step.description}</p>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
-
-                    {/* Progress & Actions */}
-                    <div className="mt-12 flex flex-col items-center gap-4">
-                        {/* Progress bar */}
-                        <div className="flex items-center gap-3">
-                            <span className="text-gray-500 text-sm font-medium">Progress:</span>
-                            <div className="w-40 h-2 bg-gray-200 rounded-full overflow-hidden">
+                                {/* Pulsing ring effect */}
                                 <motion.div
-                                    className="h-full bg-gradient-to-r from-[#20C997] to-[#198754] rounded-full"
-                                    initial={{ width: 0 }}
-                                    animate={{ width: `${(collectedCoins.length / steps.length) * 100}%` }}
-                                    transition={{ duration: 0.5 }}
+                                    className="absolute top-6 left-1/2 -translate-x-1/2 w-16 h-16 rounded-full border-2 border-[#20C997]"
+                                    animate={{
+                                        scale: [1, 1.5, 1],
+                                        opacity: [0.5, 0, 0.5]
+                                    }}
+                                    transition={{
+                                        duration: 2,
+                                        repeat: Infinity,
+                                        delay: index * 0.5
+                                    }}
                                 />
-                            </div>
-                            <span className="text-[#20C997] font-bold text-sm">{collectedCoins.length}/{steps.length}</span>
-                        </div>
 
-                        {/* Completion */}
-                        <AnimatePresence>
-                            {collectedCoins.length === steps.length && (
+                                {/* Location Pin */}
                                 <motion.div
-                                    initial={{ opacity: 0, scale: 0.9 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    exit={{ opacity: 0 }}
-                                    className="flex flex-col items-center gap-4 mt-4"
+                                    className="relative cursor-pointer"
+                                    whileHover={{ scale: 1.1 }}
+                                    animate={isHovered ? { y: -5 } : { y: 0 }}
                                 >
-                                    <div className="text-center">
-                                        <span className="text-3xl">🎉</span>
-                                        <p className="text-[#198754] font-semibold mt-2">All coins collected! You&apos;re ready to start.</p>
+                                    {/* Pin shape */}
+                                    <div className="relative">
+                                        <svg width="50" height="65" viewBox="0 0 50 65" className="drop-shadow-xl">
+                                            <defs>
+                                                <linearGradient id={`pinGrad${index}`} x1="0%" y1="0%" x2="0%" y2="100%">
+                                                    <stop offset="0%" stopColor="#20C997" />
+                                                    <stop offset="100%" stopColor="#0d9488" />
+                                                </linearGradient>
+                                                <filter id={`pinShadow${index}`} x="-50%" y="-50%" width="200%" height="200%">
+                                                    <feDropShadow dx="0" dy="4" stdDeviation="3" floodColor="#20C997" floodOpacity="0.4" />
+                                                </filter>
+                                            </defs>
+                                            <path
+                                                d="M25 0C11.2 0 0 11.2 0 25c0 19.4 25 40 25 40s25-20.6 25-40C50 11.2 38.8 0 25 0z"
+                                                fill={`url(#pinGrad${index})`}
+                                                filter={`url(#pinShadow${index})`}
+                                            />
+                                        </svg>
+
+                                        {/* Icon inside pin */}
+                                        <div className="absolute top-3 left-1/2 -translate-x-1/2 text-white">
+                                            {step.icon}
+                                        </div>
+
+                                        {/* Step number badge */}
+                                        <motion.div
+                                            className="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-white border-2 border-[#20C997] flex items-center justify-center shadow-md"
+                                            animate={isHovered ? {
+                                                scale: [1, 1.2, 1],
+                                                rotate: [0, 360]
+                                            } : {}}
+                                            transition={{ duration: 0.5 }}
+                                        >
+                                            <span className="text-[#20C997] font-bold text-sm">{step.id}</span>
+                                        </motion.div>
                                     </div>
 
-                                    <div className="flex gap-4">
-                                        <motion.a
-                                            href="/download"
-                                            className="px-6 py-3 bg-gradient-to-r from-[#20C997] to-[#198754] text-white font-semibold rounded-full shadow-lg"
-                                            whileHover={{ scale: 1.05 }}
-                                            whileTap={{ scale: 0.95 }}
-                                        >
-                                            Download Now
-                                        </motion.a>
-                                        <motion.button
-                                            onClick={resetWallet}
-                                            className="px-6 py-3 bg-gray-100 text-[#495057] font-semibold rounded-full border border-gray-200 hover:bg-gray-200"
-                                            whileHover={{ scale: 1.05 }}
-                                            whileTap={{ scale: 0.95 }}
-                                        >
-                                            Play Again
-                                        </motion.button>
-                                    </div>
+                                    {/* Hover Popup Card */}
+                                    <motion.div
+                                        className={`absolute left-1/2 -translate-x-1/2 w-64 z-50 ${cardPosition === "top" ? "bottom-full mb-4" : "top-full mt-4"
+                                            }`}
+                                        initial={{ opacity: 0, y: cardPosition === "top" ? 10 : -10, scale: 0.9 }}
+                                        animate={isHovered ? {
+                                            opacity: 1,
+                                            y: 0,
+                                            scale: 1
+                                        } : {
+                                            opacity: 0,
+                                            y: cardPosition === "top" ? 10 : -10,
+                                            scale: 0.9,
+                                            pointerEvents: "none" as const
+                                        }}
+                                        transition={{ duration: 0.2 }}
+                                    >
+                                        {/* Arrow */}
+                                        <div className={`absolute left-1/2 -translate-x-1/2 w-4 h-4 bg-white rotate-45 border-[#20C997]/20 ${cardPosition === "top"
+                                                ? "bottom-[-8px] border-r border-b"
+                                                : "top-[-8px] border-l border-t"
+                                            }`} />
+
+                                        {/* Card */}
+                                        <div className="relative bg-white rounded-2xl p-5 shadow-xl border border-[#20C997]/20">
+                                            {/* Decorative corner accent */}
+                                            <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-[#20C997]/10 to-transparent rounded-tr-2xl" />
+
+                                            <div className="flex items-center gap-3 mb-3 relative z-10">
+                                                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#20C997] to-[#0d9488] flex items-center justify-center text-white">
+                                                    {step.icon}
+                                                </div>
+                                                <div>
+                                                    <span className="text-xs font-bold text-[#20C997] uppercase tracking-wider">Step {step.id}</span>
+                                                    <h3 className="font-sora font-bold text-[#495057] text-base">{step.title}</h3>
+                                                </div>
+                                            </div>
+                                            <p className="font-inter text-gray-600 text-sm leading-relaxed">{step.description}</p>
+                                        </div>
+                                    </motion.div>
                                 </motion.div>
-                            )}
-                        </AnimatePresence>
-                    </div>
+                            </motion.div>
+                        );
+                    })}
+
+                    {/* Milestone markers along the road */}
+                    {[15, 35, 60, 85].map((left, index) => (
+                        <motion.div
+                            key={index}
+                            className="absolute w-3 h-3 rounded-full bg-white border-2 border-[#20C997]"
+                            style={{
+                                left: `${left}%`,
+                                top: index % 2 === 0 ? "70%" : "35%"
+                            }}
+                            initial={{ scale: 0 }}
+                            whileInView={{ scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.3 + index * 0.1 }}
+                            animate={{
+                                scale: [1, 1.3, 1],
+                            }}
+                            transition={{
+                                duration: 2,
+                                repeat: Infinity,
+                                delay: index * 0.3
+                            }}
+                        />
+                    ))}
+                </motion.div>
+            </div>
+
+            {/* Mobile Layout */}
+            <div className="container mx-auto px-6 relative z-10 lg:hidden">
+                <div className="max-w-md mx-auto space-y-6">
+                    {/* Vertical road line */}
+                    <div className="absolute left-8 sm:left-1/2 sm:-translate-x-1/2 top-[280px] bottom-32 w-1 bg-gradient-to-b from-[#495057] via-[#3d4349] to-[#495057] rounded-full opacity-30" />
+
+                    {steps.map((step, index) => (
+                        <motion.div
+                            key={step.id}
+                            initial={{ opacity: 0, x: -30 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: index * 0.1 }}
+                            className="relative pl-16 sm:pl-0"
+                        >
+                            {/* Mobile Pin */}
+                            <div className="absolute left-0 sm:left-1/2 sm:-translate-x-1/2 top-0">
+                                <motion.div
+                                    className="w-12 h-12 rounded-full bg-gradient-to-br from-[#20C997] to-[#0d9488] flex items-center justify-center text-white shadow-lg border-4 border-white"
+                                    whileHover={{ scale: 1.1 }}
+                                >
+                                    {step.icon}
+                                </motion.div>
+                                <div className="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-white border-2 border-[#20C997] flex items-center justify-center">
+                                    <span className="text-[#20C997] font-bold text-xs">{step.id}</span>
+                                </div>
+                            </div>
+
+                            {/* Mobile Card */}
+                            <motion.div
+                                className="bg-white rounded-2xl p-5 shadow-lg border border-[#20C997]/10 ml-4 sm:ml-0 sm:mt-16"
+                                whileHover={{ scale: 1.02 }}
+                            >
+                                <span className="text-xs font-bold text-[#20C997] uppercase tracking-wider">Step {step.id}</span>
+                                <h3 className="font-sora font-bold text-[#495057] text-lg mt-1 mb-2">{step.title}</h3>
+                                <p className="font-inter text-gray-600 text-sm leading-relaxed">{step.description}</p>
+                            </motion.div>
+                        </motion.div>
+                    ))}
                 </div>
             </div>
+
+            {/* CTA Section */}
+            <motion.div
+                className="container mx-auto px-6 md:px-12 relative z-10 mt-16"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4 }}
+            >
+                <div className="text-center">
+                    <p className="text-gray-600 mb-4 font-inter">Ready to start your journey?</p>
+                    <motion.a
+                        href="/download"
+                        className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[#20C997] to-[#0d9488] text-white font-semibold rounded-full shadow-lg shadow-[#20C997]/30"
+                        whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(32, 201, 151, 0.4)" }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        <Download className="w-5 h-5" />
+                        Download SwiftFin Now
+                    </motion.a>
+                </div>
+            </motion.div>
         </section>
     );
 }
