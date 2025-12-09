@@ -3,6 +3,7 @@ import { Inter, Sora, Cedarville_Cursive } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
+import SmoothScroll from "./components/smooth-scroll";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -40,6 +41,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${sora.variable} ${cedarvilleCursive.variable} antialiased font-sans`}
       >
+        <SmoothScroll />
         <Navbar />
         {children}
         <Footer />
