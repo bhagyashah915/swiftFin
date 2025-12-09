@@ -12,39 +12,31 @@ export default function UserTypes() {
     const users = [
         {
             title: "Students",
-            icon: <Users className="w-5 h-5" />,
+            icon: <Users className="w-6 h-6" />,
             description: "Track expenses, manage pocket money, and build healthy financial habits early.",
             benefits: ["Smart budgeting", "Pocket money tracker", "Savings goals"],
-            bgColor: "#8b5cf6",
-            gradientFrom: "#8b5cf6",
-            gradientTo: "#7c3aed"
+            bgImage: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1920&q=80",
         },
         {
             title: "Working Professionals",
-            icon: <Briefcase className="w-5 h-5" />,
+            icon: <Briefcase className="w-6 h-6" />,
             description: "Manage salary, track investments, and plan for future financial goals.",
             benefits: ["Salary planning", "Investment tracking", "Tax insights"],
-            bgColor: "#ec4899",
-            gradientFrom: "#ec4899",
-            gradientTo: "#db2777"
+            bgImage: "https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=1920&q=80",
         },
         {
             title: "Freelancers",
-            icon: <Laptop className="w-5 h-5" />,
+            icon: <Laptop className="w-6 h-6" />,
             description: "Monitor project income, track business expenses, and manage cash flow.",
             benefits: ["Invoice tracking", "Expense separation", "Cash flow view"],
-            bgColor: "#20C997",
-            gradientFrom: "#20C997",
-            gradientTo: "#14b8a6"
+            bgImage: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&q=80",
         },
         {
             title: "Small Business",
-            icon: <Building2 className="w-5 h-5" />,
+            icon: <Building2 className="w-6 h-6" />,
             description: "Manage business finances, track EMIs, and monitor portfolios.",
             benefits: ["GST reports", "EMI management", "Multi-account"],
-            bgColor: "#FD7E14",
-            gradientFrom: "#FD7E14",
-            gradientTo: "#ea580c"
+            bgImage: "https://images.unsplash.com/photo-1556740738-b6a63e27c4df?w=1920&q=80",
         }
     ];
 
@@ -58,17 +50,34 @@ export default function UserTypes() {
         });
     };
 
-    const slideVariants = {
-        enter: (direction: number) => ({ x: direction > 0 ? 200 : -200, opacity: 0 }),
-        center: { x: 0, opacity: 1 },
-        exit: (direction: number) => ({ x: direction < 0 ? 200 : -200, opacity: 0 })
-    };
-
     const currentUser = users[currentIndex];
 
     return (
-        <section className="py-20 md:py-24 bg-[#495057]">
-            <div className="container mx-auto px-4 sm:px-6 md:px-12">
+        <section className="relative py-24 md:py-32 overflow-hidden">
+            {/* Dynamic Background Images with Crossfade */}
+            <div className="absolute inset-0">
+                {users.map((user, index) => (
+                    <motion.div
+                        key={index}
+                        className="absolute inset-0"
+                        initial={{ opacity: 0 }}
+                        animate={{
+                            opacity: currentIndex === index ? 1 : 0,
+                            scale: currentIndex === index ? 1 : 1.1,
+                        }}
+                        transition={{ duration: 0.8, ease: "easeInOut" }}
+                    >
+                        <div
+                            className="absolute inset-0 bg-cover bg-center"
+                            style={{ backgroundImage: `url(${user.bgImage})` }}
+                        />
+                        {/* Dark overlay for readability */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/70 to-black/50" />
+                    </motion.div>
+                ))}
+            </div>
+
+            <div className="container mx-auto px-4 sm:px-6 md:px-12 relative z-10">
                 <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
 
                     {/* Left Content */}
@@ -79,13 +88,16 @@ export default function UserTypes() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
                     >
-                        <div className="inline-block px-4 py-1.5 rounded-full bg-[#20C997]/10 mb-4">
+                        <motion.div
+                            className="inline-block px-4 py-1.5 rounded-full bg-[#20C997]/20 border border-[#20C997]/40 mb-4"
+                            whileHover={{ scale: 1.05 }}
+                        >
                             <span className="text-[#20C997] font-bold text-sm uppercase tracking-widest">
                                 Who is it for?
                             </span>
-                        </div>
+                        </motion.div>
                         <h2 className="font-sora text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
-                            Built for Everyone
+                            Built for <span className="text-[#20C997]">Everyone</span>
                         </h2>
                         <p className="font-inter text-gray-300 text-lg leading-relaxed mb-8 max-w-xl">
                             Whether you&apos;re a student managing pocket money or a professional planning investments,
@@ -94,59 +106,84 @@ export default function UserTypes() {
                         <AnimatedDownloadButton text="Download Now" />
                     </motion.div>
 
-                    {/* Right - Simple Carousel */}
+                    {/* Right - User Type Cards with Hover Effect */}
                     <div className="flex-1 w-full">
-                        <div className="relative h-[320px] sm:h-[340px]">
-                            <AnimatePresence initial={false} custom={direction} mode="wait">
+                        <div className="space-y-3">
+                            {users.map((user, index) => (
                                 <motion.div
-                                    key={currentIndex}
-                                    custom={direction}
-                                    variants={slideVariants}
-                                    initial="enter"
-                                    animate="center"
-                                    exit="exit"
-                                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                                    className="absolute inset-0"
+                                    key={index}
+                                    className={`relative p-5 rounded-2xl cursor-pointer transition-all duration-500 overflow-hidden group ${currentIndex === index
+                                            ? 'bg-white/15 backdrop-blur-md border border-white/30'
+                                            : 'bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10'
+                                        }`}
+                                    onMouseEnter={() => {
+                                        setDirection(index > currentIndex ? 1 : -1);
+                                        setCurrentIndex(index);
+                                    }}
+                                    initial={{ opacity: 0, x: 30 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                                    whileHover={{ x: 8 }}
                                 >
-                                    <div
-                                        className="rounded-2xl p-8 h-full"
-                                        style={{
-                                            background: `linear-gradient(135deg, ${currentUser.gradientFrom} 0%, ${currentUser.gradientTo} 100%)`
-                                        }}
-                                    >
-                                        {/* Header */}
-                                        <div className="flex items-center gap-3 mb-4">
-                                            <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center text-white">
-                                                {currentUser.icon}
-                                            </div>
-                                            <h3 className="font-sora font-bold text-white text-2xl">
-                                                {currentUser.title}
-                                            </h3>
+                                    <div className="flex items-center gap-4">
+                                        {/* Icon */}
+                                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${currentIndex === index
+                                                ? 'bg-[#20C997] text-white'
+                                                : 'bg-white/10 text-white/70 group-hover:bg-white/20'
+                                            }`}>
+                                            {user.icon}
                                         </div>
 
-                                        {/* Description */}
-                                        <p className="font-inter text-white/90 text-base leading-relaxed mb-6">
-                                            {currentUser.description}
-                                        </p>
+                                        {/* Text */}
+                                        <div className="flex-1">
+                                            <h3 className="font-sora text-lg font-bold text-white mb-0.5">
+                                                {user.title}
+                                            </h3>
+                                            <p className={`font-inter text-sm transition-all duration-300 ${currentIndex === index ? 'text-gray-300' : 'text-gray-400'
+                                                }`}>
+                                                {user.description}
+                                            </p>
+                                        </div>
 
-                                        {/* Benefits */}
-                                        <ul className="space-y-3">
-                                            {currentUser.benefits.map((benefit, i) => (
-                                                <li key={i} className="flex items-center gap-3 text-white">
-                                                    <div className="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
-                                                        <Check className="w-3 h-3" />
-                                                    </div>
-                                                    <span className="font-inter text-sm">{benefit}</span>
-                                                </li>
-                                            ))}
-                                        </ul>
+                                        {/* Arrow */}
+                                        <ChevronRight className={`w-5 h-5 transition-all duration-300 ${currentIndex === index ? 'text-[#20C997] translate-x-1' : 'text-white/30'
+                                            }`} />
                                     </div>
+
+                                    {/* Expanded Benefits */}
+                                    <AnimatePresence>
+                                        {currentIndex === index && (
+                                            <motion.div
+                                                initial={{ opacity: 0, height: 0 }}
+                                                animate={{ opacity: 1, height: 'auto' }}
+                                                exit={{ opacity: 0, height: 0 }}
+                                                transition={{ duration: 0.3 }}
+                                                className="overflow-hidden"
+                                            >
+                                                <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-white/10">
+                                                    {user.benefits.map((benefit, i) => (
+                                                        <motion.div
+                                                            key={i}
+                                                            className="flex items-center gap-2 bg-[#20C997]/20 px-3 py-1.5 rounded-full"
+                                                            initial={{ opacity: 0, scale: 0.8 }}
+                                                            animate={{ opacity: 1, scale: 1 }}
+                                                            transition={{ delay: i * 0.1 }}
+                                                        >
+                                                            <Check className="w-3 h-3 text-[#20C997]" />
+                                                            <span className="text-xs text-white font-medium">{benefit}</span>
+                                                        </motion.div>
+                                                    ))}
+                                                </div>
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
                                 </motion.div>
-                            </AnimatePresence>
+                            ))}
                         </div>
 
-                        {/* Navigation */}
-                        <div className="flex items-center justify-center gap-4 mt-6">
+                        {/* Navigation Dots */}
+                        <div className="flex items-center justify-center gap-4 mt-8">
                             <button
                                 onClick={() => paginate(-1)}
                                 className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors"
@@ -155,18 +192,17 @@ export default function UserTypes() {
                             </button>
 
                             <div className="flex gap-2">
-                                {users.map((user, index) => (
+                                {users.map((_, index) => (
                                     <button
                                         key={index}
                                         onClick={() => {
                                             setDirection(index > currentIndex ? 1 : -1);
                                             setCurrentIndex(index);
                                         }}
-                                        className={`h-2 rounded-full transition-all ${index === currentIndex ? 'w-6' : 'w-2 bg-white/30'
+                                        className={`h-2 rounded-full transition-all duration-300 ${index === currentIndex
+                                                ? 'w-8 bg-[#20C997]'
+                                                : 'w-2 bg-white/30 hover:bg-white/50'
                                             }`}
-                                        style={{
-                                            backgroundColor: index === currentIndex ? user.bgColor : undefined
-                                        }}
                                     />
                                 ))}
                             </div>

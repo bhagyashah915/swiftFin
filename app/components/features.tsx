@@ -70,28 +70,48 @@ export default function Features() {
         }
     ];
 
+    const [isMobile, setIsMobile] = useState(false);
+
     // Auto-rotate with slower timing
     useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+
         const timer = setInterval(() => {
             setActiveIndex((prev) => (prev + 1) % features.length);
-        }, 5000);
-        return () => clearInterval(timer);
+        }, 3000);
+
+        return () => {
+            clearInterval(timer);
+            window.removeEventListener('resize', checkMobile);
+        };
     }, [features.length]);
 
     const getPhonePosition = (index: number) => {
         const diff = index - activeIndex;
         const normalized = ((diff % features.length) + features.length) % features.length;
 
-        // Center/Active card - full size and brightness
-        if (normalized === 0) return { x: 0, z: 100, scale: 1, opacity: 1, rotateY: 0, blur: 0 };
-        // Adjacent cards - slightly smaller, no transparency, subtle rotation
-        if (normalized === 1) return { x: 300, z: 0, scale: 0.85, opacity: 0.9, rotateY: -20, blur: 1 };
-        if (normalized === features.length - 1) return { x: -300, z: 0, scale: 0.85, opacity: 0.9, rotateY: 20, blur: 1 };
-        // Further cards - smaller but still visible
-        if (normalized === 2) return { x: 520, z: -80, scale: 0.7, opacity: 0.7, rotateY: -30, blur: 2 };
-        if (normalized === features.length - 2) return { x: -520, z: -80, scale: 0.7, opacity: 0.7, rotateY: 30, blur: 2 };
-        // Hidden cards (behind)
-        return { x: 0, z: -200, scale: 0.5, opacity: 0, rotateY: 0, blur: 4 };
+        if (isMobile) {
+            // Mobile: Only show active card, hide all others
+            if (normalized === 0) return { x: 0, z: 100, scale: 1, opacity: 1, rotateY: 0, blur: 0 };
+            // Hide all other cards completely
+            if (normalized === 1) return { x: 100, z: -200, scale: 0.7, opacity: 0, rotateY: -15, blur: 3 };
+            if (normalized === features.length - 1) return { x: -100, z: -200, scale: 0.7, opacity: 0, rotateY: 15, blur: 3 };
+            return { x: 0, z: -300, scale: 0.5, opacity: 0, rotateY: 0, blur: 5 };
+        }
+
+        // Desktop: Only active feature visible, others hidden behind
+        if (normalized === 0) return { x: 0, z: 150, scale: 1, opacity: 1, rotateY: 0, blur: 0 };
+        // Next card slightly visible behind (right side)
+        if (normalized === 1) return { x: 50, z: -100, scale: 0.8, opacity: 0, rotateY: -5, blur: 2 };
+        // Previous card slightly visible behind (left side) 
+        if (normalized === features.length - 1) return { x: -50, z: -100, scale: 0.8, opacity: 0, rotateY: 5, blur: 2 };
+        // All others completely hidden
+        return { x: 0, z: -250, scale: 0.6, opacity: 0, rotateY: 0, blur: 4 };
     };
 
     return (
@@ -138,8 +158,9 @@ export default function Features() {
                                     }}
                                     transition={{
                                         type: "spring",
-                                        stiffness: 120,
-                                        damping: 25
+                                        stiffness: 100,
+                                        damping: 20,
+                                        mass: 0.8
                                     }}
                                     onClick={() => setActiveIndex(index)}
                                     style={{ transformStyle: "preserve-3d" }}
@@ -179,25 +200,15 @@ export default function Features() {
 
                                                 {/* Content */}
                                                 <div className="relative z-10 p-6 h-full flex flex-col justify-center items-center text-center pt-20 text-white">
-                                                    {/* Icon with 3D effect and glow */}
-                                                    <motion.div
-                                                        className="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary-teal via-emerald-500 to-cyan-500 flex items-center justify-center mb-6 text-white shadow-lg"
-                                                        animate={isActive ? {
-                                                            y: [0, -10, 0],
-                                                            rotateZ: [0, 5, -5, 0],
-                                                            scale: [1, 1.1, 1]
-                                                        } : { scale: 1 }}
-                                                        transition={{
-                                                            duration: 3,
-                                                            repeat: Infinity,
-                                                            ease: "easeInOut"
-                                                        }}
+                                                    {/* Icon with brand teal color */}
+                                                    <div
+                                                        className="w-20 h-20 rounded-2xl bg-[#20C997] flex items-center justify-center mb-6 text-white shadow-lg"
                                                         style={{
-                                                            boxShadow: isActive ? '0 0 40px 10px rgba(32, 201, 151, 0.4), 0 10px 25px -5px rgba(32, 201, 151, 0.5)' : '0 10px 25px -5px rgba(32, 201, 151, 0.5)'
+                                                            boxShadow: '0 10px 25px -5px rgba(32, 201, 151, 0.3)'
                                                         }}
                                                     >
                                                         {feature.icon}
-                                                    </motion.div>
+                                                    </div>
 
                                                     {/* Title */}
                                                     <h3 className="font-sora font-bold text-white text-xl md:text-2xl mb-3">

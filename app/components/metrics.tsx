@@ -10,44 +10,40 @@ export default function Metrics() {
     const isInView = useInView(ref, { once: true, margin: "-100px" });
 
     return (
-        <section ref={ref} className="py-20 md:py-28 relative overflow-hidden bg-gradient-to-b from-[#495057] via-[#3d4349] to-[#495057]">
-            {/* Animated background elements */}
-            <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <section ref={ref} className="py-20 md:py-28 relative overflow-hidden bg-white">
+
+            {/* Soft Teal Ambient Glow */}
+            <div className="absolute inset-0 pointer-events-none opacity-40">
                 <motion.div
-                    className="absolute top-0 left-1/4 w-[600px] h-[600px] rounded-full"
+                    className="absolute top-1/4 left-1/4 w-[520px] h-[520px] rounded-full blur-[120px]"
                     style={{
-                        background: "radial-gradient(circle, rgba(32, 201, 151, 0.15) 0%, transparent 70%)"
+                        background: "radial-gradient(circle, rgba(32, 201, 151, 0.35), transparent 70%)"
                     }}
-                    animate={{
-                        scale: [1, 1.2, 1],
-                        opacity: [0.5, 0.8, 0.5]
-                    }}
-                    transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                    animate={{ scale: [1, 1.15, 1] }}
+                    transition={{ duration: 12, repeat: Infinity }}
                 />
+
                 <motion.div
-                    className="absolute bottom-0 right-1/4 w-[500px] h-[500px] rounded-full"
+                    className="absolute bottom-1/3 right-1/4 w-[460px] h-[460px] rounded-full blur-[130px]"
                     style={{
-                        background: "radial-gradient(circle, rgba(253, 126, 20, 0.1) 0%, transparent 70%)"
+                        background: "radial-gradient(circle, rgba(25, 135, 84, 0.25), transparent 70%)"
                     }}
-                    animate={{
-                        scale: [1, 1.3, 1],
-                        opacity: [0.3, 0.6, 0.3]
-                    }}
-                    transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{ duration: 14, repeat: Infinity, delay: 2 }}
                 />
             </div>
 
             <div className="container mx-auto px-4 sm:px-6 md:px-12 relative z-10">
+
                 {/* Header */}
                 <motion.div
                     className="text-center max-w-4xl mx-auto mb-12 md:mb-16"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
                 >
                     <motion.div
-                        className="inline-block px-4 py-1.5 rounded-full bg-[#20C997]/20 mb-4 border border-[#20C997]/30"
+                        className="inline-block px-5 py-2 rounded-full bg-[#20C997]/10 border border-[#20C997]/30 shadow-sm"
                         whileHover={{ scale: 1.05 }}
                     >
                         <span className="text-[#20C997] font-bold text-sm uppercase tracking-widest">
@@ -55,285 +51,192 @@ export default function Metrics() {
                         </span>
                     </motion.div>
 
-                    <h2 className="font-sora text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+                    <h2 className="font-sora text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#2E3A39] mt-5 leading-tight">
                         Trusted by <span className="text-[#20C997]">Millions</span>
                     </h2>
-                    <p className="font-inter text-gray-300 text-lg max-w-2xl mx-auto">
-                        SwiftFin is helping users across India take control of their financial future
+
+                    <p className="font-inter text-gray-600 text-lg max-w-2xl mx-auto">
+                        SwiftFin empowers Indians to take control of their financial future with ease.
                     </p>
                 </motion.div>
 
                 {/* Bento Grid */}
-                <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[140px]">
+                <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 auto-rows-auto sm:auto-rows-[140px]">
 
-                    {/* Card 1: App Family - spans 1 col, 1 row */}
+                    {/* Card 1 */}
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={isInView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ duration: 0.5, delay: 0.1 }}
-                        className="relative rounded-3xl bg-gradient-to-br from-[#3d4349] to-[#343a40] border border-[#20C997]/20 p-5 overflow-hidden group"
-                        whileHover={{ scale: 1.02, y: -5 }}
+                        transition={{ duration: 0.5 }}
+                        className="rounded-3xl bg-white border border-[#20C997]/25 shadow-[0_4px_20px_rgba(32,201,151,0.12)] p-6 hover:shadow-[0_6px_24px_rgba(32,201,151,0.22)] transition duration-300"
                     >
-                        <div className="flex justify-between items-start mb-3">
-                            <p className="text-gray-300 text-sm font-medium">India&apos;s #1 Finance App</p>
-                            <motion.a
-                                href="/download"
-                                className="text-xs px-3 py-1 rounded-full bg-[#20C997]/20 text-[#20C997] hover:bg-[#20C997]/30 transition-colors flex items-center gap-1"
-                                whileHover={{ scale: 1.05 }}
-                            >
-                                Download <span>→</span>
-                            </motion.a>
-                        </div>
-                        <div className="flex gap-3 mt-4">
+                        <p className="text-[#2E3A39] text-sm font-medium">India's Fastest Growing Finance App</p>
+                        <div className="flex gap-3 mt-5">
                             {[Zap, TrendingUp, Star, Users].map((Icon, i) => (
-                                <motion.div
+                                <div
                                     key={i}
-                                    className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#20C997]/30 to-[#198754]/30 flex items-center justify-center"
-                                    whileHover={{ scale: 1.2, rotate: 10 }}
+                                    className="w-11 h-11 rounded-xl bg-[#20C997]/10 border border-[#20C997]/25 flex items-center justify-center"
                                 >
                                     <Icon className="w-5 h-5 text-[#20C997]" />
-                                </motion.div>
+                                </div>
                             ))}
                         </div>
                     </motion.div>
 
-                    {/* Card 2: Weekly Downloads - spans 1 col, 1 row */}
+                    {/* Card 2 */}
                     <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={isInView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ duration: 0.5, delay: 0.2 }}
-                        className="relative rounded-3xl bg-gradient-to-br from-[#20C997] to-[#198754] p-6 overflow-hidden group"
-                        whileHover={{ scale: 1.02, y: -5 }}
+                        initial={{ opacity: 0 }}
+                        animate={isInView ? { opacity: 1 } : {}}
+                        transition={{ duration: 0.5, delay: 0.1 }}
+                        className="rounded-3xl bg-gradient-to-br from-[#20C997] to-[#198754] p-6 shadow-md hover:scale-[1.02] transition-transform duration-300"
                     >
-                        <motion.span
-                            className="font-sora text-5xl md:text-6xl font-bold text-white block"
-                            animate={isInView ? {
-                                textShadow: ["0 0 0px rgba(255,255,255,0)", "0 0 20px rgba(255,255,255,0.3)", "0 0 0px rgba(255,255,255,0)"]
-                            } : {}}
-                            transition={{ duration: 2, repeat: Infinity }}
-                        >
+                        <motion.span className="font-sora text-5xl md:text-6xl font-bold text-white">
                             {isInView && <CountUp end={25} duration={2} />}K
                         </motion.span>
-                        <p className="text-white/80 text-sm mt-1">Weekly Downloads</p>
-                        {/* Floating decoration */}
-                        <div className="absolute -bottom-4 -right-4 w-20 h-20 rounded-full bg-white/10 blur-xl" />
+                        <p className="text-white/95 text-sm mt-1">Weekly Downloads</p>
                     </motion.div>
 
-                    {/* Card 3: Active Users with LIVE - spans 1 col, 1 row */}
+                    {/* Card 3 */}
                     <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={isInView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ duration: 0.5, delay: 0.3 }}
-                        className="relative rounded-3xl bg-gradient-to-br from-[#3d4349] to-[#343a40] border border-[#FD7E14]/20 p-6 overflow-hidden group"
-                        whileHover={{ scale: 1.02, y: -5 }}
+                        initial={{ opacity: 0 }}
+                        animate={isInView ? { opacity: 1 } : {}}
+                        transition={{ duration: 0.5, delay: 0.2 }}
+                        className="rounded-3xl bg-white border border-[#20C997]/25 p-6 shadow-sm"
                     >
-                        {/* LIVE indicator */}
-                        <div className="absolute top-4 right-4 flex items-center gap-1.5 bg-[#FD7E14]/20 px-2 py-1 rounded-full">
-                            <motion.div
-                                className="w-2 h-2 rounded-full bg-[#FD7E14]"
-                                animate={{ scale: [1, 1.3, 1], opacity: [1, 0.7, 1] }}
-                                transition={{ duration: 1, repeat: Infinity }}
-                            />
-                            <span className="text-[#FD7E14] text-xs font-semibold">LIVE</span>
-                        </div>
-                        <motion.span
-                            className="font-sora text-5xl md:text-6xl font-bold text-white block"
-                        >
+                        <span className="font-sora text-5xl md:text-6xl font-bold text-[#2E3A39]">
                             {isInView && <CountUp end={50} duration={2} />}K
-                        </motion.span>
-                        <p className="text-gray-400 text-sm mt-1">Active Users Now</p>
+                        </span>
+                        <p className="text-gray-600 text-sm mt-1">Active Users Now</p>
                     </motion.div>
 
-                    {/* Card 4: Total Users - Large, spans 1 col, 2 rows */}
+                    {/* Card 4 – Large */}
                     <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={isInView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ duration: 0.5, delay: 0.4 }}
-                        className="relative rounded-3xl bg-gradient-to-br from-[#3d4349] to-[#343a40] border border-[#20C997]/20 p-6 overflow-hidden group row-span-2"
-                        whileHover={{ scale: 1.02 }}
+                        initial={{ opacity: 0 }}
+                        animate={isInView ? { opacity: 1 } : {}}
+                        transition={{ duration: 0.5, delay: 0.3 }}
+                        className="rounded-3xl bg-white border border-[#20C997]/25 p-6 shadow-md row-span-2"
                     >
-                        <div className="flex justify-between items-start mb-4">
-                            <p className="text-gray-400 text-sm font-medium">Active Users</p>
-                            <span className="text-[#198754] text-sm font-semibold bg-[#198754]/20 px-2 py-0.5 rounded">+154</span>
-                        </div>
-                        <motion.span
-                            className="font-sora text-6xl md:text-7xl font-bold text-white block mb-4"
-                            animate={isInView ? {
-                                textShadow: ["0 0 0px rgba(32,201,151,0)", "0 0 30px rgba(32,201,151,0.4)", "0 0 0px rgba(32,201,151,0)"]
-                            } : {}}
-                            transition={{ duration: 3, repeat: Infinity }}
-                        >
-                            {isInView && <CountUp end={1538} duration={2.5} separator="," />}
-                        </motion.span>
+                        <p className="text-[#2E3A39] text-sm font-medium">Total Users</p>
 
-                        {/* Simple chart visual */}
-                        <div className="flex items-end gap-1 h-16 mt-auto">
+                        <span className="font-sora text-6xl md:text-7xl font-bold text-[#2E3A39] block mb-4">
+                            {isInView && <CountUp end={1538} duration={2.5} separator="," />}
+                        </span>
+
+                        {/* Bar Chart */}
+                        <div className="flex items-end gap-1 h-20">
                             {[40, 60, 35, 80, 55, 90, 65, 100, 75, 85].map((h, i) => (
                                 <motion.div
                                     key={i}
-                                    className="flex-1 bg-gradient-to-t from-[#20C997]/60 to-[#198754]/60 rounded-sm"
+                                    className="flex-1 bg-gradient-to-t from-[#20C997]/70 to-[#198754]/60 rounded-sm"
                                     initial={{ height: 0 }}
                                     animate={isInView ? { height: `${h}%` } : {}}
-                                    transition={{ duration: 0.8, delay: 0.5 + i * 0.05 }}
                                 />
                             ))}
                         </div>
                     </motion.div>
 
-                    {/* Card 5: SwiftFin Accent - spans 1 col, 1 row */}
+                    {/* Card 5 – Branding */}
                     <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={isInView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ duration: 0.5, delay: 0.5 }}
-                        className="relative rounded-3xl bg-gradient-to-br from-[#FD7E14] to-[#ea580c] p-6 overflow-hidden group flex items-center justify-center"
-                        whileHover={{ scale: 1.02, y: -5 }}
+                        initial={{ opacity: 0 }}
+                        animate={isInView ? { opacity: 1 } : {}}
+                        transition={{ duration: 0.5, delay: 0.35 }}
+                        className="rounded-3xl bg-gradient-to-br from-[#20C997] to-[#198754] p-6 flex items-center justify-center shadow-lg"
                     >
-                        <motion.span
-                            className="font-sora text-3xl md:text-4xl font-bold text-white/90 tracking-wide"
-                            animate={{
-                                rotateX: [0, 5, 0, -5, 0],
-                                rotateY: [0, 3, 0, -3, 0]
-                            }}
-                            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                        >
-                            SWIFT<span className="text-white">FIN</span>
-                        </motion.span>
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+                        <span className="font-sora text-4xl font-bold text-white">SWIFTFIN</span>
                     </motion.div>
 
-                    {/* Card 6: Total Transactions with trend - spans 2 cols, 1 row */}
+                    {/* Card 6 – Transactions */}
                     <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={isInView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ duration: 0.5, delay: 0.6 }}
-                        className="relative rounded-3xl bg-gradient-to-br from-[#3d4349] to-[#343a40] border border-[#20C997]/20 p-6 overflow-hidden group sm:col-span-2 lg:col-span-2"
-                        whileHover={{ scale: 1.01 }}
+                        initial={{ opacity: 0 }}
+                        animate={isInView ? { opacity: 1 } : {}}
+                        transition={{ duration: 0.5, delay: 0.4 }}
+                        className="rounded-3xl bg-white border border-[#20C997]/25 p-6 shadow-md sm:col-span-2"
                     >
-                        <div className="flex justify-between items-start mb-2">
-                            <p className="text-gray-400 text-sm font-medium">Total Transactions</p>
-                            <span className="text-[#198754] text-sm font-semibold bg-[#198754]/20 px-2 py-0.5 rounded">+7%</span>
-                        </div>
+                        <p className="text-[#2E3A39] text-sm font-medium">Total Transactions</p>
 
-                        <div className="flex items-end justify-between">
-                            <motion.span
-                                className="font-sora text-5xl md:text-6xl font-bold text-white"
-                            >
+                        <div className="flex items-end justify-between mt-1">
+                            <span className="font-sora text-5xl md:text-6xl font-bold text-[#2E3A39]">
                                 {isInView && <CountUp end={200} duration={2} />}K
-                            </motion.span>
+                            </span>
 
-                            {/* Trend line SVG */}
+                            {/* Line graph */}
                             <svg viewBox="0 0 100 40" className="w-32 h-12 ml-4">
-                                <motion.path
-                                    d="M0,35 Q10,30 20,28 T40,22 T60,18 T80,12 T100,5"
-                                    fill="none"
-                                    stroke="url(#tealGradient)"
-                                    strokeWidth="2"
-                                    strokeLinecap="round"
-                                    initial={{ pathLength: 0 }}
-                                    animate={isInView ? { pathLength: 1 } : {}}
-                                    transition={{ duration: 2, delay: 0.5 }}
-                                />
                                 <defs>
-                                    <linearGradient id="tealGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <linearGradient id="tealGraph" x1="0%" y1="0%" x2="100%" y2="0%">
                                         <stop offset="0%" stopColor="#20C997" />
                                         <stop offset="100%" stopColor="#198754" />
                                     </linearGradient>
                                 </defs>
+                                <motion.path
+                                    d="M0,35 Q10,30 20,26 T40,20 T60,17 T80,12 T100,6"
+                                    fill="none"
+                                    stroke="url(#tealGraph)"
+                                    strokeWidth="2.5"
+                                    strokeLinecap="round"
+                                    initial={{ pathLength: 0 }}
+                                    animate={isInView ? { pathLength: 1 } : {}}
+                                    transition={{ duration: 2 }}
+                                />
                             </svg>
                         </div>
                     </motion.div>
 
-                    {/* Card 7: Tagline - spans 2 cols on mobile, 2 cols on desktop */}
+                    {/* Tagline Card */}
                     <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={isInView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ duration: 0.5, delay: 0.7 }}
-                        className="relative rounded-3xl bg-gradient-to-r from-[#343a40] to-[#3d4349] border border-[#FD7E14]/10 p-6 overflow-hidden group sm:col-span-2 lg:col-span-2"
-                        whileHover={{ scale: 1.01 }}
+                        initial={{ opacity: 0 }}
+                        animate={isInView ? { opacity: 1 } : {}}
+                        transition={{ duration: 0.5, delay: 0.45 }}
+                        className="rounded-3xl bg-[#F8FFFC] border border-[#20C997]/20 p-6 sm:col-span-2 shadow-sm"
                     >
-                        <motion.p
-                            className="font-sora text-xl md:text-2xl font-semibold text-white leading-relaxed"
-                            initial={{ opacity: 0 }}
-                            animate={isInView ? { opacity: 1 } : {}}
-                            transition={{ duration: 1, delay: 0.8 }}
-                        >
-                            A place to <span className="text-[#20C997]">track expenses</span> &<br />
-                            <span className="text-[#FD7E14]">manage finances</span>.
-                        </motion.p>
-
-                        {/* Decorative elements */}
-                        <motion.div
-                            className="absolute bottom-3 right-4 w-3 h-3 rounded-full bg-[#20C997]"
-                            animate={{ scale: [1, 1.5, 1] }}
-                            transition={{ duration: 2, repeat: Infinity }}
-                        />
+                        <p className="font-sora text-xl md:text-2xl font-semibold text-[#2E3A39]">
+                            Track your <span className="text-[#20C997]">expenses</span> with ease.<br />
+                            Manage your <span className="text-[#20C997]">finances smartly</span>.
+                        </p>
                     </motion.div>
 
-                    {/* Card 8: Cities - spans 1 col */}
+                    {/* Cities */}
                     <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={isInView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ duration: 0.5, delay: 0.8 }}
-                        className="relative rounded-3xl bg-gradient-to-br from-[#3d4349] to-[#343a40] border border-[#20C997]/20 p-6 overflow-hidden group"
-                        whileHover={{ scale: 1.02, y: -5 }}
+                        initial={{ opacity: 0 }}
+                        animate={isInView ? { opacity: 1 } : {}}
+                        transition={{ duration: 0.5, delay: 0.5 }}
+                        className="rounded-3xl bg-white border border-[#20C997]/25 p-6 shadow-sm"
                     >
                         <div className="flex items-center gap-2 mb-2">
                             <MapPin className="w-5 h-5 text-[#20C997]" />
-                            <p className="text-gray-400 text-sm font-medium">Cities Covered</p>
+                            <p className="text-[#2E3A39] text-sm font-medium">Cities Covered</p>
                         </div>
-                        <motion.span
-                            className="font-sora text-4xl md:text-5xl font-bold text-white block"
-                        >
-                            {isInView && <CountUp end={4000} duration={2} separator="," />}
-                            <span className="text-[#20C997]">+</span>
-                        </motion.span>
+
+                        <span className="font-sora text-5xl font-bold text-[#2E3A39]">
+                            {isInView && <CountUp end={4000} duration={2} separator="," />}+
+                        </span>
                     </motion.div>
 
-                    {/* Card 9: Rating */}
+                    {/* Rating */}
                     <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={isInView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ duration: 0.5, delay: 0.9 }}
-                        className="relative rounded-3xl bg-gradient-to-br from-[#FD7E14]/20 to-[#ea580c]/20 border border-[#FD7E14]/30 p-6 overflow-hidden group"
-                        whileHover={{ scale: 1.02, y: -5 }}
+                        initial={{ opacity: 0 }}
+                        animate={isInView ? { opacity: 1 } : {}}
+                        transition={{ duration: 0.5, delay: 0.55 }}
+                        className="rounded-3xl bg-white border border-[#20C997]/25 p-6 shadow-sm"
                     >
                         <div className="flex items-center gap-2 mb-2">
-                            <Star className="w-5 h-5 text-[#FD7E14] fill-[#FD7E14]" />
-                            <p className="text-gray-300 text-sm font-medium">App Rating</p>
+                            <Star className="w-5 h-5 text-[#20C997] fill-[#20C997]" />
+                            <p className="text-[#2E3A39] text-sm font-medium">App Rating</p>
                         </div>
-                        <motion.span
-                            className="font-sora text-4xl md:text-5xl font-bold text-white block"
-                        >
-                            {isInView && <CountUp end={4.8} duration={2} decimals={1} />}
-                            <span className="text-[#FD7E14] text-2xl">/5</span>
-                        </motion.span>
 
-                        {/* Stars decoration */}
-                        <div className="flex gap-1 mt-2">
-                            {[1, 2, 3, 4, 5].map((star) => (
-                                <motion.div
-                                    key={star}
-                                    initial={{ scale: 0 }}
-                                    animate={isInView ? { scale: 1 } : {}}
-                                    transition={{ delay: 1 + star * 0.1 }}
-                                >
-                                    <Star className={`w-4 h-4 ${star <= 4 ? 'text-[#FD7E14] fill-[#FD7E14]' : 'text-[#FD7E14]/50 fill-[#FD7E14]/50'}`} />
-                                </motion.div>
-                            ))}
-                        </div>
+                        <span className="font-sora text-5xl font-bold text-[#2E3A39]">
+                            {isInView && <CountUp end={4.8} duration={2} decimals={1} />}/5
+                        </span>
                     </motion.div>
                 </div>
 
-                {/* Bottom CTA */}
+                {/* CTA */}
                 <motion.div
                     className="text-center mt-12"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 1 }}
                 >
-                    <p className="text-gray-300 text-lg">
-                        Join the <span className="text-[#20C997] font-semibold">500,000+</span> users already managing their finances smarter
+                    <p className="text-gray-600 text-lg">
+                        Join over <span className="text-[#20C997] font-semibold">500,000+</span> Indians managing money smarter.
                     </p>
                 </motion.div>
             </div>
