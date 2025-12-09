@@ -12,32 +12,32 @@ export default function FAQ() {
         {
             question: "Is SwiftFin free to use?",
             answer: "Yes! SwiftFin is completely free with all core features. Premium plans are available for advanced analytics.",
-
+            emoji: "💸",
         },
         {
             question: "How secure is my financial data?",
             answer: "Your data is protected with 256-bit encryption. We never share information with third parties.",
-
+            emoji: "🔒",
         },
         {
             question: "Can I track multiple accounts?",
             answer: "Absolutely! Add unlimited bank accounts, credit cards, and investment portfolios in one dashboard.",
-
+            emoji: "💳",
         },
         {
             question: "Does SwiftFin work offline?",
             answer: "Yes, add expenses offline and everything syncs automatically when you're back online.",
-
+            emoji: "📶",
         },
         {
             question: "How does receipt scanning work?",
             answer: "Take a photo and our AI extracts amount, date, and category automatically.",
-
+            emoji: "🧾",
         },
         {
             question: "Can I export financial reports?",
             answer: "Yes! Export expense reports and summaries in PDF or CSV format anytime.",
-
+            emoji: "📊",
         }
     ];
 
