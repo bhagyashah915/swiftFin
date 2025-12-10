@@ -72,7 +72,7 @@ export default function Navbar() {
                     <Link href="/" className="flex items-center gap-2 group relative z-10">
                         <div className="relative w-10 h-10 overflow-hidden rounded-full bg-white shadow-sm flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
                             <Image
-                                src="/images/logo.png"
+                                src="/images/swiftfin-logo.png"
                                 alt="SwiftFin Logo"
                                 width={40}
                                 height={40}
@@ -210,7 +210,7 @@ export default function Navbar() {
                         {/* Header */}
                         <div className="flex items-center justify-between p-6 border-b border-gray-100">
                             <div className="flex items-center gap-2">
-                                <Image src="/images/logo.png" alt="Logo" width={32} height={32} />
+                                <Image src="/images/swiftfin-logo.png" alt="Logo" width={32} height={32} />
                                 <span className="font-sora font-bold text-lg">SwiftFin</span>
                             </div>
                             <button

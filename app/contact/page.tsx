@@ -49,8 +49,7 @@ export default function Contact() {
                                 <div>
                                     <h3 className="font-bold text-neutral-slate mb-1 text-sm md:text-base">Office</h3>
                                     <p className="text-gray-600 text-sm md:text-base">
-                                        123, Business Park,<br />
-                                        Bangalore, India - 560001
+                                        <br />
                                     </p>
                                 </div>
                             </div>

@@ -85,7 +85,7 @@ export default function Footer() {
                     >
                         <div className="flex items-center gap-2 mb-4 md:mb-6">
                             <Image
-                                src="/images/logo.png"
+                                src="/images/swiftfin-logo.png"
                                 alt="SwiftFin Logo"
                                 width={40}
                                 height={40}

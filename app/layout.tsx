@@ -29,6 +29,9 @@ const cedarvilleCursive = Cedarville_Cursive({
 export const metadata: Metadata = {
   title: "SwiftFin - Smart Finance Management for Everyone",
   description: "Track expenses, manage EMIs, monitor investments, and get personalized finance tips - all in one powerful app. Free forever.",
+  icons: {
+    icon: '/images/swiftfin-logo.png',
+  },
 };
 
 export default function RootLayout({
