@@ -391,8 +391,8 @@ export default function HowItWorks() {
                                     >
                                         {/* Arrow */}
                                         <div className={`absolute left-1/2 -translate-x-1/2 w-4 h-4 bg-white rotate-45 border-[#20C997]/20 ${cardPosition === "top"
-                                                ? "bottom-[-8px] border-r border-b"
-                                                : "top-[-8px] border-l border-t"
+                                            ? "bottom-[-8px] border-r border-b"
+                                            : "top-[-8px] border-l border-t"
                                             }`} />
 
                                         {/* Card */}

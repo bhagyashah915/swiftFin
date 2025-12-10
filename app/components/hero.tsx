@@ -108,12 +108,13 @@ export default function Hero() {
                         <div className="flex flex-col sm:flex-row gap-4 pt-4">
                             <button className="group px-8 py-4 bg-gradient-to-r from-teal-500 to-emerald-500 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-teal-500/50 transition-all duration-300 hover:scale-105">
                                 <span className="flex items-center justify-center gap-2">
-                                    Start Tracking Free
+
                                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                                 </span>
                             </button>
-                            <button className="px-8 py-4 bg-white/5 border border-white/20 text-white font-semibold rounded-xl backdrop-blur-sm hover:bg-white/10 transition-all duration-300">
-                                See How It Works
+                            <button className="px-8 py-4 bg-white/5 border border-white/20 text-white font-semibold rounded-xl backdrop-blur-sm hover:bg-white/10 transition-all duration-300 hover:scale-105">
+                                <span className="flex items-center justify-center gap-2">                                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                                </span>
                             </button>
                         </div>
 
