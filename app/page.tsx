@@ -31,23 +31,14 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
-      <HeroNew/>
+      <Hero />
       <About />
       <Metrics />
       <Features />
-      <HowItWorks />
       <UserTypes />
+      <HowItWorks />
       <FAQ />
 
-      {/* Firebase connection test button */}
-      <div className="flex justify-center py-10">
-        <button
-          onClick={testFirebase}
-          className="px-6 py-3 bg-transparent border border-teal-500 text-teal-500 rounded-full hover:bg-teal-500 hover:text-white transition-all duration-300"
-        >
-          Test Firebase Connection
-        </button>
-      </div>
     </main>
   );
 }

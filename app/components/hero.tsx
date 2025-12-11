@@ -110,50 +110,42 @@ export default function Hero() {
             {/* Main Hero Section with Background Image */}
             <section className="relative w-full min-h-screen overflow-hidden">
 
-                {/* Background Image Layer - Financial Chart */}
+                {/* Background Image Layer */}
                 <div className="absolute inset-0 z-0">
-                    <div
-                        className="absolute inset-0 opacity-20"
-                        style={{
-                            backgroundImage: `linear-gradient(135deg, rgba(20, 184, 166, 0.05) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(20, 184, 166, 0.05) 100%)`,
-                        }}
-                    ></div>
-                    {/* Simulated chart background pattern */}
-                    <svg className="absolute inset-0 w-full h-full opacity-10" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <pattern id="chart-grid" x="0" y="0" width="50" height="50" patternUnits="userSpaceOnUse">
-                                <line x1="0" y1="0" x2="0" y2="50" stroke="#14B8A6" strokeWidth="0.5" />
-                                <line x1="0" y1="50" x2="50" y2="50" stroke="#14B8A6" strokeWidth="0.5" />
-                            </pattern>
-                        </defs>
-                        <rect width="100%" height="100%" fill="url(#chart-grid)" />
-                        {/* Chart line simulation */}
-                        <path d="M 0 400 Q 200 300, 400 350 T 800 300 T 1200 250 T 1600 300 T 2000 200"
-                            stroke="#14B8A6"
-                            strokeWidth="3"
-                            fill="none"
-                            opacity="0.3" />
-                        <path d="M 0 500 Q 250 450, 500 480 T 1000 420 T 1500 400 T 2000 350"
-                            stroke="#5EEAD4"
-                            strokeWidth="2"
-                            fill="none"
-                            opacity="0.25" />
-                        {/* Bar chart elements */}
-                        {[100, 250, 400, 550, 700, 850, 1000, 1150, 1300, 1450, 1600, 1750].map((x, i) => (
-                            <rect key={i} x={x} y={600 - (Math.random() * 200)} width="30" height={Math.random() * 200} fill="#14B8A6" opacity="0.15" />
-                        ))}
-                    </svg>
+                    <img
+                        src="/images/hero1.png"
+                        alt="Background"
+                        className="w-full h-full object-cover opacity-20"
+                    />
+                    <div className="absolute inset-0 bg-white/80 mix-blend-overlay"></div>
                 </div>
 
+                {/* Ticker Animation */}
+                <div className="absolute top-24 left-0 w-full overflow-hidden opacity-[0.03] pointer-events-none z-[1]">
+                    <div className="whitespace-nowrap animate-marquee text-[120px] font-black text-teal-900 leading-none">
+                        SWIFTFIN • ADVISOR • SWIFTFIN • ADVISOR • SWIFTFIN • ADVISOR •
+                    </div>
+                </div>
+
+                {/* Styles for marquee if not in global css, using inline style for simplicity or verify tailwind config */}
+                <style jsx>{`
+                    @keyframes marquee {
+                        0% { transform: translateX(0); }
+                        100% { transform: translateX(-50%); }
+                    }
+                    .animate-marquee {
+                        display: inline-block;
+                        animation: marquee 30s linear infinite;
+                    }
+                `}</style>
+
                 {/* White overlay to blend with design */}
-                <div className="absolute inset-0 bg-white/85 z-[1]"></div>
+                <div className="absolute inset-0 bg-gradient-to-b from-white/50 via-white/30 to-white/80 z-[1] pointer-events-none"></div>
 
                 {/* Subtle Background Elements - keeping original design */}
                 <div className="absolute inset-0 pointer-events-none z-[2]">
                     <div className="absolute top-20 right-1/4 w-96 h-96 bg-teal-100/40 rounded-full blur-3xl"></div>
                     <div className="absolute bottom-20 left-1/4 w-96 h-96 bg-teal-50/60 rounded-full blur-3xl"></div>
-                    <div className="absolute top-32 right-20 text-teal-200 text-6xl font-light select-none">+</div>
-                    <div className="absolute bottom-40 left-32 text-teal-100 text-8xl font-light select-none">+</div>
                 </div>
 
                 {/* Main Content */}
@@ -163,10 +155,10 @@ export default function Hero() {
                         {/* Left Content - Text */}
                         <div className={`lg:col-span-4 space-y-6 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'}`}>
                             <div className="space-y-4">
-                                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight text-gray-900">
-                                    Where Smart Money
+                                <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold leading-tight text-gray-900">
+                                    Your Personal
                                     <br />
-                                    <span className="text-gray-700">Gets Smarter.</span>
+                                    <span className="text-teal-600">Financial Advisor</span>
                                     <br />
                                     <span className="relative inline-block">
                                         <div className="absolute -bottom-2 left-0 w-32 h-1 bg-teal-500"></div>
