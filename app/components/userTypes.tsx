@@ -22,9 +22,9 @@ function CardStack({ user, index, total }: { user: UserType; index: number; tota
         offset: ["start end", "end start"]
     });
 
-    const y = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [200, 0, 0, 0]);
-    const scale = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.9, 1, 1, 1]);
-    const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 1]);
+    const y = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [200, 0, 0, -100]);
+    const scale = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.9, 1, 1, 0.95]);
+    const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0.8]);
 
     return (
         <div

@@ -140,21 +140,8 @@ export default function Hero() {
                             fill="none"
                             opacity="0.25" />
                         {/* Bar chart elements */}
-                        {[
-                            { x: 100, y: 450, height: 150 },
-                            { x: 250, y: 520, height: 80 },
-                            { x: 400, y: 480, height: 120 },
-                            { x: 550, y: 430, height: 170 },
-                            { x: 700, y: 500, height: 100 },
-                            { x: 850, y: 470, height: 130 },
-                            { x: 1000, y: 440, height: 160 },
-                            { x: 1150, y: 510, height: 90 },
-                            { x: 1300, y: 460, height: 140 },
-                            { x: 1450, y: 490, height: 110 },
-                            { x: 1600, y: 420, height: 180 },
-                            { x: 1750, y: 530, height: 70 },
-                        ].map((bar, i) => (
-                            <rect key={i} x={bar.x} y={bar.y} width="30" height={bar.height} fill="#14B8A6" opacity="0.15" />
+                        {[100, 250, 400, 550, 700, 850, 1000, 1150, 1300, 1450, 1600, 1750].map((x, i) => (
+                            <rect key={i} x={x} y={600 - (Math.random() * 200)} width="30" height={Math.random() * 200} fill="#14B8A6" opacity="0.15" />
                         ))}
                     </svg>
                 </div>

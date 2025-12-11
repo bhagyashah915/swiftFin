@@ -1,173 +1,384 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { CloudLightning, ShieldCheck, TrendingUp, Wallet, PieChart, Coins, Banknote, CreditCard } from "lucide-react";
+import { Wallet, PieChart, Target, TrendingUp } from "lucide-react";
 import { useState } from "react";
 
 const steps = [
     {
         id: 1,
-        title: "Instant Setup",
-        description: "Create your SwiftFin account in seconds with a smooth, secure onboarding process.",
-        icon: <CloudLightning className="w-6 h-6 text-white" />,
-        color: "bg-emerald-500",
-        bgIcon: <Wallet className="w-32 h-32 text-emerald-100 opacity-20 rotate-12" />
+        title: "Connect Your Accounts",
+        description: "Securely link your bank, credit cards, and investments to get a complete financial overview in one place.",
+        icon: <Wallet className="w-5 h-5 text-white" />,
     },
     {
         id: 2,
-        title: "Smart Tracking",
-        description: "Automatically categorize and visualize your spending with AI-powered insights.",
-        icon: <TrendingUp className="w-6 h-6 text-white" />,
-        color: "bg-teal-500",
-        bgIcon: <PieChart className="w-32 h-32 text-teal-100 opacity-20 -rotate-12" />
+        title: "Track Expenses",
+        description: "Monitor your spending across categories with automatic transaction tracking and real-time updates.",
+        icon: <PieChart className="w-5 h-5 text-white" />,
     },
     {
         id: 3,
-        title: "Secure Sync",
-        description: "Connect your bank safely with enterprise‑grade encryption and zero‑risk protection.",
-        icon: <ShieldCheck className="w-6 h-6 text-white" />,
-        color: "bg-cyan-500",
-        bgIcon: <ShieldCheck className="w-32 h-32 text-cyan-100 opacity-20 rotate-6" />
+        title: "Set Budget",
+        description: "Create personalized budgets for different categories and get alerts when you're approaching limits.",
+        icon: <Target className="w-5 h-5 text-white" />,
     },
     {
         id: 4,
-        title: "Financial Boost",
-        description: "Get personalized tips to grow, save, and optimize your financial flow effortlessly.",
-        icon: <Coins className="w-6 h-6 text-white" />,
-        color: "bg-blue-500",
-        bgIcon: <Banknote className="w-32 h-32 text-blue-100 opacity-20 -rotate-6" />
+        title: "Monitor Progress",
+        description: "Get personalized insights and recommendations to optimize your financial health and reach your goals.",
+        icon: <TrendingUp className="w-5 h-5 text-white" />,
     },
 ];
 
 export default function HowItWorks() {
-    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+    const [activeStep, setActiveStep] = useState(1);
+
+    // Function to render phone screen based on active step
+    const renderPhoneScreen = (stepId) => {
+        switch (stepId) {
+            case 1:
+                return (
+                    <div className="px-6 pt-8">
+                        <div className="flex items-center mb-6">
+                            <button className="text-teal-500">
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                </svg>
+                            </button>
+                            <h1 className="text-xl font-bold text-slate-900 ml-4">Connect Accounts</h1>
+                        </div>
+
+                        <div className="bg-gradient-to-br from-teal-500 to-teal-600 rounded-3xl p-6 mb-6 text-white">
+                            <div className="text-sm opacity-90 mb-2">Link Your Accounts</div>
+                            <div className="text-3xl font-bold">Get Started</div>
+                        </div>
+
+                        <div className="space-y-4">
+                            <div className="bg-white border-2 border-teal-500 rounded-2xl p-4 flex items-center justify-between">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-10 h-10 rounded-full bg-teal-100 flex items-center justify-center">
+                                        <Wallet className="w-5 h-5 text-teal-600" />
+                                    </div>
+                                    <span className="font-semibold text-slate-900">Bank Account</span>
+                                </div>
+                                <svg className="w-5 h-5 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                </svg>
+                            </div>
+
+                            <div className="bg-white border border-slate-200 rounded-2xl p-4 flex items-center justify-between">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center">
+                                        <svg className="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                                        </svg>
+                                    </div>
+                                    <span className="font-semibold text-slate-900">Credit Card</span>
+                                </div>
+                                <svg className="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                </svg>
+                            </div>
+
+                            <div className="bg-white border border-slate-200 rounded-2xl p-4 flex items-center justify-between">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center">
+                                        <TrendingUp className="w-5 h-5 text-slate-600" />
+                                    </div>
+                                    <span className="font-semibold text-slate-900">Investment</span>
+                                </div>
+                                <svg className="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                </svg>
+                            </div>
+
+                            <button className="w-full bg-teal-500 text-white rounded-2xl py-4 font-semibold text-lg mt-6">
+                                Connect Now
+                            </button>
+                        </div>
+                    </div>
+                );
+
+            case 2:
+                return (
+                    <div className="px-6 pt-8">
+                        <div className="flex items-center mb-6">
+                            <button className="text-teal-500">
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                </svg>
+                            </button>
+                            <h1 className="text-xl font-bold text-slate-900 ml-4">Track Expenses</h1>
+                        </div>
+
+                        <div className="bg-gradient-to-br from-teal-500 to-teal-600 rounded-3xl p-6 mb-6 text-white">
+                            <div className="text-sm opacity-90 mb-2">Today's Spending</div>
+                            <div className="text-5xl font-bold">$89.50</div>
+                        </div>
+
+                        <div className="space-y-3">
+                            {[
+                                { name: "Food & Dining", amount: "$42.00", percent: 60, icon: "🍔" },
+                                { name: "Transportation", amount: "$18.50", percent: 35, icon: "🚗" },
+                                { name: "Shopping", amount: "$29.00", percent: 45, icon: "🛍️" },
+                            ].map((item, idx) => (
+                                <div key={idx} className="bg-white border border-slate-200 rounded-2xl p-4">
+                                    <div className="flex items-center justify-between mb-2">
+                                        <div className="flex items-center gap-3">
+                                            <span className="text-2xl">{item.icon}</span>
+                                            <span className="font-semibold text-slate-900">{item.name}</span>
+                                        </div>
+                                        <span className="font-bold text-slate-900">{item.amount}</span>
+                                    </div>
+                                    <div className="w-full bg-slate-100 rounded-full h-2">
+                                        <div className="bg-teal-500 h-2 rounded-full" style={{ width: `${item.percent}%` }}></div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                );
+
+            case 3:
+                return (
+                    <div className="px-6 pt-8">
+                        <div className="flex items-center mb-6">
+                            <button className="text-teal-500">
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                </svg>
+                            </button>
+                            <h1 className="text-xl font-bold text-slate-900 ml-4">Set Budget</h1>
+                        </div>
+
+                        <div className="bg-gradient-to-br from-teal-500 to-teal-600 rounded-3xl p-6 mb-6 text-white">
+                            <div className="text-sm opacity-90 mb-2">Monthly Budget</div>
+                            <div className="text-5xl font-bold">$2,500</div>
+                            <div className="text-sm opacity-80 mt-2">$1,250 remaining</div>
+                        </div>
+
+                        <div className="space-y-4">
+                            <div className="bg-white border border-slate-200 rounded-2xl p-4">
+                                <div className="flex items-center justify-between mb-3">
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-10 h-10 rounded-full bg-teal-100 flex items-center justify-center">
+                                            <span className="text-xl">🍔</span>
+                                        </div>
+                                        <div>
+                                            <div className="font-semibold text-slate-900">Food</div>
+                                            <div className="text-xs text-slate-500">$500 budget</div>
+                                        </div>
+                                    </div>
+                                    <div className="text-right">
+                                        <div className="font-bold text-slate-900">$320</div>
+                                        <div className="text-xs text-teal-500">64%</div>
+                                    </div>
+                                </div>
+                                <div className="w-full bg-slate-100 rounded-full h-2">
+                                    <div className="bg-teal-500 h-2 rounded-full" style={{ width: "64%" }}></div>
+                                </div>
+                            </div>
+
+                            <div className="bg-white border border-slate-200 rounded-2xl p-4">
+                                <div className="flex items-center justify-between mb-3">
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-10 h-10 rounded-full bg-teal-100 flex items-center justify-center">
+                                            <span className="text-xl">🚗</span>
+                                        </div>
+                                        <div>
+                                            <div className="font-semibold text-slate-900">Transport</div>
+                                            <div className="text-xs text-slate-500">$300 budget</div>
+                                        </div>
+                                    </div>
+                                    <div className="text-right">
+                                        <div className="font-bold text-slate-900">$145</div>
+                                        <div className="text-xs text-teal-500">48%</div>
+                                    </div>
+                                </div>
+                                <div className="w-full bg-slate-100 rounded-full h-2">
+                                    <div className="bg-teal-500 h-2 rounded-full" style={{ width: "48%" }}></div>
+                                </div>
+                            </div>
+
+                            <button className="w-full bg-teal-500 text-white rounded-2xl py-4 font-semibold text-lg">
+                                Adjust Budget
+                            </button>
+                        </div>
+                    </div>
+                );
+
+            case 4:
+                return (
+                    <div className="px-6 pt-8">
+                        <div className="flex items-center mb-6">
+                            <button className="text-teal-500">
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                </svg>
+                            </button>
+                            <h1 className="text-xl font-bold text-slate-900 ml-4">Progress</h1>
+                        </div>
+
+                        <div className="bg-gradient-to-br from-teal-500 to-teal-600 rounded-3xl p-6 mb-6 text-white">
+                            <div className="text-sm opacity-90 mb-2">This Month</div>
+                            <div className="text-5xl font-bold">+25%</div>
+                            <div className="text-sm opacity-80 mt-2">Savings increased</div>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-3 mb-6">
+                            <div className="bg-white border border-slate-200 rounded-2xl p-4">
+                                <div className="text-xs text-slate-500 mb-1">Saved</div>
+                                <div className="text-2xl font-bold text-slate-900">$640</div>
+                                <div className="text-xs text-teal-500 mt-1">↑ 15%</div>
+                            </div>
+                            <div className="bg-white border border-slate-200 rounded-2xl p-4">
+                                <div className="text-xs text-slate-500 mb-1">Goals</div>
+                                <div className="text-2xl font-bold text-slate-900">3/5</div>
+                                <div className="text-xs text-teal-500 mt-1">On track</div>
+                            </div>
+                        </div>
+
+                        <div className="bg-white border border-slate-200 rounded-2xl p-4 mb-4">
+                            <div className="font-semibold text-slate-900 mb-3">Weekly Trend</div>
+                            <div className="flex items-end h-24 gap-2">
+                                {[45, 60, 50, 75, 65, 80, 70].map((height, idx) => (
+                                    <div key={idx} className="flex-1 flex flex-col items-center">
+                                        <div
+                                            className="w-full rounded-t-lg bg-teal-500"
+                                            style={{ height: `${height}%` }}
+                                        ></div>
+                                        <div className="text-xs text-slate-500 mt-1">{["M", "T", "W", "T", "F", "S", "S"][idx]}</div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className="bg-teal-50 border border-teal-200 rounded-2xl p-4 flex items-start gap-3">
+                            <div className="w-8 h-8 rounded-full bg-teal-500 flex items-center justify-center flex-shrink-0">
+                                <TrendingUp className="w-4 h-4 text-white" />
+                            </div>
+                            <div>
+                                <div className="font-semibold text-slate-900 text-sm mb-1">Great job!</div>
+                                <div className="text-slate-600 text-xs">You're on track to meet your monthly savings goal.</div>
+                            </div>
+                        </div>
+                    </div>
+                );
+
+            default:
+                return null;
+        }
+    };
 
     return (
-        <section className="relative py-24 bg-white text-neutral-800 overflow-hidden" id="how-it-works">
-
-            {/* Background Floating Elements */}
-            <div className="absolute inset-0 pointer-events-none">
-                <motion.div
-                    animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
-                    transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute top-20 left-10 text-emerald-50"
-                >
-                    <Wallet className="w-48 h-48 opacity-40" />
-                </motion.div>
-                <motion.div
-                    animate={{ y: [0, 20, 0], rotate: [0, -5, 0] }}
-                    transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                    className="absolute bottom-20 right-10 text-teal-50"
-                >
-                    <PieChart className="w-56 h-56 opacity-40" />
-                </motion.div>
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border-[50px] border-emerald-50/30 rounded-full blur-3xl -z-10"></div>
-            </div>
-
-            <div className="container mx-auto px-6 relative z-10">
+        <section className="relative py-24 bg-white overflow-hidden" id="how-it-works">
+            <div className="container mx-auto px-4 relative z-10 bg-teal-400 p-20 rounded-4xl">
+                {/* Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-center mb-20"
+                    className="text-center mb-16 "
                 >
-                    <h2 className="text-4xl md:text-5xl font-bold mb-4 font-poppins">
-                        How <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-teal-500">SwiftFin</span> Works
+                    <span className="inline-block text-teal-600 font-bold text-sm uppercase tracking-widest font-poppins bg-teal-50 px-5 py-2 rounded-full mb-6 border border-teal-100">
+                        How It Works
+                    </span>
+                    <h2 className="font-poppins text-5xl md:text-6xl font-bold text-slate-900 mb-6 leading-tight">
+                        How <span className="text-white">SwiftFin</span><br />Can Help You
                     </h2>
-                    <p className="text-xl text-neutral-500">Simple steps to master your money.</p>
+                    <p className="font-lato text-slate-600 text-xl leading-relaxed max-w-3xl mx-auto">
+                        Follow these simple steps to take control of your finances and achieve your goals.
+                    </p>
                 </motion.div>
 
-                {/* C-Shaped Layout Container */}
-                <div className="relative max-w-5xl mx-auto h-[600px] hidden lg:block">
-                    {/* The "C" Curve Line - SVG */}
-                    <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 800 600">
-                        {/* Define the C curve path */}
-                        <path
-                            d="M 600 550 Q 100 300 600 50"
-                            fill="none"
-                            stroke="#E2E8F0"
-                            strokeWidth="2"
-                            strokeDasharray="8 8"
-                            className="opacity-50"
-                        />
-                    </svg>
+                <div className="flex items-center justify-center max-w-6xl mx-auto ">
+                    {/* Left Side - Phone Mockup */}
+                    <div className="flex-shrink-0 mr-16">
+                        <div className="relative">
+                            {/* Phone Mockup */}
+                            <div className="relative w-[340px] h-[700px] bg-black rounded-[3.5rem] p-3 shadow-2xl">
+                                {/* Notch */}
+                                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-36 h-8 bg-black rounded-b-3xl z-20"></div>
 
-                    {/* Steps positioned along the C-Curve */}
-                    {steps.map((step, index) => {
-                        // Custom coordinates to form a "C" shape (Reverse C actually, or standard C)
-                        // Adjusting for a visual C shape opening to the right
-                        const positions = [
-                            { top: "0%", right: "20%" },   // Top Right
-                            { top: "25%", left: "15%" },   // Middle Top Left
-                            { bottom: "25%", left: "15%" }, // Middle Bottom Left
-                            { bottom: "0%", right: "20%" }  // Bottom Right
-                        ];
+                                {/* Side Buttons */}
+                                <div className="absolute -right-2 top-32 w-1 h-12 bg-slate-800 rounded-r-md"></div>
+                                <div className="absolute -left-2 top-32 w-1 h-14 bg-slate-800 rounded-l-md"></div>
+                                <div className="absolute -left-2 top-52 w-1 h-14 bg-slate-800 rounded-l-md"></div>
 
-                        return (
-                            <motion.div
-                                key={step.id}
-                                className={`absolute cursor-pointer group`}
-                                style={positions[index]}
-                                initial={{ opacity: 0, scale: 0.8 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.2 }}
-                                onMouseEnter={() => setHoveredIndex(index)}
-                                onMouseLeave={() => setHoveredIndex(null)}
-                            >
-                                {/* Circle Node */}
-                                <div className={`w-16 h-16 rounded-2xl ${step.color} shadow-lg shadow-emerald-500/20 flex items-center justify-center transform transition-transform duration-300 group-hover:scale-110 z-20 relative`}>
-                                    {step.icon}
-                                    {/* Pulse effect */}
-                                    <div className={`absolute inset-0 rounded-2xl ${step.color} animate-ping opacity-20`}></div>
-                                </div>
-
-                                {/* Content Card - Pops up on hover */}
-                                <motion.div
-                                    initial={{ opacity: 0, scale: 0.8, x: 20 }}
-                                    animate={hoveredIndex === index ? { opacity: 1, scale: 1, x: 50 } : { opacity: 1, scale: 1, x: 20 }}
-                                    className={`absolute left-full top-1/2 -translate-y-1/2 ml-4 w-72 bg-white p-6 rounded-2xl shadow-xl border border-neutral-100 z-30 transition-all duration-300 origin-left ${hoveredIndex === index ? 'ring-2 ring-emerald-500/20' : ''}`}
-                                >
-                                    {/* Large Background Icon inside card */}
-                                    <div className="absolute right-0 bottom-0 pointer-events-none overflow-hidden rounded-br-2xl">
-                                        {step.bgIcon}
+                                {/* Screen Content */}
+                                <div className="relative w-full h-full bg-white rounded-[3rem] overflow-hidden">
+                                    {/* Status Bar */}
+                                    <div className="px-8 pt-3 flex justify-between items-center text-xs font-semibold text-slate-900">
+                                        <span>9:41</span>
+                                        <div className="flex items-center gap-1">
+                                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                                <path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z" />
+                                            </svg>
+                                            <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
+                                                <path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z" />
+                                            </svg>
+                                        </div>
                                     </div>
 
-                                    <h3 className={`font-bold text-lg mb-2 text-slate-800`}>{step.title}</h3>
-                                    <p className="text-sm text-slate-500 leading-relaxed relative z-10">{step.description}</p>
-                                </motion.div>
-
-                                {/* Connecting Line to Node (Visual) */}
-                                <div className="absolute top-1/2 -right-4 w-4 h-0.5 bg-neutral-200 -z-10"></div>
-                            </motion.div>
-                        );
-                    })}
-                </div>
-
-                {/* Mobile Stack Layout */}
-                <div className="grid gap-6 lg:hidden">
-                    {steps.map((step, index) => (
-                        <motion.div
-                            key={step.id}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="bg-white rounded-2xl p-6 shadow-lg border border-neutral-100 relative overflow-hidden"
-                        >
-                            <div className="absolute right-[-20px] bottom-[-20px] opacity-10">
-                                {step.bgIcon}
-                            </div>
-                            <div className="flex items-center gap-4 mb-4">
-                                <div className={`w-12 h-12 rounded-xl ${step.color} flex items-center justify-center shadow-md`}>
-                                    {step.icon}
+                                    {/* Dynamic Screen Content */}
+                                    <motion.div
+                                        key={activeStep}
+                                        initial={{ opacity: 0, x: 20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        exit={{ opacity: 0, x: -20 }}
+                                        transition={{ duration: 0.3 }}
+                                        className="h-full overflow-y-auto"
+                                    >
+                                        {renderPhoneScreen(activeStep)}
+                                    </motion.div>
                                 </div>
-                                <h3 className="font-bold text-lg text-slate-800">{step.title}</h3>
                             </div>
-                            <p className="text-slate-600 text-sm leading-relaxed">{step.description}</p>
-                        </motion.div>
-                    ))}
-                </div>
+                        </div>
+                    </div>
 
+                    {/* Right Side - Steps with Connecting Lines */}
+                    <div className="flex-1 relative">
+                        {/* Vertical Connecting Line */}
+                        <div className="absolute left-6 top-6 bottom-6 w-0.5 bg-slate-200"></div>
+
+                        <div className="space-y-6 relative">
+                            {steps.map((step, index) => (
+                                <motion.div
+                                    key={step.id}
+                                    initial={{ opacity: 0, x: 20 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: index * 0.1 }}
+                                    onMouseEnter={() => setActiveStep(step.id)}
+                                    onClick={() => setActiveStep(step.id)}
+                                    className={`group cursor-pointer flex items-start gap-4 p-5 rounded-2xl transition-all duration-300 border-2 relative ${activeStep === step.id
+                                        ? 'bg-white shadow-lg border-teal-500'
+                                        : 'bg-white border-slate-200 hover:border-teal-300'
+                                        }`}
+                                >
+                                    {/* Step Number Circle */}
+                                    <div
+                                        className={`flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center font-bold text-white transition-all z-10 ${activeStep === step.id ? 'bg-teal-500 scale-110' : 'bg-slate-300'
+                                            }`}
+                                    >
+                                        {step.id}
+                                    </div>
+
+                                    {/* Content */}
+                                    <div className="flex-1 pt-1">
+                                        <h3 className="font-semibold text-lg text-slate-900 mb-2">
+                                            {step.title}
+                                        </h3>
+                                        <p className="text-slate-600 text-sm leading-relaxed">
+                                            {step.description}
+                                        </p>
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     );
