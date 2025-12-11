@@ -11,6 +11,7 @@ import FAQ from "./components/faq";
 // Firebase imports
 import { db } from "./lib/firebaseconfig";
 import { collection, addDoc } from "firebase/firestore";
+import HeroNew from "./components/hero-new";
 
 export default function Home() {
 
@@ -30,7 +31,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
-      <Hero />
+      <HeroNew/>
       <About />
       <Metrics />
       <Features />
