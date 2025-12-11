@@ -68,72 +68,91 @@ export default function Navbar() {
                         : "bg-white/60 backdrop-blur-md border-transparent shadow-sm"
                         } flex items-center justify-between pl-2 pr-2 py-2 md:pl-6 md:pr-2`}
                 >
-                    {/* Logo Area */}
-                    <Link href="/" className="flex items-center gap-2 group relative z-10">
-                        <div className="relative w-10 h-10 overflow-hidden rounded-full bg-white shadow-sm flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-                            <Image
-                                src="/images/swiftfin-logo.png"
-                                alt="SwiftFin Logo"
-                                width={40}
-                                height={40}
-                                className="w-8 h-8 object-contain"
-                            />
-                        </div>
-                        <span className="font-sora font-bold text-xl text-neutral-slate tracking-tight group-hover:text-primary-teal transition-colors">
-                            SwiftFin
-                        </span>
-                    </Link>
+                    {/* Desktop Navigation Container */}
+                    <div className="hidden md:flex items-center w-full justify-between">
 
-                    {/* Desktop Navigation */}
-                    <div className="hidden md:flex items-center gap-1 bg-gray-100/50 p-1.5 rounded-full border border-gray-200/50">
-                        {["features", "howItWorks", "whoIsItFor"].map((key) => {
-                            const section = sectionPreviews[key];
-                            return (
-                                <div
-                                    key={key}
-                                    className="relative px-4 py-2 cursor-pointer z-10"
-                                    onMouseEnter={() => setHoveredItem(key)}
-                                // Don't clear immediately to allow moving to dropdown
-                                >
-                                    <Link
-                                        href={key === "whoIsItFor" ? "/who-is-it-for" : `/#${key === "howItWorks" ? "how-it-works" : key}`}
-                                        className={`relative z-10 text-sm font-medium transition-colors duration-200 flex items-center gap-1 ${hoveredItem === key ? "text-neutral-slate" : "text-gray-600 hover:text-neutral-slate"}`}
+                        {/* Left Side Links */}
+                        <div className="flex items-center gap-1 bg-gray-100/50 p-1.5 rounded-full border border-gray-200/50">
+                            {["features", "howItWorks"].map((key) => {
+                                const section = sectionPreviews[key];
+                                return (
+                                    <div
+                                        key={key}
+                                        className="relative px-5 py-2.5 cursor-pointer z-10"
+                                        onMouseEnter={() => setHoveredItem(key)}
                                     >
-                                        {section.title}
-                                        <ChevronDown className={`w-3 h-3 transition-transform duration-300 ${hoveredItem === key ? "rotate-180" : ""}`} />
-                                    </Link>
+                                        <Link
+                                            href={`/#${key === "howItWorks" ? "how-it-works" : key}`}
+                                            className={`relative z-10 text-sm font-semibold transition-colors duration-200 flex items-center gap-1.5 ${hoveredItem === key ? "text-neutral-slate" : "text-gray-600 hover:text-neutral-slate"}`}
+                                        >
+                                            {section.title}
+                                            <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-300 ${hoveredItem === key ? "rotate-180" : ""}`} />
+                                        </Link>
 
-                                    {/* Hover Pill Background */}
-                                    {hoveredItem === key && (
-                                        <motion.div
-                                            layoutId="navbar-pill"
-                                            className="absolute inset-0 bg-white rounded-full shadow-sm border border-gray-100"
-                                            transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                                        />
-                                    )}
-                                </div>
-                            );
-                        })}
-
-                        <Link href="/about" className="relative px-4 py-2 text-sm font-medium text-gray-600 hover:text-neutral-slate transition-colors z-10">
-                            About Us
-                        </Link>
-                    </div>
-
-                    {/* Right Side Actions */}
-                    <div className="flex items-center gap-3 pl-2">
-                        {/* Desktop Download */}
-                        <div className="hidden md:block">
-                            <AnimatedDownloadButton className="h-10 px-6 rounded-full text-sm font-semibold shadow-md hover:shadow-lg transition-all" text="Download" />
+                                        {hoveredItem === key && (
+                                            <motion.div
+                                                layoutId="navbar-pill-left"
+                                                className="absolute inset-0 bg-white rounded-full shadow-sm border border-gray-100"
+                                                transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                                            />
+                                        )}
+                                    </div>
+                                );
+                            })}
                         </div>
 
-                        {/* Mobile Menu Toggle */}
-                        <button
-                            className="md:hidden w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 text-neutral-slate transition-colors cursor-pointer"
-                            onClick={() => setMobileMenuOpen(true)}
-                        >
-                            <Menu className="w-5 h-5" />
-                        </button>
+                        {/* Center Logo */}
+                        <Link href="/" className="flex items-center justify-center group mx-6">
+                            <div className="relative w-14 h-14 overflow-hidden rounded-2xl bg-white shadow-lg shadow-teal-500/20 border border-teal-50 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 z-20">
+                                <Image
+                                    src="/images/swiftfin-logo.png"
+                                    alt="SwiftFin Logo"
+                                    width={48}
+                                    height={48}
+                                    className="w-10 h-10 object-contain"
+                                />
+                            </div>
+                        </Link>
+
+                        {/* Right Side Links */}
+                        <div className="flex items-center gap-1 bg-gray-100/50 p-1.5 rounded-full border border-gray-200/50">
+                            {["whoIsItFor"].map((key) => {
+                                const section = sectionPreviews[key];
+                                return (
+                                    <div
+                                        key={key}
+                                        className="relative px-5 py-2.5 cursor-pointer z-10"
+                                        onMouseEnter={() => setHoveredItem(key)}
+                                    >
+                                        <Link
+                                            href="/who-is-it-for"
+                                            className={`relative z-10 text-sm font-semibold transition-colors duration-200 flex items-center gap-1.5 ${hoveredItem === key ? "text-neutral-slate" : "text-gray-600 hover:text-neutral-slate"}`}
+                                        >
+                                            {section.title}
+                                            <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-300 ${hoveredItem === key ? "rotate-180" : ""}`} />
+                                        </Link>
+
+                                        {hoveredItem === key && (
+                                            <motion.div
+                                                layoutId="navbar-pill-right"
+                                                className="absolute inset-0 bg-white rounded-full shadow-sm border border-gray-100"
+                                                transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                                            />
+                                        )}
+                                    </div>
+                                );
+                            })}
+
+                            <Link href="/about" className="relative px-5 py-2.5 text-sm font-semibold text-gray-600 hover:text-neutral-slate transition-colors z-10">
+                                About Us
+                            </Link>
+
+                            {/* Desktop Download Button inside Right Group */}
+                            <div className="pl-2">
+                                <AnimatedDownloadButton className="h-10 px-6 rounded-full text-sm font-bold shadow-md hover:shadow-lg transition-all" text="Get App" />
+                            </div>
+                        </div>
+
                     </div>
                 </motion.nav>
 
