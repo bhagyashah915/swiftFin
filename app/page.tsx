@@ -9,7 +9,7 @@ import UserTypes from "./components/userTypes";
 import FAQ from "./components/faq";
 
 // Firebase imports
-import { db } from "./lib/firebaseconfig";
+import { db } from "@/app/lib/firebaseconfig";
 import { collection, addDoc } from "firebase/firestore";
 
 export default function Home() {
@@ -42,7 +42,7 @@ export default function Home() {
       <div className="flex justify-center py-10">
         <button
           onClick={testFirebase}
-          className="px-6 py-3 bg-black text-white rounded-lg"
+          className="px-6 py-3 bg-transparent border border-teal-500 text-teal-500 rounded-full hover:bg-teal-500 hover:text-white transition-all duration-300"
         >
           Test Firebase Connection
         </button>

@@ -1,6 +1,6 @@
 import { initializeApp, getApps, getApp } from "firebase/app";
 import { getAnalytics, isSupported } from "firebase/analytics";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore } from "firebase/firestore";   // ✅ ADD THIS
 
 const firebaseConfig = {
     apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -12,10 +12,13 @@ const firebaseConfig = {
     measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
-// initialize only once
+// Initialize App (only once)
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 
-// analytics only works in browser
+// Initialize Firestore (important)
+export const db = getFirestore(app);   // ✅ THIS FIXES YOUR ERROR
+
+// Analytics only works in browser
 let analytics: any = null;
 if (typeof window !== "undefined") {
     isSupported().then((yes) => {
@@ -23,5 +26,4 @@ if (typeof window !== "undefined") {
     });
 }
 
-export const db = getFirestore(app);
 export { app, analytics };
