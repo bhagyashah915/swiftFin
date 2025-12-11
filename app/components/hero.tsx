@@ -2,6 +2,7 @@
 
 import { useRef, useEffect, useState } from 'react';
 import { ArrowRight, Plus, TrendingUp, Lightbulb, PieChart, Home, Receipt, Target, MoreHorizontal, Wallet, CreditCard, DollarSign } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Hero() {
     const [scrollY, setScrollY] = useState(0);
@@ -139,8 +140,21 @@ export default function Hero() {
                             fill="none"
                             opacity="0.25" />
                         {/* Bar chart elements */}
-                        {[100, 250, 400, 550, 700, 850, 1000, 1150, 1300, 1450, 1600, 1750].map((x, i) => (
-                            <rect key={i} x={x} y={600 - (Math.random() * 200)} width="30" height={Math.random() * 200} fill="#14B8A6" opacity="0.15" />
+                        {[
+                            { x: 100, y: 450, height: 150 },
+                            { x: 250, y: 520, height: 80 },
+                            { x: 400, y: 480, height: 120 },
+                            { x: 550, y: 430, height: 170 },
+                            { x: 700, y: 500, height: 100 },
+                            { x: 850, y: 470, height: 130 },
+                            { x: 1000, y: 440, height: 160 },
+                            { x: 1150, y: 510, height: 90 },
+                            { x: 1300, y: 460, height: 140 },
+                            { x: 1450, y: 490, height: 110 },
+                            { x: 1600, y: 420, height: 180 },
+                            { x: 1750, y: 530, height: 70 },
+                        ].map((bar, i) => (
+                            <rect key={i} x={bar.x} y={bar.y} width="30" height={bar.height} fill="#14B8A6" opacity="0.15" />
                         ))}
                     </svg>
                 </div>
@@ -148,29 +162,23 @@ export default function Hero() {
                 {/* White overlay to blend with design */}
                 <div className="absolute inset-0 bg-white/85 z-[1]"></div>
 
-                {/* Subtle Background Elements - keeping original design */}
+                {/* Subtle Background Elements */}
                 <div className="absolute inset-0 pointer-events-none z-[2]">
-                    <div className="absolute top-20 right-1/4 w-96 h-96 bg-teal-100/40 rounded-full blur-3xl"></div>
-                    <div className="absolute bottom-20 left-1/4 w-96 h-96 bg-teal-50/60 rounded-full blur-3xl"></div>
-                    <div className="absolute top-32 right-20 text-teal-200 text-6xl font-light select-none">+</div>
-                    <div className="absolute bottom-40 left-32 text-teal-100 text-8xl font-light select-none">+</div>
+                    <div className="absolute top-32 right-20 text-gray-200 text-6xl font-light select-none">+</div>
+                    <div className="absolute bottom-40 left-32 text-gray-100 text-8xl font-light select-none">+</div>
                 </div>
 
                 {/* Main Content */}
                 <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 min-h-screen flex items-center py-20">
-                    <div className="w-full grid lg:grid-cols-12 gap-8 xl:gap-12 items-center">
+                    <div className="w-full grid lg:grid-cols-12 gap-4 items-start lg:items-center">
 
                         {/* Left Content - Text */}
-                        <div className={`lg:col-span-4 space-y-6 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'}`}>
+                        <div className={`lg:col-span-4 space-y-6 transition-all duration-1000 lg:-mt-56 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'}`}>
                             <div className="space-y-4">
-                                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight text-gray-900">
-                                    Where Smart Money
+                                <h1 className="text-5xl sm:text-6xl lg:text-6xl font-light leading-tight tracking-wide text-gray-900">
+                                    <span className="tracking-wider">Welcome to SwiftFin</span>
                                     <br />
-                                    <span className="text-gray-700">Gets Smarter.</span>
-                                    <br />
-                                    <span className="relative inline-block">
-                                        <div className="absolute -bottom-2 left-0 w-32 h-1 bg-teal-500"></div>
-                                    </span>
+                                    <span className="text-teal-600 tracking-wider">Your Personal Finance Buddy</span>
                                 </h1>
                             </div>
 
@@ -185,190 +193,38 @@ export default function Hero() {
                         </div>
 
                         {/* Center Content - Interactive Phone Mockup */}
-                        <div className={`lg:col-span-4 flex justify-center transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+                        <div className={`lg:col-span-4 flex justify-center transition-all duration-1000 delay-200 relative z-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
                             <div
                                 ref={phoneRef}
-                                className="relative group cursor-pointer"
+                                className="relative group"
                                 style={{
-                                    transform: `translateY(${parallaxOffset}px) perspective(2000px) rotateY(${-12 + mousePosition.x * 0.3}deg) rotateX(${3 + mousePosition.y * 0.3}deg) rotateZ(${-2}deg)`,
-                                    transition: 'transform 0.15s ease-out',
+                                    transform: `translateY(${parallaxOffset}px) translateX(${mousePosition.x * 2}px) translateY(${mousePosition.y * 2}px) perspective(2000px) rotateY(${mousePosition.x * 0.3}deg) rotateX(${-mousePosition.y * 0.3}deg)`,
+                                    transition: 'transform 0.2s ease-out',
                                     transformStyle: 'preserve-3d'
                                 }}
                             >
-                                <div
-                                    className="relative w-[340px] h-[690px] transform group-hover:scale-[1.03] transition-all duration-500"
-                                    style={{ transformStyle: 'preserve-3d' }}
-                                >
-                                    <div className="absolute inset-0 rounded-[3.5rem] shadow-2xl overflow-hidden border-[3px] border-teal-500/30"
-                                        style={{
-                                            transform: 'translateZ(20px)',
-                                            background: 'linear-gradient(135deg, #e8e0d5 0%, #d4c5b0 50%, #c9b89a 100%)',
-                                            boxShadow: '25px 50px 100px rgba(0,0,0,0.35), 15px 30px 60px rgba(0,0,0,0.25), 0 0 0 3px rgba(20, 184, 166, 0.2)'
-                                        }}>
-
-                                        <div className="absolute -left-3 top-0 bottom-0 w-3 rounded-l-[3.5rem]"
-                                            style={{
-                                                transform: 'translateZ(15px)',
-                                                background: 'linear-gradient(to right, #b8a88a 0%, #d4c5b0 100%)'
-                                            }}></div>
-
-                                        <div className="absolute -left-3 top-32 w-1.5 h-14 bg-gradient-to-r from-gray-500 to-gray-400 rounded-l-sm"
-                                            style={{ transform: 'translateZ(18px)' }}></div>
-                                        <div className="absolute -left-3 top-52 w-1.5 h-20 bg-gradient-to-r from-gray-500 to-gray-400 rounded-l-sm"
-                                            style={{ transform: 'translateZ(18px)' }}></div>
-                                        <div className="absolute -left-3 top-[310px] w-1.5 h-20 bg-gradient-to-r from-gray-500 to-gray-400 rounded-l-sm"
-                                            style={{ transform: 'translateZ(18px)' }}></div>
-
-                                        <div className="absolute inset-[8px] bg-black rounded-[3.2rem] overflow-hidden"
-                                            style={{ transform: 'translateZ(3px)' }}>
-
-                                            <div className="relative w-full h-full bg-gradient-to-b from-gray-50 to-white overflow-hidden">
-                                                <div className="relative h-14 bg-white flex items-center justify-between px-8 text-xs font-semibold text-gray-900">
-                                                    <span>9:41</span>
-                                                    <div className="absolute top-2 left-1/2 -translate-x-1/2 w-32 h-9 bg-black rounded-full"></div>
-                                                    <div className="flex items-center gap-1">
-                                                        <svg className="w-3 h-3 fill-current" viewBox="0 0 24 24">
-                                                            <path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z" />
-                                                        </svg>
-                                                    </div>
-                                                </div>
-
-                                                <div className="h-[calc(100%-3.5rem-5rem)] overflow-y-auto scrollbar-hide">
-                                                    <div className="px-6 pt-4 pb-6">
-                                                        <div className="flex items-start justify-between mb-5">
-                                                            <div>
-                                                                <p className="text-xs text-red-500 font-bold mb-2">SwiftFin</p>
-                                                                <p className="text-sm text-gray-500 mb-0.5">Good evening,</p>
-                                                                <h2 className="text-xl font-bold text-gray-800">Bhagya shah</h2>
-                                                            </div>
-                                                            <div className="w-12 h-12 bg-white rounded-full shadow-lg border-2 border-teal-500 flex items-center justify-center">
-                                                                <span className="text-teal-600 font-bold text-base">BS</span>
-                                                            </div>
-                                                        </div>
-
-                                                        <div className="relative mb-5">
-                                                            <div className="absolute inset-0 bg-gradient-to-br from-teal-400 to-emerald-500 rounded-3xl shadow-xl"></div>
-                                                            <div className="relative p-6 rounded-3xl">
-                                                                <p className="text-white/90 text-sm font-medium mb-3">Monthly Budget</p>
-                                                                <p className="text-white text-4xl font-bold mb-4">₹45,280</p>
-                                                                <div className="flex items-center gap-2 text-white/90">
-                                                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                                                                    </svg>
-                                                                    <span className="text-sm font-medium">8% saved this month</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div className="mb-5">
-                                                            <h3 className="text-base font-bold text-gray-800 mb-3">Quick Actions</h3>
-                                                            <div className="grid grid-cols-3 gap-3">
-                                                                <button className="flex flex-col items-center gap-2 p-3 rounded-2xl bg-white hover:bg-gray-50 transition-all shadow-md border border-gray-100">
-                                                                    <div className="w-14 h-14 bg-white rounded-2xl shadow-md flex items-center justify-center border border-gray-100">
-                                                                        <Wallet className="w-7 h-7 text-teal-600" />
-                                                                    </div>
-                                                                    <div className="text-center">
-                                                                        <span className="text-xs font-semibold text-gray-700 block">Track</span>
-                                                                        <span className="text-xs font-semibold text-gray-700 block">Expense</span>
-                                                                    </div>
-                                                                </button>
-                                                                <button className="flex flex-col items-center gap-2 p-3 rounded-2xl bg-white hover:bg-gray-50 transition-all shadow-md border border-gray-100">
-                                                                    <div className="w-14 h-14 bg-white rounded-2xl shadow-md flex items-center justify-center border border-gray-100">
-                                                                        <CreditCard className="w-7 h-7 text-orange-600" />
-                                                                    </div>
-                                                                    <span className="text-xs font-semibold text-gray-700">My EMIs</span>
-                                                                </button>
-                                                                <button className="flex flex-col items-center gap-2 p-3 rounded-2xl bg-white hover:bg-gray-50 transition-all shadow-md border border-gray-100">
-                                                                    <div className="w-14 h-14 bg-white rounded-2xl shadow-md flex items-center justify-center border border-gray-100">
-                                                                        <DollarSign className="w-7 h-7 text-green-600" />
-                                                                    </div>
-                                                                    <span className="text-xs font-semibold text-gray-700">Savings</span>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-
-                                                        <div>
-                                                            <h3 className="text-base font-bold text-gray-800 mb-3">Overview</h3>
-                                                            <div className="space-y-3">
-                                                                <div className="flex items-center justify-between p-4 bg-white rounded-2xl shadow-md hover:shadow-lg transition-all cursor-pointer border border-gray-100">
-                                                                    <div className="flex items-center gap-3">
-                                                                        <div className="w-12 h-12 bg-purple-100 rounded-2xl flex items-center justify-center">
-                                                                            <TrendingUp className="w-6 h-6 text-purple-600" />
-                                                                        </div>
-                                                                        <div>
-                                                                            <p className="text-xs text-gray-500 font-medium mb-0.5">Portfolio Growth</p>
-                                                                            <p className="text-lg font-bold text-gray-800">+₹12,450</p>
-                                                                        </div>
-                                                                    </div>
-                                                                    <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                                                    </svg>
-                                                                </div>
-
-                                                                <div className="flex items-center justify-between p-4 bg-white rounded-2xl shadow-md hover:shadow-lg transition-all cursor-pointer border border-gray-100">
-                                                                    <div className="flex items-center gap-3">
-                                                                        <div className="w-12 h-12 bg-blue-100 rounded-2xl flex items-center justify-center">
-                                                                            <Lightbulb className="w-6 h-6 text-blue-600" />
-                                                                        </div>
-                                                                        <div>
-                                                                            <p className="text-xs text-gray-500 font-medium mb-0.5">Money Tips</p>
-                                                                            <p className="text-lg font-bold text-gray-800">5 Insights</p>
-                                                                        </div>
-                                                                    </div>
-                                                                    <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                                                    </svg>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div className="absolute bottom-0 left-0 right-0 bg-white border-t border-gray-200 h-20">
-                                                    <div className="px-4 pt-2 pb-1 flex items-center justify-around">
-                                                        <button className="flex flex-col items-center gap-0.5 text-teal-500">
-                                                            <Home className="w-6 h-6" />
-                                                            <span className="text-xs font-semibold">Home</span>
-                                                        </button>
-                                                        <button className="flex flex-col items-center gap-0.5 text-gray-400">
-                                                            <Receipt className="w-6 h-6" />
-                                                            <span className="text-xs">Expenses</span>
-                                                        </button>
-                                                        <button className="flex flex-col items-center gap-0.5 text-gray-400">
-                                                            <Target className="w-6 h-6" />
-                                                            <span className="text-xs">Goals</span>
-                                                        </button>
-                                                        <button className="flex flex-col items-center gap-0.5 text-gray-400">
-                                                            <TrendingUp className="w-6 h-6" />
-                                                            <span className="text-xs">Invest</span>
-                                                        </button>
-                                                        <button className="flex flex-col items-center gap-0.5 text-gray-400">
-                                                            <MoreHorizontal className="w-6 h-6" />
-                                                            <span className="text-xs">More</span>
-                                                        </button>
-                                                    </div>
-                                                    <div className="h-6 bg-black flex items-center justify-center rounded-b-[3rem]">
-                                                        <div className="w-32 h-1 bg-white/30 rounded-full"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 w-[90%] h-20 bg-gradient-to-r from-transparent via-teal-500/30 to-transparent blur-3xl rounded-full"
-                                        style={{ transform: 'translateZ(-25px) rotateX(85deg)' }}></div>
+                                <div className="relative w-[600px] h-[800px] transform transition-all duration-500">
+                                    <Image
+                                        src="/herophone2.png"
+                                        alt="SwiftFin App Hero Phone"
+                                        fill
+                                        className="object-contain  drop-shadow-2xl"
+                                        priority
+                                    />
+                                    {/* Glow effect */}
+                                    <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 w-[90%] h-20 bg-gradient-to-r from-transparent via-teal-500/30 to-transparent blur-3xl rounded-full -z-10"></div>
                                 </div>
                             </div>
                         </div>
 
                         {/* Right Content */}
-                        <div className={`lg:col-span-4 space-y-8 transition-all duration-1000 delay-400 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'}`}>
+                        <div className={`lg:col-span-4 space-y-8 transition-all duration-1000 delay-400 lg:-mt-72 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'}`}>
                             <div className="flex justify-end mb-8">
                                 <div className="text-teal-300 text-8xl font-light leading-none select-none">+</div>
                             </div>
 
                             <div className="space-y-4">
-                                <p className="text-lg text-gray-600 leading-relaxed">
+                                <p className="text-2xl text-gray-600 leading-relaxed">
                                     Simplify your financial life. Our intuitive app makes managing your money effortless.
                                 </p>
                             </div>
@@ -388,6 +244,23 @@ export default function Hero() {
                     </div>
                 </div>
 
+                {/* Teal Curved Background with Ticker - Bottom Half */}
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-72 overflow-hidden z-[5]">
+                    <div className="absolute inset-0 bg-teal-600 rounded-t-[80px] shadow-2xl">
+                        {/* Ticker Text */}
+                        <div className="absolute top-1/2 -translate-y-1/2 w-full overflow-hidden">
+                            <div className="flex animate-ticker whitespace-nowrap">
+                                <span className="inline-block text-white text-6xl font-black px-8">
+                                    Your Personal Finance Buddy • Your Personal Finance Buddy • Your Personal Finance Buddy • Your Personal Finance Buddy • Your Personal Finance Buddy • Your Personal Finance Buddy •
+                                </span>
+                                <span className="inline-block text-white text-6xl font-black px-8">
+                                    Your Personal Finance Buddy • Your Personal Finance Buddy • Your Personal Finance Buddy • Your Personal Finance Buddy • Your Personal Finance Buddy • Your Personal Finance Buddy •
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <style jsx>{`
                     .scrollbar-hide::-webkit-scrollbar {
                         display: none;
@@ -395,6 +268,17 @@ export default function Hero() {
                     .scrollbar-hide {
                         -ms-overflow-style: none;
                         scrollbar-width: none;
+                    }
+                    @keyframes ticker {
+                        0% {
+                            transform: translateX(0);
+                        }
+                        100% {
+                            transform: translateX(-50%);
+                        }
+                    }
+                    .animate-ticker {
+                        animation: ticker 30s linear infinite;
                     }
                 `}</style>
             </section>

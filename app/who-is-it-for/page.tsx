@@ -1,270 +1,234 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import {
     GraduationCap,
     Briefcase,
     Laptop,
     Store,
-    TrendingUp,
-    Shield,
-    Clock,
-    Users,
-    ChevronRight,
+    Check,
+    Sparkles,
 } from "lucide-react";
 import AnimatedDownloadButton from "../components/AnimatedDownloadButton";
-import Link from "next/link";
 import { useState } from "react";
+import Image from "next/image";
 
 export default function WhoIsItForPage() {
-    const [activeIndex, setActiveIndex] = useState(0);
+    const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
     const userTypes = [
         {
-            icon: <GraduationCap className="w-8 h-8" />,
+            icon: <GraduationCap className="w-10 h-10" />,
             title: "Students",
-            description: "Track expenses, manage pocket money, and build healthy financial habits early.",
+            tagline: "Build Smart Money Habits",
+            description: "Perfect for students managing allowances and learning financial responsibility.",
             features: [
-                "Track daily expenses and pocket money",
-                "Set monthly budgets and savings goals",
-                "Learn financial management early",
-                "Monitor spending patterns",
+                "Track daily expenses easily",
+                "Set savings goals",
+                "Budget your pocket money",
+                "Learn finance basics",
             ],
-            bgImage: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1920&q=80",
-            color: "#20C997",
+            gradient: "from-blue-500 via-blue-600 to-cyan-600",
+            image: "/images/student.jpg",
+            stat: "10K+",
+            statLabel: "Student Users",
         },
         {
-            icon: <Briefcase className="w-8 h-8" />,
-            title: "Working Professionals",
-            description: "Manage salary, track investments, and plan for future financial goals.",
+            icon: <Briefcase className="w-10 h-10" />,
+            title: "Professionals",
+            tagline: "Master Your Finances",
+            description: "Ideal for working professionals managing salary, investments, and future goals.",
             features: [
-                "Salary and income tracking",
-                "Investment portfolio management",
-                "EMI and loan tracking",
-                "Tax planning and reports",
+                "Salary & income tracking",
+                "Investment monitoring",
+                "EMI & loan management",
+                "Tax planning tools",
             ],
-            bgImage: "https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=1920&q=80",
-            color: "#20C997",
+            gradient: "from-purple-500 via-purple-600 to-pink-600",
+            image: "/images/professional.jpg",
+            stat: "50K+",
+            statLabel: "Professionals",
         },
         {
-            icon: <Laptop className="w-8 h-8" />,
+            icon: <Laptop className="w-10 h-10" />,
             title: "Freelancers",
-            description: "Monitor project income, track business expenses, and manage irregular cash flow.",
+            tagline: "Control Your Cash Flow",
+            description: "Designed for freelancers tracking multiple income streams and business expenses.",
             features: [
-                "Project-based income tracking",
-                "Business expense categorization",
-                "Cash flow management",
-                "Client payment reminders",
+                "Project-based tracking",
+                "Invoice management",
+                "Expense categorization",
+                "Client payment tracking",
             ],
-            bgImage: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&q=80",
-            color: "#20C997",
+            gradient: "from-orange-500 via-orange-600 to-red-600",
+            image: "/images/freelancer.jpg",
+            stat: "25K+",
+            statLabel: "Freelancers",
         },
         {
-            icon: <Store className="w-8 h-8" />,
-            title: "Small Business Owners",
-            description: "Manage business finances, track EMIs, and monitor investment portfolios.",
+            icon: <Store className="w-10 h-10" />,
+            title: "Business Owners",
+            tagline: "Grow Your Business",
+            description: "Built for entrepreneurs managing business finances and scaling operations.",
             features: [
                 "Business revenue tracking",
-                "Vendor payment management",
-                "Inventory cost monitoring",
-                "Profit and loss reports",
+                "Vendor payments",
+                "Inventory monitoring",
+                "P&L reports",
             ],
-            bgImage: "https://images.unsplash.com/photo-1556740738-b6a63e27c4df?w=1920&q=80",
-            color: "#20C997",
-        },
-    ];
-
-    const benefits = [
-        {
-            icon: <TrendingUp className="w-8 h-8 text-[#20C997]" />,
-            title: "Smart Insights",
-            description: "Get personalized financial insights based on your spending patterns and goals",
-        },
-        {
-            icon: <Shield className="w-8 h-8 text-[#20C997]" />,
-            title: "Secure & Private",
-            description: "Bank-grade encryption ensures your financial data stays safe and confidential",
-        },
-        {
-            icon: <Clock className="w-8 h-8 text-[#20C997]" />,
-            title: "Save Time",
-            description: "Automated tracking and smart categorization save you hours every month",
-        },
-        {
-            icon: <Users className="w-8 h-8 text-[#20C997]" />,
-            title: "For Everyone",
-            description: "Designed to be simple and intuitive, no financial expertise required",
+            gradient: "from-teal-500 via-teal-600 to-emerald-600",
+            image: "/images/business.jpg",
+            stat: "15K+",
+            statLabel: "Business Owners",
         },
     ];
 
     return (
         <main className="min-h-screen bg-white">
-            {/* Hero Section with Dynamic Background */}
-            <section className="relative min-h-screen overflow-hidden">
-                {/* Background Images with Crossfade */}
-                <div className="absolute inset-0">
-                    {userTypes.map((user, index) => (
-                        <motion.div
-                            key={index}
-                            className="absolute inset-0"
-                            initial={{ opacity: 0 }}
-                            animate={{
-                                opacity: activeIndex === index ? 1 : 0,
-                                scale: activeIndex === index ? 1 : 1.1,
-                            }}
-                            transition={{ duration: 0.8, ease: "easeInOut" }}
-                        >
-                            <div
-                                className="absolute inset-0 bg-cover bg-center"
-                                style={{ backgroundImage: `url(${user.bgImage})` }}
-                            />
-                            {/* Dark overlay for readability */}
-                            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40" />
-                        </motion.div>
-                    ))}
+            {/* Hero Section */}
+            <section className="relative pt-32 pb-20 overflow-hidden bg-linear-to-br from-slate-50 via-white to-slate-100">
+                {/* Background Pattern */}
+                <div className="absolute inset-0 opacity-[0.02]">
+                    <div className="absolute inset-0" style={{
+                        backgroundImage: `radial-gradient(circle at 2px 2px, #14B8A6 1px, transparent 0)`,
+                        backgroundSize: '48px 48px'
+                    }} />
                 </div>
 
-                {/* Content */}
-                <div className="relative z-10 container mx-auto px-6 md:px-12 py-32">
-                    <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[70vh]">
-                        {/* Left Side - Text Content */}
+                <div className="container mx-auto px-6 md:px-12 relative z-10">
+                    <motion.div
+                        className="text-center max-w-4xl mx-auto"
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
+                    >
+                        {/* Badge */}
                         <motion.div
-                            className="text-white"
-                            initial={{ opacity: 0, x: -30 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.6 }}
+                            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-teal-50 border border-teal-200 mb-8"
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ delay: 0.2 }}
                         >
-                            <motion.span
-                                className="inline-block px-4 py-1.5 rounded-full bg-[#20C997]/20 border border-[#20C997]/40 text-[#20C997] font-bold text-sm uppercase tracking-widest mb-6"
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.2 }}
-                            >
+                            <Sparkles className="w-4 h-4 text-teal-600" />
+                            <span className="text-sm font-bold text-teal-700 uppercase tracking-wider">
                                 Who Is It For?
-                            </motion.span>
-
-                            <h1 className="font-sora text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-                                Built for <span className="text-[#20C997]">Everyone</span>
-                            </h1>
-
-                            <p className="font-inter text-lg md:text-xl text-gray-300 mb-10 max-w-lg leading-relaxed">
-                                Whether you're a student managing pocket money or a professional planning investments,
-                                SwiftFin adapts to your unique financial needs.
-                            </p>
-
-                            <AnimatedDownloadButton className="px-8 py-4 text-lg" text="Download Now" />
+                            </span>
                         </motion.div>
 
-                        {/* Right Side - User Type Selector */}
-                        <div className="space-y-4">
-                            {userTypes.map((user, index) => (
+                        {/* Main Heading */}
+                        <h1 className="font-sora text-6xl md:text-8xl font-bold text-gray-900 mb-8 leading-tight">
+                            Built for{" "}
+                            <span className="bg-clip-text text-transparent bg-linear-to-r from-teal-600 to-emerald-600">
+                                Everyone
+                            </span>
+                        </h1>
+
+                        <p className="font-inter text-xl md:text-2xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
+                            From students to business owners, SwiftFin adapts to your unique financial journey. No matter where you are in life, we've got you covered.
+                        </p>
+
+                        {/* Stats Bar */}
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 max-w-4xl mx-auto">
+                            {["100K+", "4.9★", "140+", "99.9%"].map((stat, idx) => (
                                 <motion.div
-                                    key={index}
-                                    className={`relative p-6 rounded-2xl cursor-pointer transition-all duration-500 overflow-hidden group ${activeIndex === index
-                                            ? 'bg-white/15 backdrop-blur-md border border-white/30'
-                                            : 'bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10'
-                                        }`}
-                                    onMouseEnter={() => setActiveIndex(index)}
-                                    initial={{ opacity: 0, x: 30 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                                    whileHover={{ x: 10 }}
+                                    key={idx}
+                                    className="text-center"
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.4 + idx * 0.1 }}
                                 >
-                                    <div className="flex items-center gap-4">
-                                        {/* Icon */}
-                                        <div className={`w-14 h-14 rounded-xl flex items-center justify-center transition-all duration-300 ${activeIndex === index
-                                                ? 'bg-[#20C997] text-white'
-                                                : 'bg-white/10 text-white/70 group-hover:bg-white/20'
-                                            }`}>
-                                            {user.icon}
-                                        </div>
-
-                                        {/* Text */}
-                                        <div className="flex-1">
-                                            <h3 className="font-sora text-xl font-bold text-white mb-1">
-                                                {user.title}
-                                            </h3>
-                                            <p className={`font-inter text-sm transition-all duration-300 ${activeIndex === index ? 'text-gray-300' : 'text-gray-400'
-                                                }`}>
-                                                {user.description}
-                                            </p>
-                                        </div>
-
-                                        {/* Arrow */}
-                                        <ChevronRight className={`w-6 h-6 transition-all duration-300 ${activeIndex === index ? 'text-[#20C997] translate-x-1' : 'text-white/30'
-                                            }`} />
+                                    <div className="text-3xl md:text-4xl font-black text-gray-900">
+                                        {stat}
                                     </div>
-
-                                    {/* Expanded Features */}
-                                    <AnimatePresence>
-                                        {activeIndex === index && (
-                                            <motion.div
-                                                initial={{ opacity: 0, height: 0 }}
-                                                animate={{ opacity: 1, height: 'auto' }}
-                                                exit={{ opacity: 0, height: 0 }}
-                                                transition={{ duration: 0.3 }}
-                                                className="overflow-hidden"
-                                            >
-                                                <div className="grid grid-cols-2 gap-2 mt-4 pt-4 border-t border-white/10">
-                                                    {user.features.map((feature, idx) => (
-                                                        <motion.div
-                                                            key={idx}
-                                                            className="flex items-center gap-2"
-                                                            initial={{ opacity: 0, x: -10 }}
-                                                            animate={{ opacity: 1, x: 0 }}
-                                                            transition={{ delay: idx * 0.1 }}
-                                                        >
-                                                            <div className="w-1.5 h-1.5 rounded-full bg-[#20C997]" />
-                                                            <span className="text-xs text-gray-300">{feature}</span>
-                                                        </motion.div>
-                                                    ))}
-                                                </div>
-                                            </motion.div>
-                                        )}
-                                    </AnimatePresence>
+                                    <div className="text-sm text-gray-500 mt-1">
+                                        {["Users", "Rating", "Countries", "Uptime"][idx]}
+                                    </div>
                                 </motion.div>
                             ))}
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
-
-                {/* Bottom Gradient Fade */}
-                <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent z-10" />
             </section>
 
-            {/* Benefits Section */}
+            {/* Cards Grid Section */}
             <section className="py-20 bg-white">
                 <div className="container mx-auto px-6 md:px-12">
-                    <motion.div
-                        className="text-center max-w-3xl mx-auto mb-16"
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                    >
-                        <h2 className="font-sora text-4xl md:text-5xl font-bold text-[#2E3A39] mb-6">
-                            Why Choose SwiftFin?
-                        </h2>
-                        <p className="font-inter text-lg text-gray-600">
-                            Join thousands who trust SwiftFin to manage their finances efficiently and securely.
-                        </p>
-                    </motion.div>
-
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-                        {benefits.map((benefit, index) => (
+                    <div className="grid md:grid-cols-2 gap-8 max-w-7xl mx-auto">
+                        {userTypes.map((user, index) => (
                             <motion.div
                                 key={index}
-                                className="text-center p-6 rounded-2xl bg-gray-50 border border-gray-100 hover:shadow-lg transition-shadow duration-300"
-                                initial={{ opacity: 0, y: 30 }}
+                                className="group relative"
+                                initial={{ opacity: 0, y: 40 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: index * 0.1 }}
+                                transition={{ duration: 0.6, delay: index * 0.1 }}
+                                onMouseEnter={() => setHoveredCard(index)}
+                                onMouseLeave={() => setHoveredCard(null)}
                             >
-                                <div className="w-16 h-16 bg-[#20C997]/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                                    {benefit.icon}
+                                <div className="relative h-full bg-white rounded-3xl border-2 border-gray-100 overflow-hidden hover:border-transparent transition-all duration-500 hover:shadow-2xl">
+                                    {/* Gradient Border on Hover */}
+                                    <div className={`absolute inset-0 bg-linear-to-br ${user.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10`} style={{ padding: '2px' }}>
+                                        <div className="absolute inset-[2px] bg-white rounded-3xl" />
+                                    </div>
+
+                                    {/* Content */}
+                                    <div className="relative p-8 md:p-10">
+                                        {/* Icon */}
+                                        <div className={`w-16 h-16 rounded-2xl bg-linear-to-br ${user.gradient} flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform duration-500 shadow-lg`}>
+                                            {user.icon}
+                                        </div>
+
+                                        {/* Title & Tagline */}
+                                        <div className="mb-6">
+                                            <h3 className="font-sora text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+                                                {user.title}
+                                            </h3>
+                                            <p className={`font-semibold text-lg bg-clip-text text-transparent bg-linear-to-r ${user.gradient}`}>
+                                                {user.tagline}
+                                            </p>
+                                        </div>
+
+                                        {/* Description */}
+                                        <p className="text-gray-600 text-base leading-relaxed mb-8">
+                                            {user.description}
+                                        </p>
+
+                                        {/* Features */}
+                                        <div className="space-y-3 mb-8">
+                                            {user.features.map((feature, idx) => (
+                                                <motion.div
+                                                    key={idx}
+                                                    className="flex items-center gap-3"
+                                                    initial={{ opacity: 0, x: -20 }}
+                                                    whileInView={{ opacity: 1, x: 0 }}
+                                                    viewport={{ once: true }}
+                                                    transition={{ delay: 0.2 + idx * 0.05 }}
+                                                >
+                                                    <div className={`w-5 h-5 rounded-full bg-linear-to-br ${user.gradient} flex items-center justify-center shrink-0`}>
+                                                        <Check className="w-3 h-3 text-white" strokeWidth={3} />
+                                                    </div>
+                                                    <span className="text-gray-700 text-sm font-medium">
+                                                        {feature}
+                                                    </span>
+                                                </motion.div>
+                                            ))}
+                                        </div>
+
+                                        {/* Stat */}
+                                        <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full bg-linear-to-r ${user.gradient} bg-opacity-10`}>
+                                            <span className={`text-2xl font-black bg-clip-text text-transparent bg-linear-to-r ${user.gradient}`}>
+                                                {user.stat}
+                                            </span>
+                                            <span className="text-sm text-gray-600">
+                                                {user.statLabel}
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    {/* Decorative Elements */}
+                                    <div className="absolute top-0 right-0 w-32 h-32 bg-linear-to-br opacity-5 rounded-full -translate-y-16 translate-x-16 group-hover:scale-150 transition-transform duration-700" style={{ background: `linear-gradient(135deg, ${user.gradient.split(' ')[1]}, ${user.gradient.split(' ')[3]})` }} />
+                                    <div className="absolute bottom-0 left-0 w-24 h-24 bg-linear-to-tr opacity-5 rounded-full translate-y-12 -translate-x-12 group-hover:scale-150 transition-transform duration-700" style={{ background: `linear-gradient(135deg, ${user.gradient.split(' ')[1]}, ${user.gradient.split(' ')[3]})` }} />
                                 </div>
-                                <h3 className="font-sora text-xl font-bold text-[#2E3A39] mb-3">{benefit.title}</h3>
-                                <p className="font-inter text-gray-600 text-sm leading-relaxed">{benefit.description}</p>
                             </motion.div>
                         ))}
                     </div>
@@ -272,29 +236,69 @@ export default function WhoIsItForPage() {
             </section>
 
             {/* CTA Section */}
-            <section className="py-20 bg-[#2E3A39] text-white">
-                <div className="container mx-auto px-6 md:px-12">
+            <section className="py-32 bg-gray-900 text-white relative overflow-hidden">
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-linear-to-br from-gray-900 via-gray-800 to-teal-900/30" />
+
+                {/* Animated Background */}
+                <div className="absolute inset-0 opacity-10">
+                    {[...Array(20)].map((_, i) => (
+                        <motion.div
+                            key={i}
+                            className="absolute w-2 h-2 bg-teal-400 rounded-full"
+                            style={{
+                                left: `${Math.random() * 100}%`,
+                                top: `${Math.random() * 100}%`,
+                            }}
+                            animate={{
+                                scale: [1, 1.5, 1],
+                                opacity: [0.3, 0.8, 0.3],
+                            }}
+                            transition={{
+                                duration: 3 + Math.random() * 2,
+                                repeat: Infinity,
+                                delay: Math.random() * 2,
+                            }}
+                        />
+                    ))}
+                </div>
+
+                <div className="container mx-auto px-6 md:px-12 relative z-10">
                     <motion.div
-                        className="text-center max-w-3xl mx-auto"
-                        initial={{ opacity: 0, y: 20 }}
+                        className="text-center max-w-4xl mx-auto"
+                        initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
+                        transition={{ duration: 0.8 }}
                     >
-                        <h2 className="font-sora text-4xl md:text-5xl font-bold mb-6">
-                            Ready to Take Control of Your Finances?
+                        <h2 className="font-sora text-5xl md:text-7xl font-bold mb-8 leading-tight">
+                            Ready to Start Your{" "}
+                            <span className="bg-clip-text text-transparent bg-linear-to-r from-teal-400 to-emerald-400">
+                                Financial Journey?
+                            </span>
                         </h2>
-                        <p className="font-inter text-xl text-gray-300 mb-10">
-                            Download SwiftFin today and start your journey to financial freedom.
+                        <p className="font-inter text-xl md:text-2xl text-gray-300 mb-12 leading-relaxed">
+                            Join over 100,000 users who trust SwiftFin to manage their finances.
+                            <br className="hidden md:block" />
+                            Download now and take control of your money today.
                         </p>
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <AnimatedDownloadButton className="px-8 py-4 text-lg" text="Download Now" />
-                            <Link
-                                href="/#features"
-                                className="px-8 py-4 bg-white/10 text-white border-2 border-white/30 font-inter font-bold text-lg rounded-xl hover:bg-white/20 transition-all"
-                            >
-                                Explore Features
-                            </Link>
+
+                        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                            <AnimatedDownloadButton
+                                className="px-10 py-5 text-lg shadow-2xl shadow-teal-500/30"
+                                text="Download Free"
+                            />
+                            <button className="px-10 py-5 bg-white/10 backdrop-blur-sm text-white border-2 border-white/20 font-bold text-lg rounded-full hover:bg-white/20 transition-all duration-300 hover:scale-105">
+                                View Features
+                            </button>
+                        </div>
+
+                        {/* Trust Badges */}
+                        <div className="flex flex-wrap justify-center gap-8 mt-16 opacity-60">
+                            <div className="text-sm">⭐ 4.9/5 Rating</div>
+                            <div className="text-sm">🔒 Bank-Grade Security</div>
+                            <div className="text-sm">🌍 140+ Countries</div>
+                            <div className="text-sm">💯 100% Free Forever</div>
                         </div>
                     </motion.div>
                 </div>
