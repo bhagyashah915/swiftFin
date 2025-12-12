@@ -46,7 +46,7 @@ export default function Navbar() {
                         {/* Right - Nav Links + Download Button in Capsule */}
                         <div className="flex items-center gap-2 bg-white/80 backdrop-blur-md border border-gray-200 rounded-full px-3 py-2 shadow-sm">
                             <Link
-                                href="/#features"
+                                href="/features"
                                 className="px-5 py-2 text-sm font-semibold text-slate-700 hover:text-teal-600 hover:bg-gray-50 rounded-full transition-all"
                             >
                                 Features
@@ -58,10 +58,10 @@ export default function Navbar() {
                                 How It Works
                             </Link>
                             <Link
-                                href="/who-is-it-for"
+                                href="/blog"
                                 className="px-5 py-2 text-sm font-semibold text-slate-700 hover:text-teal-600 hover:bg-gray-50 rounded-full transition-all"
                             >
-                                Who Is It For
+                                Blog
                             </Link>
                             <Link
                                 href="/about"
