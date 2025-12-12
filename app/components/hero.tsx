@@ -56,7 +56,7 @@ export default function Hero() {
     return (
         <>
             {/* Splash Screen with Sequential Animation */}
-            <div className={`fixed inset-0 z-50 bg-gradient-to-br from-teal-500 via-emerald-500 to-teal-600 flex items-center justify-center transition-opacity duration-1000 ${showSplash ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+            <div className={`fixed inset-0 z-50 bg-gradient-to-br from-teal-500 via-emerald-500 to-teal-600 h-[100vh] flex items-center justify-center transition-opacity duration-1000 ${showSplash ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
                 <div className="text-center space-y-8 px-4">
                     {/* Logo - Enhanced visibility with actual logo */}
                     <div className={`transition-all duration-700 ${splashStep >= 0 ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-50 translate-y-8'}`}>
@@ -109,7 +109,7 @@ export default function Hero() {
             </div>
 
             {/* Main Hero Section with Background Image */}
-            <section className="relative w-full min-h-screen overflow-hidden">
+            <section className="relative w-full h-[90vh] overflow-hidden">
 
                 {/* Background Image Layer - Financial Chart */}
                 <div className="absolute inset-0 z-0">
@@ -156,7 +156,7 @@ export default function Hero() {
                 </div>
 
                 {/* Main Content */}
-                <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 min-h-screen flex items-center py-20">
+                <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center py-12">
                     <div className="w-full grid lg:grid-cols-12 gap-4 items-start lg:items-center">
 
                         {/* Left Content - Text */}
