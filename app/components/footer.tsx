@@ -66,7 +66,7 @@ export default function Footer() {
                         {/* Links Columns */}
                         <div className="lg:col-span-7">
                             <div className="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-12">
-                                {Object.entries(footerLinks).map(([category, links]) => (
+                                    {Object.entries(footerLinks).map(([category, links]) => (
                                     <div key={category}>
                                         <h3 className="font-semibold text-gray-900 mb-4 capitalize">
                                             {category}
