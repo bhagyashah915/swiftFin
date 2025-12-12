@@ -12,13 +12,13 @@ export default function Navbar() {
 
     return (
         <>
-            {/* Floating Navbar Container */}
-            <div className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
+            {/* Navbar Container */}
+            <div className="relative flex justify-center px-4 bg-white border-b border-gray-100">
                 <motion.nav
                     initial={{ y: -100, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ type: "spring", stiffness: 100, damping: 20 }}
-                    className="pointer-events-auto w-full max-w-[1400px] flex items-center justify-between px-8 py-4"
+                    className="w-full max-w-[1400px] flex items-center justify-between px-8 py-4"
                 >
                     {/* Mobile Menu Button */}
                     <button
