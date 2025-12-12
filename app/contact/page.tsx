@@ -4,9 +4,48 @@ import { useState } from "react";
 import { Mail, MapPin, Phone, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
-// Firebase
 import { db } from "@/app/lib/firebaseconfig";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+
+import { motion, AnimatePresence } from "framer-motion";
+
+// ⭐ PREMIUM POPUP COMPONENT (UI NOT AFFECTING PAGE)
+const SuccessPopup = ({ open, onClose }) => {
+    if (!open) return null;
+
+    return (
+        <AnimatePresence>
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-[999]"
+            >
+                <motion.div
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 0.8, opacity: 0 }}
+                    transition={{ type: "spring", duration: 0.5 }}
+                    className="bg-white/90 backdrop-blur-xl p-6 rounded-2xl shadow-2xl border border-white/40 max-w-sm w-[90%] text-center"
+                >
+                    <h2 className="text-xl font-semibold text-gray-800">
+                        Message Sent 🎉
+                    </h2>
+                    <p className="text-gray-600 mt-1">
+                        Your message has been delivered. Our team will reach out soon!
+                    </p>
+
+                    <button
+                        onClick={onClose}
+                        className="mt-4 px-6 py-2 bg-primary-teal text-white rounded-xl hover:bg-primary-teal/80 transition"
+                    >
+                        Close
+                    </button>
+                </motion.div>
+            </motion.div>
+        </AnimatePresence>
+    );
+};
 
 export default function Contact() {
     const [form, setForm] = useState({
@@ -17,12 +56,13 @@ export default function Contact() {
     });
 
     const [loading, setLoading] = useState(false);
+    const [successPopup, setSuccessPopup] = useState(false);
 
-    const handleChange = (e: any) => {
+    const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = async (e: any) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (form.phone.length !== 10) {
@@ -38,8 +78,13 @@ export default function Contact() {
                 timestamp: serverTimestamp(),
             });
 
-            alert("Message sent successfully!");
+            // Show success popup
+            setSuccessPopup(true);
 
+            // Hide after 2 seconds automatically
+            setTimeout(() => setSuccessPopup(false), 2000);
+
+            // Reset form
             setForm({ name: "", email: "", phone: "", message: "" });
         } catch (error) {
             console.error("Error sending message:", error);
@@ -51,7 +96,6 @@ export default function Contact() {
 
     return (
         <div className="bg-white py-12 md:py-20 relative min-h-screen">
-            {/* Back Button */}
             <Link
                 href="/"
                 className="absolute top-4 md:top-6 left-4 md:left-6 flex items-center text-gray-600 hover:text-primary-teal transition-colors z-10"
@@ -78,7 +122,6 @@ export default function Contact() {
                         </h2>
 
                         <div className="space-y-6 md:space-y-8">
-                            {/* Email */}
                             <div className="flex items-start gap-3 md:gap-4">
                                 <div className="w-10 h-10 md:w-12 md:h-12 bg-primary-teal/10 rounded-lg flex items-center justify-center text-primary-teal shrink-0">
                                     <Mail className="w-5 h-5 md:w-6 md:h-6" />
@@ -198,6 +241,12 @@ export default function Contact() {
                     </div>
                 </div>
             </div>
+
+            {/* PREMIUM SUCCESS POPUP */}
+            <SuccessPopup
+                open={successPopup}
+                onClose={() => setSuccessPopup(false)}
+            />
         </div>
     );
 }
