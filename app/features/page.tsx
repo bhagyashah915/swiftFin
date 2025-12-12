@@ -1,11 +1,47 @@
 "use client";
 
-import { Receipt, BarChart3, CreditCard, TrendingUp, PieChart, Wallet, Camera, Calculator, ArrowLeft, CheckCircle2, Shield, Clock, Target, Zap, LineChart } from "lucide-react";
+import { Receipt, BarChart3, CreditCard, TrendingUp, PieChart, Wallet, Camera, Calculator, ArrowLeft, CheckCircle2, Shield, Clock, Target, Zap, LineChart, Smartphone } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
 export default function FeaturesPage() {
     const [activeStep, setActiveStep] = useState(0);
+
+    // Updated mobile screens data array with features from the app
+    const mobileScreens = [
+        {
+            id: 1,
+            title: "Expense Tracking",
+            color: "bg-gradient-to-br from-white to-teal-50",
+            content: "Track and categorize expenses automatically with AI",
+            zIndex: 20,
+            translateX: 0
+        },
+        {
+            id: 2,
+            title: "Smart Budgeting",
+            color: "bg-gradient-to-br from-white to-teal-50",
+            content: "Manage budgets across all categories effortlessly",
+            zIndex: 10,
+            translateX: 40
+        },
+        {
+            id: 3,
+            title: "EMI Management",
+            color: "bg-gradient-to-br from-white to-teal-50",
+            content: "Track loans with automated payment reminders",
+            zIndex: 5,
+            translateX: 80
+        },
+        {
+            id: 4,
+            title: "Financial Reports",
+            color: "bg-gradient-to-br from-white to-teal-50",
+            content: "Generate insights with interactive dashboards",
+            zIndex: 1,
+            translateX: 120
+        }
+    ];
 
     const keyFeatures = [
         {
@@ -132,11 +168,11 @@ export default function FeaturesPage() {
 
     return (
         <div className="min-h-screen bg-white">
-            {/* Hero Section */}
-            <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-white via-teal-50/30 to-white">
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-teal-100/40 via-transparent to-transparent"></div>
+            {/* Hero Section - Updated with single phone image and feature cards */}
+            <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-white via-teal-50/20 to-white">
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-teal-100/20 via-transparent to-transparent"></div>
 
-                <div className="container mx-auto px-6 pt-32 pb-20 relative z-10">
+                <div className="container mx-auto px-6 pt-20 pb-20 md:pt-32 relative z-10">
                     <a
                         href="/"
                         className="inline-flex items-center text-slate-600 hover:text-teal-600 transition-all duration-300 group mb-8"
@@ -145,19 +181,181 @@ export default function FeaturesPage() {
                         Back to Home
                     </a>
 
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                        className="text-center max-w-4xl mx-auto"
-                    >
-                        <h1 className="text-6xl md:text-7xl font-bold text-slate-900 mb-6 leading-tight">
-                            Your Finance <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-teal-400">Solutions</span>
-                        </h1>
-                        <p className="text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto">
-                            Experience the peace of mind that comes with having your finances under complete control
-                        </p>
-                    </motion.div>
+                    <div className="grid lg:grid-cols-2 gap-12 items-center">
+                        <motion.div
+                            initial={{ opacity: 0, x: -30 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.8 }}
+                            className="text-left"
+                        >
+                            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-slate-900 mb-6 leading-tight">
+                                Your Finance <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-teal-400">Solutions</span>
+                            </h1>
+                            <p className="text-xl md:text-2xl text-slate-600 mb-10">
+                                Experience the peace of mind that comes with having your finances under complete control
+                            </p>
+
+                            <div className="flex flex-wrap gap-4 mb-12">
+                                <div className="flex items-center gap-3 bg-white px-4 py-3 rounded-xl shadow-sm border border-teal-100">
+                                    <CheckCircle2 className="w-5 h-5 text-teal-600" />
+                                    <span className="text-slate-700">Real-time tracking</span>
+                                </div>
+                                <div className="flex items-center gap-3 bg-white px-4 py-3 rounded-xl shadow-sm border border-teal-100">
+                                    <CheckCircle2 className="w-5 h-5 text-teal-600" />
+                                    <span className="text-slate-700">Smart AI insights</span>
+                                </div>
+                                <div className="flex items-center gap-3 bg-white px-4 py-3 rounded-xl shadow-sm border border-teal-100">
+                                    <CheckCircle2 className="w-5 h-5 text-teal-600" />
+                                    <span className="text-slate-700">Bank-level security</span>
+                                </div>
+                            </div>
+                        </motion.div>
+
+                        {/* Mobile Devices Section - 3 Overlapping Phones */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 50 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.2 }}
+                            className="relative h-[500px] lg:h-[600px] flex items-center justify-center"
+                        >
+                            {/* Container for overlapping phones */}
+                            <div className="relative w-full h-full flex items-center justify-center">
+
+                                {/* Phone 1 - Expenses (Left) */}
+                                <motion.div
+                                    initial={{ opacity: 0, x: -100, rotate: -5 }}
+                                    animate={{ opacity: 1, x: 0, rotate: -8 }}
+                                    transition={{
+                                        duration: 0.8,
+                                        delay: 0.3,
+                                        type: "spring",
+                                        stiffness: 100
+                                    }}
+                                    whileHover={{
+                                        scale: 1.05,
+                                        rotate: -5,
+                                        transition: { duration: 0.3 }
+                                    }}
+                                    className="absolute left-0 md:left-10 lg:left-16"
+                                    style={{ zIndex: 3 }}
+                                >
+                                    <div className="relative w-[180px] md:w-[220px] lg:w-[260px]">
+                                        <img
+                                            src="/featuresphone.png"
+                                            alt="Phone Mockup"
+                                            className="w-full h-auto drop-shadow-2xl"
+                                        />
+                                        {/* Screenshot overlay */}
+                                        <div className="absolute top-[3%] left-[5%] right-[5%] bottom-[3%]">
+                                            <img
+                                                src="/hero.jpg"
+                                                alt="Expenses Screen"
+                                                className="w-full h-full object-cover object-top rounded-[28px] md:rounded-[32px]"
+                                            />
+                                        </div>
+                                    </div>
+                                </motion.div>
+
+                                {/* Phone 2 - Home (Center, Front) */}
+                                <motion.div
+                                    initial={{ opacity: 0, y: 80, scale: 0.8 }}
+                                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                                    transition={{
+                                        duration: 0.8,
+                                        delay: 0.5,
+                                        type: "spring",
+                                        stiffness: 100
+                                    }}
+                                    whileHover={{
+                                        scale: 1.08,
+                                        y: -10,
+                                        transition: { duration: 0.3 }
+                                    }}
+                                    className="absolute"
+                                    style={{ zIndex: 5 }}
+                                >
+                                    <div className="relative w-[200px] md:w-[250px] lg:w-[290px]">
+                                        <img
+                                            src="/featuresphone.png"
+                                            alt="Phone Mockup"
+                                            className="w-full h-auto drop-shadow-2xl"
+                                        />
+                                        {/* Screenshot overlay */}
+                                        <div className="absolute top-[3%] left-[5%] right-[5%] bottom-[3%]">
+                                            <img
+                                                src="/expenses-emi.jpg"
+                                                alt="Home Screen"
+                                                className="w-full h-full object-cover object-top rounded-[30px] md:rounded-[35px]"
+                                            />
+                                        </div>
+                                    </div>
+                                </motion.div>
+
+                                {/* Phone 3 - Portfolio (Right) */}
+                                <motion.div
+                                    initial={{ opacity: 0, x: 100, rotate: 5 }}
+                                    animate={{ opacity: 1, x: 0, rotate: 8 }}
+                                    transition={{
+                                        duration: 0.8,
+                                        delay: 0.4,
+                                        type: "spring",
+                                        stiffness: 100
+                                    }}
+                                    whileHover={{
+                                        scale: 1.05,
+                                        rotate: 5,
+                                        transition: { duration: 0.3 }
+                                    }}
+                                    className="absolute right-0 md:right-10 lg:right-16"
+                                    style={{ zIndex: 2 }}
+                                >
+                                    <div className="relative w-[180px] md:w-[220px] lg:w-[260px]">
+                                        <img
+                                            src="/featuresphone.png"
+                                            alt="Phone Mockup"
+                                            className="w-full h-auto drop-shadow-2xl"
+                                        />
+                                        {/* Screenshot overlay */}
+                                        <div className="absolute top-[3%] left-[5%] right-[5%] bottom-[3%]">
+                                            <img
+                                                src="/investments.jpg"
+                                                alt="Portfolio Screen"
+                                                className="w-full h-full object-cover object-top rounded-[28px] md:rounded-[32px]"
+                                            />
+                                        </div>
+                                    </div>
+                                </motion.div>
+
+                            </div>
+
+                            {/* Animated Floating Elements */}
+                            <motion.div
+                                animate={{
+                                    scale: [1, 1.2, 1],
+                                    opacity: [0.3, 0.5, 0.3]
+                                }}
+                                transition={{
+                                    duration: 4,
+                                    repeat: Infinity,
+                                    ease: "easeInOut"
+                                }}
+                                className="absolute -bottom-10 left-10 w-40 h-40 bg-teal-300/20 rounded-full blur-3xl"
+                            />
+                            <motion.div
+                                animate={{
+                                    scale: [1, 1.3, 1],
+                                    opacity: [0.2, 0.4, 0.2]
+                                }}
+                                transition={{
+                                    duration: 5,
+                                    repeat: Infinity,
+                                    ease: "easeInOut",
+                                    delay: 1
+                                }}
+                                className="absolute top-20 -right-10 w-60 h-60 bg-teal-300/20 rounded-full blur-3xl"
+                            />
+                        </motion.div>
+                    </div>
                 </div>
 
                 {/* Decorative Elements */}
@@ -380,14 +578,11 @@ export default function FeaturesPage() {
                             Your First Step To Financial Freedom Begins Here
                         </h2>
                         <p className="text-xl text-white/80 mb-10">
-                            Watch your money grow. Download the app now and start taking control of your money today.
+                            Start taking control of your money today and watch your wealth grow with intelligent financial management.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <button className="px-8 py-4 bg-white text-slate-900 rounded-xl font-bold hover:shadow-xl transition-all hover:scale-105">
-                                Download for iOS
-                            </button>
-                            <button className="px-8 py-4 bg-teal-500 text-white rounded-xl font-bold hover:shadow-xl transition-all hover:scale-105 border-2 border-teal-400">
-                                Download for Android
+                                Get Started Free
                             </button>
                         </div>
                     </motion.div>

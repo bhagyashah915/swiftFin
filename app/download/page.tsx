@@ -30,7 +30,7 @@ export default function DownloadPage() {
     return (
         <main className="min-h-screen bg-gradient-to-br from-teal-50 via-white to-teal-50/30 text-slate-900 overflow-hidden relative selection:bg-teal-100 selection:text-teal-700 font-sans">
 
-            {/* Background Decor - Light Teal Glow Effects */}
+            {/* Background Decor */}
             <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-teal-200/20 rounded-full blur-3xl pointer-events-none"></div>
             <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-300/15 rounded-full blur-3xl pointer-events-none"></div>
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-teal-100/40 via-transparent to-transparent rounded-full blur-2xl pointer-events-none"></div>
@@ -65,7 +65,7 @@ export default function DownloadPage() {
                         <div className="w-[600px] h-[600px] bg-gradient-radial from-teal-200/40 via-teal-100/20 to-transparent rounded-full blur-3xl"></div>
                     </div>
 
-                    {/* Left Phone */}
+                    {/* LEFT PHONE (Replaced with PNG) */}
                     <motion.div
                         initial={{ opacity: 0, x: -80, rotate: -8 }}
                         animate={{ opacity: 1, x: -60, rotate: -6 }}
@@ -73,59 +73,22 @@ export default function DownloadPage() {
                         className="absolute left-1/4 top-1/2 -translate-y-1/2 z-10"
                     >
                         <div className="relative">
-                            {/* Phone Frame */}
-                            <div className="w-64 h-[520px] bg-slate-900 rounded-[3rem] p-3 shadow-2xl shadow-slate-900/40">
-                                <div className="w-full h-full bg-white rounded-[2.5rem] overflow-hidden relative">
-                                    {/* Phone Content - Net Income Card */}
-                                    <div className="absolute inset-0 bg-gradient-to-br from-teal-50 to-white p-6 flex flex-col">
-                                        <div className="flex-1">
-                                            <div className="bg-white rounded-2xl p-5 shadow-lg shadow-teal-500/10 border border-teal-100/50 mb-4">
-                                                <div className="flex justify-between mb-4">
-                                                    <div>
-                                                        <p className="text-xs text-slate-400 font-bold mb-1">Net Income</p>
-                                                        <h3 className="text-xl font-bold text-slate-800">$4,500</h3>
-                                                    </div>
-                                                    <div>
-                                                        <p className="text-xs text-slate-400 font-bold mb-1">Expense</p>
-                                                        <h3 className="text-xl font-bold text-slate-800">$1,691</h3>
-                                                    </div>
-                                                </div>
-                                                <div className="h-16 w-full bg-teal-50 rounded-lg overflow-hidden relative">
-                                                    <svg viewBox="0 0 100 40" className="w-full h-full stroke-teal-500 stroke-[3] fill-none">
-                                                        <path d="M0 30 Q 25 35, 50 15 T 100 10" />
-                                                    </svg>
-                                                </div>
-                                            </div>
+                            <img
+                                src="/featuresphone.png"
+                                alt="Phone Preview"
+                                className="w-64 h-auto object-contain drop-shadow-2xl"
+                            />
+                            <img
+                                src="/hero.jpg"
+                                alt="Screen"
+                                className="absolute inset-0 w-[82%] h-[82%] object-cover rounded-2xl top-[9%] left-[9%]"
+                            />
 
-                                            {/* Transaction List */}
-                                            <div className="space-y-3">
-                                                <div className="flex items-center gap-2 bg-white/70 backdrop-blur-sm rounded-xl p-3">
-                                                    <div className="w-8 h-8 rounded-full bg-teal-100 flex items-center justify-center text-xs font-bold text-teal-600">S</div>
-                                                    <div className="flex-1 min-w-0">
-                                                        <p className="text-xs font-bold text-slate-800 truncate">Starbucks</p>
-                                                        <p className="text-[10px] text-slate-400">Coffee & Snacks</p>
-                                                    </div>
-                                                    <p className="text-xs font-bold text-red-500">-$12.50</p>
-                                                </div>
-                                                <div className="flex items-center gap-2 bg-white/70 backdrop-blur-sm rounded-xl p-3">
-                                                    <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-xs font-bold text-purple-600">N</div>
-                                                    <div className="flex-1 min-w-0">
-                                                        <p className="text-xs font-bold text-slate-800 truncate">Netflix</p>
-                                                        <p className="text-[10px] text-slate-400">Subscription</p>
-                                                    </div>
-                                                    <p className="text-xs font-bold text-red-500">-$15.99</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            {/* Phone Shadow/Glow */}
                             <div className="absolute inset-0 bg-teal-400/20 rounded-[3rem] blur-2xl -z-10"></div>
                         </div>
                     </motion.div>
 
-                    {/* Right Phone */}
+                    {/* RIGHT PHONE (Replaced with PNG) */}
                     <motion.div
                         initial={{ opacity: 0, x: 80, rotate: 8 }}
                         animate={{ opacity: 1, x: 60, rotate: 6 }}
@@ -133,55 +96,23 @@ export default function DownloadPage() {
                         className="absolute right-1/4 top-1/2 -translate-y-1/2 z-10"
                     >
                         <div className="relative">
-                            {/* Phone Frame */}
-                            <div className="w-64 h-[520px] bg-slate-900 rounded-[3rem] p-3 shadow-2xl shadow-slate-900/40">
-                                <div className="w-full h-full bg-white rounded-[2.5rem] overflow-hidden relative">
-                                    {/* Phone Content - Spending Card */}
-                                    <div className="absolute inset-0 bg-gradient-to-br from-white to-teal-50 p-6 flex flex-col">
-                                        <div className="flex-1">
-                                            <div className="bg-white rounded-2xl p-5 shadow-lg shadow-teal-500/10 border border-teal-100/50 mb-4">
-                                                <h3 className="font-bold text-slate-800 mb-3 text-sm">Spend this week</h3>
-                                                <div className="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden mb-2">
-                                                    <div className="bg-gradient-to-r from-teal-500 to-teal-400 h-full w-[30%] rounded-full"></div>
-                                                </div>
-                                                <div className="flex justify-between items-center">
-                                                    <span className="text-xs font-bold text-slate-500">$124 left to spend</span>
-                                                    <span className="text-lg font-bold text-slate-800">$124</span>
-                                                </div>
-                                            </div>
-
-                                            {/* Recent Transactions */}
-                                            <div className="space-y-3">
-                                                <div className="flex items-center gap-2 bg-white/70 backdrop-blur-sm rounded-xl p-3">
-                                                    <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-xs font-bold text-purple-600">D</div>
-                                                    <div className="flex-1 min-w-0">
-                                                        <p className="text-xs font-bold text-slate-800 truncate">Transfer to Dianne</p>
-                                                        <p className="text-[10px] text-slate-400">diannxx@gmail.com</p>
-                                                    </div>
-                                                    <p className="text-xs font-bold text-red-500">-$120</p>
-                                                </div>
-                                                <div className="flex items-center gap-2 bg-white/70 backdrop-blur-sm rounded-xl p-3">
-                                                    <div className="w-8 h-8 rounded-full bg-teal-100 flex items-center justify-center text-xs font-bold text-teal-600">A</div>
-                                                    <div className="flex-1 min-w-0">
-                                                        <p className="text-xs font-bold text-slate-800 truncate">Salary Deposit</p>
-                                                        <p className="text-[10px] text-teal-500">Income</p>
-                                                    </div>
-                                                    <p className="text-xs font-bold text-teal-500">+$4,500</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            {/* Phone Shadow/Glow */}
+                            <img
+                                src="/featuresphone.png"
+                                alt="Phone Preview"
+                                className="w-64 h-auto object-contain drop-shadow-2xl"
+                            />
+                            <img
+                                src="/investments.jpg"
+                                alt="Screen"
+                                className="absolute inset-0 w-[82%] h-[82%] object-cover rounded-2xl top-[9%] left-[9%]"
+                            />
                             <div className="absolute inset-0 bg-teal-400/20 rounded-[3rem] blur-2xl -z-10"></div>
                         </div>
                     </motion.div>
 
                 </div>
 
-
-                {/* Download Buttons Area */}
+                {/* Download Buttons */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -191,11 +122,15 @@ export default function DownloadPage() {
                     {/* App Store Button */}
                     <button
                         onClick={() => handleDownload("iOS")}
-                        className="flex items-center gap-4 bg-slate-900 text-white px-8 py-4 rounded-2xl shadow-xl shadow-slate-900/30 hover:shadow-2xl hover:scale-105 hover:-translate-y-1 transition-all duration-300 group border border-slate-800"
+                        className="flex items-center gap-4 bg-white text-slate-900 px-8 py-4 rounded-2xl shadow-xl shadow-black/30 hover:shadow-4xl hover:scale-105 hover:-translate-y-1 transition-all duration-300 group border border-neutral-800"
                     >
-                        <Apple className="w-10 h-10" />
+                        <img
+                            src="/app store badge.png"
+                            alt="Download on the App Store"
+                            className="w-10 h-10 object-contain"
+                        />
                         <div className="text-left">
-                            <p className="text-xs font-bold uppercase tracking-wider opacity-60">Download on the</p>
+                            <p className="text-xs font-bold uppercase tracking-wider text-slate-500">GET IT ON</p>
                             <p className="text-2xl font-bold">App Store</p>
                         </div>
                     </button>
@@ -216,7 +151,6 @@ export default function DownloadPage() {
                             <p className="text-2xl font-bold">Google Play</p>
                         </div>
                     </button>
-
                 </motion.div>
 
                 {/* Back to Home */}
@@ -232,7 +166,6 @@ export default function DownloadPage() {
             <AnimatePresence>
                 {showModal && (
                     <>
-                        {/* Backdrop */}
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
@@ -241,7 +174,6 @@ export default function DownloadPage() {
                             className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-40"
                         />
 
-                        {/* Modal */}
                         <motion.div
                             initial={{ opacity: 0, scale: 0.9, y: 20 }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -251,7 +183,6 @@ export default function DownloadPage() {
                         >
                             <div className="bg-white rounded-3xl shadow-2xl max-w-md w-full p-8 relative border border-teal-100">
 
-                                {/* Close Button */}
                                 <button
                                     onClick={closeModal}
                                     className="absolute top-6 right-6 text-slate-400 hover:text-slate-600 transition-colors"
@@ -260,20 +191,12 @@ export default function DownloadPage() {
                                 </button>
 
                                 {downloadStage === 1 && (
-                                    <motion.div
-                                        initial={{ opacity: 0 }}
-                                        animate={{ opacity: 1 }}
-                                        className="text-center"
-                                    >
+                                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center">
                                         <div className="w-20 h-20 bg-gradient-to-br from-teal-50 to-teal-100 rounded-full flex items-center justify-center mx-auto mb-6">
                                             <Loader2 className="w-10 h-10 text-teal-600 animate-spin" />
                                         </div>
-                                        <h3 className="text-2xl font-bold text-slate-900 mb-3">
-                                            Preparing Your Download
-                                        </h3>
-                                        <p className="text-slate-500 mb-6">
-                                            We're getting your {platform} app ready...
-                                        </p>
+                                        <h3 className="text-2xl font-bold text-slate-900 mb-3">Preparing Your Download</h3>
+                                        <p className="text-slate-500 mb-6">We're getting your {platform} app ready...</p>
                                         <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
                                             <motion.div
                                                 className="h-full bg-gradient-to-r from-teal-500 to-teal-400"
@@ -286,11 +209,7 @@ export default function DownloadPage() {
                                 )}
 
                                 {downloadStage === 2 && (
-                                    <motion.div
-                                        initial={{ opacity: 0, scale: 0.9 }}
-                                        animate={{ opacity: 1, scale: 1 }}
-                                        className="text-center"
-                                    >
+                                    <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="text-center">
                                         <motion.div
                                             initial={{ scale: 0 }}
                                             animate={{ scale: 1 }}
@@ -299,9 +218,8 @@ export default function DownloadPage() {
                                         >
                                             <CheckCircle2 className="w-10 h-10 text-white" />
                                         </motion.div>
-                                        <h3 className="text-2xl font-bold text-slate-900 mb-3">
-                                            Ready to Install!
-                                        </h3>
+
+                                        <h3 className="text-2xl font-bold text-slate-900 mb-3">Ready to Install!</h3>
                                         <p className="text-slate-500 mb-8">
                                             Your download is ready. Follow the prompts to install the app on your {platform} device.
                                         </p>
@@ -344,7 +262,6 @@ export default function DownloadPage() {
                                         </button>
                                     </motion.div>
                                 )}
-
                             </div>
                         </motion.div>
                     </>

@@ -6,21 +6,41 @@ import { motion } from "framer-motion";
 export default function Blog() {
     const posts = [
         {
-            title: "The Future of AI in Personal Finance Management",
-            excerpt: "Discover how artificial intelligence is revolutionizing personal finance, from automated budgeting to predictive spending insights that help you make smarter money decisions.",
-            date: "May 5, 2025",
+            title: "Mindful Spending: Choose What You Afford Wisely",
+            excerpt: "Learn the philosophy of conscious financial choices and how strategic spending can help you afford anything - but not everything - on your path to financial independence.",
+            date: "Dec 10, 2025",
             author: "Sarah Johnson",
-            category: "Technology",
+            category: "Money Mindset",
             readTime: "6 min read",
             featured: true,
-            image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80"
+            image: "https://images.unsplash.com/photo-1579621970588-a35d0e7ab9b6?w=800&q=80"
+        },
+        {
+            title: "Credit Score Mastery: Build Strong Financial Health",
+            excerpt: "Discover proven strategies to improve your credit profile and unlock better financial opportunities through smart credit management.",
+            date: "Dec 8, 2025",
+            author: "Michael Chen",
+            category: "Credit",
+            readTime: "5 min read",
+            featured: true,
+            image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&q=80"
+        },
+        {
+            title: "Debt Freedom Blueprint: Your Path to Liberation",
+            excerpt: "Transform your financial life with actionable steps to eliminate debt and build lasting wealth through strategic payoff plans.",
+            date: "Dec 5, 2025",
+            author: "Priya Sharma",
+            category: "Debt Management",
+            readTime: "8 min read",
+            featured: true,
+            image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80"
         },
         {
             title: "5 Simple Ways to Track Your Daily Expenses",
             excerpt: "Master your spending with practical strategies that take minutes to implement but deliver lasting financial clarity and control.",
-            date: "May 3, 2025",
-            author: "Michael Chen",
-            category: "Finance Tips",
+            date: "Dec 3, 2025",
+            author: "Raj Kumar",
+            category: "Budgeting",
             readTime: "4 min read",
             featured: false,
             image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80"
@@ -28,42 +48,22 @@ export default function Blog() {
         {
             title: "Understanding EMI: Complete Guide for Smart Borrowing",
             excerpt: "Decode the mathematics of EMIs and learn proven strategies to optimize loan payments for maximum savings.",
-            date: "May 2, 2025",
-            author: "Raj Kumar",
-            category: "Education",
+            date: "Nov 30, 2025",
+            author: "David Park",
+            category: "Loans",
             readTime: "8 min read",
             featured: false,
             image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80"
         },
         {
             title: "Investment Basics for Beginners in 2025",
-            excerpt: "Start your wealth-building journey with fundamental principles updated for today's economic landscape.",
-            date: "Apr 28, 2025",
-            author: "Priya Sharma",
+            excerpt: "Start your wealth-building journey with fundamental principles updated for today's economic landscape and market conditions.",
+            date: "Nov 28, 2025",
+            author: "Lisa Wang",
             category: "Investing",
             readTime: "7 min read",
             featured: false,
             image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80"
-        },
-        {
-            title: "Building a Financial Safety Net That Actually Works",
-            excerpt: "Create an emergency fund strategy that withstands market volatility and unexpected life events with confidence.",
-            date: "Apr 27, 2025",
-            author: "David Park",
-            category: "Planning",
-            readTime: "9 min read",
-            featured: false,
-            image: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800&q=80"
-        },
-        {
-            title: "Digital Banking Security: Protect Your Money",
-            excerpt: "Essential practices to safeguard your finances in an increasingly connected digital banking world.",
-            date: "Apr 25, 2025",
-            author: "Lisa Wang",
-            category: "Security",
-            readTime: "5 min read",
-            featured: false,
-            image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&q=80"
         }
     ];
 
@@ -101,7 +101,7 @@ export default function Blog() {
                             Ideas that move, insights that matter.
                         </div>
                         <h1 className="text-6xl md:text-8xl font-bold text-white mb-6 leading-tight lowercase">
-                            blogs
+                            Blogs
                         </h1>
                     </motion.div>
                 </div>
@@ -149,7 +149,7 @@ export default function Blog() {
 
                 {/* Featured Highlights - Triple Card */}
                 <div className="grid md:grid-cols-3 gap-6 mb-20">
-                    {[...Array(3)].map((_, i) => (
+                    {posts.slice(0, 3).map((post, i) => (
                         <motion.div
                             key={i}
                             initial={{ opacity: 0, y: 30 }}
@@ -161,8 +161,8 @@ export default function Blog() {
                         >
                             <div className="relative h-[400px] rounded-3xl overflow-hidden">
                                 <img
-                                    src={posts[0].image}
-                                    alt={posts[0].title}
+                                    src={post.image}
+                                    alt={post.title}
                                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent"></div>
@@ -171,10 +171,10 @@ export default function Blog() {
                                         Highlights
                                     </div>
                                     <div className="text-sm mb-2 opacity-80">
-                                        {posts[0].date} / {posts[0].category}
+                                        {post.date} / {post.category}
                                     </div>
                                     <h3 className="text-xl font-bold group-hover:text-teal-400 transition-colors">
-                                        {posts[0].title}
+                                        {post.title}
                                     </h3>
                                 </div>
                             </div>
@@ -184,7 +184,7 @@ export default function Blog() {
 
                 {/* Blog Grid */}
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {posts.slice(1).map((post, index) => (
+                    {posts.slice(3).map((post, index) => (
                         <motion.div
                             key={index}
                             initial={{ opacity: 0, y: 30 }}
@@ -223,80 +223,6 @@ export default function Blog() {
                             </div>
                         </motion.div>
                     ))}
-                </div>
-
-                {/* Load More Button */}
-                <div className="text-center mt-16">
-                    <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="px-12 py-4 bg-slate-900 text-white rounded-full font-bold hover:bg-teal-600 transition-colors duration-300 shadow-lg"
-                    >
-                        Load More
-                    </motion.button>
-                </div>
-            </div>
-
-            {/* Financial Tips CTA Section */}
-            <div className="bg-gradient-to-br from-teal-50 to-emerald-50/30 py-20">
-                <div className="container mx-auto px-6">
-                    <div className="grid md:grid-cols-2 gap-12 items-center">
-                        <motion.div
-                            initial={{ opacity: 0, x: -30 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                        >
-                            <h3 className="text-4xl font-bold text-slate-900 mb-6">
-                                Master Your Money with SwiftFin
-                            </h3>
-                            <p className="text-lg text-slate-600 mb-8">
-                                Get personalized financial insights, track expenses effortlessly, and achieve your money goals with our AI-powered app. Join thousands taking control of their financial future.
-                            </p>
-                            <div className="flex flex-wrap gap-4">
-                                <div className="flex items-center gap-3 bg-white px-6 py-4 rounded-xl shadow-sm">
-                                    <TrendingUp className="w-8 h-8 text-teal-600" />
-                                    <div>
-                                        <div className="font-bold text-slate-900">Smart Analytics</div>
-                                        <div className="text-sm text-slate-500">AI-powered insights</div>
-                                    </div>
-                                </div>
-                                <div className="flex items-center gap-3 bg-white px-6 py-4 rounded-xl shadow-sm">
-                                    <PiggyBank className="w-8 h-8 text-teal-600" />
-                                    <div>
-                                        <div className="font-bold text-slate-900">Auto Savings</div>
-                                        <div className="text-sm text-slate-500">Save effortlessly</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </motion.div>
-
-                        <motion.div
-                            initial={{ opacity: 0, x: 30 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            className="bg-white rounded-3xl p-8 shadow-xl"
-                        >
-                            <h4 className="text-2xl font-bold text-slate-900 mb-4">
-                                Subscribe to Financial Wisdom
-                            </h4>
-                            <p className="text-slate-600 mb-6">
-                                Weekly insights, exclusive tips, and market updates delivered to your inbox.
-                            </p>
-                            <div className="space-y-4">
-                                <input
-                                    type="email"
-                                    placeholder="Your email address"
-                                    className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
-                                />
-                                <button className="w-full px-6 py-3 bg-gradient-to-r from-teal-600 to-teal-500 text-white rounded-xl font-bold hover:shadow-lg hover:shadow-teal-500/30 transition-all">
-                                    Get Free Insights
-                                </button>
-                                <p className="text-xs text-slate-500 text-center">
-                                    Join 50,000+ smart money managers. Unsubscribe anytime.
-                                </p>
-                            </div>
-                        </motion.div>
-                    </div>
                 </div>
             </div>
         </div>

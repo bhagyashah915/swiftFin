@@ -28,7 +28,6 @@ export default function AboutPage() {
         { icon: <Shield className="w-6 h-6" />, title: "Privacy First", description: "We never sell or share your personal information" },
     ];
 
-    // Images for the ticker animation
     const heroImages = [
         "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&q=80",
         "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=600&q=80",
@@ -40,7 +39,7 @@ export default function AboutPage() {
 
     return (
         <main className="min-h-screen bg-white">
-            {/* Hero Section with Ticker Animation */}
+            {/* Hero Section */}
             <section className="relative overflow-hidden bg-white">
                 <div className="container relative z-10 mx-auto px-6 py-32">
                     <a href="/" className="inline-flex items-center text-slate-600 hover:text-teal-600 transition-colors mb-8">
@@ -63,7 +62,6 @@ export default function AboutPage() {
                         </p>
                     </motion.div>
 
-                    {/* Scrolling Images Ticker */}
                     <div className="relative overflow-hidden py-12">
                         <motion.div
                             className="flex gap-6"
@@ -79,7 +77,6 @@ export default function AboutPage() {
                     </div>
                 </div>
 
-                {/* Decorative background elements */}
                 <div className="absolute top-20 left-10 w-72 h-72 bg-teal-200/20 rounded-full blur-3xl"></div>
                 <div className="absolute bottom-20 right-10 w-96 h-96 bg-teal-300/20 rounded-full blur-3xl"></div>
             </section>
@@ -94,9 +91,7 @@ export default function AboutPage() {
                         viewport={{ once: true }}
                     >
                         <span className="text-sm font-bold text-teal-600 uppercase tracking-wider mb-4 inline-block">Our Core Values</span>
-                        <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
-                            Our Core Values
-                        </h2>
+                        <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">Our Core Values</h2>
                         <p className="text-lg text-slate-600">
                             Everything we do is guided by our commitment to simplicity, security, and your success.
                         </p>
@@ -124,8 +119,8 @@ export default function AboutPage() {
                 </div>
             </section>
 
-            {/* Security Section */}
-            <section className="py-20 bg-gradient-to-br from-slate-900 to-teal-900">
+            {/* Security Section – GRADIENT REMOVED */}
+            <section className="py-20 bg-slate-900">
                 <div className="container mx-auto px-6">
                     <motion.div
                         className="text-center max-w-3xl mx-auto mb-16"
@@ -133,7 +128,6 @@ export default function AboutPage() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                     >
-                        {/* Shield Icon */}
                         <motion.div
                             className="mb-8"
                             initial={{ scale: 0 }}
@@ -175,7 +169,6 @@ export default function AboutPage() {
                         ))}
                     </div>
 
-                    {/* Trust Badge */}
                     <motion.div
                         className="text-center mt-12"
                         initial={{ opacity: 0 }}
@@ -193,7 +186,7 @@ export default function AboutPage() {
                 </div>
             </section>
 
-            {/* CTA Section */}
+            {/* CTA */}
             <section className="py-20 bg-slate-900 text-white">
                 <div className="container mx-auto px-6 text-center">
                     <motion.div
