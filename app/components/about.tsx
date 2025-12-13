@@ -136,8 +136,8 @@ export default function About() {
                                 <motion.div
                                     key={index}
                                     className={`relative p-6 rounded-2xl cursor-pointer transition-all duration-300 border ${hoveredIndex === index
-                                            ? 'bg-white/10 border-[#20C997]/50 shadow-lg'
-                                            : 'bg-white/5 border-white/10 hover:bg-white/10'
+                                        ? 'bg-white/10 border-[#20C997]/50 shadow-lg'
+                                        : 'bg-white/5 border-white/10 hover:bg-white/10'
                                         }`}
                                     onMouseEnter={() => setHoveredIndex(index)}
                                     initial={{ opacity: 0, y: 20 }}
@@ -162,7 +162,7 @@ export default function About() {
                                     </div>
 
                                     {/* Arrow indicator for active state */}
-                                 
+
                                 </motion.div>
                             ))}
                         </div>

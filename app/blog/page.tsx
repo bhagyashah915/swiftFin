@@ -69,23 +69,12 @@ export default function Blog() {
 
     return (
         <div className="min-h-screen bg-white">
-            {/* Hero Section with Image Background */}
-            <div className="relative h-[70vh] min-h-[600px] overflow-hidden">
-                {/* Background Image with Overlay */}
-                <div className="absolute inset-0">
-                    <div className="absolute inset-0 bg-gradient-to-br from-slate-900/95 via-slate-900/90 to-teal-900/80 z-10"></div>
-                    <img
-                        src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=1600&q=80"
-                        alt="Finance background"
-                        className="w-full h-full object-cover"
-                    />
-                </div>
-
-                {/* Content */}
-                <div className="container relative z-20 mx-auto px-6 h-full flex flex-col justify-center">
+            {/* Hero Section - Clean with Color Contrast */}
+            <div className="relative bg-gradient-to-br from-white via-teal-50 to-white py-20">
+                <div className="container mx-auto px-6">
                     <a
                         href="/"
-                        className="inline-flex items-center text-white/80 hover:text-white transition-all duration-300 group mb-8 w-fit"
+                        className="inline-flex items-center text-slate-600 hover:text-teal-600 transition-all duration-300 group mb-8 w-fit"
                     >
                         <ArrowLeft className="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform" />
                         Back to Home
@@ -97,34 +86,12 @@ export default function Blog() {
                         transition={{ duration: 0.8 }}
                         className="max-w-3xl"
                     >
-                        <div className="text-teal-400 text-sm font-medium mb-4 tracking-wider">
+                        <div className="text-teal-600 text-sm font-medium mb-4 tracking-wider">
                             Ideas that move, insights that matter.
                         </div>
-                        <h1 className="text-6xl md:text-8xl font-bold text-white mb-6 leading-tight lowercase">
+                        <h1 className="text-7xl md:text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-slate-900 to-teal-600 mb-6 leading-tight">
                             Blogs
                         </h1>
-                    </motion.div>
-                </div>
-
-                {/* Animated Marquee */}
-                <div className="absolute bottom-0 left-0 right-0 z-20 overflow-hidden py-6 bg-gradient-to-r from-teal-600 to-teal-500">
-                    <motion.div
-                        animate={{ x: [0, -1000] }}
-                        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                        className="flex gap-8 whitespace-nowrap"
-                    >
-                        {[...Array(3)].map((_, i) => (
-                            <div key={i} className="flex gap-8">
-                                <span className="text-white font-bold text-lg">SMART MONEY</span>
-                                <span className="text-white/70">•</span>
-                                <span className="text-white font-bold text-lg">FINANCIAL FREEDOM</span>
-                                <span className="text-white/70">•</span>
-                                <span className="text-white font-bold text-lg">WEALTH BUILDING</span>
-                                <span className="text-white/70">•</span>
-                                <span className="text-white font-bold text-lg">SMART SAVINGS</span>
-                                <span className="text-white/70">•</span>
-                            </div>
-                        ))}
                     </motion.div>
                 </div>
             </div>
@@ -147,44 +114,9 @@ export default function Blog() {
                     </motion.div>
                 </div>
 
-                {/* Featured Highlights - Triple Card */}
-                <div className="grid md:grid-cols-3 gap-6 mb-20">
-                    {posts.slice(0, 3).map((post, i) => (
-                        <motion.div
-                            key={i}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: i * 0.1 }}
-                            whileHover={{ y: -8 }}
-                            className="group cursor-pointer"
-                        >
-                            <div className="relative h-[400px] rounded-3xl overflow-hidden">
-                                <img
-                                    src={post.image}
-                                    alt={post.title}
-                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent"></div>
-                                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                                    <div className="inline-flex items-center gap-2 bg-teal-500 px-3 py-1 rounded-full text-xs font-bold mb-3">
-                                        Highlights
-                                    </div>
-                                    <div className="text-sm mb-2 opacity-80">
-                                        {post.date} / {post.category}
-                                    </div>
-                                    <h3 className="text-xl font-bold group-hover:text-teal-400 transition-colors">
-                                        {post.title}
-                                    </h3>
-                                </div>
-                            </div>
-                        </motion.div>
-                    ))}
-                </div>
-
-                {/* Blog Grid */}
+                {/* All Blog Posts - Consistent Card Design */}
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {posts.slice(3).map((post, index) => (
+                    {posts.map((post, index) => (
                         <motion.div
                             key={index}
                             initial={{ opacity: 0, y: 30 }}
@@ -201,9 +133,16 @@ export default function Blog() {
                                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                {post.featured && (
+                                    <div className="absolute top-4 right-4">
+                                        <div className="bg-teal-500 text-white px-3 py-1 rounded-full text-xs font-bold">
+                                            Featured
+                                        </div>
+                                    </div>
+                                )}
                             </div>
                             <div className="text-sm text-slate-500 mb-2">
-                                {post.date} / {post.category}
+                                {post.date} • {post.category}
                             </div>
                             <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-teal-600 transition-colors line-clamp-2">
                                 {post.title}

@@ -89,80 +89,66 @@ export default function FeaturesPage() {
         {
             icon: <PieChart className="w-8 h-8" />,
             title: "Smart Budgeting",
-            description: "Manage detailed budgets across categories like housing, transportation, food, and entertainment to stay on top of your finances."
+            description: "Manage detailed budgets across categories like housing, transportation, food, and entertainment to stay on top of your finances.",
+            color: "from-purple-500 to-pink-500",
+            bgColor: "bg-gradient-to-br from-purple-50 to-pink-50",
+            size: "col-span-2"
         },
         {
             icon: <TrendingUp className="w-8 h-8" />,
             title: "Investment Tracking",
-            description: "Monitor and analyze your investment portfolio, including stocks, mutual funds, and bonds, to maximize growth potential."
+            description: "Monitor and analyze your investment portfolio, including stocks, mutual funds, and bonds, to maximize growth potential.",
+            color: "from-emerald-500 to-teal-500",
+            bgColor: "bg-gradient-to-br from-emerald-50 to-teal-50",
+            size: "col-span-1"
         },
         {
             icon: <Target className="w-8 h-8" />,
             title: "Savings Goals",
-            description: "Set specific savings goals for vacations, emergencies, or big purchases and track your progress toward achieving them."
+            description: "Set specific savings goals for vacations, emergencies, or big purchases and track your progress toward achieving them.",
+            color: "from-amber-500 to-orange-500",
+            bgColor: "bg-gradient-to-br from-amber-50 to-orange-50",
+            size: "col-span-1"
         },
         {
             icon: <Calculator className="w-8 h-8" />,
             title: "Tax Planning",
-            description: "Identify tax-saving opportunities, organize documents, and simplify your preparation for filing season with smart suggestions."
+            description: "Identify tax-saving opportunities, organize documents, and simplify your preparation for filing season with smart suggestions.",
+            color: "from-blue-500 to-cyan-500",
+            bgColor: "bg-gradient-to-br from-blue-50 to-cyan-50",
+            size: "col-span-1"
         },
         {
             icon: <Shield className="w-8 h-8" />,
             title: "Bill Payments",
-            description: "Pay and schedule bills directly within the app, giving you a single place to manage all recurring expenses efficiently."
+            description: "Pay and schedule bills directly within the app, giving you a single place to manage all recurring expenses efficiently.",
+            color: "from-violet-500 to-purple-500",
+            bgColor: "bg-gradient-to-br from-violet-50 to-purple-50",
+            size: "col-span-1"
         },
         {
             icon: <Wallet className="w-8 h-8" />,
             title: "Multiple Accounts",
-            description: "Manage multiple bank accounts, credit cards, and wallets in one unified dashboard for complete financial visibility."
-        }
-    ];
-
-    const benefits = [
-        {
-            icon: <Clock className="w-12 h-12" />,
-            title: "Save Time & Reduce Stress",
-            subtitle: "Automate your finances for less worry",
-            description: "Automate repetitive tasks like budgeting, expense tracking, and bill payments. Free up your time for things that matter while reducing financial anxiety.",
-            points: ["Stay on top of your budget", "Automate finances for less stress"],
-            image: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800&q=80"
+            description: "Manage multiple bank accounts, credit cards, and wallets in one unified dashboard for complete financial visibility.",
+            color: "from-rose-500 to-pink-500",
+            bgColor: "bg-gradient-to-br from-rose-50 to-pink-50",
+            size: "col-span-2"
         },
         {
-            icon: <TrendingUp className="w-12 h-12" />,
-            title: "Accelerate Financial Growth",
-            subtitle: "Take control of your financial future",
-            description: "Get valuable insights into your spending patterns and identify areas where you can save more. Make informed decisions backed by data.",
-            points: ["Reach your financial goals faster", "Make data-driven decisions"],
-            image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80"
+            icon: <Zap className="w-8 h-8" />,
+            title: "AI Insights",
+            description: "Get personalized financial recommendations powered by artificial intelligence.",
+            color: "from-teal-500 to-emerald-500",
+            bgColor: "bg-gradient-to-br from-teal-50 to-emerald-50",
+            size: "col-span-1"
         },
         {
-            icon: <Shield className="w-12 h-12" />,
-            title: "Bank-Level Security",
-            subtitle: "Experience ultimate financial security",
-            description: "Your data is protected with 256-bit encryption and multi-factor authentication. Focus on managing your money without security worries.",
-            points: ["Protect your sensitive data", "Complete peace of mind"],
-            image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&q=80"
-        }
-    ];
-
-    const howItWorksSteps = [
-        {
-            number: "1",
-            title: "Connect Your Accounts",
-            description: "Securely link your bank accounts, credit cards, and investment accounts to get a complete financial overview in one place.",
-            image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&q=80"
-        },
-        {
-            number: "2",
-            title: "Track Expenses",
-            description: "Automatically categorize transactions or manually add expenses. Scan receipts and let AI do the work for you.",
-            image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&q=80"
-        },
-        {
-            number: "3",
-            title: "Set Budgets & Goals",
-            description: "Create custom budgets for different categories and set savings goals. Get alerts when you're close to your limits.",
-            image: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=600&q=80"
+            icon: <LineChart className="w-8 h-8" />,
+            title: "Trend Analysis",
+            description: "Analyze spending patterns over time with advanced forecasting tools.",
+            color: "from-indigo-500 to-blue-500",
+            bgColor: "bg-gradient-to-br from-indigo-50 to-blue-50",
+            size: "col-span-1"
         }
     ];
 
@@ -423,7 +409,7 @@ export default function FeaturesPage() {
                 </div>
             </section>
 
-            {/* More Features Grid */}
+            {/* More Features Grid - Updated with Bento Style */}
             <section className="py-20 bg-gradient-to-b from-white to-teal-50/30">
                 <div className="container mx-auto px-6">
                     <div className="text-center mb-16">
@@ -434,156 +420,111 @@ export default function FeaturesPage() {
                         >
                             <span className="text-sm font-bold text-teal-600 uppercase tracking-wider">More Features</span>
                             <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mt-4">
-                                More Great Additional Features
+                                Complete Financial Toolkit
                             </h2>
+                            <p className="text-xl text-slate-600 mt-6 max-w-3xl mx-auto">
+                                Everything you need to master your finances in one beautiful, organized interface
+                            </p>
                         </motion.div>
                     </div>
 
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {/* Bento Grid Layout */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
                         {moreFeatures.map((feature, index) => (
                             <motion.div
                                 key={index}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: index * 0.1 }}
-                                whileHover={{ y: -8 }}
-                                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-teal-100/50"
+                                whileHover={{ y: -5, scale: 1.02 }}
+                                className={`${feature.size} ${feature.bgColor} rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 relative overflow-hidden group border border-white/50`}
                             >
-                                <div className="w-14 h-14 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center mb-6">
-                                    {feature.icon}
-                                </div>
-                                <h3 className="text-xl font-bold text-slate-900 mb-3">{feature.title}</h3>
-                                <p className="text-slate-600 leading-relaxed">{feature.description}</p>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-            </section>
+                                {/* Gradient Background Effect */}
+                                <div className={`absolute inset-0 opacity-0 group-hover:opacity-10 bg-gradient-to-br ${feature.color} transition-opacity duration-500`}></div>
 
-            {/* Benefits Section */}
-            <section className="py-20 bg-white">
-                <div className="container mx-auto px-6">
-                    <div className="text-center mb-16">
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                        >
-                            <span className="text-sm font-bold text-teal-600 uppercase tracking-wider">Benefits</span>
-                            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mt-4">
-                                Experience The Future Of Finance
-                            </h2>
-                        </motion.div>
-                    </div>
-
-                    <div className="space-y-20">
-                        {benefits.map((benefit, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, y: 40 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                className={`grid md:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}
-                            >
-                                <div className={`${index % 2 === 1 ? 'md:order-2' : ''}`}>
-                                    <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-teal-500 to-teal-600 text-white mb-6 shadow-lg shadow-teal-500/30">
-                                        {benefit.icon}
-                                    </div>
-                                    <h3 className="text-3xl font-bold text-slate-900 mb-3">{benefit.title}</h3>
-                                    <p className="text-xl text-teal-600 mb-6">{benefit.subtitle}</p>
-                                    <p className="text-slate-600 leading-relaxed mb-6">{benefit.description}</p>
-                                    <div className="space-y-3">
-                                        {benefit.points.map((point, i) => (
-                                            <div key={i} className="flex items-center gap-3">
-                                                <div className="w-2 h-2 rounded-full bg-teal-500"></div>
-                                                <span className="text-slate-700 font-medium">{point}</span>
-                                            </div>
-                                        ))}
+                                {/* Animated Border */}
+                                <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                                    <div className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${feature.color} p-[2px]`}>
+                                        <div className="h-full w-full bg-white rounded-[22px]"></div>
                                     </div>
                                 </div>
-                                <div className={`relative ${index % 2 === 1 ? 'md:order-1' : ''}`}>
-                                    <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-                                        <img
-                                            src={benefit.image}
-                                            alt={benefit.title}
-                                            className="w-full h-[400px] object-cover"
-                                        />
+
+                                <div className="relative z-10">
+                                    <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${feature.color} text-white flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                                        {feature.icon}
                                     </div>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-            </section>
+                                    <h3 className="text-2xl font-bold text-slate-900 mb-4">{feature.title}</h3>
+                                    <p className="text-slate-700 leading-relaxed">{feature.description}</p>
 
-            {/* How It Works Section */}
-            <section className="py-20 bg-gradient-to-br from-teal-50 to-white">
-                <div className="container mx-auto px-6">
-                    <div className="text-center mb-16">
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                        >
-                            <span className="text-sm font-bold text-teal-600 uppercase tracking-wider">How It Works</span>
-                            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mt-4">
-                                How SwiftFin Can Help You
-                            </h2>
-                        </motion.div>
-                    </div>
-
-                    <div className="grid md:grid-cols-3 gap-8">
-                        {howItWorksSteps.map((step, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.2 }}
-                                onClick={() => setActiveStep(index)}
-                                className={`cursor-pointer transition-all duration-300 ${activeStep === index ? 'scale-105' : ''}`}
-                            >
-                                <div className="relative rounded-3xl overflow-hidden shadow-xl mb-6 group">
-                                    <img
-                                        src={step.image}
-                                        alt={step.title}
-                                        className="w-full h-[400px] object-cover group-hover:scale-110 transition-transform duration-500"
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/40 to-transparent"></div>
-                                    <div className="absolute top-6 left-6">
-                                        <div className="w-12 h-12 rounded-full bg-teal-500 text-white flex items-center justify-center text-xl font-bold">
-                                            {step.number}
+                                    {/* Hover Indicator */}
+                                    <div className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                        <div className="w-10 h-10 rounded-full bg-white/80 flex items-center justify-center shadow-md">
+                                            <div className={`w-6 h-6 rounded-full bg-gradient-to-br ${feature.color}`}></div>
                                         </div>
                                     </div>
                                 </div>
-                                <h3 className="text-2xl font-bold text-slate-900 mb-3">{step.title}</h3>
-                                <p className="text-slate-600 leading-relaxed">{step.description}</p>
                             </motion.div>
                         ))}
                     </div>
+
+                    {/* Bento Grid Decorative Elements */}
+                    <motion.div
+                        animate={{
+                            y: [0, -10, 0],
+                        }}
+                        transition={{
+                            duration: 3,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                        }}
+                        className="absolute left-1/4 top-1/3 w-32 h-32 bg-teal-300/20 rounded-full blur-3xl -z-10"
+                    />
+                    <motion.div
+                        animate={{
+                            y: [0, 10, 0],
+                        }}
+                        transition={{
+                            duration: 4,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                            delay: 0.5
+                        }}
+                        className="absolute right-1/4 bottom-1/4 w-40 h-40 bg-purple-300/20 rounded-full blur-3xl -z-10"
+                    />
                 </div>
             </section>
 
-            {/* CTA Section */}
-            <section className="py-20 bg-gradient-to-br from-slate-900 to-teal-900 text-white">
-                <div className="container mx-auto px-6 text-center">
+            {/* Download CTA Section - Mobile Responsive */}
+            <section className="py-16 md:py-20 bg-gradient-to-br from-slate-900 to-teal-900 text-white">
+                <div className="container mx-auto px-6">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="max-w-3xl mx-auto"
+                        className="flex flex-col items-center justify-center"
                     >
-                        <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                            Your First Step To Financial Freedom Begins Here
-                        </h2>
-                        <p className="text-xl text-white/80 mb-10">
-                            Start taking control of your money today and watch your wealth grow with intelligent financial management.
-                        </p>
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <button className="px-8 py-4 bg-white text-slate-900 rounded-xl font-bold hover:shadow-xl transition-all hover:scale-105">
-                                Get Started Free
-                            </button>
+                        {/* Mobile Responsive Button Container */}
+                        <div className="w-full max-w-md md:max-w-lg lg:max-w-xl">
+                            <a
+                                href="/download"
+                                className="w-full inline-block"
+                            >
+                                <button className="w-full px-6 py-4 md:px-8 md:py-5 bg-gradient-to-r from-white to-white/90 text-slate-900 rounded-xl md:rounded-2xl font-bold hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-white/10 text-lg md:text-xl flex items-center justify-center gap-3">
+                                    <svg className="w-6 h-6 md:w-7 md:h-7" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12 16L16 10H8L12 16Z" />
+                                        <path d="M4 20H20V18H4V20Z" />
+                                    </svg>
+                                    Download SwiftFin
+                                </button>
+                            </a>
+
+                            {/* Mobile specific spacing */}
+                            <div className="mt-8 md:mt-10 text-center">
+                                <p className="text-white/70 text-sm md:text-base px-4">
+                                    Available on iOS and Android
+                                </p>
+                            </div>
                         </div>
                     </motion.div>
                 </div>
