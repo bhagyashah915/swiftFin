@@ -438,232 +438,419 @@ export default function FeaturesPage() {
             </section>
 
             {/* More Features Section - WITH ANIMATED PHONE AND FEATURE BUBBLES */}
-            <section className="py-20 bg-gradient-to-b from-white to-teal-50/30">
-                <div className="container mx-auto px-6">
-                    <div className="text-center mb-16">
+{/* More Features Section - UPDATED WITH BENTO GRID */}
+{/* More Features Section - REFINED BENTO GRID */}
+<section className="py-20 bg-white">
+    <div className="container mx-auto px-6">
+        <div className="text-center mb-16">
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+            >
+                <span className="text-sm font-bold text-teal-600 uppercase tracking-wider">More Features</span>
+                <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mt-4">
+                    Explore Our <br /> Standout Features
+                </h2>
+                <p className="text-xl text-slate-600 mt-6 max-w-3xl mx-auto">
+                    Everything you need to master your finances, elegantly arranged for your convenience
+                </p>
+            </motion.div>
+        </div>
+
+        {/* Bento Grid Container */}
+        <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="max-w-7xl mx-auto"
+        >
+            {/* Grid Layout - 2x2 with varying widths */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8">
+                {/* Top Left Card - Expense Tracking (Spans 7 columns) */}
+{/* Top Left Card - Expense Tracking (Spans 7 columns) */}
+<motion.div
+    whileHover={{ scale: 1.01, y: -3 }}
+    transition={{ duration: 0.3 }}
+    className="lg:col-span-7 bg-gradient-to-br from-teal-200 to-teal-100 rounded-3xl p-8 md:p-10 border border-teal-200 shadow-xl hover:shadow-2xl transition-all duration-300 relative overflow-hidden flex flex-col"
+>
+    {/* Content */}
+    <div className="relative z-10 flex-grow flex flex-col">
+        {/* Image Container with Hovering Icons - Centered and Larger */}
+        <div className="flex-grow flex items-center justify-center mb-6">
+            <motion.div
+                initial="rest"
+                whileHover="hover"
+                className="relative w-full max-w-lg"
+            >
+                {/* Hovering Icons - Behind Image */}
+                {/* Top Left Icon */}
+                <motion.div
+                    variants={{
+                        rest: { x: 60, y: 60, opacity: 0, scale: 0.5 },
+                        hover: { x: -30, y: -30, opacity: 1, scale: 1 }
+                    }}
+                    transition={{ duration: 0.5, ease: "easeOut" }}
+                    className="absolute top-8 left-8 w-16 h-16 bg-white rounded-full shadow-2xl flex items-center justify-center text-teal-600"
+                    style={{ zIndex: 1 }}
+                >
+                    <Receipt className="w-8 h-8" />
+                </motion.div>
+
+                {/* Top Right Icon */}
+                <motion.div
+                    variants={{
+                        rest: { x: -60, y: 60, opacity: 0, scale: 0.5 },
+                        hover: { x: 30, y: -30, opacity: 1, scale: 1 }
+                    }}
+                    transition={{ duration: 0.5, ease: "easeOut", delay: 0.05 }}
+                    className="absolute top-8 right-8 w-16 h-16 bg-white rounded-full shadow-2xl flex items-center justify-center text-teal-600"
+                    style={{ zIndex: 1 }}
+                >
+                    <TrendingUp className="w-8 h-8" />
+                </motion.div>
+
+                {/* Bottom Left Icon */}
+                <motion.div
+                    variants={{
+                        rest: { x: 60, y: -60, opacity: 0, scale: 0.5 },
+                        hover: { x: -30, y: 30, opacity: 1, scale: 1 }
+                    }}
+                    transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
+                    className="absolute bottom-8 left-8 w-16 h-16 bg-white rounded-full shadow-2xl flex items-center justify-center text-teal-600"
+                    style={{ zIndex: 1 }}
+                >
+                    <PieChart className="w-8 h-8" />
+                </motion.div>
+
+                {/* Bottom Right Icon */}
+                <motion.div
+                    variants={{
+                        rest: { x: -60, y: -60, opacity: 0, scale: 0.5 },
+                        hover: { x: 30, y: 30, opacity: 1, scale: 1 }
+                    }}
+                    transition={{ duration: 0.5, ease: "easeOut", delay: 0.15 }}
+                    className="absolute bottom-8 right-8 w-16 h-16 bg-white rounded-full shadow-2xl flex items-center justify-center text-teal-600"
+                    style={{ zIndex: 1 }}
+                >
+                    <Wallet className="w-8 h-8" />
+                </motion.div>
+
+                {/* Middle Left Icon */}
+                <motion.div
+                    variants={{
+                        rest: { x: 70, y: 0, opacity: 0, scale: 0.5 },
+                        hover: { x: -40, y: 0, opacity: 1, scale: 1 }
+                    }}
+                    transition={{ duration: 0.5, ease: "easeOut", delay: 0.08 }}
+                    className="absolute top-1/2 -translate-y-1/2 left-8 w-16 h-16 bg-white rounded-full shadow-2xl flex items-center justify-center text-teal-600"
+                    style={{ zIndex: 1 }}
+                >
+                    <BarChart3 className="w-8 h-8" />
+                </motion.div>
+
+                {/* Middle Right Icon */}
+                <motion.div
+                    variants={{
+                        rest: { x: -70, y: 0, opacity: 0, scale: 0.5 },
+                        hover: { x: 40, y: 0, opacity: 1, scale: 1 }
+                    }}
+                    transition={{ duration: 0.5, ease: "easeOut", delay: 0.12 }}
+                    className="absolute top-1/2 -translate-y-1/2 right-8 w-16 h-16 bg-white rounded-full shadow-2xl flex items-center justify-center text-teal-600"
+                    style={{ zIndex: 1 }}
+                >
+                    <CreditCard className="w-8 h-8" />
+                </motion.div>
+
+                {/* Main Image - On Top with Rotation */}
+                <motion.div
+                    className="relative rounded-xl overflow-hidden shadow-lg"
+                    style={{ zIndex: 10 }}
+                    variants={{
+                        rest: { rotate: 0, scale: 1 },
+                        hover: { rotate: 2, scale: 1.02 }
+                    }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                >
+                    <img
+                        src="/images/featuresGraph.avif"
+                        alt="Smart Expense Tracking Dashboard"
+                        className="w-full h-auto object-cover"
+                    />
+                </motion.div>
+            </motion.div>
+        </div>
+
+        {/* Text Content at Bottom */}
+        <div className="text-left mt-auto">
+            <h3 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+                Smart Expense Tracking
+            </h3>
+            <p className="text-slate-600 text-lg">
+                Automatically track and categorize every expense with AI-powered insights. Get real-time notifications and detailed breakdowns of your spending habits across all your accounts.
+            </p>
+        </div>
+    </div>
+
+    {/* Background Decoration */}
+    <div className="absolute -right-10 -bottom-10 w-64 h-64 bg-teal-200/30 rounded-full blur-3xl"></div>
+    <div className="absolute -left-10 -top-10 w-48 h-48 bg-teal-100/40 rounded-full blur-3xl"></div>
+</motion.div>
+
+                {/* Top Right Card - Financial Reports (Spans 5 columns) */}
+                <motion.div
+                    whileHover={{ scale: 1.01, y: -3 }}
+                    transition={{ duration: 0.3 }}
+                    className="lg:col-span-5 bg-gradient-to-br from-white to-teal-50 rounded-3xl p-8 border border-teal-100 shadow-xl hover:shadow-2xl transition-all duration-300 relative overflow-hidden flex flex-col"
+                >
+                    {/* Content */}
+                    <div className="mb-6">
+                        <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-teal-100 to-teal-200 text-teal-700 mb-6">
+                            <BarChart3 className="w-8 h-8" />
+                        </div>
+
+                        <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
+                            Interactive Reports
+                        </h3>
+                        <p className="text-slate-600">
+                            Transform your data into beautiful, interactive dashboards and comprehensive reports for better financial decisions.
+                        </p>
+                    </div>
+
+                    {/* Report Image - With Fade Out Bottom - Takes remaining space */}
+                    <div className="relative rounded-2xl overflow-hidden flex-grow">
                         <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
+                            whileHover={{ scale: 1.03 }}
+                            transition={{ duration: 0.3 }}
+                            className="relative w-full h-full"
                         >
-                            <span className="text-sm font-bold text-teal-600 uppercase tracking-wider">More Features</span>
-                            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mt-4">
-                                All Features At Your Fingertips
-                            </h2>
-                            <p className="text-xl text-slate-600 mt-6 max-w-3xl mx-auto">
-                                Discover how every feature emerges from within SwiftFin to transform your financial management
-                            </p>
+                            <img
+                                src="/images/featuresreport.png"
+                                alt="Interactive Reports Dashboard"
+                                className="w-full h-full object-cover object-top"
+                            />
+                            {/* Gradient fade from bottom to transparent */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-white via-white/60 to-transparent pointer-events-none"></div>
                         </motion.div>
                     </div>
 
-                    {/* Animated Phone with Feature Bubbles Container */}
-                    <div className="relative min-h-[800px] flex items-center justify-center">
-                        {/* Phone Mockup in Center */}
-                        <motion.div
-                            initial={{ scale: 0.8, opacity: 0 }}
-                            whileInView={{ scale: 1, opacity: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8 }}
-                            className="relative z-20"
-                        >
-                            <div className="relative w-[280px] md:w-[320px] lg:w-[360px]">
-                                {/* Phone Mockup Image */}
-                                <img
-                                    src="/featuresphone.png"
-                                    alt="SwiftFin App Interface"
-                                    className="w-full h-auto drop-shadow-2xl"
-                                />
+                    {/* Background Decoration */}
+                    <div className="absolute -left-10 -bottom-10 w-40 h-40 bg-teal-100/20 rounded-full blur-3xl"></div>
+                </motion.div>
 
-                                {/* Animated App Screen Inside Phone */}
-                                <div className="absolute top-[4%] left-[5%] right-[5%] bottom-[4%] overflow-hidden rounded-[40px] bg-gradient-to-b from-white to-teal-50">
-                                    {/* Animated App Content */}
-                                    <div className="p-6 h-full flex flex-col">
-                                        {/* App Header */}
-                                        <div className="flex items-center justify-between mb-8">
-                                            <div className="w-8 h-8 rounded-full bg-teal-100"></div>
-                                            <div className="text-2xl font-bold text-teal-600">SwiftFin</div>
-                                            <div className="w-8 h-8 rounded-full bg-teal-100"></div>
-                                        </div>
+                {/* Bottom Left Card - EMI Management (Spans 5 columns) */}
+                <motion.div
+                    whileHover={{ scale: 1.01, y: -3 }}
+                    transition={{ duration: 0.3 }}
+                    className="lg:col-span-5 bg-gradient-to-br from-white to-teal-50 rounded-3xl p-8 border border-teal-100 shadow-xl hover:shadow-2xl transition-all duration-300 relative overflow-hidden flex flex-col"
+                >
+                    <div className="flex-grow">
+                        <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-teal-100 to-teal-200 text-teal-700 mb-6">
+                            <CreditCard className="w-8 h-8" />
+                        </div>
 
-                                        {/* Animated Dashboard Elements */}
-                                        <div className="flex-1 space-y-4">
-                                            {/* Balance Card */}
-                                            <motion.div
-                                                animate={{ y: [0, -5, 0] }}
-                                                transition={{ duration: 3, repeat: Infinity }}
-                                                className="h-24 rounded-2xl bg-gradient-to-r from-teal-500 to-teal-600 p-4"
-                                            >
-                                                <div className="text-white/80 text-sm">Total Balance</div>
-                                                <div className="text-2xl font-bold text-white mt-2">₹85,430</div>
-                                                <div className="text-white/60 text-xs mt-1">+12% this month</div>
-                                            </motion.div>
+                        <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
+                            EMI & Loan Management
+                        </h3>
+                        <p className="text-slate-600 mb-6">
+                            Track all your loans in one place with automated payment reminders and interest breakdowns.
+                        </p>
 
-                                            {/* Quick Stats */}
-                                            <div className="grid grid-cols-2 gap-3">
-                                                {[1, 2].map((i) => (
-                                                    <motion.div
-                                                        key={i}
-                                                        initial={{ opacity: 0, scale: 0.9 }}
-                                                        animate={{ opacity: 1, scale: 1 }}
-                                                        transition={{ delay: i * 0.2 }}
-                                                        className="aspect-video rounded-xl bg-white border border-teal-100 p-3"
-                                                    >
-                                                        <div className="w-8 h-8 rounded-lg bg-teal-100 mb-2"></div>
-                                                        <div className="h-2 bg-teal-200 rounded-full mb-1"></div>
-                                                        <div className="h-2 bg-teal-100 rounded-full w-2/3"></div>
-                                                    </motion.div>
-                                                ))}
-                                            </div>
+                        {/* Stacked Loan Cards */}
+                        <div className="relative h-40 mb-6">
+                            {/* Card 3 - Back */}
+                            <motion.div
+                                className="absolute top-8 left-4 right-4 h-24 bg-white/30 rounded-xl border border-teal-100 backdrop-blur-sm"
+                                style={{ zIndex: 1 }}
+                            />
 
-                                            {/* Recent Transactions */}
-                                            <div className="space-y-2">
-                                                <div className="h-2 bg-teal-200/50 rounded-full"></div>
-                                                <div className="h-2 bg-teal-200/30 rounded-full w-3/4"></div>
-                                                <div className="h-2 bg-teal-200/20 rounded-full w-1/2"></div>
-                                            </div>
-                                        </div>
+                            {/* Card 2 - Middle */}
+                            <motion.div
+                                className="absolute top-4 left-2 right-2 h-24 bg-white/50 rounded-xl border border-teal-100 backdrop-blur-sm"
+                                style={{ zIndex: 2 }}
+                            />
+
+                            {/* Card 1 - Front (Main Card) */}
+                            <motion.div
+                                whileHover={{ y: -5 }}
+                                className="absolute top-0 left-0 right-0 h-24 p-4 bg-white rounded-xl border border-teal-100 shadow-lg"
+                                style={{ zIndex: 3 }}
+                            >
+                                <div className="flex items-center justify-between mb-2">
+                                    <div className="text-sm text-slate-600">Next Payment</div>
+                                    <div className="font-bold text-slate-900 text-lg">₹15,299</div>
+                                </div>
+                                <div className="flex items-center justify-between">
+                                    <div className="text-sm text-slate-600">Due Date</div>
+                                    <div className="font-medium text-teal-700 flex items-center gap-2 text-sm">
+                                        <Clock className="w-4 h-4" />
+                                        <span>May 15, 2024</span>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        </div>
+
+                        <div className="pt-6 border-t border-teal-100">
+                            <div className="flex items-center gap-3 text-teal-700">
+                                <Shield className="w-5 h-5" />
+                                <div>
+                                    <div className="font-medium">Automated reminders</div>
+                                    <div className="text-sm text-slate-600">Never miss a payment</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Background Decoration */}
+                    <div className="absolute -right-10 -bottom-10 w-40 h-40 bg-teal-100/20 rounded-full blur-3xl"></div>
+                </motion.div>
+
+                {/* Bottom Right Card - Download CTA (Spans 7 columns) */}
+                <motion.div
+                    whileHover={{ scale: 1.01, y: -3 }}
+                    transition={{ duration: 0.3 }}
+                    className="lg:col-span-7 bg-gradient-to-br from-teal-500 to-teal-600 rounded-3xl p-8 md:p-10 border border-teal-500 shadow-xl hover:shadow-2xl transition-all duration-300 relative overflow-hidden flex flex-col"
+                >
+                    {/* Background Pattern */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-teal-500/90 via-teal-600/90 to-teal-700/90"></div>
+                    <div className="absolute top-0 right-0 w-80 h-80 bg-white/5 rounded-full -translate-y-40 translate-x-40"></div>
+                    <div className="absolute bottom-0 left-0 w-60 h-60 bg-white/5 rounded-full -translate-x-32 translate-y-32"></div>
+
+                    {/* Content */}
+                    <div className="relative z-10 flex flex-col h-full">
+                        {/* Top Section - Logo and Text */}
+                        <div className="flex-grow">
+                            {/* App Logo */}
+                            <div className="mb-6">
+                                <div className="w-20 h-20 rounded-2xl bg-white shadow-lg flex items-center justify-center">
+                                    {/* SwiftFin Logo SVG */}
+                                    <svg viewBox="0 0 320 320" className="w-14 h-14">
+                                        {/* Wallet Body */}
+                                        <rect x="110" y="150" width="130" height="100" rx="12" fill="#50B8A6" stroke="#3D9B8C" strokeWidth="4" />
+                                        {/* Dollar sign on wallet */}
+                                        <text x="175" y="210" fontFamily="Arial" fontSize="32" fontWeight="bold" fill="white">$</text>
+                                        {/* Wallet cards/bills sticking out */}
+                                        <rect x="115" y="135" width="120" height="18" rx="4" fill="#50B8A6" opacity="0.85" stroke="#3D9B8C" strokeWidth="2" />
+                                        <rect x="120" y="120" width="110" height="18" rx="4" fill="#50B8A6" opacity="0.7" stroke="#3D9B8C" strokeWidth="2" />
+                                        {/* Curved Arrow */}
+                                        <path d="M 80 140 Q 50 90, 100 65" stroke="#5EEAD4" strokeWidth="12" fill="none" strokeLinecap="round" />
+                                        {/* Arrow head */}
+                                        <path d="M 85 50 L 120 70 L 100 90 Z" fill="#FFA500" stroke="#FFA500" strokeWidth="2" />
+                                    </svg>
+                                </div>
+                            </div>
+
+                            {/* Heading and Description */}
+                            <div className="mb-8">
+                                <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                                    Start Your Financial Journey
+                                </h3>
+                                <p className="text-teal-100 text-lg mb-6">
+                                    Join thousands mastering their finances with SwiftFin
+                                </p>
+
+                                {/* Benefits */}
+                                <div className="space-y-3">
+                                    <div className="flex items-center gap-3 text-white">
+                                        <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
+                                        <span>Free to download • No credit card required</span>
+                                    </div>
+                                    <div className="flex items-center gap-3 text-white">
+                                        <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
+                                        <span>Bank-level security & encryption</span>
+                                    </div>
+                                    <div className="flex items-center gap-3 text-white">
+                                        <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
+                                        <span>Sync across all your devices</span>
                                     </div>
                                 </div>
                             </div>
-                        </motion.div>
+                        </div>
 
-                        {/* Animated Feature Bubbles */}
-                        <AnimatePresence>
-                            {phoneFeatureBubbles.map((bubble) => (
+                        {/* Bottom Section - Download Button */}
+                        <div className="mt-auto">
+                            <motion.button
+                                whileHover={{ scale: 1.02 }}
+                                whileTap={{ scale: 0.98 }}
+                                className="w-full py-4 bg-white text-teal-700 font-bold rounded-xl flex items-center justify-center gap-3 hover:shadow-2xl transition-all duration-300 mb-4"
+                            >
+                                <Download className="w-6 h-6" />
+                                <span className="text-lg">Get SwiftFin Now</span>
+                            </motion.button>
+
+                            {/* Platform Badges */}
+                            <div className="flex gap-3 justify-center">
                                 <motion.div
-                                    key={bubble.id}
-                                    initial={{ scale: 0, opacity: 0, x: 0, y: 0 }}
-                                    whileInView={{
-                                        scale: [0, 1.2, 1],
-                                        opacity: [0, 1, 1],
-                                        x: bubble.position.left.includes("75") || bubble.position.left.includes("85") || bubble.position.left.includes("90")
-                                            ? [0, 50, 0]
-                                            : [0, -50, 0],
-                                        y: bubble.position.top.includes("10") || bubble.position.top.includes("25")
-                                            ? [0, -30, 0]
-                                            : bubble.position.top.includes("75") || bubble.position.top.includes("90")
-                                                ? [0, 30, 0]
-                                                : [0, 0, 0]
-                                    }}
-                                    viewport={{ once: true }}
-                                    transition={{
-                                        duration: 1,
-                                        delay: bubble.delay,
-                                        scale: {
-                                            duration: 0.8,
-                                            times: [0, 0.7, 1]
-                                        },
-                                        opacity: {
-                                            duration: 0.8
-                                        },
-                                        x: {
-                                            duration: 1.5,
-                                            times: [0, 0.5, 1]
-                                        },
-                                        y: {
-                                            duration: 1.5,
-                                            times: [0, 0.5, 1]
-                                        }
-                                    }}
-                                    whileHover={{
-                                        scale: 1.3,
-                                        transition: { duration: 0.3 }
-                                    }}
-                                    style={{
-                                        position: 'absolute',
-                                        ...bubble.position,
-                                        zIndex: 10
-                                    }}
-                                    className="cursor-pointer group"
+                                    whileHover={{ scale: 1.05, y: -2 }}
+                                    className="flex-1 max-w-xs h-12 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20 flex items-center justify-center cursor-pointer hover:bg-white/15 transition-all"
                                 >
-                                    {/* Bubble Container */}
-                                    <div className="relative">
-                                        {/* Feature Bubble */}
-                                        <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-white border-2 border-teal-200 shadow-2xl flex flex-col items-center justify-center p-3 hover:shadow-3xl transition-all duration-300 group-hover:border-teal-400">
-                                            {/* Icon */}
-                                            <div className={`w-12 h-12 rounded-full ${bubble.color} flex items-center justify-center mb-1 group-hover:scale-110 transition-transform duration-300`}>
-                                                <div className="text-white">
-                                                    {bubble.icon}
-                                                </div>
-                                            </div>
-
-                                            {/* Title */}
-                                            <span className="text-xs md:text-sm font-bold text-teal-900 text-center leading-tight">
-                                                {bubble.title}
-                                            </span>
-                                        </div>
-
-                                        {/* Description Tooltip */}
-                                        <div className="absolute opacity-0 group-hover:opacity-100 transition-opacity duration-300 -bottom-20 left-1/2 transform -translate-x-1/2 w-48 bg-white border border-teal-200 rounded-lg p-3 shadow-xl z-20">
-                                            <p className="text-xs text-slate-700 text-center">{bubble.description}</p>
-                                            <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-b-4 border-l-transparent border-r-transparent border-b-white"></div>
-                                        </div>
-
-                                        {/* Animated Connecting Line */}
-                                        <motion.div
-                                            initial={{ scaleX: 0 }}
-                                            whileInView={{ scaleX: 1 }}
-                                            viewport={{ once: true }}
-                                            transition={{
-                                                duration: 0.8,
-                                                delay: bubble.delay + 0.3,
-                                                ease: "easeOut"
-                                            }}
-                                            className="absolute top-1/2 left-1/2 w-32 h-[2px] bg-gradient-to-r from-teal-300 to-teal-100 origin-center"
-                                            style={{
-                                                transform: 'translate(-50%, -50%) rotate(0deg)',
-                                                transformOrigin: 'center'
-                                            }}
-                                        />
-                                    </div>
+                                    <span className="text-white text-sm font-medium">App Store</span>
                                 </motion.div>
-                            ))}
-                        </AnimatePresence>
-
-                        {/* Decorative Background Elements */}
-                        <motion.div
-                            animate={{
-                                scale: [1, 1.2, 1],
-                                opacity: [0.1, 0.2, 0.1]
-                            }}
-                            transition={{
-                                duration: 4,
-                                repeat: Infinity,
-                                ease: "easeInOut"
-                            }}
-                            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-teal-300/10 rounded-full blur-3xl -z-10"
-                        />
-
-                        <motion.div
-                            animate={{
-                                scale: [1, 1.1, 1],
-                                opacity: [0.05, 0.15, 0.05]
-                            }}
-                            transition={{
-                                duration: 3,
-                                repeat: Infinity,
-                                ease: "easeInOut",
-                                delay: 0.5
-                            }}
-                            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-teal-400/5 rounded-full blur-3xl -z-10"
-                        />
+                                <motion.div
+                                    whileHover={{ scale: 1.05, y: -2 }}
+                                    className="flex-1 max-w-xs h-12 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20 flex items-center justify-center cursor-pointer hover:bg-white/15 transition-all"
+                                >
+                                    <span className="text-white text-sm font-medium">Play Store</span>
+                                </motion.div>
+                            </div>
+                        </div>
                     </div>
 
-                    {/* Feature Summary Text */}
+                    {/* Animated Elements */}
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 1.5 }}
-                        className="text-center mt-20 max-w-3xl mx-auto"
+                        animate={{
+                            rotate: 360,
+                            opacity: [0.3, 0.6, 0.3]
+                        }}
+                        transition={{
+                            rotate: { duration: 15, repeat: Infinity, ease: "linear" },
+                            opacity: { duration: 3, repeat: Infinity }
+                        }}
+                        className="absolute top-8 right-8 w-10 h-10"
                     >
-                        <p className="text-lg text-slate-600">
-                            Each feature seamlessly integrates within SwiftFin, working together to provide you with a complete financial management solution.
-                            From tracking daily expenses to planning long-term investments, everything is designed to work in harmony.
-                        </p>
+                        <Sparkles className="w-10 h-10 text-white/30" />
                     </motion.div>
-                </div>
-            </section>
+                </motion.div>
+            </div>
+        </motion.div>
+
+        {/* Additional Features Grid */}
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
+            className="mt-16 max-w-4xl mx-auto"
+        >
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                {[
+                    { icon: <TrendingUp className="w-6 h-6" />, title: "Investments", desc: "Portfolio tracking", color: "from-blue-100 to-blue-50" },
+                    { icon: <PieChart className="w-6 h-6" />, title: "Budgeting", desc: "Smart spending plans", color: "from-emerald-100 to-emerald-50" },
+                    { icon: <Target className="w-6 h-6" />, title: "Goals", desc: "Save for dreams", color: "from-amber-100 to-amber-50" },
+                    { icon: <Shield className="w-6 h-6" />, title: "Security", desc: "Bank-level protection", color: "from-violet-100 to-violet-50" },
+                ].map((item, index) => (
+                    <motion.div
+                        key={index}
+                        whileHover={{ scale: 1.05, y: -3 }}
+                        className={`bg-gradient-to-br ${item.color} rounded-2xl p-5 border border-teal-100 hover:shadow-lg transition-all duration-300`}
+                    >
+                        <div className={`inline-flex items-center justify-center w-12 h-12 rounded-xl ${
+                            index === 0 ? 'bg-blue-100 text-blue-700' :
+                            index === 1 ? 'bg-emerald-100 text-emerald-700' :
+                            index === 2 ? 'bg-amber-100 text-amber-700' :
+                            'bg-violet-100 text-violet-700'
+                        } mb-3`}>
+                            {item.icon}
+                        </div>
+                        <h4 className="font-bold text-slate-900 mb-1">{item.title}</h4>
+                        <p className="text-sm text-slate-600">{item.desc}</p>
+                    </motion.div>
+                ))}
+            </div>
+        </motion.div>
+    </div>
+</section>
 
             {/* Download CTA Section - UPDATED WITH INTERACTIVE BUTTON */}
             <section className="py-16 md:py-20 bg-white">
