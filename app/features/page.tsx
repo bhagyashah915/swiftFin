@@ -1,11 +1,12 @@
 "use client";
 
-import { Receipt, BarChart3, CreditCard, TrendingUp, PieChart, Wallet, Camera, Calculator, ArrowLeft, CheckCircle2, Shield, Clock, Target, Zap, LineChart, Smartphone } from "lucide-react";
-import { motion } from "framer-motion";
-import { useState } from "react";
+import { Receipt, BarChart3, CreditCard, TrendingUp, PieChart, Wallet, Camera, Calculator, ArrowLeft, CheckCircle2, Shield, Clock, Target, Zap, LineChart, Smartphone, Download, ChevronRight, Sparkles } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
 
 export default function FeaturesPage() {
     const [activeStep, setActiveStep] = useState(0);
+    const [isDownloadHovered, setIsDownloadHovered] = useState(false);
 
     // Updated mobile screens data array with features from the app
     const mobileScreens = [
@@ -85,76 +86,103 @@ export default function FeaturesPage() {
         }
     ];
 
-    const moreFeatures = [
+    // Feature bubbles that pop out from phone in More Features section
+    const phoneFeatureBubbles = [
         {
-            icon: <PieChart className="w-8 h-8" />,
+            id: 1,
+            title: "Expense Tracking",
+            icon: <Receipt className="w-6 h-6" />,
+            description: "Track every rupee with intelligent expense tracking",
+            position: { top: "10%", left: "75%" },
+            delay: 0.2,
+            color: "bg-gradient-to-br from-teal-500 to-teal-600"
+        },
+        {
+            id: 2,
             title: "Smart Budgeting",
-            description: "Manage detailed budgets across categories like housing, transportation, food, and entertainment to stay on top of your finances.",
-            color: "from-purple-500 to-pink-500",
-            bgColor: "bg-gradient-to-br from-purple-50 to-pink-50",
-            size: "col-span-2"
+            icon: <PieChart className="w-6 h-6" />,
+            description: "Manage budgets across all categories effortlessly",
+            position: { top: "25%", left: "85%" },
+            delay: 0.4,
+            color: "bg-gradient-to-br from-teal-500 to-teal-600"
         },
         {
-            icon: <TrendingUp className="w-8 h-8" />,
+            id: 3,
+            title: "EMI Management",
+            icon: <CreditCard className="w-6 h-6" />,
+            description: "Track loans with automated payment reminders",
+            position: { top: "50%", left: "90%" },
+            delay: 0.6,
+            color: "bg-gradient-to-br from-teal-500 to-teal-600"
+        },
+        {
+            id: 4,
+            title: "Financial Reports",
+            icon: <BarChart3 className="w-6 h-6" />,
+            description: "Interactive dashboards & comprehensive reports",
+            position: { top: "75%", left: "85%" },
+            delay: 0.8,
+            color: "bg-gradient-to-br from-teal-500 to-teal-600"
+        },
+        {
+            id: 5,
             title: "Investment Tracking",
-            description: "Monitor and analyze your investment portfolio, including stocks, mutual funds, and bonds, to maximize growth potential.",
-            color: "from-emerald-500 to-teal-500",
-            bgColor: "bg-gradient-to-br from-emerald-50 to-teal-50",
-            size: "col-span-1"
+            icon: <TrendingUp className="w-6 h-6" />,
+            description: "Monitor portfolio growth with real-time updates",
+            position: { top: "90%", left: "75%" },
+            delay: 1.0,
+            color: "bg-gradient-to-br from-teal-500 to-teal-600"
         },
         {
-            icon: <Target className="w-8 h-8" />,
+            id: 6,
             title: "Savings Goals",
-            description: "Set specific savings goals for vacations, emergencies, or big purchases and track your progress toward achieving them.",
-            color: "from-amber-500 to-orange-500",
-            bgColor: "bg-gradient-to-br from-amber-50 to-orange-50",
-            size: "col-span-1"
+            icon: <Target className="w-6 h-6" />,
+            description: "Set and track progress towards financial targets",
+            position: { top: "90%", left: "25%" },
+            delay: 1.0,
+            color: "bg-gradient-to-br from-teal-500 to-teal-600"
         },
         {
-            icon: <Calculator className="w-8 h-8" />,
+            id: 7,
             title: "Tax Planning",
-            description: "Identify tax-saving opportunities, organize documents, and simplify your preparation for filing season with smart suggestions.",
-            color: "from-blue-500 to-cyan-500",
-            bgColor: "bg-gradient-to-br from-blue-50 to-cyan-50",
-            size: "col-span-1"
+            icon: <Calculator className="w-6 h-6" />,
+            description: "Identify tax-saving opportunities automatically",
+            position: { top: "75%", left: "15%" },
+            delay: 0.8,
+            color: "bg-gradient-to-br from-teal-500 to-teal-600"
         },
         {
-            icon: <Shield className="w-8 h-8" />,
+            id: 8,
             title: "Bill Payments",
-            description: "Pay and schedule bills directly within the app, giving you a single place to manage all recurring expenses efficiently.",
-            color: "from-violet-500 to-purple-500",
-            bgColor: "bg-gradient-to-br from-violet-50 to-purple-50",
-            size: "col-span-1"
+            icon: <Shield className="w-6 h-6" />,
+            description: "Pay and schedule bills in one place",
+            position: { top: "50%", left: "10%" },
+            delay: 0.6,
+            color: "bg-gradient-to-br from-teal-500 to-teal-600"
         },
         {
-            icon: <Wallet className="w-8 h-8" />,
+            id: 9,
             title: "Multiple Accounts",
-            description: "Manage multiple bank accounts, credit cards, and wallets in one unified dashboard for complete financial visibility.",
-            color: "from-rose-500 to-pink-500",
-            bgColor: "bg-gradient-to-br from-rose-50 to-pink-50",
-            size: "col-span-2"
+            icon: <Wallet className="w-6 h-6" />,
+            description: "Manage all bank accounts in unified dashboard",
+            position: { top: "25%", left: "15%" },
+            delay: 0.4,
+            color: "bg-gradient-to-br from-teal-500 to-teal-600"
         },
         {
-            icon: <Zap className="w-8 h-8" />,
+            id: 10,
             title: "AI Insights",
-            description: "Get personalized financial recommendations powered by artificial intelligence.",
-            color: "from-teal-500 to-emerald-500",
-            bgColor: "bg-gradient-to-br from-teal-50 to-emerald-50",
-            size: "col-span-1"
-        },
-        {
-            icon: <LineChart className="w-8 h-8" />,
-            title: "Trend Analysis",
-            description: "Analyze spending patterns over time with advanced forecasting tools.",
-            color: "from-indigo-500 to-blue-500",
-            bgColor: "bg-gradient-to-br from-indigo-50 to-blue-50",
-            size: "col-span-1"
+            icon: <Zap className="w-6 h-6" />,
+            description: "Personalized financial recommendations",
+            position: { top: "10%", left: "25%" },
+            delay: 0.2,
+            color: "bg-gradient-to-br from-teal-500 to-teal-600"
         }
     ];
 
     return (
         <div className="min-h-screen bg-white">
-            {/* Hero Section - Updated with single phone image and feature cards */}
+            {/* Hero Section - KEPT EXACTLY AS IT WAS */}
             <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-white via-teal-50/20 to-white">
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-teal-100/20 via-transparent to-transparent"></div>
 
@@ -409,7 +437,7 @@ export default function FeaturesPage() {
                 </div>
             </section>
 
-            {/* More Features Grid - Updated with Bento Style */}
+            {/* More Features Section - WITH ANIMATED PHONE AND FEATURE BUBBLES */}
             <section className="py-20 bg-gradient-to-b from-white to-teal-50/30">
                 <div className="container mx-auto px-6">
                     <div className="text-center mb-16">
@@ -420,83 +448,225 @@ export default function FeaturesPage() {
                         >
                             <span className="text-sm font-bold text-teal-600 uppercase tracking-wider">More Features</span>
                             <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mt-4">
-                                Complete Financial Toolkit
+                                All Features At Your Fingertips
                             </h2>
                             <p className="text-xl text-slate-600 mt-6 max-w-3xl mx-auto">
-                                Everything you need to master your finances in one beautiful, organized interface
+                                Discover how every feature emerges from within SwiftFin to transform your financial management
                             </p>
                         </motion.div>
                     </div>
 
-                    {/* Bento Grid Layout */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
-                        {moreFeatures.map((feature, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.1 }}
-                                whileHover={{ y: -5, scale: 1.02 }}
-                                className={`${feature.size} ${feature.bgColor} rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 relative overflow-hidden group border border-white/50`}
-                            >
-                                {/* Gradient Background Effect */}
-                                <div className={`absolute inset-0 opacity-0 group-hover:opacity-10 bg-gradient-to-br ${feature.color} transition-opacity duration-500`}></div>
+                    {/* Animated Phone with Feature Bubbles Container */}
+                    <div className="relative min-h-[800px] flex items-center justify-center">
+                        {/* Phone Mockup in Center */}
+                        <motion.div
+                            initial={{ scale: 0.8, opacity: 0 }}
+                            whileInView={{ scale: 1, opacity: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8 }}
+                            className="relative z-20"
+                        >
+                            <div className="relative w-[280px] md:w-[320px] lg:w-[360px]">
+                                {/* Phone Mockup Image */}
+                                <img
+                                    src="/featuresphone.png"
+                                    alt="SwiftFin App Interface"
+                                    className="w-full h-auto drop-shadow-2xl"
+                                />
 
-                                {/* Animated Border */}
-                                <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                                    <div className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${feature.color} p-[2px]`}>
-                                        <div className="h-full w-full bg-white rounded-[22px]"></div>
-                                    </div>
-                                </div>
+                                {/* Animated App Screen Inside Phone */}
+                                <div className="absolute top-[4%] left-[5%] right-[5%] bottom-[4%] overflow-hidden rounded-[40px] bg-gradient-to-b from-white to-teal-50">
+                                    {/* Animated App Content */}
+                                    <div className="p-6 h-full flex flex-col">
+                                        {/* App Header */}
+                                        <div className="flex items-center justify-between mb-8">
+                                            <div className="w-8 h-8 rounded-full bg-teal-100"></div>
+                                            <div className="text-2xl font-bold text-teal-600">SwiftFin</div>
+                                            <div className="w-8 h-8 rounded-full bg-teal-100"></div>
+                                        </div>
 
-                                <div className="relative z-10">
-                                    <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${feature.color} text-white flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                                        {feature.icon}
-                                    </div>
-                                    <h3 className="text-2xl font-bold text-slate-900 mb-4">{feature.title}</h3>
-                                    <p className="text-slate-700 leading-relaxed">{feature.description}</p>
+                                        {/* Animated Dashboard Elements */}
+                                        <div className="flex-1 space-y-4">
+                                            {/* Balance Card */}
+                                            <motion.div
+                                                animate={{ y: [0, -5, 0] }}
+                                                transition={{ duration: 3, repeat: Infinity }}
+                                                className="h-24 rounded-2xl bg-gradient-to-r from-teal-500 to-teal-600 p-4"
+                                            >
+                                                <div className="text-white/80 text-sm">Total Balance</div>
+                                                <div className="text-2xl font-bold text-white mt-2">₹85,430</div>
+                                                <div className="text-white/60 text-xs mt-1">+12% this month</div>
+                                            </motion.div>
 
-                                    {/* Hover Indicator */}
-                                    <div className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                        <div className="w-10 h-10 rounded-full bg-white/80 flex items-center justify-center shadow-md">
-                                            <div className={`w-6 h-6 rounded-full bg-gradient-to-br ${feature.color}`}></div>
+                                            {/* Quick Stats */}
+                                            <div className="grid grid-cols-2 gap-3">
+                                                {[1, 2].map((i) => (
+                                                    <motion.div
+                                                        key={i}
+                                                        initial={{ opacity: 0, scale: 0.9 }}
+                                                        animate={{ opacity: 1, scale: 1 }}
+                                                        transition={{ delay: i * 0.2 }}
+                                                        className="aspect-video rounded-xl bg-white border border-teal-100 p-3"
+                                                    >
+                                                        <div className="w-8 h-8 rounded-lg bg-teal-100 mb-2"></div>
+                                                        <div className="h-2 bg-teal-200 rounded-full mb-1"></div>
+                                                        <div className="h-2 bg-teal-100 rounded-full w-2/3"></div>
+                                                    </motion.div>
+                                                ))}
+                                            </div>
+
+                                            {/* Recent Transactions */}
+                                            <div className="space-y-2">
+                                                <div className="h-2 bg-teal-200/50 rounded-full"></div>
+                                                <div className="h-2 bg-teal-200/30 rounded-full w-3/4"></div>
+                                                <div className="h-2 bg-teal-200/20 rounded-full w-1/2"></div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </motion.div>
-                        ))}
+                            </div>
+                        </motion.div>
+
+                        {/* Animated Feature Bubbles */}
+                        <AnimatePresence>
+                            {phoneFeatureBubbles.map((bubble) => (
+                                <motion.div
+                                    key={bubble.id}
+                                    initial={{ scale: 0, opacity: 0, x: 0, y: 0 }}
+                                    whileInView={{
+                                        scale: [0, 1.2, 1],
+                                        opacity: [0, 1, 1],
+                                        x: bubble.position.left.includes("75") || bubble.position.left.includes("85") || bubble.position.left.includes("90")
+                                            ? [0, 50, 0]
+                                            : [0, -50, 0],
+                                        y: bubble.position.top.includes("10") || bubble.position.top.includes("25")
+                                            ? [0, -30, 0]
+                                            : bubble.position.top.includes("75") || bubble.position.top.includes("90")
+                                                ? [0, 30, 0]
+                                                : [0, 0, 0]
+                                    }}
+                                    viewport={{ once: true }}
+                                    transition={{
+                                        duration: 1,
+                                        delay: bubble.delay,
+                                        scale: {
+                                            duration: 0.8,
+                                            times: [0, 0.7, 1]
+                                        },
+                                        opacity: {
+                                            duration: 0.8
+                                        },
+                                        x: {
+                                            duration: 1.5,
+                                            times: [0, 0.5, 1]
+                                        },
+                                        y: {
+                                            duration: 1.5,
+                                            times: [0, 0.5, 1]
+                                        }
+                                    }}
+                                    whileHover={{
+                                        scale: 1.3,
+                                        transition: { duration: 0.3 }
+                                    }}
+                                    style={{
+                                        position: 'absolute',
+                                        ...bubble.position,
+                                        zIndex: 10
+                                    }}
+                                    className="cursor-pointer group"
+                                >
+                                    {/* Bubble Container */}
+                                    <div className="relative">
+                                        {/* Feature Bubble */}
+                                        <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-white border-2 border-teal-200 shadow-2xl flex flex-col items-center justify-center p-3 hover:shadow-3xl transition-all duration-300 group-hover:border-teal-400">
+                                            {/* Icon */}
+                                            <div className={`w-12 h-12 rounded-full ${bubble.color} flex items-center justify-center mb-1 group-hover:scale-110 transition-transform duration-300`}>
+                                                <div className="text-white">
+                                                    {bubble.icon}
+                                                </div>
+                                            </div>
+
+                                            {/* Title */}
+                                            <span className="text-xs md:text-sm font-bold text-teal-900 text-center leading-tight">
+                                                {bubble.title}
+                                            </span>
+                                        </div>
+
+                                        {/* Description Tooltip */}
+                                        <div className="absolute opacity-0 group-hover:opacity-100 transition-opacity duration-300 -bottom-20 left-1/2 transform -translate-x-1/2 w-48 bg-white border border-teal-200 rounded-lg p-3 shadow-xl z-20">
+                                            <p className="text-xs text-slate-700 text-center">{bubble.description}</p>
+                                            <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-b-4 border-l-transparent border-r-transparent border-b-white"></div>
+                                        </div>
+
+                                        {/* Animated Connecting Line */}
+                                        <motion.div
+                                            initial={{ scaleX: 0 }}
+                                            whileInView={{ scaleX: 1 }}
+                                            viewport={{ once: true }}
+                                            transition={{
+                                                duration: 0.8,
+                                                delay: bubble.delay + 0.3,
+                                                ease: "easeOut"
+                                            }}
+                                            className="absolute top-1/2 left-1/2 w-32 h-[2px] bg-gradient-to-r from-teal-300 to-teal-100 origin-center"
+                                            style={{
+                                                transform: 'translate(-50%, -50%) rotate(0deg)',
+                                                transformOrigin: 'center'
+                                            }}
+                                        />
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </AnimatePresence>
+
+                        {/* Decorative Background Elements */}
+                        <motion.div
+                            animate={{
+                                scale: [1, 1.2, 1],
+                                opacity: [0.1, 0.2, 0.1]
+                            }}
+                            transition={{
+                                duration: 4,
+                                repeat: Infinity,
+                                ease: "easeInOut"
+                            }}
+                            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-teal-300/10 rounded-full blur-3xl -z-10"
+                        />
+
+                        <motion.div
+                            animate={{
+                                scale: [1, 1.1, 1],
+                                opacity: [0.05, 0.15, 0.05]
+                            }}
+                            transition={{
+                                duration: 3,
+                                repeat: Infinity,
+                                ease: "easeInOut",
+                                delay: 0.5
+                            }}
+                            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-teal-400/5 rounded-full blur-3xl -z-10"
+                        />
                     </div>
 
-                    {/* Bento Grid Decorative Elements */}
+                    {/* Feature Summary Text */}
                     <motion.div
-                        animate={{
-                            y: [0, -10, 0],
-                        }}
-                        transition={{
-                            duration: 3,
-                            repeat: Infinity,
-                            ease: "easeInOut"
-                        }}
-                        className="absolute left-1/4 top-1/3 w-32 h-32 bg-teal-300/20 rounded-full blur-3xl -z-10"
-                    />
-                    <motion.div
-                        animate={{
-                            y: [0, 10, 0],
-                        }}
-                        transition={{
-                            duration: 4,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                            delay: 0.5
-                        }}
-                        className="absolute right-1/4 bottom-1/4 w-40 h-40 bg-purple-300/20 rounded-full blur-3xl -z-10"
-                    />
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 1.5 }}
+                        className="text-center mt-20 max-w-3xl mx-auto"
+                    >
+                        <p className="text-lg text-slate-600">
+                            Each feature seamlessly integrates within SwiftFin, working together to provide you with a complete financial management solution.
+                            From tracking daily expenses to planning long-term investments, everything is designed to work in harmony.
+                        </p>
+                    </motion.div>
                 </div>
             </section>
 
-            {/* Download CTA Section - Mobile Responsive */}
-            <section className="py-16 md:py-20 bg-gradient-to-br from-slate-900 to-teal-900 text-white">
+            {/* Download CTA Section - UPDATED WITH INTERACTIVE BUTTON */}
+            <section className="py-16 md:py-20 bg-white">
                 <div className="container mx-auto px-6">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
@@ -504,27 +674,122 @@ export default function FeaturesPage() {
                         viewport={{ once: true }}
                         className="flex flex-col items-center justify-center"
                     >
-                        {/* Mobile Responsive Button Container */}
-                        <div className="w-full max-w-md md:max-w-lg lg:max-w-xl">
-                            <a
-                                href="/download"
-                                className="w-full inline-block"
-                            >
-                                <button className="w-full px-6 py-4 md:px-8 md:py-5 bg-gradient-to-r from-white to-white/90 text-slate-900 rounded-xl md:rounded-2xl font-bold hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-white/10 text-lg md:text-xl flex items-center justify-center gap-3">
-                                    <svg className="w-6 h-6 md:w-7 md:h-7" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M12 16L16 10H8L12 16Z" />
-                                        <path d="M4 20H20V18H4V20Z" />
-                                    </svg>
-                                    Download SwiftFin
-                                </button>
-                            </a>
+                        <div className="text-center mb-12">
+                            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+                                Ready to Transform Your Finances?
+                            </h2>
+                            <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+                                Join thousands who have taken control with SwiftFin
+                            </p>
+                        </div>
 
-                            {/* Mobile specific spacing */}
-                            <div className="mt-8 md:mt-10 text-center">
-                                <p className="text-white/70 text-sm md:text-base px-4">
-                                    Available on iOS and Android
-                                </p>
-                            </div>
+                        {/* Interactive Download Button */}
+                        <motion.button
+                            onMouseEnter={() => setIsDownloadHovered(true)}
+                            onMouseLeave={() => setIsDownloadHovered(false)}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            animate={{
+                                backgroundColor: isDownloadHovered ? "#0d9488" : "#ffffff",
+                                color: isDownloadHovered ? "#ffffff" : "#0d9488",
+                                boxShadow: isDownloadHovered
+                                    ? "0 20px 60px rgba(13, 148, 136, 0.3)"
+                                    : "0 10px 40px rgba(13, 148, 136, 0.2)"
+                            }}
+                            transition={{
+                                duration: 0.3,
+                                ease: "easeInOut"
+                            }}
+                            className="relative px-12 py-5 rounded-full font-bold text-xl border-2 border-teal-600 flex items-center justify-center gap-4 overflow-hidden group"
+                        >
+                            {/* Background Shine Effect */}
+                            <motion.div
+                                animate={{
+                                    x: isDownloadHovered ? "100%" : "-100%"
+                                }}
+                                transition={{
+                                    duration: 0.8,
+                                    ease: "easeInOut"
+                                }}
+                                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"
+                            />
+
+                            {/* Animated Download Icon */}
+                            <motion.div
+                                animate={{
+                                    y: isDownloadHovered ? [0, -5, 0] : 0
+                                }}
+                                transition={{
+                                    duration: 1.5,
+                                    repeat: Infinity,
+                                    ease: "easeInOut",
+                                    times: [0, 0.5, 1]
+                                }}
+                                className="relative z-10"
+                            >
+                                <Download className="w-7 h-7" />
+                            </motion.div>
+
+                            {/* Button Text */}
+                            <span className="relative z-10">Download SwiftFin</span>
+
+                            {/* Animated Arrow */}
+                            <motion.div
+                                animate={{
+                                    x: isDownloadHovered ? 8 : 0,
+                                    opacity: isDownloadHovered ? 1 : 0.7
+                                }}
+                                transition={{
+                                    duration: 0.3
+                                }}
+                                className="relative z-10"
+                            >
+                                <ChevronRight className="w-6 h-6" />
+                            </motion.div>
+
+                            {/* Pulsing Effect */}
+                            <motion.div
+                                animate={{
+                                    scale: isDownloadHovered ? [1, 1.2, 1] : 1,
+                                    opacity: isDownloadHovered ? [0.5, 0, 0.5] : 0
+                                }}
+                                transition={{
+                                    duration: 1.5,
+                                    repeat: Infinity,
+                                    ease: "easeInOut"
+                                }}
+                                className="absolute inset-0 border-2 border-teal-400 rounded-full"
+                            />
+                        </motion.button>
+
+                        {/* App Store Badges */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.3 }}
+                            className="mt-12 flex flex-wrap justify-center gap-8"
+                        >
+                            <motion.div
+                                whileHover={{ scale: 1.05, y: -5 }}
+                                className="w-56 h-16 bg-slate-900 rounded-xl flex items-center justify-center hover:shadow-xl transition-all duration-300 cursor-pointer"
+                            >
+                                <div className="text-white font-semibold text-lg">Download on the App Store</div>
+                            </motion.div>
+
+                            <motion.div
+                                whileHover={{ scale: 1.05, y: -5 }}
+                                className="w-56 h-16 bg-slate-900 rounded-xl flex items-center justify-center hover:shadow-xl transition-all duration-300 cursor-pointer"
+                            >
+                                <div className="text-white font-semibold text-lg">Get it on Google Play</div>
+                            </motion.div>
+                        </motion.div>
+
+                        {/* Version Info */}
+                        <div className="mt-8 text-center">
+                            <p className="text-slate-500 text-sm">
+                                Available on iOS 14.0+ and Android 8.0+
+                            </p>
                         </div>
                     </motion.div>
                 </div>

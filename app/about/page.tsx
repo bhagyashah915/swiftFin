@@ -99,7 +99,91 @@ export default function About() {
 
     return (
         <>
-            {/* Features Section */}
+            {/* Ticker Animation Section - MOVED TO TOP */}
+            <section className="relative bg-gradient-to-b from-white to-teal-50 py-20 overflow-hidden">
+                <div className="container mx-auto px-4 sm:px-6 md:px-12">
+                    <div className="text-center mb-16">
+                        <h2 className="text-5xl md:text-6xl font-bold mb-6">
+                            About <span className="text-[#20C997]">SwiftFin</span>
+                        </h2>
+                        <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+                            Your trusted companion for managing personal finances with ease and confidence.
+                            We're on a mission to make financial management accessible to everyone.
+                        </p>
+                    </div>
+
+                    {/* Zigzag Cards with Ticker Effect */}
+                    <div className="relative">
+                        {/* Left Fade */}
+                        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-teal-50 to-transparent z-10 pointer-events-none"></div>
+
+                        {/* Right Fade */}
+                        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-teal-50 to-transparent z-10 pointer-events-none"></div>
+
+                        <motion.div
+                            animate={{ x: [0, -2000] }}
+                            transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+                            className="flex gap-8 whitespace-nowrap py-8"
+                        >
+                            {[...Array(3)].map((_, setIndex) => (
+                                <div key={setIndex} className="flex gap-8 items-center">
+                                    {/* Large Card */}
+                                    <div className="relative w-[400px] h-[280px] rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300">
+                                        <img
+                                            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80"
+                                            alt="Financial Charts"
+                                            className="w-full h-full object-cover"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/40 to-transparent"></div>
+                                    </div>
+
+                                    {/* Small Card */}
+                                    <div className="relative w-[280px] h-[200px] rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+                                        <img
+                                            src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&q=80"
+                                            alt="Expense Tracking"
+                                            className="w-full h-full object-cover"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-teal-900/80 via-teal-900/40 to-transparent"></div>
+                                    </div>
+
+                                    {/* Large Card */}
+                                    <div className="relative w-[400px] h-[280px] rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300">
+                                        <img
+                                            src="https://images.unsplash.com/photo-1579621970590-9d624316904b?w=800&q=80"
+                                            alt="Investment Growth"
+                                            className="w-full h-full object-cover"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/40 to-transparent"></div>
+                                    </div>
+
+                                    {/* Small Card */}
+                                    <div className="relative w-[280px] h-[200px] rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+                                        <img
+                                            src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&q=80"
+                                            alt="Financial Analytics"
+                                            className="w-full h-full object-cover"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-teal-900/80 via-teal-900/40 to-transparent"></div>
+                                    </div>
+
+                                    {/* Large Card */}
+                                    <div className="relative w-[400px] h-[280px] rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300">
+                                        <img
+                                            src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&q=80"
+                                            alt="Credit Management"
+                                            className="w-full h-full object-cover"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/40 to-transparent"></div>
+                                    </div>
+                                </div>
+                            ))}
+                        </motion.div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Features Section - MOVED BELOW TICKER ANIMATION */}
             <section className="relative py-24 md:py-32 overflow-hidden bg-slate-900">
                 {/* Dynamic Background Images */}
                 <div className="absolute inset-0 z-0">
@@ -208,121 +292,229 @@ export default function About() {
                 </div>
             </section>
 
-            {/* About SwiftFin Section */}
-            <section className="relative bg-gradient-to-b from-white to-teal-50 py-20 overflow-hidden">
+            {/* Why Choose SwiftFin - Bento Grid */}
+            <section className="relative bg-white py-20 md:py-32 overflow-hidden">
                 <div className="container mx-auto px-4 sm:px-6 md:px-12">
+                    {/* Header */}
                     <div className="text-center mb-16">
-                        <h2 className="text-5xl md:text-6xl font-bold mb-6">
-                            About <span className="text-[#20C997]">SwiftFin</span>
-                        </h2>
-                        <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-                            Your trusted companion for managing personal finances with ease and confidence.
-                            We're on a mission to make financial management accessible to everyone.
-                        </p>
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="inline-block px-6 py-2 rounded-full bg-[#20C997]/10 border border-[#20C997]/20 mb-6"
+                        >
+                            <span className="text-[#20C997] font-bold text-sm uppercase tracking-widest">
+                                Why Choose SwiftFin
+                            </span>
+                        </motion.div>
+                        <motion.h2
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.1 }}
+                            className="text-4xl md:text-6xl font-bold text-slate-900 mb-6"
+                        >
+                            Everything You Need in{" "}
+                            <span className="text-[#20C997]">One App</span>
+                        </motion.h2>
+                        <motion.p
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.2 }}
+                            className="text-xl text-slate-600 max-w-3xl mx-auto"
+                        >
+                            Replace messy spreadsheets with one secure, easy-to-use tool for complete financial control
+                        </motion.p>
                     </div>
 
-                    {/* Zigzag Cards with Ticker Effect */}
-                    <div className="relative">
-                        {/* Left Fade */}
-                        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-teal-50 to-transparent z-10 pointer-events-none"></div>
-
-                        {/* Right Fade */}
-                        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-teal-50 to-transparent z-10 pointer-events-none"></div>
-
+                    {/* Bento Grid */}
+                    <div className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-4 md:gap-6 max-w-7xl mx-auto">
+                        {/* Large Card - Automated Tracking */}
                         <motion.div
-                            animate={{ x: [0, -2000] }}
-                            transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-                            className="flex gap-8 whitespace-nowrap py-8"
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="md:col-span-6 lg:col-span-8 bg-gradient-to-br from-[#20C997] to-teal-600 rounded-3xl p-8 md:p-10 text-white overflow-hidden relative group cursor-pointer"
                         >
-                            {[...Array(3)].map((_, setIndex) => (
-                                <div key={setIndex} className="flex gap-8 items-center">
-                                    {/* Large Card */}
-                                    <div className="relative w-[400px] h-[280px] rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300">
-                                        <img
-                                            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80"
-                                            alt="Financial Charts"
-                                            className="w-full h-full object-cover"
-                                        />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/40 to-transparent"></div>
+                            <div className="relative z-10">
+                                <Receipt className="w-12 h-12 md:w-16 md:h-16 mb-6 opacity-90" />
+                                <h3 className="text-3xl md:text-4xl font-bold mb-4">
+                                    Automated Expense Tracking
+                                </h3>
+                                <p className="text-white/90 text-lg mb-6 max-w-xl">
+                                    Snap receipts, auto-categorize expenses, and set recurring bills. Save in under 1 second.
+                                </p>
+                                <div className="flex flex-wrap gap-3">
+                                    <div className="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-semibold">
+                                        AI Receipt Scanning
                                     </div>
-
-                                    {/* Small Card */}
-                                    <div className="relative w-[280px] h-[200px] rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
-                                        <img
-                                            src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&q=80"
-                                            alt="Expense Tracking"
-                                            className="w-full h-full object-cover"
-                                        />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-teal-900/80 via-teal-900/40 to-transparent"></div>
-                                    </div>
-
-                                    {/* Large Card */}
-                                    <div className="relative w-[400px] h-[280px] rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300">
-                                        <img
-                                            src="https://images.unsplash.com/photo-1579621970590-9d624316904b?w=800&q=80"
-                                            alt="Investment Growth"
-                                            className="w-full h-full object-cover"
-                                        />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/40 to-transparent"></div>
-                                    </div>
-
-                                    {/* Small Card */}
-                                    <div className="relative w-[280px] h-[200px] rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
-                                        <img
-                                            src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&q=80"
-                                            alt="Financial Analytics"
-                                            className="w-full h-full object-cover"
-                                        />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-teal-900/80 via-teal-900/40 to-transparent"></div>
-                                    </div>
-
-                                    {/* Large Card */}
-                                    <div className="relative w-[400px] h-[280px] rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300">
-                                        <img
-                                            src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&q=80"
-                                            alt="Credit Management"
-                                            className="w-full h-full object-cover"
-                                        />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/40 to-transparent"></div>
+                                    <div className="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-semibold">
+                                        Smart Categories
                                     </div>
                                 </div>
-                            ))}
+                            </div>
+                            <div className="absolute -right-20 -bottom-20 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+                        </motion.div>
+
+                        {/* Stat Card 1 */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.1 }}
+                            className="md:col-span-3 lg:col-span-4 bg-white border-2 border-slate-100 rounded-3xl p-6 md:p-8 hover:border-[#20C997]/30 transition-all duration-300 hover:shadow-xl group"
+                        >
+                            <div className="w-14 h-14 rounded-2xl bg-[#20C997]/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                <TrendingUp className="w-7 h-7 text-[#20C997]" />
+                            </div>
+                            <div className="text-5xl md:text-6xl font-bold text-slate-900 mb-2">30%</div>
+                            <p className="text-slate-600 font-medium">Reduce Overspending</p>
+                        </motion.div>
+
+                        {/* Stat Card 2 */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.2 }}
+                            className="md:col-span-3 lg:col-span-4 bg-white border-2 border-slate-100 rounded-3xl p-6 md:p-8 hover:border-[#20C997]/30 transition-all duration-300 hover:shadow-xl group"
+                        >
+                            <div className="w-14 h-14 rounded-2xl bg-[#20C997]/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                <BarChart3 className="w-7 h-7 text-[#20C997]" />
+                            </div>
+                            <div className="text-5xl md:text-6xl font-bold text-slate-900 mb-2">&lt;3s</div>
+                            <p className="text-slate-600 font-medium">Report Load Time</p>
+                        </motion.div>
+
+                        {/* EMI Management Card */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.3 }}
+                            className="md:col-span-6 lg:col-span-8 bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-8 md:p-10 text-white overflow-hidden relative group cursor-pointer"
+                        >
+                            <div className="relative z-10">
+                                <CreditCard className="w-12 h-12 md:w-16 md:h-16 mb-6 opacity-90" />
+                                <h3 className="text-3xl md:text-4xl font-bold mb-4">
+                                    Never Miss EMI Payments
+                                </h3>
+                                <p className="text-white/80 text-lg mb-6 max-w-xl">
+                                    Track all loans, get smart reminders, and watch your progress with visual indicators.
+                                </p>
+                                <div className="flex items-center gap-4 mb-6">
+                                    <div className="flex-1 h-3 bg-white/20 rounded-full overflow-hidden">
+                                        <motion.div
+                                            initial={{ width: 0 }}
+                                            whileInView={{ width: "65%" }}
+                                            viewport={{ once: true }}
+                                            transition={{ duration: 1.5, delay: 0.5 }}
+                                            className="h-full bg-[#20C997] rounded-full"
+                                        ></motion.div>
+                                    </div>
+                                    <span className="text-sm font-semibold">65% Paid</span>
+                                </div>
+                            </div>
+                            <div className="absolute -left-20 -top-20 w-64 h-64 bg-[#20C997]/20 rounded-full blur-3xl"></div>
+                        </motion.div>
+
+                        {/* Investment Tracking */}
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.2 }}
+                            className="md:col-span-6 lg:col-span-6 bg-gradient-to-br from-teal-50 to-white border-2 border-[#20C997]/20 rounded-3xl p-8 md:p-10 hover:shadow-xl transition-all duration-300 group cursor-pointer"
+                        >
+                            <TrendingUp className="w-12 h-12 md:w-16 md:h-16 text-[#20C997] mb-6 group-hover:scale-110 transition-transform" />
+                            <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
+                                Portfolio Management
+                            </h3>
+                            <p className="text-slate-600 text-lg mb-6">
+                                Track investments, monitor gains, and get alerts for price movements across platforms.
+                            </p>
+                            <div className="flex gap-2">
+                                <div className="px-3 py-1.5 bg-green-100 text-green-700 rounded-full text-sm font-semibold">
+                                    +12.5%
+                                </div>
+                                <div className="px-3 py-1.5 bg-slate-100 text-slate-700 rounded-full text-sm font-semibold">
+                                    Real-time
+                                </div>
+                            </div>
+                        </motion.div>
+
+                        {/* Smart Insights */}
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.3 }}
+                            className="md:col-span-6 lg:col-span-6 bg-gradient-to-br from-white to-teal-50 border-2 border-[#20C997]/20 rounded-3xl p-8 md:p-10 hover:shadow-xl transition-all duration-300 group cursor-pointer"
+                        >
+                            <Lightbulb className="w-12 h-12 md:w-16 md:h-16 text-[#20C997] mb-6 group-hover:scale-110 transition-transform" />
+                            <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
+                                AI-Powered Insights
+                            </h3>
+                            <p className="text-slate-600 text-lg mb-6">
+                                Get personalized tips, monthly insights, and smart recommendations based on your patterns.
+                            </p>
+                            <div className="space-y-2">
+                                <div className="flex items-center gap-2 text-sm text-slate-700">
+                                    <div className="w-2 h-2 bg-[#20C997] rounded-full"></div>
+                                    Save ₹2,500 on dining this month
+                                </div>
+                                <div className="flex items-center gap-2 text-sm text-slate-700">
+                                    <div className="w-2 h-2 bg-[#20C997] rounded-full"></div>
+                                    Consider SIP in mutual funds
+                                </div>
+                            </div>
+                        </motion.div>
+
+                        {/* Security Badge */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.4 }}
+                            className="md:col-span-6 lg:col-span-4 bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-6 md:p-8 text-white relative overflow-hidden group cursor-pointer"
+                        >
+                            <Lock className="w-12 h-12 mb-4 opacity-90" />
+                            <h4 className="text-xl font-bold mb-2">256-bit Encryption</h4>
+                            <p className="text-white/80 text-sm">Bank-level security for your data</p>
+                            <div className="absolute -right-10 -bottom-10 w-32 h-32 bg-[#20C997]/20 rounded-full blur-2xl"></div>
+                        </motion.div>
+
+                        {/* Offline Mode */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.5 }}
+                            className="md:col-span-6 lg:col-span-4 bg-white border-2 border-slate-100 rounded-3xl p-6 md:p-8 hover:border-[#20C997]/30 transition-all duration-300 hover:shadow-xl group cursor-pointer"
+                        >
+                            <Zap className="w-12 h-12 text-[#20C997] mb-4 group-hover:scale-110 transition-transform" />
+                            <h4 className="text-xl font-bold text-slate-900 mb-2">Works Offline</h4>
+                            <p className="text-slate-600 text-sm">Add entries anytime, syncs automatically</p>
+                        </motion.div>
+
+                        {/* Support */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.6 }}
+                            className="md:col-span-6 lg:col-span-4 bg-white border-2 border-slate-100 rounded-3xl p-6 md:p-8 hover:border-[#20C997]/30 transition-all duration-300 hover:shadow-xl group cursor-pointer"
+                        >
+                            <Users className="w-12 h-12 text-[#20C997] mb-4 group-hover:scale-110 transition-transform" />
+                            <h4 className="text-xl font-bold text-slate-900 mb-2">5,000+ Entries</h4>
+                            <p className="text-slate-600 text-sm">Support for unlimited transactions</p>
                         </motion.div>
                     </div>
                 </div>
             </section>
 
-            {/* Stats Cards - Stacked */}
-            <section className="relative bg-white py-16">
-                <div className="container mx-auto px-4 sm:px-6 md:px-12">
-                    <div className="max-w-4xl mx-auto space-y-6">
-                        {stats.map((stat, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, x: -50 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.2 }}
-                                className="group relative"
-                            >
-                                <div className="relative bg-gradient-to-br from-slate-50 to-white rounded-3xl p-8 border-2 border-slate-100 hover:border-[#20C997]/30 transition-all duration-300 hover:shadow-xl">
-                                    <div className="flex items-center gap-6">
-                                        <div className="flex-shrink-0 w-20 h-20 rounded-2xl bg-gradient-to-br from-[#20C997] to-teal-600 flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300">
-                                            {stat.icon}
-                                        </div>
-                                        <div className="flex-1">
-                                            <div className="text-4xl font-bold text-slate-900 mb-1">{stat.number}</div>
-                                            <div className="text-lg text-slate-600 font-medium">{stat.label}</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* Security Section - Redesigned */}
+            {/* Security Section - Redesigned with Ticker Animation */}
             <section className="relative bg-white py-24 overflow-hidden">
                 <div className="container mx-auto px-4 sm:px-6 md:px-12">
                     {/* Header */}
@@ -358,39 +550,49 @@ export default function About() {
                         </motion.p>
                     </div>
 
-                    {/* Security Features Grid */}
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-                        {securityFeatures.map((feature, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.1 }}
-                                whileHover={{ y: -8 }}
-                                className="group relative"
-                            >
-                                <div className="relative h-full bg-gradient-to-br from-slate-50 to-white rounded-3xl p-8 border-2 border-slate-100 hover:border-[#20C997]/30 transition-all duration-300 hover:shadow-2xl">
-                                    {/* Icon */}
-                                    <div className="mb-6">
-                                        <div className="inline-flex p-4 rounded-2xl bg-gradient-to-br from-[#20C997]/10 to-teal-500/10 text-[#20C997] group-hover:from-[#20C997] group-hover:to-teal-600 group-hover:text-white transition-all duration-300 group-hover:scale-110">
-                                            {feature.icon}
-                                        </div>
-                                    </div>
+                    {/* Security Features Ticker Animation */}
+                    <div className="relative mb-20">
+                        {/* Left Fade */}
+                        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
 
-                                    {/* Content */}
-                                    <h3 className="text-2xl font-bold text-slate-900 mb-4 group-hover:text-[#20C997] transition-colors">
-                                        {feature.title}
-                                    </h3>
-                                    <p className="text-slate-600 leading-relaxed">
-                                        {feature.description}
-                                    </p>
+                        {/* Right Fade */}
+                        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
 
-                                    {/* Decorative Element */}
-                                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#20C997]/5 to-transparent rounded-full blur-3xl group-hover:from-[#20C997]/20 transition-all duration-300"></div>
+                        <motion.div
+                            animate={{ x: ["0%", "-100%"] }} /* Changed from right to left */
+                            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+                            className="flex gap-8 whitespace-nowrap py-8"
+                        >
+                            {[...Array(3)].map((_, setIndex) => (
+                                <div key={setIndex} className="flex gap-8">
+                                    {securityFeatures.map((feature, index) => (
+                                        <motion.div
+                                            key={`${setIndex}-${index}`}
+                                            whileHover={{ y: -8 }}
+                                            className="relative min-w-[400px] h-[280px] bg-gradient-to-br from-slate-50 to-white rounded-3xl p-8 border-2 border-slate-100 hover:border-[#20C997]/30 transition-all duration-300 hover:shadow-2xl cursor-pointer group"
+                                        >
+                                            {/* Icon */}
+                                            <div className="mb-6">
+                                                <div className="inline-flex p-4 rounded-2xl bg-gradient-to-br from-[#20C997]/10 to-teal-500/10 text-[#20C997] group-hover:from-[#20C997] group-hover:to-teal-600 group-hover:text-white transition-all duration-300 group-hover:scale-110">
+                                                    {feature.icon}
+                                                </div>
+                                            </div>
+
+                                            {/* Content */}
+                                            <h3 className="text-2xl font-bold text-slate-900 mb-4 group-hover:text-[#20C997] transition-colors">
+                                                {feature.title}
+                                            </h3>
+                                            <p className="text-slate-600 leading-relaxed">
+                                                {feature.description}
+                                            </p>
+
+                                            {/* Decorative Element */}
+                                            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#20C997]/5 to-transparent rounded-full blur-3xl group-hover:from-[#20C997]/20 transition-all duration-300"></div>
+                                        </motion.div>
+                                    ))}
                                 </div>
-                            </motion.div>
-                        ))}
+                            ))}
+                        </motion.div>
                     </div>
 
                     {/* Bottom CTA */}
