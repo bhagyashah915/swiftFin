@@ -3,9 +3,10 @@
 import { ArrowLeft, Calendar, User, Clock, TrendingUp, Wallet, PiggyBank, CreditCard, ChevronRight, Play, Sparkles, Receipt, BarChart3, Target } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function Blog() {
-    const [hoveredCard, setHoveredCard] = useState(null);
+    const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
     const featuredPost = {
         title: "Automated Expense Tracking: The Future of Money Management",
@@ -92,8 +93,8 @@ export default function Blog() {
                         backgroundImage: `url('https://images.unsplash.com/photo-1554224154-26032ffc0d07?w=1920&q=80')`
                     }}
                 >
-                    {/* Overlay with gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/90 via-teal-50/30 to-white/90"></div>
+                    {/* Overlay with gradient - Increased opacity for better contrast */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/95 via-teal-50/90 to-white/95"></div>
                     {/* Subtle pattern overlay */}
                     <div className="absolute inset-0 opacity-5">
                         <div className="absolute inset-0" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%2320C997" fill-opacity="1"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")' }}></div>
@@ -330,54 +331,55 @@ export default function Blog() {
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {posts.map((post, index) => (
-                        <motion.article
-                            key={index}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.08 }}
-                            onMouseEnter={() => setHoveredCard(index)}
-                            onMouseLeave={() => setHoveredCard(null)}
-                            className="group cursor-pointer h-full"
-                        >
-                            <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-slate-100 h-full flex flex-col">
-                                <div className="relative h-[240px] overflow-hidden">
-                                    <img
-                                        src={post.image}
-                                        alt={post.title}
-                                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                                    <div className="absolute top-4 left-4">
-                                        <div className="px-3 py-1.5 rounded-full bg-[#20C997] text-white text-xs font-bold uppercase tracking-wide">
-                                            {post.category}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="p-7 flex-1 flex flex-col">
-                                    <div className="text-sm text-slate-500 mb-3 font-medium">
-                                        {post.date} · {post.readTime}
-                                    </div>
-                                    <h3 className="text-xl font-bold text-slate-900 mb-4 group-hover:text-[#20C997] transition-colors line-clamp-2 leading-snug">
-                                        {post.title}
-                                    </h3>
-                                    <p className="text-slate-600 line-clamp-3 mb-6 flex-1 leading-relaxed">
-                                        {post.excerpt}
-                                    </p>
-                                    <div className="flex items-center gap-3 pt-5 border-t border-slate-100">
+                        <Link href={`/blog#${index}`} key={index} className="contents">
+                            <motion.article
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: index * 0.08 }}
+                                onMouseEnter={() => setHoveredCard(index)}
+                                onMouseLeave={() => setHoveredCard(null)}
+                                className="group cursor-pointer h-full"
+                            >
+                                <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-slate-100 h-full flex flex-col">
+                                    <div className="relative h-[240px] overflow-hidden">
                                         <img
-                                            src={post.authorImage}
-                                            alt={post.author}
-                                            className="w-10 h-10 rounded-full object-cover border-2 border-[#20C997]/20"
+                                            src={post.image}
+                                            alt={post.title}
+                                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                                         />
-                                        <div className="flex-1">
-                                            <div className="font-bold text-slate-900 text-sm">{post.author}</div>
+                                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                        <div className="absolute top-4 left-4">
+                                            <div className="px-3 py-1.5 rounded-full bg-[#20C997] text-white text-xs font-bold uppercase tracking-wide">
+                                                {post.category}
+                                            </div>
                                         </div>
-                                        <ChevronRight className={`w-5 h-5 text-[#20C997] transition-transform duration-300 ${hoveredCard === index ? 'translate-x-1' : ''}`} />
+                                    </div>
+                                    <div className="p-7 flex-1 flex flex-col">
+                                        <div className="text-sm text-slate-500 mb-3 font-medium">
+                                            {post.date} · {post.readTime}
+                                        </div>
+                                        <h3 className="text-xl font-bold text-slate-900 mb-4 group-hover:text-[#20C997] transition-colors line-clamp-2 leading-snug">
+                                            {post.title}
+                                        </h3>
+                                        <p className="text-slate-600 line-clamp-3 mb-6 flex-1 leading-relaxed">
+                                            {post.excerpt}
+                                        </p>
+                                        <div className="flex items-center gap-3 pt-5 border-t border-slate-100">
+                                            <img
+                                                src={post.authorImage}
+                                                alt={post.author}
+                                                className="w-10 h-10 rounded-full object-cover border-2 border-[#20C997]/20"
+                                            />
+                                            <div className="flex-1">
+                                                <div className="font-bold text-slate-900 text-sm">{post.author}</div>
+                                            </div>
+                                            <ChevronRight className={`w-5 h-5 text-[#20C997] transition-transform duration-300 ${hoveredCard === index ? 'translate-x-1' : ''}`} />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </motion.article>
+                            </motion.article>
+                        </Link>
                     ))}
                 </div>
             </div>

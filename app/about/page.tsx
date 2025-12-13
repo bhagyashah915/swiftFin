@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { Receipt, BarChart3, CreditCard, TrendingUp, Lightbulb, Camera, ArrowRight, Check, Shield, Lock, Eye, FileCheck, Zap, Users } from "lucide-react";
+import { Receipt, BarChart3, CreditCard, TrendingUp, Lightbulb, Camera, ArrowRight, Check, Shield, Lock, Eye, FileCheck, Zap, Users, Target, Globe, HeartHandshake } from "lucide-react";
 import { useState } from "react";
 
 export default function About() {
@@ -97,6 +97,63 @@ export default function About() {
         }
     ];
 
+    const values = [
+        {
+            icon: <Target className="w-10 h-10" />,
+            title: "Business Growth and Efficiency",
+            description: "Empowering businesses to achieve financial excellence through innovative software solutions."
+        },
+        {
+            icon: <Globe className="w-10 h-10" />,
+            title: "Technological Innovation",
+            description: "Leading the way in financial technology innovation to empower businesses worldwide."
+        },
+        {
+            icon: <HeartHandshake className="w-10 h-10" />,
+            title: "Customer-Centric Approach",
+            description: "Building solutions that truly understand and address the needs of modern businesses and individuals."
+        },
+        {
+            icon: <Zap className="w-10 h-10" />,
+            title: "Excellence in Execution",
+            description: "Delivering reliable, high-performance solutions that businesses can depend on every day."
+        }
+
+    ];
+
+    const testimonials = [
+        {
+            name: "Sarah Jenkins",
+            role: "Small Business Owner",
+            content: "I love how it helps me stay organized with my spending. I've reached my financial goals faster than I ever thought possible.",
+            image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80"
+        },
+        {
+            name: "Mark Thompson",
+            role: "Freelance Designer",
+            content: "Skeptical at first, but it completely transformed my relationship with money. I'm finally in control of my finances.",
+            image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80"
+        },
+        {
+            name: "Emily Rodriguez",
+            role: "Marketing Director",
+            content: "Intuitive and easy to navigate. A game-changer for my financial life. The insights are incredibly valuable.",
+            image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80"
+        },
+        {
+            name: "David Chen",
+            role: "Software Engineer",
+            content: "Helped me pay off debt and start investing. The automated tracking saves me hours every month.",
+            image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80"
+        },
+        {
+            name: "Jessica Miller",
+            role: "Financial Analyst",
+            content: "The best finance app I've used. Simple, powerful, and secure. It's exactly what I needed for my personal finances.",
+            image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80"
+        }
+    ];
+
     return (
         <>
             {/* Ticker Animation Section - MOVED TO TOP */}
@@ -114,11 +171,11 @@ export default function About() {
 
                     {/* Zigzag Cards with Ticker Effect */}
                     <div className="relative">
-                        {/* Left Fade */}
-                        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-teal-50 to-transparent z-10 pointer-events-none"></div>
+                        {/* Left Fade - UPDATED TO 100% */}
+                        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-teal-50 to-transparent z-10 pointer-events-none opacity-100"></div>
 
-                        {/* Right Fade */}
-                        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-teal-50 to-transparent z-10 pointer-events-none"></div>
+                        {/* Right Fade - UPDATED TO 100% */}
+                        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-teal-50 to-transparent z-10 pointer-events-none opacity-100"></div>
 
                         <motion.div
                             animate={{ x: [0, -2000] }}
@@ -514,7 +571,7 @@ export default function About() {
                 </div>
             </section>
 
-            {/* Security Section - Redesigned with Ticker Animation */}
+            {/* Our Mission & Team Section - REPLACES SECURITY SECTION */}
             <section className="relative bg-white py-24 overflow-hidden">
                 <div className="container mx-auto px-4 sm:px-6 md:px-12">
                     {/* Header */}
@@ -526,7 +583,7 @@ export default function About() {
                             className="inline-block px-6 py-2 rounded-full bg-[#20C997]/10 border border-[#20C997]/20 mb-6"
                         >
                             <span className="text-[#20C997] font-bold text-sm uppercase tracking-widest">
-                                Your Security, Our Priority
+                                Our Mission & Values
                             </span>
                         </motion.div>
                         <motion.h2
@@ -536,8 +593,8 @@ export default function About() {
                             transition={{ delay: 0.1 }}
                             className="text-4xl md:text-5xl font-bold text-slate-900 mb-6"
                         >
-                            Built with Trust,<br />
-                            <span className="text-[#20C997]">Protected by Design</span>
+                            Innovating Financial Solutions,<br />
+                            <span className="text-[#20C997]">Empowering Businesses</span>
                         </motion.h2>
                         <motion.p
                             initial={{ opacity: 0, y: 20 }}
@@ -546,26 +603,97 @@ export default function About() {
                             transition={{ delay: 0.2 }}
                             className="text-xl text-slate-600 max-w-3xl mx-auto"
                         >
-                            We've engineered every layer of SwiftFin with enterprise-grade security. Your financial data deserves nothing less than military-level protection.
+                            As a leading provider of innovative finance software, we're dedicated to empowering
+                            businesses like yours to achieve their financial goals through cutting-edge technology.
                         </motion.p>
                     </div>
 
-                    {/* Security Features Ticker Animation */}
-                    <div className="relative mb-20">
-                        {/* Left Fade */}
-                        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+                    {/* Team Meeting & Values Section */}
+                    <div className="grid lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto mb-20">
+                        {/* Left Side - Team Photo */}
+                        <motion.div
+                            initial={{ opacity: 0, x: -30 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8 }}
+                            className="relative"
+                        >
+                            <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+                                <img
+                                    src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&q=80"
+                                    alt="Team Meeting at SwiftFin"
+                                    className="w-full h-[500px] object-cover object-center"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent"></div>
+                            </div>
 
-                        {/* Right Fade */}
-                        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
+                            {/* Decorative Elements */}
+                            <div className="absolute -top-6 -right-6 w-48 h-48 bg-[#20C997]/10 rounded-full blur-3xl -z-10"></div>
+                            <div className="absolute -bottom-6 -left-6 w-40 h-40 bg-teal-400/10 rounded-full blur-3xl -z-10"></div>
+                        </motion.div>
+
+                        {/* Right Side - Content */}
+                        <motion.div
+                            initial={{ opacity: 0, x: 30 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8, delay: 0.2 }}
+                            className="space-y-8"
+                        >
+                            <div className="space-y-6">
+                                <h3 className="text-3xl md:text-4xl font-bold text-slate-900">
+                                    Building the Future of Finance, Together
+                                </h3>
+                                <p className="text-lg text-slate-600 leading-relaxed">
+                                    At SwiftFin, we believe that financial management should be accessible, intuitive,
+                                    and empowering for everyone. Our team of finance experts and technology innovators
+                                    work tirelessly to create solutions that transform how businesses manage their finances.
+                                </p>
+                                <p className="text-lg text-slate-600 leading-relaxed">
+                                    Every decision we make, every feature we build, is guided by our commitment to
+                                    excellence and our passion for helping businesses succeed in an increasingly complex
+                                    financial landscape.
+                                </p>
+                            </div>
+
+                            {/* Key Stats */}
+                            <div className="grid grid-cols-2 gap-6 pt-8">
+                                <div className="text-center">
+                                    <div className="text-4xl font-bold text-[#20C997] mb-2">5+</div>
+                                    <div className="text-slate-600 font-medium">Years of Innovation</div>
+                                </div>
+                                <div className="text-center">
+                                    <div className="text-4xl font-bold text-[#20C997] mb-2">10K+</div>
+                                    <div className="text-slate-600 font-medium">Businesses Empowered</div>
+                                </div>
+                                <div className="text-center">
+                                    <div className="text-4xl font-bold text-[#20C997] mb-2">50+</div>
+                                    <div className="text-slate-600 font-medium">Team Members</div>
+                                </div>
+                                <div className="text-center">
+                                    <div className="text-4xl font-bold text-[#20C997] mb-2">24/7</div>
+                                    <div className="text-slate-600 font-medium">Support Available</div>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </div>
+
+                    {/* Values Section with Ticker Animation */}
+                    <div className="relative">
+                        {/* Left Fade - UPDATED TO 100% */}
+                        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none opacity-100"></div>
+
+                        {/* Right Fade - UPDATED TO 100% */}
+                        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none opacity-100"></div>
 
                         <motion.div
-                            animate={{ x: ["0%", "-100%"] }} /* Changed from right to left */
+                            animate={{ x: ["0%", "-100%"] }}
                             transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
                             className="flex gap-8 whitespace-nowrap py-8"
                         >
                             {[...Array(3)].map((_, setIndex) => (
                                 <div key={setIndex} className="flex gap-8">
-                                    {securityFeatures.map((feature, index) => (
+                                    {values.map((value, index) => (
                                         <motion.div
                                             key={`${setIndex}-${index}`}
                                             whileHover={{ y: -8 }}
@@ -574,16 +702,16 @@ export default function About() {
                                             {/* Icon */}
                                             <div className="mb-6">
                                                 <div className="inline-flex p-4 rounded-2xl bg-gradient-to-br from-[#20C997]/10 to-teal-500/10 text-[#20C997] group-hover:from-[#20C997] group-hover:to-teal-600 group-hover:text-white transition-all duration-300 group-hover:scale-110">
-                                                    {feature.icon}
+                                                    {value.icon}
                                                 </div>
                                             </div>
 
                                             {/* Content */}
                                             <h3 className="text-2xl font-bold text-slate-900 mb-4 group-hover:text-[#20C997] transition-colors">
-                                                {feature.title}
+                                                {value.title}
                                             </h3>
                                             <p className="text-slate-600 leading-relaxed">
-                                                {feature.description}
+                                                {value.description}
                                             </p>
 
                                             {/* Decorative Element */}
@@ -595,6 +723,75 @@ export default function About() {
                         </motion.div>
                     </div>
 
+                    {/* Testimonials Section */}
+                    <div className="relative py-20">
+                        <div className="text-center mb-12">
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                className="inline-block px-6 py-2 rounded-full bg-[#20C997]/10 border border-[#20C997]/20 mb-6"
+                            >
+                                <span className="text-[#20C997] font-bold text-sm uppercase tracking-widest">
+                                    Testimonials
+                                </span>
+                            </motion.div>
+                            <h3 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+                                Loved by <span className="text-[#20C997]">Thousands</span>
+                            </h3>
+                        </div>
+
+                        {/* Maxed Out Fade Ticker */}
+                        <div className="relative">
+                            {/* Left Fade - MAXED OUT (33% width) */}
+                            <div className="absolute left-0 top-0 bottom-0 w-1/3 bg-gradient-to-r from-white via-white/80 to-transparent z-20 pointer-events-none"></div>
+
+                            {/* Right Fade - MAXED OUT (33% width) */}
+                            <div className="absolute right-0 top-0 bottom-0 w-1/3 bg-gradient-to-l from-white via-white/80 to-transparent z-20 pointer-events-none"></div>
+
+                            <motion.div
+                                animate={{ x: [0, -2000] }}
+                                transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
+                                className="flex gap-6 whitespace-nowrap py-4"
+                            >
+                                {[...Array(3)].map((_, setIndex) => (
+                                    <div key={setIndex} className="flex gap-6">
+                                        {testimonials.map((testimonial, index) => (
+                                            <div
+                                                key={`${setIndex}-${index}`}
+                                                className="w-[400px] bg-slate-50 rounded-2xl p-8 border border-slate-100 whitespace-normal flex flex-col justify-between"
+                                            >
+                                                <div>
+                                                    <div className="flex gap-1 mb-4 text-[#20C997]">
+                                                        {[...Array(5)].map((_, i) => (
+                                                            <svg key={i} className="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                                                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                                            </svg>
+                                                        ))}
+                                                    </div>
+                                                    <p className="text-slate-700 text-lg leading-relaxed mb-6 italic">
+                                                        "{testimonial.content}"
+                                                    </p>
+                                                </div>
+                                                <div className="flex items-center gap-4">
+                                                    <img
+                                                        src={testimonial.image}
+                                                        alt={testimonial.name}
+                                                        className="w-12 h-12 rounded-full object-cover"
+                                                    />
+                                                    <div>
+                                                        <div className="font-bold text-slate-900">{testimonial.name}</div>
+                                                        <div className="text-sm text-slate-500">{testimonial.role}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                ))}
+                            </motion.div>
+                        </div>
+                    </div>
+
                     {/* Bottom CTA */}
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
@@ -603,18 +800,18 @@ export default function About() {
                         className="text-center mt-20"
                     >
                         <div className="inline-block bg-gradient-to-r from-slate-50 to-teal-50 rounded-3xl p-12 border-2 border-slate-100">
-                            <Shield className="w-16 h-16 text-[#20C997] mx-auto mb-6" />
+                            <Users className="w-16 h-16 text-[#20C997] mx-auto mb-6" />
                             <h3 className="text-3xl font-bold text-slate-900 mb-4">
-                                Questions about our security?
+                                Join the Financial Revolution
                             </h3>
                             <p className="text-lg text-slate-600 mb-8 max-w-2xl mx-auto">
-                                Our security team is always available to discuss how we protect your financial data. Transparency is part of our commitment to you.
+                                If still any doubts left we are here to help you out.
                             </p>
                             <a
                                 href="/contact"
                                 className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[#20C997] text-white font-semibold hover:bg-teal-600 transition-all duration-300 hover:scale-105"
                             >
-                                Contact Security Team
+                                Contact Us
                                 <ArrowRight className="w-5 h-5" />
                             </a>
                         </div>

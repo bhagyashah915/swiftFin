@@ -1,6 +1,7 @@
 "use client";
 
 import Hero from "./components/hero";
+import BlogPreview from "./components/BlogPreview";
 import About from "./components/about";
 import Metrics from "./components/metrics";
 import Features from "./components/features";

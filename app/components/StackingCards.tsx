@@ -1,7 +1,7 @@
 "use client"
 
-import { useRef } from "react"
-import { motion, useScroll, useTransform } from "framer-motion"
+import { useRef, useState, useEffect } from "react"
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import { Users, Briefcase, Laptop, Building2 } from "lucide-react"
 import AnimatedDownloadButton from "./AnimatedDownloadButton"
 
@@ -12,6 +12,7 @@ interface Card {
   icon: React.ReactNode
   benefits: string[]
   bgGradient: string
+  image: string
 }
 
 const cards: Card[] = [
@@ -22,6 +23,7 @@ const cards: Card[] = [
     icon: <Users className="w-full h-full" />,
     benefits: ["Smart budgeting", "Pocket money tracker", "Savings goals"],
     bgGradient: "from-teal-400 to-teal-600",
+    image: "https://images.unsplash.com/photo-1554224154-260327c00c40?w=1600&q=80"
   },
   {
     id: 2,
@@ -30,6 +32,7 @@ const cards: Card[] = [
     icon: <Briefcase className="w-full h-full" />,
     benefits: ["Salary planning", "Investment tracking", "Tax insights"],
     bgGradient: "from-teal-400 to-teal-600",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1600&q=80"
   },
   {
     id: 3,
@@ -38,6 +41,7 @@ const cards: Card[] = [
     icon: <Laptop className="w-full h-full" />,
     benefits: ["Invoice tracking", "Expense separation", "Cash flow view"],
     bgGradient: "from-teal-400 to-teal-600",
+    image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=1600&q=80"
   },
   {
     id: 4,
@@ -46,10 +50,21 @@ const cards: Card[] = [
     icon: <Building2 className="w-full h-full" />,
     benefits: ["GST reports", "EMI management", "Multi-account"],
     bgGradient: "from-teal-400 to-teal-600",
+    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1600&q=80"
   },
 ]
 
-function Card({ card, index }: { card: Card; index: number }) {
+function Card({
+  card,
+  index,
+  activeCard,
+  onActive
+}: {
+  card: Card;
+  index: number;
+  activeCard: number;
+  onActive: (index: number) => void;
+}) {
   const cardRef = useRef<HTMLDivElement>(null)
 
   const { scrollYProgress } = useScroll({
@@ -59,6 +74,19 @@ function Card({ card, index }: { card: Card; index: number }) {
 
   const scale = useTransform(scrollYProgress, [0, 1], [0.9, 1])
   const opacity = useTransform(scrollYProgress, [0, 1], [0, 1])
+
+  useEffect(() => {
+    return scrollYProgress.on("change", (latest) => {
+      // Threshold 0.3 means the card has started entering well into view
+      if (latest > 0.3) {
+        onActive(index)
+      }
+      // If we scroll back up and this card drops below threshold, revert to previous
+      if (latest < 0.3 && activeCard === index && index > 0) {
+        onActive(index - 1)
+      }
+    })
+  }, [scrollYProgress, index, onActive, activeCard])
 
   return (
     <div
@@ -141,10 +169,39 @@ function Card({ card, index }: { card: Card; index: number }) {
 }
 
 export default function StackingCards() {
+  const [activeCard, setActiveCard] = useState(0)
+
   return (
-    <section className="relative bg-white">
+    <section className="relative min-h-screen">
+      {/* Dynamic Background */}
+      <div className="sticky top-0 h-screen w-full overflow-hidden z-0">
+        <div className="absolute inset-0 bg-slate-900/5 transition-colors duration-500" />
+        <AnimatePresence mode="popLayout">
+          {cards.map((card, index) => (
+            index === activeCard && (
+              <motion.div
+                key={card.id}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
+                className="absolute inset-0"
+              >
+                <div className="absolute inset-0 bg-white/90 z-10" />
+                <img
+                  src={card.image}
+                  alt={card.title}
+                  className="w-full h-full object-cover opacity-20"
+                />
+                {/* Radial fade for better readability */}
+                <div className="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white/80 z-20" />
+              </motion.div>
+            )
+          ))}
+        </AnimatePresence>
+      </div>
       {/* Header */}
-      <div className="container mx-auto px-6 pt-24 pb-12">
+      <div className="container mx-auto px-6 pt-24 pb-12 relative z-10">
         <div className="text-center max-w-3xl mx-auto">
           <div className="inline-block px-4 py-1.5 rounded-full bg-teal-50 border border-teal-200 mb-6">
             <span className="text-teal-600 font-bold text-sm uppercase tracking-widest">Who is it for?</span>
@@ -160,9 +217,15 @@ export default function StackingCards() {
       </div>
 
       {/* Stacking Cards */}
-      <div className="relative">
+      <div className="relative z-10">
         {cards.map((card, index) => (
-          <Card key={card.id} card={card} index={index} />
+          <Card
+            key={card.id}
+            card={card}
+            index={index}
+            activeCard={activeCard}
+            onActive={setActiveCard}
+          />
         ))}
       </div>
 

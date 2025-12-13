@@ -11,7 +11,7 @@ export default function Hero() {
     const [splashStep, setSplashStep] = useState(0);
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const [isLargeScreen, setIsLargeScreen] = useState(false);
-    const phoneRef = useRef(null);
+    const phoneRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const logoTimer = setTimeout(() => setSplashStep(1), 400);
@@ -30,7 +30,7 @@ export default function Hero() {
             setIsLargeScreen(window.innerWidth >= 1024);
         };
 
-        const handleMouseMove = (e) => {
+        const handleMouseMove = (e: MouseEvent) => {
             if (phoneRef.current && isLargeScreen) {
                 const rect = phoneRef.current.getBoundingClientRect();
                 const centerX = rect.left + rect.width / 2;
@@ -181,12 +181,12 @@ export default function Hero() {
 
                             {/* Button - Only show on desktop in this section */}
                             <div className="pt-4 hidden lg:flex justify-center lg:justify-start">
-                                <button className="group px-6 py-3 lg:px-8 lg:py-4 bg-white border-2 border-teal-500 text-teal-600 font-semibold rounded-full hover:bg-teal-500 hover:text-white transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center gap-3 text-sm lg:text-base">
+                                <a href="/download" className="group px-6 py-3 lg:px-8 lg:py-4 bg-white border-2 border-teal-500 text-teal-600 font-semibold rounded-full hover:bg-teal-500 hover:text-white transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center gap-3 text-sm lg:text-base">
                                     <span>Get Started Free</span>
                                     <div className="w-7 h-7 lg:w-8 lg:h-8 bg-teal-500 group-hover:bg-white rounded-full flex items-center justify-center transition-colors">
                                         <ArrowRight className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-white group-hover:text-teal-500 group-hover:translate-x-0.5 transition-all" />
                                     </div>
-                                </button>
+                                </a>
                             </div>
                         </div>
 
@@ -217,12 +217,12 @@ export default function Hero() {
 
                         {/* Mobile Button - Order 3 on mobile, hidden on desktop */}
                         <div className="order-3 lg:hidden pt-4 flex justify-center">
-                            <button className="group px-6 py-3 bg-white border-2 border-teal-500 text-teal-600 font-semibold rounded-full hover:bg-teal-500 hover:text-white transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center gap-3 text-sm">
+                            <a href="/download" className="group px-6 py-3 bg-white border-2 border-teal-500 text-teal-600 font-semibold rounded-full hover:bg-teal-500 hover:text-white transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center gap-3 text-sm">
                                 <span>Get Started Free</span>
                                 <div className="w-7 h-7 bg-teal-500 group-hover:bg-white rounded-full flex items-center justify-center transition-colors">
                                     <ArrowRight className="w-3.5 h-3.5 text-white group-hover:text-teal-500 group-hover:translate-x-0.5 transition-all" />
                                 </div>
-                            </button>
+                            </a>
                         </div>
 
                         {/* Right Content - Hidden on mobile, visible on desktop */}

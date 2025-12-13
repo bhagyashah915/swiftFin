@@ -69,6 +69,12 @@ export default function Navbar() {
                             >
                                 About Us
                             </Link>
+                            <Link
+                                href="/contact"
+                                className="px-5 py-2 text-sm font-semibold text-slate-700 hover:text-teal-600 hover:bg-gray-50 rounded-full transition-all"
+                            >
+                                Contact Us
+                            </Link>
                             <AnimatedDownloadButton
                                 className="h-10 px-6 rounded-full text-sm font-bold transition-all flex items-center justify-center ml-2"
                                 text="Download"
@@ -147,6 +153,13 @@ export default function Navbar() {
                                     className="block p-4 text-lg font-semibold text-slate-700 hover:text-teal-600 hover:bg-gray-50 rounded-xl transition-all"
                                 >
                                     About Us
+                                </Link>
+                                <Link
+                                    href="/contact"
+                                    onClick={() => setMobileMenuOpen(false)}
+                                    className="block p-4 text-lg font-semibold text-slate-700 hover:text-teal-600 hover:bg-gray-50 rounded-xl transition-all"
+                                >
+                                    Contact Us
                                 </Link>
                             </nav>
                         </div>
