@@ -14,6 +14,9 @@ export default function SmoothScroll() {
             wheelMultiplier: 1,
             touchMultiplier: 2,
             infinite: false,
+            // Important: Use native scroll for better compatibility with sticky
+            wrapper: window,
+            content: document.documentElement,
         });
 
         function raf(time: number) {

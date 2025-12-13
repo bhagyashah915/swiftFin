@@ -5,13 +5,14 @@ import About from "./components/about";
 import Metrics from "./components/metrics";
 import Features from "./components/features";
 import HowItWorks from "./components/howItWorks";
-import UserTypes from "./components/userTypes";
+
 import FAQ from "./components/faq";
 
 // Firebase imports
 import { db } from "@/app/lib/firebaseconfig";
 import { collection, addDoc } from "firebase/firestore";
-import HeroNew from "./components/hero-new";
+
+import StackingCards from "./components/StackingCards";
 
 export default function Home() {
 
@@ -30,15 +31,14 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-white overflow-x-hidden">
+    <main className="min-h-screen bg-white">
       <Hero />
       <About />
       <Metrics />
       <Features />
-      <UserTypes />
+      <StackingCards />
       <HowItWorks />
       <FAQ />
-
     </main>
   );
 }

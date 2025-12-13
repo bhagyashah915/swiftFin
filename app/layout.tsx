@@ -44,7 +44,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${sora.variable} ${cedarvilleCursive.variable} antialiased font-sans`}
       >
-        <SmoothScroll />
+        {/* <SmoothScroll /> */}
         <Navbar />
         {children}
         <Footer />
