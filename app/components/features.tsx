@@ -7,6 +7,25 @@ import Image from "next/image";
 
 export default function Features() {
     const [activeIndex, setActiveIndex] = useState(0);
+    const [isMobile, setIsMobile] = useState(false);
+
+    // Detect mobile and auto-scroll
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    // Auto-scroll on mobile
+    useEffect(() => {
+        if (isMobile) {
+            const interval = setInterval(() => {
+                setActiveIndex((prev) => (prev + 1) % features.length);
+            }, 3000);
+            return () => clearInterval(interval);
+        }
+    }, [isMobile]);
 
     const features = [
         {
@@ -92,8 +111,8 @@ export default function Features() {
                     </p>
                 </div>
 
-                {/* Features Grid - Top Section */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 w-full max-w-7xl mb-20">
+                {/* Features Grid - Top Section - Hide on mobile */}
+                <div className="hidden md:grid md:grid-cols-4 lg:grid-cols-6 gap-5 w-full max-w-7xl mb-20">
                     {features.map((feature, idx) => (
                         <motion.div
                             key={idx}
@@ -103,10 +122,11 @@ export default function Features() {
                             viewport={{ once: true }}
                             onMouseEnter={() => setActiveIndex(idx)}
                             onClick={() => setActiveIndex(idx)}
-                            className={`group cursor-pointer p-4 rounded-xl transition-all duration-300 ${activeIndex === idx
-                                ? 'bg-gray-100 shadow-2xl'
-                                : 'bg-gray-50'
-                                }`}
+                            className={`group cursor-pointer p-4 rounded-xl transition-all duration-300 md:col-span-2 lg:col-span-2 ${
+                                idx === 3 ? 'lg:col-start-2' : ''
+                            } ${
+                                idx === 4 ? 'md:col-start-2 lg:col-start-auto' : ''
+                            } ${activeIndex === idx ? 'bg-gray-100' : 'bg-gray-50'}`}
                         >
                             <div className={`w-12 h-12 rounded-lg ${feature.color} flex items-center justify-center mb-3 ${feature.iconColor} transition-transform`}>
                                 {feature.icon}
@@ -122,33 +142,37 @@ export default function Features() {
                 </div>
 
                 {/* Phone Mockup - Bottom Section */}
-                <div className="relative w-full max-w-[400px] h-[500px] flex justify-center items-start overflow-visible">
+                <div className="relative w-full max-w-[300px] md:max-w-[400px] h-[400px] md:h-[500px] flex justify-center items-start overflow-visible">
                     {/* Teal Background Blob - Enhanced */}
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[120%] bg-teal-500/50 blur-[120px] rounded-full -z-10"></div>
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100%] h-[90%] bg-cyan-400/30 blur-[80px] rounded-full -z-10"></div>
 
                     {/* iPhone Frame Container */}
-                    <div className="relative w-full h-[800px] flex justify-center items-start overflow-visible">
+                    <div className="relative w-full h-[600px] md:h-[800px] flex justify-center items-start overflow-visible">
                         {/* Feature Screenshots Carousel - Behind the frame - Wider to show sliding effect */}
-                        <div className="absolute top-4 left-1/2 -translate-x-1/2 h-[760px] flex justify-center items-start overflow-visible" style={{ width: '1400px' }}>
+                        <div className="absolute top-[3px] md:top-1 left-1/2 -translate-x-1/2 h-[570px] md:h-[760px] flex justify-center items-start overflow-visible" style={{ width: isMobile ? '800px' : '1400px' }}>
                             {/* Horizontal sliding carousel */}
                             <motion.div
                                 className="flex h-full items-start"
-                                animate={{ x: `calc(50% - ${activeIndex * 400}px - 190px)` }}
+                                animate={{
+                                    x: isMobile
+                                        ? `calc(50% - ${activeIndex * 250}px - 115px)`
+                                        : `calc(50% - ${activeIndex * 400}px - 190px)`
+                                }}
                                 transition={{ type: "spring", stiffness: 300, damping: 30 }}
                             >
                                 {features.map((feature, idx) => (
                                     <div
                                         key={idx}
-                                        className="relative shrink-0 rounded-[3rem] overflow-hidden"
+                                        className="relative shrink-0 rounded-[2rem] md:rounded-[3rem] overflow-hidden"
                                         style={{
-                                            width: '380px',
-                                            height: '760px',
+                                            width: isMobile ? '230px' : '380px',
+                                            height: isMobile ? '570px' : '760px',
                                             filter: idx === activeIndex ? 'blur(0px)' : 'blur(6px)',
                                             opacity: idx === activeIndex ? 1 : 0.4,
                                             transform: idx === activeIndex ? 'scale(1)' : 'scale(0.9)',
                                             transition: 'all 0.4s ease',
-                                            marginRight: '20px'
+                                            marginRight: isMobile ? '20px' : '20px'
                                         }}
                                     >
                                         <Image

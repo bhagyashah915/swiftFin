@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Wallet, PieChart, Target, TrendingUp } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const steps = [
     {
@@ -33,6 +33,28 @@ const steps = [
 
 export default function HowItWorks() {
     const [activeStep, setActiveStep] = useState(1);
+    const [isMobile, setIsMobile] = useState(false);
+
+    // Detect mobile and auto-scroll
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    // Auto-scroll on mobile
+    useEffect(() => {
+        if (isMobile) {
+            const interval = setInterval(() => {
+                setActiveStep((prev) => {
+                    // Cycle through steps 1-4
+                    return prev >= 4 ? 1 : prev + 1;
+                });
+            }, 3000);
+            return () => clearInterval(interval);
+        }
+    }, [isMobile]);
 
     // Function to render phone screen based on active step
     const renderPhoneScreen = (stepId) => {

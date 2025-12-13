@@ -40,18 +40,19 @@ export default function Metrics() {
           style={{ zIndex: 0 }}
           viewBox="0 0 100 100"
           preserveAspectRatio="none"
+          shapeRendering="geometricPrecision"
         >
           <defs>
             {/* Left-side gradient - fades from center (right) to icon (left) */}
             <linearGradient id="tealTailLeft" x1="100%" y1="0%" x2="0%" y2="0%">
-              <stop offset="0%" stopColor="#14B8A6" stopOpacity="0.1" />
-              <stop offset="60%" stopColor="#20C997" stopOpacity="0.7" />
+              <stop offset="0%" stopColor="#14B8A6" stopOpacity="0.4" />
+              <stop offset="60%" stopColor="#20C997" stopOpacity="0.9" />
               <stop offset="100%" stopColor="#14B8A6" stopOpacity="1" />
             </linearGradient>
             {/* Right-side gradient - fades from center (left) to icon (right) */}
             <linearGradient id="tealTailRight" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#14B8A6" stopOpacity="0.1" />
-              <stop offset="60%" stopColor="#20C997" stopOpacity="0.7" />
+              <stop offset="0%" stopColor="#14B8A6" stopOpacity="0.4" />
+              <stop offset="60%" stopColor="#20C997" stopOpacity="0.9" />
               <stop offset="100%" stopColor="#14B8A6" stopOpacity="1" />
             </linearGradient>
           </defs>
@@ -60,38 +61,29 @@ export default function Metrics() {
           <motion.path
             d="M 50 40 Q 30 28, 10 20"
             stroke="url(#tealTailLeft)"
-            strokeWidth="1.2"
+            strokeWidth="2.5"
+            strokeOpacity="0.9"
             fill="none"
             strokeLinecap="round"
+            strokeLinejoin="round"
             vectorEffect="non-scaling-stroke"
-            initial={{ pathLength: 0 }}
-            animate={isInView ? { pathLength: 1 } : {}}
+            initial={{ opacity: 0, pathLength: 0 }}
+            animate={isInView ? { opacity: 1, pathLength: 1 } : {}}
             transition={{ duration: 1.3, ease: "easeOut", delay: 0.3 }}
-          />
-
-          {/* Left-middle money icon tail - from center to icon at 12%, 45% */}
-          <motion.path
-            d="M 50 50 Q 32 48, 14 47"
-            stroke="url(#tealTailLeft)"
-            strokeWidth="1.2"
-            fill="none"
-            strokeLinecap="round"
-            vectorEffect="non-scaling-stroke"
-            initial={{ pathLength: 0 }}
-            animate={isInView ? { pathLength: 1 } : {}}
-            transition={{ duration: 1.3, ease: "easeOut", delay: 0.5 }}
           />
 
           {/* Bottom-left cash icon tail - from center to icon at 10%, 85% */}
           <motion.path
             d="M 50 65 Q 32 75, 12 87"
             stroke="url(#tealTailLeft)"
-            strokeWidth="1.2"
+            strokeWidth="2.5"
+            strokeOpacity="0.9"
             fill="none"
             strokeLinecap="round"
+            strokeLinejoin="round"
             vectorEffect="non-scaling-stroke"
-            initial={{ pathLength: 0 }}
-            animate={isInView ? { pathLength: 1 } : {}}
+            initial={{ opacity: 0, pathLength: 0 }}
+            animate={isInView ? { opacity: 1, pathLength: 1 } : {}}
             transition={{ duration: 1.3, ease: "easeOut", delay: 0.7 }}
           />
 
@@ -99,25 +91,29 @@ export default function Metrics() {
           <motion.path
             d="M 50 40 Q 68 30, 87 24"
             stroke="url(#tealTailRight)"
-            strokeWidth="1.2"
+            strokeWidth="2.5"
+            strokeOpacity="0.9"
             fill="none"
             strokeLinecap="round"
+            strokeLinejoin="round"
             vectorEffect="non-scaling-stroke"
-            initial={{ pathLength: 0 }}
-            animate={isInView ? { pathLength: 1 } : {}}
+            initial={{ opacity: 0, pathLength: 0 }}
+            animate={isInView ? { opacity: 1, pathLength: 1 } : {}}
             transition={{ duration: 1.3, ease: "easeOut", delay: 0.4 }}
           />
 
-          {/* Bottom-right wallet icon tail - from center to icon at 90%, 70% */}
+          {/* Bottom-right wallet icon tail - from center to icon at 96%, 88% */}
           <motion.path
-            d="M 50 60 Q 68 65, 88 72"
+            d="M 50 60 Q 72 72, 94 88"
             stroke="url(#tealTailRight)"
-            strokeWidth="1.2"
+            strokeWidth="2.5"
+            strokeOpacity="0.9"
             fill="none"
             strokeLinecap="round"
+            strokeLinejoin="round"
             vectorEffect="non-scaling-stroke"
-            initial={{ pathLength: 0 }}
-            animate={isInView ? { pathLength: 1 } : {}}
+            initial={{ opacity: 0, pathLength: 0 }}
+            animate={isInView ? { opacity: 1, pathLength: 1 } : {}}
             transition={{ duration: 1.3, ease: "easeOut", delay: 0.6 }}
           />
         </svg>
@@ -132,18 +128,6 @@ export default function Metrics() {
         >
           <div className="relative w-20 h-20 drop-shadow-2xl">
             <Image src="/icon3coins.png" alt="Coins" fill className="object-contain" />
-          </div>
-        </motion.div>
-
-        {/* Middle-left: Money icon */}
-        <motion.div
-          className="absolute top-[45%] left-[12%] z-2"
-          initial={{ x: -130, opacity: 0, rotate: 15 }}
-          animate={isInView ? { x: 0, opacity: 1, rotate: 0 } : {}}
-          transition={{ duration: 1.8, ease: "easeOut", delay: 0.5 }}
-        >
-          <div className="relative w-16 h-16 drop-shadow-xl">
-            <Image src="/icon2money.png" alt="Money" fill className="object-contain" />
           </div>
         </motion.div>
 
@@ -174,7 +158,7 @@ export default function Metrics() {
 
         {/* Bottom-right: Wallet icon */}
         <motion.div
-          className="absolute top-[70%] right-[10%] z-2"
+          className="absolute top-[88%] right-[4%] z-2"
           initial={{ x: 140, opacity: 0, rotate: -18 }}
           animate={isInView ? { x: 0, opacity: 1, rotate: 0 } : {}}
           transition={{ duration: 1.7, ease: "easeOut", delay: 0.6 }}
@@ -305,7 +289,7 @@ export default function Metrics() {
               </span>
 
               {/* Line graph */}
-              <svg viewBox="0 0 100 40" className="w-32 h-12 ml-4">
+              <svg viewBox="0 0 100 40" className="w-32 h-12 ml-4" shapeRendering="geometricPrecision">
                 <defs>
                   <linearGradient id="tealGraph" x1="0%" y1="0%" x2="100%" y2="0%">
                     <stop offset="0%" stopColor="#20C997" />
@@ -316,7 +300,7 @@ export default function Metrics() {
                   d="M0,35 Q10,30 20,26 T40,20 T60,17 T80,12 T100,6"
                   fill="none"
                   stroke="url(#tealGraph)"
-                  strokeWidth="2.5"
+                  strokeWidth="3"
                   strokeLinecap="round"
                   initial={{ pathLength: 0 }}
                   animate={isInView ? { pathLength: 1 } : {}}
