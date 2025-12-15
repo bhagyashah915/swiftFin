@@ -47,36 +47,36 @@ export default function Navbar() {
                         <div className="flex items-center gap-2 bg-white/80 backdrop-blur-md border border-gray-200 rounded-full px-3 py-2 shadow-sm">
                             <Link
                                 href="/features"
-                                className="px-5 py-2 text-sm font-semibold text-slate-700 hover:text-teal-600 hover:bg-gray-50 rounded-full transition-all"
+                                className="px-5 py-2 text-sm font-semibold text-slate-700 hover:text-teal-600 hover:bg-gray-50 rounded-full transition-all font-['Montserrat']"
                             >
                                 Features
                             </Link>
                             <Link
                                 href="/#how-it-works"
-                                className="px-5 py-2 text-sm font-semibold text-slate-700 hover:text-teal-600 hover:bg-gray-50 rounded-full transition-all"
+                                className="px-5 py-2 text-sm font-semibold text-slate-700 hover:text-teal-600 hover:bg-gray-50 rounded-full transition-all font-['Montserrat']"
                             >
                                 How It Works
                             </Link>
                             <Link
                                 href="/blog"
-                                className="px-5 py-2 text-sm font-semibold text-slate-700 hover:text-teal-600 hover:bg-gray-50 rounded-full transition-all"
+                                className="px-5 py-2 text-sm font-semibold text-slate-700 hover:text-teal-600 hover:bg-gray-50 rounded-full transition-all font-['Montserrat']"
                             >
                                 Blog
                             </Link>
                             <Link
                                 href="/about"
-                                className="px-5 py-2 text-sm font-semibold text-slate-700 hover:text-teal-600 hover:bg-gray-50 rounded-full transition-all"
+                                className="px-5 py-2 text-sm font-semibold text-slate-700 hover:text-teal-600 hover:bg-gray-50 rounded-full transition-all font-['Montserrat']"
                             >
                                 About Us
                             </Link>
                             <Link
                                 href="/contact"
-                                className="px-5 py-2 text-sm font-semibold text-slate-700 hover:text-teal-600 hover:bg-gray-50 rounded-full transition-all"
+                                className="px-5 py-2 text-sm font-semibold text-slate-700 hover:text-teal-600 hover:bg-gray-50 rounded-full transition-all font-['Montserrat']"
                             >
                                 Contact Us
                             </Link>
                             <AnimatedDownloadButton
-                                className="h-10 px-6 rounded-full text-sm font-bold transition-all flex items-center justify-center ml-2"
+                                className="h-10 px-6 rounded-full text-sm font-bold transition-all flex items-center justify-center ml-2 font-['Montserrat']"
                                 text="Download"
                             />
                         </div>
@@ -86,7 +86,7 @@ export default function Navbar() {
                     <Link href="/" className="md:hidden absolute left-1/2 -translate-x-1/2">
                         <div className="relative w-12 h-12 flex items-center justify-center">
                             <Image
-                                src="/images/swiftfin-logo.png"
+                                src="/images/logo.png"
                                 alt="SwiftFin Logo"
                                 width={48}
                                 height={48}
@@ -112,8 +112,8 @@ export default function Navbar() {
                         {/* Header */}
                         <div className="flex items-center justify-between p-6 border-b border-gray-100">
                             <div className="flex items-center gap-3">
-                                <Image src="/images/swiftfin-logo.png" alt="Logo" width={40} height={40} />
-                                <span className="font-sora font-bold text-xl">SwiftFin</span>
+                                <Image src="/images/logo.png" alt="Logo" width={40} height={40} className="w-10 h-10 object-contain" />
+                                <span className="font-['Montserrat'] font-bold text-xl">SwiftFin</span>
                             </div>
                             <button
                                 onClick={() => setMobileMenuOpen(false)}
@@ -129,35 +129,35 @@ export default function Navbar() {
                                 <Link
                                     href="/#features"
                                     onClick={() => setMobileMenuOpen(false)}
-                                    className="block p-4 text-lg font-semibold text-slate-700 hover:text-teal-600 hover:bg-gray-50 rounded-xl transition-all"
+                                    className="block p-4 text-lg font-semibold text-slate-700 hover:text-teal-600 hover:bg-gray-50 rounded-xl transition-all font-['Montserrat']"
                                 >
                                     Features
                                 </Link>
                                 <Link
                                     href="/#how-it-works"
                                     onClick={() => setMobileMenuOpen(false)}
-                                    className="block p-4 text-lg font-semibold text-slate-700 hover:text-teal-600 hover:bg-gray-50 rounded-xl transition-all"
+                                    className="block p-4 text-lg font-semibold text-slate-700 hover:text-teal-600 hover:bg-gray-50 rounded-xl transition-all font-['Montserrat']"
                                 >
                                     How It Works
                                 </Link>
                                 <Link
                                     href="/who-is-it-for"
                                     onClick={() => setMobileMenuOpen(false)}
-                                    className="block p-4 text-lg font-semibold text-slate-700 hover:text-teal-600 hover:bg-gray-50 rounded-xl transition-all"
+                                    className="block p-4 text-lg font-semibold text-slate-700 hover:text-teal-600 hover:bg-gray-50 rounded-xl transition-all font-['Montserrat']"
                                 >
                                     Who Is It For
                                 </Link>
                                 <Link
                                     href="/about"
                                     onClick={() => setMobileMenuOpen(false)}
-                                    className="block p-4 text-lg font-semibold text-slate-700 hover:text-teal-600 hover:bg-gray-50 rounded-xl transition-all"
+                                    className="block p-4 text-lg font-semibold text-slate-700 hover:text-teal-600 hover:bg-gray-50 rounded-xl transition-all font-['Montserrat']"
                                 >
                                     About Us
                                 </Link>
                                 <Link
                                     href="/contact"
                                     onClick={() => setMobileMenuOpen(false)}
-                                    className="block p-4 text-lg font-semibold text-slate-700 hover:text-teal-600 hover:bg-gray-50 rounded-xl transition-all"
+                                    className="block p-4 text-lg font-semibold text-slate-700 hover:text-teal-600 hover:bg-gray-50 rounded-xl transition-all font-['Montserrat']"
                                 >
                                     Contact Us
                                 </Link>
@@ -166,7 +166,7 @@ export default function Navbar() {
 
                         {/* Footer CTA */}
                         <div className="p-6 border-t border-gray-100 bg-white">
-                            <AnimatedDownloadButton className="w-full py-4 text-lg" text="Download App" />
+                            <AnimatedDownloadButton className="w-full py-4 text-lg font-['Montserrat']" text="Download App" />
                         </div>
                     </motion.div>
                 )}

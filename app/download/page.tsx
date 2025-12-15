@@ -122,7 +122,7 @@ export default function DownloadPage() {
                     {/* App Store Button */}
                     <button
                         onClick={() => handleDownload("iOS")}
-                        className="flex items-center gap-4 bg-white text-slate-900 px-8 py-4 rounded-2xl shadow-xl shadow-black/30 hover:shadow-4xl hover:scale-105 hover:-translate-y-1 transition-all duration-300 group border border-neutral-800"
+                        className="flex items-center gap-4 bg-black text-white px-8 py-4 rounded-2xl shadow-xl shadow-black/30 hover:shadow-4xl hover:scale-105 hover:-translate-y-1 transition-all duration-300 group border border-neutral-800"
                     >
                         <img
                             src="/app store badge.png"
@@ -138,7 +138,7 @@ export default function DownloadPage() {
                     {/* Google Play Button */}
                     <button
                         onClick={() => handleDownload("Android")}
-                        className="flex items-center gap-4 bg-white text-slate-900 px-8 py-4 rounded-2xl shadow-xl shadow-teal-500/20 hover:shadow-2xl hover:scale-105 hover:-translate-y-1 transition-all duration-300 group border-2 border-teal-500"
+                        className="flex items-center gap-4 bg-black text-white px-8 py-4 rounded-2xl shadow-xl shadow-black/30 hover:shadow-2xl hover:scale-105 hover:-translate-y-1 transition-all duration-300 group border-2 border-teal-500"
                     >
                         <img
                             src="/google-play.png"

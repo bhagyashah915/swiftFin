@@ -3,19 +3,28 @@ import { ArrowLeft, Shield, Lock, Eye, Database, UserCheck, Cookie } from "lucid
 
 export default function PrivacyPolicy() {
     return (
-        <div className="min-h-screen bg-white">
-            {/* Header */}
-            <div className="bg-neutral-slate text-white py-20">
-                <div className="container mx-auto px-6 md:px-12">
+        <div className="min-h-screen bg-white font-['Montserrat']">
+            {/* Header with Background Image */}
+            <div className="relative bg-neutral-slate text-white py-20 overflow-hidden">
+                {/* Background Image */}
+                <div className="absolute inset-0 opacity-30">
+                    <img
+                        src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1920&q=80"
+                        alt="Privacy Policy Background"
+                        className="w-full h-full object-cover"
+                    />
+                </div>
+
+                <div className="container relative z-10 mx-auto px-6 md:px-12">
                     <Link
                         href="/"
-                        className="inline-flex items-center gap-2 text-primary-teal hover:text-teal-300 transition-colors mb-6"
+                        className="inline-flex items-center gap-2 text-primary-teal hover:text-teal-300 transition-colors mb-6 font-['Montserrat']"
                     >
                         <ArrowLeft className="w-5 h-5" />
                         Back to Home
                     </Link>
-                    <h1 className="text-5xl md:text-6xl font-bold mb-4">Privacy Policy</h1>
-                    <p className="text-gray-300 text-lg">Last updated: December 4, 2024</p>
+                    <h1 className="text-5xl md:text-6xl font-bold mb-4 font-['Montserrat']">Privacy Policy</h1>
+                    <p className="text-gray-300 text-lg font-['Montserrat']">Last updated: December 4, 2024</p>
                 </div>
             </div>
 

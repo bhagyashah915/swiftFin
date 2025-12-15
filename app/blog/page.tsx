@@ -2,22 +2,46 @@
 
 import { ArrowLeft, Calendar, User, Clock, TrendingUp, Wallet, PiggyBank, CreditCard, ChevronRight, Play, Sparkles, Receipt, BarChart3, Target } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 
 export default function Blog() {
     const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+    const [currentSlide, setCurrentSlide] = useState(0);
 
-    const featuredPost = {
-        title: "Automated Expense Tracking: The Future of Money Management",
-        excerpt: "Discover how AI-powered receipt scanning and automated categorization can help you reduce overspending by 30% and take complete control of your finances.",
-        date: "Dec 10, 2025",
-        author: "Sarah Johnson",
-        authorImage: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&q=80",
-        category: "Expense Tracking",
-        readTime: "12 min read",
-        image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=1200&q=80"
-    };
+    // Featured blogs for slideshow - Completely different from latest articles
+    const featuredBlogs = [
+        {
+            title: "The Psychology of Money: Understanding Your Financial Behavior",
+            excerpt: "Explore how emotions and mindset shape your financial decisions and learn to build better money habits.",
+            category: "Financial Psychology",
+            image: "https://images.unsplash.com/photo-1634128221889-82ed6efebfc3?w=1920&q=80"
+        },
+        {
+            title: "Crypto & Digital Assets: A Beginner's Complete Guide",
+            excerpt: "Navigate the world of cryptocurrency with confidence and understand blockchain fundamentals.",
+            category: "Cryptocurrency",
+            image: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=1920&q=80"
+        },
+        {
+            title: "Tax Planning Strategies for Maximum Savings in 2025",
+            excerpt: "Discover legal tax-saving techniques and deductions that can significantly reduce your tax burden.",
+            category: "Tax Planning",
+            image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1920&q=80"
+        },
+        {
+            title: "Building Passive Income Streams: 10 Proven Methods",
+            excerpt: "Learn how successful entrepreneurs create multiple income sources for financial freedom.",
+            category: "Passive Income",
+            image: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=1920&q=80"
+        },
+        {
+            title: "Financial Independence: Retire Early with FIRE Movement",
+            excerpt: "Master the principles of Financial Independence Retire Early and plan your path to freedom.",
+            category: "FIRE Strategy",
+            image: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=1920&q=80"
+        }
+    ];
 
     const posts = [
         {
@@ -41,66 +65,59 @@ export default function Blog() {
             image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80"
         },
         {
-            title: "Financial Reports That Actually Make Sense",
-            excerpt: "Turn your spending data into beautiful, actionable insights with visual dashboards, pie charts, and exportable PDF reports.",
+            title: "5 Budget Hacks That Actually Save Money in 2025",
+            excerpt: "Practical budgeting strategies that have helped thousands reduce spending by 40% without sacrificing quality of life.",
             date: "Dec 3, 2025",
-            author: "Emily Wilson",
-            authorImage: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400&q=80",
-            category: "Analytics & Reports",
+            author: "Sarah Martinez",
+            authorImage: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80",
+            category: "Budgeting",
             readTime: "7 min read",
-            image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80"
-        },
-        {
-            title: "Receipt Scanning 101: Snap, Save, Skip the Hassle",
-            excerpt: "Master the art of effortless expense tracking with AI-powered OCR technology that extracts details from photos instantly.",
-            date: "Nov 30, 2025",
-            author: "David Park",
-            authorImage: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80",
-            category: "Automation",
-            readTime: "6 min read",
-            image: "https://images.unsplash.com/photo-1556740738-b6a63e27c4df?w=800&q=80"
-        },
-        {
-            title: "30% Less Spending: How Tracking Changes Everything",
-            excerpt: "Real stories from users who transformed their financial lives through consistent expense tracking and smart budget management.",
-            date: "Nov 28, 2025",
-            author: "Raj Kumar",
-            authorImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80",
-            category: "Success Stories",
-            readTime: "9 min read",
             image: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800&q=80"
         },
         {
-            title: "AI-Powered Finance Tips: Your Personal Money Coach",
-            excerpt: "Get personalized spending insights and actionable recommendations based on your unique financial patterns and goals.",
+            title: "Understanding Credit Scores: The Complete Guide",
+            excerpt: "Master the factors that influence your credit score and learn proven strategies to improve it quickly and sustainably.",
+            date: "Dec 1, 2025",
+            author: "James Wilson",
+            authorImage: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80",
+            category: "Credit Management",
+            readTime: "12 min read",
+            image: "https://images.unsplash.com/photo-1554224311-beee4ead2e1b?w=800&q=80"
+        },
+        {
+            title: "Emergency Fund Essentials: How Much Do You Really Need?",
+            excerpt: "Calculate your ideal emergency fund size and discover the fastest ways to build it using automated savings strategies.",
+            date: "Nov 28, 2025",
+            author: "Amanda Lee",
+            authorImage: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400&q=80",
+            category: "Savings",
+            readTime: "9 min read",
+            image: "https://images.unsplash.com/photo-1633158829585-23ba8f7c8caf?w=800&q=80"
+        },
+        {
+            title: "Debt Avalanche vs Snowball: Which Method Works Best?",
+            excerpt: "Compare the two most popular debt repayment strategies with real examples and find out which one will help you become debt-free faster.",
             date: "Nov 25, 2025",
-            author: "Lisa Wang",
-            authorImage: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80",
-            category: "Smart Insights",
+            author: "Robert Garcia",
+            authorImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80",
+            category: "Debt Management",
             readTime: "11 min read",
-            image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80"
+            image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80"
         }
     ];
 
+    // Auto-advance slideshow
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentSlide((prev) => (prev + 1) % featuredBlogs.length);
+        }, 4000);
+        return () => clearInterval(timer);
+    }, []);
+
     return (
         <div className="min-h-screen bg-white">
-            {/* Hero Section with Background Image */}
-            <div className="relative min-h-screen overflow-hidden">
-                {/* Background Image - Copied from the card */}
-                <div
-                    className="absolute inset-0 bg-cover bg-center"
-                    style={{
-                        backgroundImage: `url('https://images.unsplash.com/photo-1554224154-26032ffc0d07?w=1920&q=80')`
-                    }}
-                >
-                    {/* Overlay with gradient - Increased opacity for better contrast */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/95 via-teal-50/90 to-white/95"></div>
-                    {/* Subtle pattern overlay */}
-                    <div className="absolute inset-0 opacity-5">
-                        <div className="absolute inset-0" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%2320C997" fill-opacity="1"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")' }}></div>
-                    </div>
-                </div>
-
+            {/* Hero Section - New Design */}
+            <section className="relative min-h-screen overflow-hidden bg-white">
                 <div className="container relative z-10 mx-auto px-6 pt-12 pb-20">
                     <a
                         href="/"
@@ -111,40 +128,24 @@ export default function Blog() {
                     </a>
 
                     <div className="grid lg:grid-cols-2 gap-16 items-center min-h-[80vh]">
-                        {/* Left Content */}
+                        {/* Left - Blog Title and Content */}
                         <motion.div
                             initial={{ opacity: 0, x: -30 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.8 }}
+                            className="flex flex-col justify-center"
                         >
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{ delay: 0.2 }}
-                                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#20C997]/10 border border-[#20C997]/30 mb-8"
-                            >
-                                <Sparkles className="w-5 h-5 text-[#20C997]" />
-                                <span className="text-[#20C997] font-bold text-sm tracking-wider uppercase">
-                                    Financial Wisdom Hub
-                                </span>
-                            </motion.div>
-
-                            <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold mb-8 leading-[0.95]">
-                                <span className="text-slate-900">Track.</span><br />
-                                <span className="text-slate-900">Manage.</span><br />
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#20C997] to-teal-700">
-                                    Transform.
-                                </span>
+                            <h1 className="text-7xl md:text-8xl lg:text-9xl font-black text-slate-900 mb-8 leading-none">
+                                Blog
                             </h1>
-
-                            <p className="text-xl md:text-2xl text-slate-600 mb-10 leading-relaxed max-w-xl">
-                                Expert insights on expense tracking, EMI management, smart investing, and AI-powered finance tips. Your journey to financial freedom starts here.
+                            <p className="text-xl md:text-2xl text-slate-600 leading-relaxed mb-10 max-w-xl">
+                                Explore expert insights on expense tracking, investment strategies, EMI management, and AI-powered financial tips. Your complete guide to mastering personal finance and building lasting wealth.
                             </p>
 
                             <div className="flex flex-wrap gap-6">
                                 <div className="flex items-center gap-3">
-                                    <div className="w-12 h-12 rounded-full bg-[#20C997]/10 flex items-center justify-center">
-                                        <Receipt className="w-6 h-6 text-[#20C997]" />
+                                    <div className="w-14 h-14 rounded-full bg-[#20C997]/10 flex items-center justify-center">
+                                        <Receipt className="w-7 h-7 text-[#20C997]" />
                                     </div>
                                     <div>
                                         <div className="text-2xl font-bold text-slate-900">50+</div>
@@ -152,165 +153,107 @@ export default function Blog() {
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-3">
-                                    <div className="w-12 h-12 rounded-full bg-[#20C997]/10 flex items-center justify-center">
-                                        <Target className="w-6 h-6 text-[#20C997]" />
+                                    <div className="w-14 h-14 rounded-full bg-[#20C997]/10 flex items-center justify-center">
+                                        <Target className="w-7 h-7 text-[#20C997]" />
                                     </div>
                                     <div>
                                         <div className="text-2xl font-bold text-slate-900">30%</div>
                                         <div className="text-sm text-slate-600">Avg. Savings</div>
                                     </div>
                                 </div>
+                                <div className="flex items-center gap-3">
+                                    <div className="w-14 h-14 rounded-full bg-[#20C997]/10 flex items-center justify-center">
+                                        <TrendingUp className="w-7 h-7 text-[#20C997]" />
+                                    </div>
+                                    <div>
+                                        <div className="text-2xl font-bold text-slate-900">Weekly</div>
+                                        <div className="text-sm text-slate-600">Fresh Content</div>
+                                    </div>
+                                </div>
                             </div>
                         </motion.div>
 
-                        {/* Right Content - Card without the background image */}
+                        {/* Right - Featured Blogs Slideshow with Dynamic Background */}
                         <motion.div
                             initial={{ opacity: 0, x: 30 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.8, delay: 0.2 }}
-                            className="relative"
+                            className="relative h-[600px] flex items-center justify-center"
                         >
-                            <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-white">
-                                {/* Removed the image from here - it's now in the background */}
-                                <div className="p-8">
-                                    <div className="bg-gradient-to-r from-[#20C997]/10 to-teal-500/10 rounded-2xl p-8 mb-6">
-                                        <div className="flex items-center gap-4">
-                                            <div className="w-14 h-14 rounded-full bg-[#20C997] flex items-center justify-center">
-                                                <BarChart3 className="w-7 h-7 text-white" />
-                                            </div>
-                                            <div>
-                                                <div className="text-sm text-slate-600 font-medium">Latest Insight</div>
-                                                <div className="text-lg font-bold text-slate-900">Master Your Money Flow</div>
-                                            </div>
-                                        </div>
-                                    </div>
+                            {/* Full section background that changes with slides */}
+                            <AnimatePresence mode="wait">
+                                <motion.div
+                                    key={`bg-${currentSlide}`}
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    transition={{ duration: 0.8 }}
+                                    className="absolute -inset-40 z-0"
+                                    style={{
+                                        backgroundImage: `url('${featuredBlogs[currentSlide].image}')`,
+                                        backgroundSize: 'cover',
+                                        backgroundPosition: 'center',
+                                        opacity: 0.15
+                                    }}
+                                />
+                            </AnimatePresence>
 
-                                    <div className="space-y-4">
-                                        <div className="flex items-center gap-2 text-sm text-slate-600">
-                                            <Calendar className="w-4 h-4" />
-                                            <span>Updated daily</span>
+                            <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl border-4 border-[#20C997]/20 z-10">
+                                <AnimatePresence mode="wait">
+                                    <motion.div
+                                        key={currentSlide}
+                                        initial={{ opacity: 0, scale: 0.95 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        exit={{ opacity: 0, scale: 1.05 }}
+                                        transition={{ duration: 0.6 }}
+                                        className="absolute inset-0"
+                                    >
+                                        {/* Blog Image */}
+                                        <img
+                                            src={featuredBlogs[currentSlide].image}
+                                            alt={featuredBlogs[currentSlide].title}
+                                            className="w-full h-full object-cover"
+                                        />
+                                        {/* Gradient Overlay */}
+                                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/95 via-slate-900/60 to-slate-900/20" />
+
+                                        {/* Content */}
+                                        <div className="absolute bottom-0 left-0 right-0 p-8 md:p-10">
+                                            <div className="inline-block px-4 py-1.5 rounded-full bg-[#20C997] text-white text-xs font-bold uppercase tracking-wide mb-4">
+                                                {featuredBlogs[currentSlide].category}
+                                            </div>
+                                            <h3 className="text-2xl md:text-3xl font-bold text-white mb-3 leading-tight">
+                                                {featuredBlogs[currentSlide].title}
+                                            </h3>
+                                            <p className="text-white/90 text-base md:text-lg leading-relaxed">
+                                                {featuredBlogs[currentSlide].excerpt}
+                                            </p>
                                         </div>
-                                        <div className="flex items-center gap-2 text-sm text-slate-600">
-                                            <TrendingUp className="w-4 h-4" />
-                                            <span>Data-driven insights</span>
-                                        </div>
-                                        <div className="flex items-center gap-2 text-sm text-slate-600">
-                                            <User className="w-4 h-4" />
-                                            <span>Expert financial advice</span>
-                                        </div>
-                                    </div>
+                                    </motion.div>
+                                </AnimatePresence>
+
+                                {/* Slide Indicators */}
+                                <div className="absolute bottom-8 right-8 flex gap-2 z-20">
+                                    {featuredBlogs.map((_, index) => (
+                                        <button
+                                            key={index}
+                                            onClick={() => setCurrentSlide(index)}
+                                            className={`h-2 rounded-full transition-all duration-300 ${index === currentSlide
+                                                ? 'w-8 bg-[#20C997]'
+                                                : 'w-2 bg-white/50 hover:bg-white/80'
+                                                }`}
+                                        />
+                                    ))}
                                 </div>
                             </div>
 
-                            {/* Floating Elements */}
-                            <motion.div
-                                animate={{ y: [0, -20, 0] }}
-                                transition={{ duration: 3, repeat: Infinity }}
-                                className="absolute -top-6 -right-6 w-32 h-32 bg-gradient-to-br from-[#20C997] to-teal-600 rounded-3xl opacity-20 blur-2xl"
-                            ></motion.div>
-                            <motion.div
-                                animate={{ y: [0, 20, 0] }}
-                                transition={{ duration: 4, repeat: Infinity }}
-                                className="absolute -bottom-6 -left-6 w-40 h-40 bg-gradient-to-br from-[#20C997] to-teal-600 rounded-3xl opacity-20 blur-2xl"
-                            ></motion.div>
+                            {/* Decorative Elements */}
+                            <div className="absolute -top-6 -right-6 w-32 h-32 bg-[#20C997]/20 rounded-3xl blur-2xl z-0" />
+                            <div className="absolute -bottom-6 -left-6 w-40 h-40 bg-[#20C997]/20 rounded-3xl blur-2xl z-0" />
                         </motion.div>
                     </div>
                 </div>
-
-                {/* Animated Ticker */}
-                <div className="absolute bottom-0 left-0 right-0 z-20 overflow-hidden py-5 bg-[#20C997]">
-                    <div className="relative">
-                        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#20C997] to-transparent z-10"></div>
-                        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#20C997] to-transparent z-10"></div>
-
-                        <motion.div
-                            animate={{ x: [0, -1200] }}
-                            transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                            className="flex gap-12 whitespace-nowrap"
-                        >
-                            {[...Array(3)].map((_, i) => (
-                                <div key={i} className="flex gap-12 items-center">
-                                    <span className="text-white font-bold text-lg tracking-wide">EXPENSE TRACKING</span>
-                                    <span className="text-white/40 text-xl">✦</span>
-                                    <span className="text-white font-bold text-lg tracking-wide">EMI MANAGEMENT</span>
-                                    <span className="text-white/40 text-xl">✦</span>
-                                    <span className="text-white font-bold text-lg tracking-wide">INVESTMENT INSIGHTS</span>
-                                    <span className="text-white/40 text-xl">✦</span>
-                                    <span className="text-white font-bold text-lg tracking-wide">SMART FINANCE TIPS</span>
-                                    <span className="text-white/40 text-xl">✦</span>
-                                </div>
-                            ))}
-                        </motion.div>
-                    </div>
-                </div>
-            </div>
-
-            {/* Featured Article */}
-            <div className="container mx-auto px-6 py-24">
-                <div className="text-center mb-16">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="inline-block px-5 py-2 rounded-full bg-[#20C997]/10 border border-[#20C997]/30 mb-6"
-                    >
-                        <span className="text-[#20C997] font-bold text-sm uppercase tracking-wider">Featured Article</span>
-                    </motion.div>
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.1 }}
-                        className="text-4xl md:text-5xl font-bold text-slate-900"
-                    >
-                        Editor's <span className="text-[#20C997]">Pick</span>
-                    </motion.h2>
-                </div>
-
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="bg-white rounded-3xl shadow-xl overflow-hidden group cursor-pointer hover:shadow-2xl transition-shadow duration-500 border border-slate-100"
-                >
-                    <div className="grid lg:grid-cols-5 gap-0">
-                        <div className="lg:col-span-2 relative h-[350px] lg:h-auto overflow-hidden">
-                            <img
-                                src={featuredPost.image}
-                                alt={featuredPost.title}
-                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent"></div>
-                        </div>
-                        <div className="lg:col-span-3 p-10 lg:p-14 flex flex-col justify-center">
-                            <div className="inline-flex items-center gap-2 text-sm font-bold text-[#20C997] mb-4 uppercase tracking-wider">
-                                <Wallet className="w-4 h-4" />
-                                {featuredPost.category}
-                            </div>
-                            <h3 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-5 group-hover:text-[#20C997] transition-colors leading-tight">
-                                {featuredPost.title}
-                            </h3>
-                            <p className="text-lg text-slate-600 mb-8 leading-relaxed">
-                                {featuredPost.excerpt}
-                            </p>
-                            <div className="flex items-center justify-between">
-                                <div className="flex items-center gap-4">
-                                    <img
-                                        src={featuredPost.authorImage}
-                                        alt={featuredPost.author}
-                                        className="w-12 h-12 rounded-full object-cover border-2 border-[#20C997]/20"
-                                    />
-                                    <div>
-                                        <div className="font-bold text-slate-900">{featuredPost.author}</div>
-                                        <div className="text-sm text-slate-500">{featuredPost.date} · {featuredPost.readTime}</div>
-                                    </div>
-                                </div>
-                                <ChevronRight className="w-6 h-6 text-[#20C997] group-hover:translate-x-2 transition-transform" />
-                            </div>
-                        </div>
-                    </div>
-                </motion.div>
-            </div>
+            </section>
 
             {/* Blog Grid */}
             <div className="container mx-auto px-6 py-24">

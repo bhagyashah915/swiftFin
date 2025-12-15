@@ -20,6 +20,10 @@ export default function Home() {
   // Test Firebase connection
   async function testFirebase() {
     try {
+      if (!db) {
+        console.error("Firebase not initialized");
+        return;
+      }
       await addDoc(collection(db, "test"), {
         message: "Firebase is connected!",
         timestamp: new Date(),
@@ -32,7 +36,7 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-white space-y-24 lg:space-y-32">
       <Hero />
       <About />
       <Metrics />

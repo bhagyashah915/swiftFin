@@ -66,7 +66,7 @@ export default function Hero() {
     return (
         <>
             {/* Splash Screen with Sequential Animation */}
-            <div className={`fixed inset-0 z-50 bg-gradient-to-br from-teal-500 via-emerald-500 to-teal-600 h-[100vh] flex items-center justify-center transition-opacity duration-1000 ${showSplash ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+            <div className={`fixed inset-0 z-[100] bg-gradient-to-br from-white via-teal-50 to-teal-100 h-[100vh] flex items-center justify-center transition-transform duration-[1500ms] ease-in-out ${showSplash ? 'translate-x-0' : 'translate-x-full'}`}>
                 <div className="text-center space-y-6 sm:space-y-8 px-4">
                     {/* Logo - Enhanced visibility with actual logo */}
                     <div className={`transition-all duration-700 ${splashStep >= 0 ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-50 translate-y-8'}`}>
@@ -105,15 +105,15 @@ export default function Hero() {
 
                     {/* Name */}
                     <div className={`transition-all duration-700 delay-200 ${splashStep >= 1 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white">
-                            Swift<span className="text-teal-100">Fin</span>
+                        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-900">
+                            Swift<span className="text-teal-600">Fin</span>
                         </h1>
                     </div>
 
                     {/* Tagline */}
                     <div className={`transition-all duration-700 delay-300 ${splashStep >= 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                        <p className="text-xl sm:text-2xl text-white/95 font-medium">Your Money, Simplified.</p>
-                        <p className="text-lg sm:text-xl text-white/80 font-medium mt-2">Track. Save. Grow.</p>
+                        <p className="text-xl sm:text-2xl text-slate-700 font-medium">Your Money, Simplified.</p>
+                        <p className="text-lg sm:text-xl text-teal-600 font-medium mt-2">Track. Save. Grow.</p>
                     </div>
                 </div>
             </div>
@@ -172,7 +172,7 @@ export default function Hero() {
                         {/* Left Content - Text (Order 1 on mobile, original position on desktop) */}
                         <div className={`order-1 lg:order-none lg:col-span-4 transition-all duration-1000 lg:-mt-56 text-center lg:text-left ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'}`}>
                             <div className="space-y-4">
-                                <h1 className="text-3xl sm:text-4xl lg:text-6xl font-light leading-tight tracking-wide text-gray-900">
+                                <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold leading-tight tracking-wide text-white">
                                     <span className="tracking-wider">Welcome to SwiftFin</span>
                                     <br />
                                     <span className="text-teal-600 tracking-wider">Your Personal Finance Buddy</span>

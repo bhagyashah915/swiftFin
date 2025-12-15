@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Sora, Cedarville_Cursive } from "next/font/google";
+import { Inter, Sora, Cedarville_Cursive, Montserrat } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
@@ -26,6 +26,13 @@ const cedarvilleCursive = Cedarville_Cursive({
   display: "swap",
 });
 
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
+  variable: "--font-montserrat",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "SwiftFin - Smart Finance Management for Everyone",
   description: "Track expenses, manage EMIs, monitor investments, and get personalized finance tips - all in one powerful app. Free forever.",
@@ -42,7 +49,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${sora.variable} ${cedarvilleCursive.variable} antialiased font-sans`}
+        className={`${inter.variable} ${sora.variable} ${cedarvilleCursive.variable} ${montserrat.variable} antialiased font-['Montserrat']`}
       >
         {/* <SmoothScroll /> */}
         <Navbar />

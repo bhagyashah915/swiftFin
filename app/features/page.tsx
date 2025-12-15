@@ -7,7 +7,6 @@ import { useState, useEffect } from "react";
 
 export default function FeaturesPage() {
     const [activeStep, setActiveStep] = useState(0);
-    const [isDownloadHovered, setIsDownloadHovered] = useState(false);
 
     // Updated mobile screens data array with features from the app
     const mobileScreens = [
@@ -183,11 +182,17 @@ export default function FeaturesPage() {
 
     return (
         <div className="min-h-screen bg-white">
-            {/* Hero Section - KEPT EXACTLY AS IT WAS */}
-            <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-white via-teal-50/20 to-white">
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-teal-100/20 via-transparent to-transparent"></div>
+            {/* Hero Section - V3 Centered Content with 3 Phones Below */}
+            <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+                {/* Background Image */}
+                <div
+                    className="absolute inset-0 bg-cover bg-center"
+                    style={{ backgroundImage: "url('https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1920&q=80')" }}
+                >
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/95 via-teal-50/90 to-white/95"></div>
+                </div>
 
-                <div className="container mx-auto px-6 pt-20 pb-20 md:pt-32 relative z-10">
+                <div className="container mx-auto px-6 pt-20 pb-12 relative z-10">
                     <a
                         href="/"
                         className="inline-flex items-center text-slate-600 hover:text-teal-600 transition-all duration-300 group mb-8"
@@ -196,42 +201,44 @@ export default function FeaturesPage() {
                         Back to Home
                     </a>
 
-                    <div className="grid lg:grid-cols-2 gap-12 items-center">
+                    {/* Centered Content */}
+                    <div className="flex flex-col items-center text-center max-w-5xl mx-auto">
                         <motion.div
-                            initial={{ opacity: 0, x: -30 }}
-                            animate={{ opacity: 1, x: 0 }}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8 }}
-                            className="text-left"
+                            className="mb-16"
                         >
                             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-slate-900 mb-6 leading-tight">
                                 Your Finance <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-teal-400">Solutions</span>
                             </h1>
-                            <p className="text-xl md:text-2xl text-slate-600 mb-10">
-                                Experience the peace of mind that comes with having your finances under complete control
+                            <p className="text-xl md:text-2xl text-slate-600 mb-8 leading-relaxed max-w-3xl mx-auto">
+                                Experience the peace of mind that comes with having your finances under complete control. Track expenses effortlessly, manage EMIs smartly, and get AI-powered insights to grow your wealth.
                             </p>
 
-                            <div className="flex flex-wrap gap-4 mb-12">
-                                <div className="flex items-center gap-3 bg-white px-4 py-3 rounded-xl shadow-sm border border-teal-100">
+                            <div className="flex flex-wrap gap-4 justify-center mb-10">
+                                <div className="flex items-center gap-3 bg-white px-5 py-3 rounded-xl shadow-sm border border-teal-100">
                                     <CheckCircle2 className="w-5 h-5 text-teal-600" />
-                                    <span className="text-slate-700">Real-time tracking</span>
+                                    <span className="text-slate-700 font-medium">Real-time tracking</span>
                                 </div>
-                                <div className="flex items-center gap-3 bg-white px-4 py-3 rounded-xl shadow-sm border border-teal-100">
+                                <div className="flex items-center gap-3 bg-white px-5 py-3 rounded-xl shadow-sm border border-teal-100">
                                     <CheckCircle2 className="w-5 h-5 text-teal-600" />
-                                    <span className="text-slate-700">Smart AI insights</span>
+                                    <span className="text-slate-700 font-medium">Smart AI insights</span>
                                 </div>
-                                <div className="flex items-center gap-3 bg-white px-4 py-3 rounded-xl shadow-sm border border-teal-100">
+                                <div className="flex items-center gap-3 bg-white px-5 py-3 rounded-xl shadow-sm border border-teal-100">
                                     <CheckCircle2 className="w-5 h-5 text-teal-600" />
-                                    <span className="text-slate-700">Bank-level security</span>
+                                    <span className="text-slate-700 font-medium">Bank-level security</span>
                                 </div>
                             </div>
+
                         </motion.div>
 
-                        {/* Mobile Devices Section - 3 Overlapping Phones */}
+                        {/* Three Phones Layout - Below Content with Shadow Fade */}
                         <motion.div
                             initial={{ opacity: 0, y: 50 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, delay: 0.2 }}
-                            className="relative h-[500px] lg:h-[600px] flex items-center justify-center"
+                            transition={{ duration: 0.8, delay: 0.3 }}
+                            className="relative h-[450px] md:h-[550px] w-full max-w-4xl flex items-center justify-center"
                         >
                             {/* Container for overlapping phones */}
                             <div className="relative w-full h-full flex items-center justify-center">
@@ -242,19 +249,15 @@ export default function FeaturesPage() {
                                     animate={{ opacity: 1, x: 0, rotate: -8 }}
                                     transition={{
                                         duration: 0.8,
-                                        delay: 0.3,
+                                        delay: 0.4,
                                         type: "spring",
                                         stiffness: 100
                                     }}
-                                    whileHover={{
-                                        scale: 1.05,
-                                        rotate: -5,
-                                        transition: { duration: 0.3 }
-                                    }}
+
                                     className="absolute left-0 md:left-10 lg:left-16"
                                     style={{ zIndex: 3 }}
                                 >
-                                    <div className="relative w-[180px] md:w-[220px] lg:w-[260px]">
+                                    <div className="relative w-[160px] md:w-[200px] lg:w-[240px]">
                                         <img
                                             src="/featuresphone.png"
                                             alt="Phone Mockup"
@@ -268,6 +271,8 @@ export default function FeaturesPage() {
                                                 className="w-full h-full object-cover object-top rounded-[28px] md:rounded-[32px]"
                                             />
                                         </div>
+                                        {/* Shadow fade on bottom half */}
+                                        <div className="absolute left-[5%] right-[5%] bottom-[3%] h-1/2 bg-gradient-to-t from-white via-white/80 to-transparent rounded-b-[28px] md:rounded-b-[32px] pointer-events-none"></div>
                                     </div>
                                 </motion.div>
 
@@ -277,19 +282,15 @@ export default function FeaturesPage() {
                                     animate={{ opacity: 1, y: 0, scale: 1 }}
                                     transition={{
                                         duration: 0.8,
-                                        delay: 0.5,
+                                        delay: 0.6,
                                         type: "spring",
                                         stiffness: 100
                                     }}
-                                    whileHover={{
-                                        scale: 1.08,
-                                        y: -10,
-                                        transition: { duration: 0.3 }
-                                    }}
+
                                     className="absolute"
                                     style={{ zIndex: 5 }}
                                 >
-                                    <div className="relative w-[200px] md:w-[250px] lg:w-[290px]">
+                                    <div className="relative w-[180px] md:w-[230px] lg:w-[270px]">
                                         <img
                                             src="/featuresphone.png"
                                             alt="Phone Mockup"
@@ -303,6 +304,8 @@ export default function FeaturesPage() {
                                                 className="w-full h-full object-cover object-top rounded-[30px] md:rounded-[35px]"
                                             />
                                         </div>
+                                        {/* Shadow fade on bottom half */}
+                                        <div className="absolute left-[5%] right-[5%] bottom-[3%] h-1/2 bg-gradient-to-t from-white via-white/80 to-transparent rounded-b-[30px] md:rounded-b-[35px] pointer-events-none"></div>
                                     </div>
                                 </motion.div>
 
@@ -312,19 +315,15 @@ export default function FeaturesPage() {
                                     animate={{ opacity: 1, x: 0, rotate: 8 }}
                                     transition={{
                                         duration: 0.8,
-                                        delay: 0.4,
+                                        delay: 0.5,
                                         type: "spring",
                                         stiffness: 100
                                     }}
-                                    whileHover={{
-                                        scale: 1.05,
-                                        rotate: 5,
-                                        transition: { duration: 0.3 }
-                                    }}
+
                                     className="absolute right-0 md:right-10 lg:right-16"
                                     style={{ zIndex: 2 }}
                                 >
-                                    <div className="relative w-[180px] md:w-[220px] lg:w-[260px]">
+                                    <div className="relative w-[160px] md:w-[200px] lg:w-[240px]">
                                         <img
                                             src="/featuresphone.png"
                                             alt="Phone Mockup"
@@ -338,37 +337,12 @@ export default function FeaturesPage() {
                                                 className="w-full h-full object-cover object-top rounded-[28px] md:rounded-[32px]"
                                             />
                                         </div>
+                                        {/* Shadow fade on bottom half */}
+                                        <div className="absolute left-[5%] right-[5%] bottom-[3%] h-1/2 bg-gradient-to-t from-white via-white/80 to-transparent rounded-b-[28px] md:rounded-b-[32px] pointer-events-none"></div>
                                     </div>
                                 </motion.div>
 
                             </div>
-
-                            {/* Animated Floating Elements */}
-                            <motion.div
-                                animate={{
-                                    scale: [1, 1.2, 1],
-                                    opacity: [0.3, 0.5, 0.3]
-                                }}
-                                transition={{
-                                    duration: 4,
-                                    repeat: Infinity,
-                                    ease: "easeInOut"
-                                }}
-                                className="absolute -bottom-10 left-10 w-40 h-40 bg-teal-300/20 rounded-full blur-3xl"
-                            />
-                            <motion.div
-                                animate={{
-                                    scale: [1, 1.3, 1],
-                                    opacity: [0.2, 0.4, 0.2]
-                                }}
-                                transition={{
-                                    duration: 5,
-                                    repeat: Infinity,
-                                    ease: "easeInOut",
-                                    delay: 1
-                                }}
-                                className="absolute top-20 -right-10 w-60 h-60 bg-teal-300/20 rounded-full blur-3xl"
-                            />
                         </motion.div>
                     </div>
                 </div>
@@ -438,8 +412,6 @@ export default function FeaturesPage() {
                 </div>
             </section>
 
-            {/* More Features Section - WITH ANIMATED PHONE AND FEATURE BUBBLES */}
-            {/* More Features Section - UPDATED WITH BENTO GRID */}
             {/* More Features Section - REFINED BENTO GRID */}
             <section className="py-20 bg-white">
                 <div className="container mx-auto px-6">
@@ -469,7 +441,6 @@ export default function FeaturesPage() {
                     >
                         {/* Grid Layout - 2x2 with varying widths */}
                         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8">
-                            {/* Top Left Card - Expense Tracking (Spans 7 columns) */}
                             {/* Top Left Card - Expense Tracking (Spans 7 columns) */}
                             <motion.div
                                 whileHover={{ scale: 1.01, y: -3 }}
@@ -725,20 +696,8 @@ export default function FeaturesPage() {
                                         {/* App Logo */}
                                         <div className="mb-6">
                                             <div className="w-20 h-20 rounded-2xl bg-white shadow-lg flex items-center justify-center">
-                                                {/* SwiftFin Logo SVG */}
-                                                <svg viewBox="0 0 320 320" className="w-14 h-14">
-                                                    {/* Wallet Body */}
-                                                    <rect x="110" y="150" width="130" height="100" rx="12" fill="#50B8A6" stroke="#3D9B8C" strokeWidth="4" />
-                                                    {/* Dollar sign on wallet */}
-                                                    <text x="175" y="210" fontFamily="Arial" fontSize="32" fontWeight="bold" fill="white">$</text>
-                                                    {/* Wallet cards/bills sticking out */}
-                                                    <rect x="115" y="135" width="120" height="18" rx="4" fill="#50B8A6" opacity="0.85" stroke="#3D9B8C" strokeWidth="2" />
-                                                    <rect x="120" y="120" width="110" height="18" rx="4" fill="#50B8A6" opacity="0.7" stroke="#3D9B8C" strokeWidth="2" />
-                                                    {/* Curved Arrow */}
-                                                    <path d="M 80 140 Q 50 90, 100 65" stroke="#5EEAD4" strokeWidth="12" fill="none" strokeLinecap="round" />
-                                                    {/* Arrow head */}
-                                                    <path d="M 85 50 L 120 70 L 100 90 Z" fill="#FFA500" stroke="#FFA500" strokeWidth="2" />
-                                                </svg>
+                                                {/* SwiftFin Logo */}
+                                                <img src="/images/logo.png" className="w-16 h-16 object-contain" alt="SwiftFin Logo" />
                                             </div>
                                         </div>
 
@@ -769,31 +728,38 @@ export default function FeaturesPage() {
                                         </div>
                                     </div>
 
-                                    {/* Bottom Section - Download Button */}
+                                    {/* Bottom Section - Store Buttons - REDUCED SIZE */}
                                     <div className="mt-auto">
-                                        <motion.button
-                                            whileHover={{ scale: 1.02 }}
-                                            whileTap={{ scale: 0.98 }}
-                                            className="w-full py-4 bg-white text-teal-700 font-bold rounded-xl flex items-center justify-center gap-3 hover:shadow-2xl transition-all duration-300 mb-4"
-                                        >
-                                            <Download className="w-6 h-6" />
-                                            <span className="text-lg">Get SwiftFin Now</span>
-                                        </motion.button>
+                                        {/* Platform Badge Buttons - Reduced max-w */}
+                                        <div className="flex gap-4 justify-center">
+                                            <Link href="/download" className="flex-1 max-w-[75px]">
+                                                <motion.div
+                                                    whileHover={{ scale: 1.05, y: -2 }}
+                                                    whileTap={{ scale: 0.98 }}
+                                                    className="cursor-pointer"
+                                                >
+                                                    <img
+                                                        src="/app store badge.png"
+                                                        alt="Download on App Store"
+                                                        className="w-full h-auto"
+                                                    />
+                                                </motion.div>
 
-                                        {/* Platform Badges */}
-                                        <div className="flex gap-3 justify-center">
-                                            <motion.div
-                                                whileHover={{ scale: 1.05, y: -2 }}
-                                                className="flex-1 max-w-xs h-12 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20 flex items-center justify-center cursor-pointer hover:bg-white/15 transition-all"
-                                            >
-                                                <span className="text-white text-sm font-medium">App Store</span>
-                                            </motion.div>
-                                            <motion.div
-                                                whileHover={{ scale: 1.05, y: -2 }}
-                                                className="flex-1 max-w-xs h-12 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20 flex items-center justify-center cursor-pointer hover:bg-white/15 transition-all"
-                                            >
-                                                <span className="text-white text-sm font-medium">Play Store</span>
-                                            </motion.div>
+
+                                            </Link>
+                                            <Link href="/download" className="flex-1 max-w-[75px]">
+                                                <motion.div
+                                                    whileHover={{ scale: 1.05, y: -2 }}
+                                                    whileTap={{ scale: 0.98 }}
+                                                    className="cursor-pointer"
+                                                >
+                                                    <img
+                                                        src="/google-play.png"
+                                                        alt="Get it on Play Store"
+                                                        className="w-full h-auto"
+                                                    />
+                                                </motion.div>
+                                            </Link>
                                         </div>
                                     </div>
                                 </div>
@@ -824,144 +790,6 @@ export default function FeaturesPage() {
                         transition={{ delay: 0.3 }}
                         className="mt-16 max-w-4xl mx-auto"
                     >
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-                            {[
-                                { icon: <TrendingUp className="w-6 h-6" />, title: "Investments", desc: "Portfolio tracking", color: "from-blue-100 to-blue-50" },
-                                { icon: <PieChart className="w-6 h-6" />, title: "Budgeting", desc: "Smart spending plans", color: "from-emerald-100 to-emerald-50" },
-                                { icon: <Target className="w-6 h-6" />, title: "Goals", desc: "Save for dreams", color: "from-amber-100 to-amber-50" },
-                                { icon: <Shield className="w-6 h-6" />, title: "Security", desc: "Bank-level protection", color: "from-violet-100 to-violet-50" },
-                            ].map((item, index) => (
-                                <motion.div
-                                    key={index}
-                                    whileHover={{ scale: 1.05, y: -3 }}
-                                    className={`bg-gradient-to-br ${item.color} rounded-2xl p-5 border border-teal-100 hover:shadow-lg transition-all duration-300`}
-                                >
-                                    <div className={`inline-flex items-center justify-center w-12 h-12 rounded-xl ${index === 0 ? 'bg-blue-100 text-blue-700' :
-                                        index === 1 ? 'bg-emerald-100 text-emerald-700' :
-                                            index === 2 ? 'bg-amber-100 text-amber-700' :
-                                                'bg-violet-100 text-violet-700'
-                                        } mb-3`}>
-                                        {item.icon}
-                                    </div>
-                                    <h4 className="font-bold text-slate-900 mb-1">{item.title}</h4>
-                                    <p className="text-sm text-slate-600">{item.desc}</p>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </motion.div>
-                </div>
-            </section>
-
-            {/* Download CTA Section - UPDATED WITH INTERACTIVE BUTTON */}
-            <section className="py-16 md:py-20 bg-white">
-                <div className="container mx-auto px-6">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="flex flex-col items-center justify-center"
-                    >
-                        <div className="text-center mb-12">
-                            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-                                Ready to Transform Your Finances?
-                            </h2>
-                            <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-                                Join thousands who have taken control with SwiftFin
-                            </p>
-                        </div>
-
-                        {/* Interactive Download Button */}
-                        <Link href="/download" className="inline-block relative z-20">
-                            <motion.div
-                                onMouseEnter={() => setIsDownloadHovered(true)}
-                                onMouseLeave={() => setIsDownloadHovered(false)}
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                animate={{
-                                    backgroundColor: isDownloadHovered ? "#0d9488" : "#ffffff",
-                                    color: isDownloadHovered ? "#ffffff" : "#0d9488",
-                                    boxShadow: isDownloadHovered
-                                        ? "0 20px 60px rgba(13, 148, 136, 0.3)"
-                                        : "0 10px 40px rgba(13, 148, 136, 0.2)"
-                                }}
-                                transition={{
-                                    duration: 0.3,
-                                    ease: "easeInOut"
-                                }}
-                                className="relative px-12 py-5 rounded-full font-bold text-xl border-2 border-teal-600 flex items-center justify-center gap-4 overflow-hidden group cursor-pointer"
-                            >
-                                {/* Background Shine Effect */}
-                                <motion.div
-                                    animate={{
-                                        x: isDownloadHovered ? "100%" : "-100%"
-                                    }}
-                                    transition={{
-                                        duration: 0.8,
-                                        ease: "easeInOut"
-                                    }}
-                                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"
-                                />
-
-                                {/* Animated Download Icon */}
-                                <motion.div
-                                    animate={{
-                                        y: isDownloadHovered ? [0, -5, 0] : 0
-                                    }}
-                                    transition={{
-                                        duration: 1.5,
-                                        repeat: Infinity,
-                                        ease: "easeInOut",
-                                        times: [0, 0.5, 1]
-                                    }}
-                                    className="relative z-10"
-                                >
-                                    <Download className="w-7 h-7" />
-                                </motion.div>
-
-                                {/* Button Text */}
-                                <span className="relative z-10">Download SwiftFin</span>
-
-                                {/* Animated Arrow */}
-                                <motion.div
-                                    animate={{
-                                        x: isDownloadHovered ? 8 : 0,
-                                        opacity: isDownloadHovered ? 1 : 0.7
-                                    }}
-                                    transition={{
-                                        duration: 0.3
-                                    }}
-                                    className="relative z-10"
-                                >
-                                    <ChevronRight className="w-6 h-6" />
-                                </motion.div>
-
-                                {/* Pulsing Effect */}
-                                <motion.div
-                                    animate={{
-                                        scale: isDownloadHovered ? [1, 1.2, 1] : 1,
-                                        opacity: isDownloadHovered ? [0.5, 0, 0.5] : 0
-                                    }}
-                                    transition={{
-                                        duration: 1.5,
-                                        repeat: Infinity,
-                                        ease: "easeInOut"
-                                    }}
-                                    className="absolute inset-0 border-2 border-teal-400 rounded-full"
-                                />
-                            </motion.div>
-                        </Link>
-
-                        {/* App Store Badges */}
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.3 }}
-                            className="mt-12 flex flex-wrap justify-center gap-8"
-                        >
-
-
-                        </motion.div>
                     </motion.div>
                 </div>
             </section>
