@@ -1,14 +1,16 @@
 "use client";
 
 import { Facebook, Instagram, Linkedin, Twitter, ArrowUp } from "lucide-react";
-import Link from "next/link";
 import { motion } from "framer-motion";
-import Image from "next/image";
+import { useState } from "react";
+import { db } from "@/app/lib/firebaseconfig";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import Link from "next/link";
 
 export default function Footer() {
     const footerLinks = {
         product: [
-            { label: "Features", href: "/#features" },
+            { label: "Features", href: "/features" },
             { label: "How It Works", href: "/#how-it-works" },
         ],
         company: [
@@ -23,125 +25,249 @@ export default function Footer() {
         ],
     };
 
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        message: ""
+    });
+    const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setStatus("loading");
+
+        try {
+            await addDoc(collection(db, "contacts"), {
+                ...formData,
+                timestamp: serverTimestamp()
+            });
+            setStatus("success");
+            setFormData({ name: "", email: "", phone: "", message: "" });
+        } catch (error) {
+            console.error("Error adding document: ", error);
+            setStatus("error");
+        }
+    };
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    };
+
     return (
-        <footer className="relative bg-white font-['Montserrat']">
-            {/* Big Outer Rounded Box */}
-            <div className="container mx-auto px-6 md:px-12 py-12">
-                <div className="relative bg-gradient-to-br from-white via-teal-50 to-white rounded-[3rem] p-8 md:p-12 shadow-2xl border border-teal-100 overflow-hidden">
-
-                    {/* SwiftFin Background Text */}
-                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
-                        <h2 className="text-[15vw] md:text-[180px] lg:text-[220px] font-black text-teal-600/5 select-none font-['Montserrat'] tracking-tighter">
-                            SwiftFin
-                        </h2>
-                    </div>
-
-                    {/* Decorative Image Between Boxes */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] pointer-events-none z-0 mix-blend-multiply opacity-20">
-                        <img
-                            src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80"
-                            alt="Financial decoration"
-                            className="w-full h-full object-contain"
-                        />
-                    </div>
-
-                    {/* Inner Rounded Box with Content */}
-                    <div className="relative bg-white/80 backdrop-blur-sm rounded-[2.5rem] p-8 md:p-12 shadow-xl border border-white z-10">
-                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-                            {/* Brand Column */}
-                            <div className="lg:col-span-4">
-                                <div className="flex items-center gap-3 mb-6">
-                                    <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center overflow-hidden border border-teal-200 shadow-sm">
-                                        <Image
-                                            src="/images/logo.png"
-                                            alt="SwiftFin Logo"
-                                            width={48}
-                                            height={48}
-                                            className="object-contain"
-                                        />
-                                    </div>
-                                    <span className="font-bold text-2xl text-gray-900 font-['Montserrat']">SwiftFin</span>
-                                </div>
-
-                                <p className="text-gray-600 mb-8 max-w-sm font-['Montserrat']">
-                                    Your smart financial companion. Track, manage, and grow your wealth with ease.
+        <>
+            {/* Contact Form Section */}
+            <section className="bg-white py-16">
+                <div className="container mx-auto px-6 md:px-12">
+                    <div className="max-w-6xl mx-auto bg-white rounded-[3rem] shadow-2xl p-8 md:p-16 border border-slate-100">
+                        <div className="grid md:grid-cols-2 gap-12 items-center">
+                            {/* Left Side - Text */}
+                            <div>
+                                <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6 font-['Montserrat']">
+                                    Ready To Take Control Of Your Finances?
+                                </h2>
+                                <p className="text-slate-600 text-lg leading-relaxed font-['Montserrat']">
+                                    Our service is for people who believe in smart money management and financial freedom. We promise that engaging with what we make will help you achieve your financial goals.
                                 </p>
-
-                                {/* Social Media */}
-                                <div className="flex gap-3">
-                                    {[
-                                        { icon: Twitter, href: "#" },
-                                        { icon: Instagram, href: "#" },
-                                        { icon: Linkedin, href: "#" },
-                                        { icon: Facebook, href: "#" }
-                                    ].map((social, index) => (
-                                        <Link
-                                            key={index}
-                                            href={social.href}
-                                            className="w-10 h-10 rounded-lg flex items-center justify-center text-gray-600 hover:text-teal-600 hover:bg-teal-50 border border-teal-200 transition-all duration-200"
-                                        >
-                                            <social.icon className="w-5 h-5" />
-                                        </Link>
-                                    ))}
-                                </div>
                             </div>
 
-                            {/* Links Columns */}
-                            <div className="lg:col-span-8">
-                                <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
-                                    {Object.entries(footerLinks).map(([category, links]) => (
-                                        <div key={category}>
-                                            <h3 className="font-semibold text-gray-900 mb-4 text-sm uppercase tracking-wider font-['Montserrat']">
-                                                {category}
-                                            </h3>
-                                            <ul className="space-y-3">
-                                                {links.map((link, index) => (
-                                                    <li key={index}>
-                                                        <Link
-                                                            href={link.href}
-                                                            className="text-gray-600 hover:text-teal-600 transition-colors text-sm font-['Montserrat']"
-                                                        >
-                                                            {link.label}
-                                                        </Link>
-                                                    </li>
-                                                ))}
-                                            </ul>
+                            {/* Right Side - Form */}
+                            <div className="space-y-4">
+                                {status === "success" ? (
+                                    <motion.div
+                                        initial={{ opacity: 0, scale: 0.9 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        className="bg-teal-50 border border-teal-200 rounded-2xl p-8 text-center"
+                                    >
+                                        <div className="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                            <div className="w-8 h-8 text-teal-600">✓</div>
                                         </div>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Bottom Bar Inside Inner Box */}
-                        <div className="border-t border-gray-200 mt-12 pt-8">
-                            <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500 font-['Montserrat']">
-                                <p>© {new Date().getFullYear()} SwiftFin. All rights reserved.</p>
-                                <div className="flex items-center gap-6">
-                                    <Link href="/privacy" className="hover:text-teal-600 transition-colors">
-                                        Privacy Policy
-                                    </Link>
-                                    <Link href="/terms" className="hover:text-teal-600 transition-colors">
-                                        Terms of Service
-                                    </Link>
-                                </div>
+                                        <h3 className="text-2xl font-bold text-teal-800 mb-2">Message Sent!</h3>
+                                        <p className="text-teal-600">We'll get back to you shortly.</p>
+                                        <button
+                                            onClick={() => setStatus("idle")}
+                                            className="mt-6 text-sm text-teal-700 font-semibold underline"
+                                        >
+                                            Send another message
+                                        </button>
+                                    </motion.div>
+                                ) : (
+                                    <form onSubmit={handleSubmit} className="space-y-4">
+                                        <div className="grid grid-cols-2 gap-4">
+                                            <input
+                                                name="name"
+                                                value={formData.name}
+                                                onChange={handleChange}
+                                                type="text"
+                                                placeholder="Name"
+                                                required
+                                                className="w-full px-4 py-3 border-b-2 border-slate-300 focus:border-teal-500 outline-none bg-transparent font-['Montserrat'] transition-colors"
+                                            />
+                                            <input
+                                                name="email"
+                                                value={formData.email}
+                                                onChange={handleChange}
+                                                type="email"
+                                                placeholder="Email"
+                                                required
+                                                className="w-full px-4 py-3 border-b-2 border-slate-300 focus:border-teal-500 outline-none bg-transparent font-['Montserrat'] transition-colors"
+                                            />
+                                        </div>
+                                        <input
+                                            name="phone"
+                                            value={formData.phone}
+                                            onChange={handleChange}
+                                            type="tel"
+                                            placeholder="Phone Number"
+                                            className="w-full px-4 py-3 border-b-2 border-slate-300 focus:border-teal-500 outline-none bg-transparent font-['Montserrat'] transition-colors"
+                                        />
+                                        <textarea
+                                            name="message"
+                                            value={formData.message}
+                                            onChange={handleChange}
+                                            placeholder="Anything we should know?"
+                                            rows={2}
+                                            required
+                                            className="w-full px-4 py-3 border-b-2 border-slate-300 focus:border-teal-500 outline-none bg-transparent resize-none font-['Montserrat'] transition-colors"
+                                        />
+                                        <div className="flex justify-end pt-4">
+                                            <button
+                                                type="submit"
+                                                disabled={status === "loading"}
+                                                className="bg-slate-900 text-white px-8 py-3 font-semibold hover:bg-teal-600 transition-all duration-300 font-['Montserrat'] disabled:opacity-50 disabled:cursor-not-allowed"
+                                            >
+                                                {status === "loading" ? "Sending..." : "Submit"}
+                                            </button>
+                                        </div>
+                                    </form>
+                                )}
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
 
-            {/* Back to Top Button */}
-            <motion.button
-                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                whileHover={{ y: -4 }}
-                whileTap={{ scale: 0.9 }}
-                className="fixed bottom-8 right-8 w-12 h-12 bg-teal-600 text-white rounded-full shadow-lg flex items-center justify-center hover:bg-teal-700 transition-all duration-200 z-50 font-['Montserrat']"
-                aria-label="Back to top"
-            >
-                <ArrowUp className="w-5 h-5" />
-            </motion.button>
-        </footer>
+            {/* Footer Section */}
+            <footer className="relative bg-teal-500 font-['Montserrat'] border-8 border-white">
+                <div className="container mx-auto px-6 md:px-12 py-10 md:py-16">
+                    <div className="grid lg:grid-cols-2 gap-8 md:gap-16 items-start">
+                        {/* Left Side - Logo ONLY */}
+                        <div className="relative">
+                            <div className="relative z-10 mt-6 md:mt-12 flex items-center justify-start">
+                                <img
+                                    src="/images/logo.png"
+                                    alt="SwiftFin Logo"
+                                    className="w-40 h-40 object-contain"
+                                />
+                            </div>
+                        </div>
+
+                        {/* Right Side - Title and Links */}
+                        <div className="flex flex-col gap-8 md:gap-12">
+                            {/* Title - Centered above links/contents */}
+                            <div className="text-center md:text-left">
+                                <h2 className="text-6xl md:text-6xl font-bold text-white font-['Montserrat'] opacity-90">
+                                    SwiftFin
+                                </h2>
+                            </div>
+
+                            {/* Links Grid */}
+                            <div className="grid grid-cols-2 md:grid-cols-3 gap-12">
+                                {/* About Us Column */}
+                                <div>
+                                    <h3 className="text-white font-bold text-lg mb-6 font-['Montserrat']">
+                                        About Us
+                                    </h3>
+                                    <ul className="space-y-4">
+                                        <li>
+                                            <Link href="/about" className="text-white/90 hover:text-white transition-colors font-['Montserrat']">
+                                                About
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link href="/features" className="text-white/90 hover:text-white transition-colors font-['Montserrat']">
+                                                Features
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link href="/blog" className="text-white/90 hover:text-white transition-colors font-['Montserrat']">
+                                                Blog
+                                            </Link>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                {/* Support Column */}
+                                <div>
+                                    <h3 className="text-white font-bold text-lg mb-6 font-['Montserrat']">
+                                        Support
+                                    </h3>
+                                    <ul className="space-y-4">
+                                        <li>
+                                            <Link href="/contact" className="text-white/90 hover:text-white transition-colors font-['Montserrat']">
+                                                Contact
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link href="/terms" className="text-white/90 hover:text-white transition-colors font-['Montserrat']">
+                                                Terms of Service
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link href="/privacy" className="text-white/90 hover:text-white transition-colors font-['Montserrat']">
+                                                Privacy Policy
+                                            </Link>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                {/* Social Column */}
+                                <div>
+                                    <h3 className="text-white font-bold text-lg mb-6 font-['Montserrat']">
+                                        Social
+                                    </h3>
+                                    <ul className="space-y-4">
+                                        <li>
+                                            <a href="#" className="text-white/90 hover:text-white transition-colors font-['Montserrat']">
+                                                Instagram
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" className="text-white/90 hover:text-white transition-colors font-['Montserrat']">
+                                                LinkedIn
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" className="text-white/90 hover:text-white transition-colors font-['Montserrat']">
+                                                Twitter
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Bottom Bar */}
+                    <div className="border-t border-white/20 mt-16 pt-8">
+                        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+                            <p className="text-white/90 text-sm font-['Montserrat']">
+                                Copyright © SwiftFin
+                            </p>
+                            <Link href="/terms" className="text-white/90 hover:text-white transition-colors text-sm font-['Montserrat']">
+                                Terms of Service
+                            </Link>
+                            <button
+                                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                                className="flex items-center gap-2 text-white/90 hover:text-white transition-colors text-sm font-['Montserrat'] cursor-pointer"
+                            >
+                                Back to top <ArrowUp className="w-4 h-4" />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </>
+
     );
 }

@@ -36,7 +36,7 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-white space-y-24 lg:space-y-32">
+    <main className="min-h-screen bg-white space-y-24 lg:space-y-30">
       <Hero />
       <About />
       <Metrics />

@@ -1,30 +1,11 @@
 import type { Metadata } from "next";
-import { Inter, Sora, Cedarville_Cursive, Montserrat } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 import SmoothScroll from "./components/smooth-scroll";
 
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-inter",
-  display: "swap",
-});
 
-const sora = Sora({
-  subsets: ["latin"],
-  weight: ["400", "600", "700", "800"],
-  variable: "--font-sora",
-  display: "swap",
-});
-
-const cedarvilleCursive = Cedarville_Cursive({
-  subsets: ["latin"],
-  weight: ["400"],
-  variable: "--font-cedarville",
-  display: "swap",
-});
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -49,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${sora.variable} ${cedarvilleCursive.variable} ${montserrat.variable} antialiased font-['Montserrat']`}
+        className={`${montserrat.variable} antialiased font-['Montserrat']`}
       >
         {/* <SmoothScroll /> */}
         <Navbar />

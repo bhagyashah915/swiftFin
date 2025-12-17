@@ -28,7 +28,7 @@ export default function DownloadPage() {
     };
 
     return (
-        <main className="min-h-screen bg-gradient-to-br from-teal-50 via-white to-teal-50/30 text-slate-900 overflow-hidden relative selection:bg-teal-100 selection:text-teal-700 font-sans">
+        <main className="min-h-screen bg-gradient-to-br from-teal-50 via-white to-teal-50/30 text-slate-900 overflow-hidden relative selection:bg-teal-100 selection:text-teal-700">
 
             {/* Background Decor */}
             <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-teal-200/20 rounded-full blur-3xl pointer-events-none"></div>
@@ -125,7 +125,7 @@ export default function DownloadPage() {
                         className="flex items-center gap-4 bg-black text-white px-8 py-4 rounded-2xl shadow-xl shadow-black/30 hover:shadow-4xl hover:scale-105 hover:-translate-y-1 transition-all duration-300 group border border-neutral-800"
                     >
                         <img
-                            src="/app store badge.png"
+                            src="/app-store.png"
                             alt="Download on the App Store"
                             className="w-10 h-10 object-contain"
                         />

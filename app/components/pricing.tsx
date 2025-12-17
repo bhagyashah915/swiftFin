@@ -11,10 +11,10 @@ export default function Pricing() {
             <div className="container mx-auto px-6 md:px-12">
                 <div className="text-center max-w-3xl mx-auto mb-16">
                     <h2 className="text-primary-teal font-bold tracking-wide uppercase text-sm mb-3">Pricing</h2>
-                    <h3 className="font-sora text-6xl md:text-7xl font-bold text-neutral-slate mb-6">
+                    <h3 className="font-['Montserrat'] text-6xl md:text-7xl font-bold text-neutral-slate mb-6">
                         Simple, <span className="text-gradient-primary">Transparent</span> Pricing
                     </h3>
-                    <p className="font-inter text-gray-600 text-lg">
+                    <p className="font-['Montserrat'] text-gray-600 text-lg">
                         Start for free and scale as you grow. No hidden fees.
                     </p>
                 </div>
@@ -29,7 +29,7 @@ export default function Pricing() {
                         transition={{ duration: 0.6, delay: 0.1 }}
                     >
                         <div className="mb-6">
-                            <h4 className="font-sora text-xl font-bold text-neutral-slate mb-2">Basic</h4>
+                            <h4 className="font-['Montserrat'] text-xl font-bold text-neutral-slate mb-2">Basic</h4>
                             <div className="text-4xl font-bold text-neutral-slate">Free</div>
                             <p className="text-gray-500 mt-2">Forever free for small businesses</p>
                         </div>
@@ -66,12 +66,12 @@ export default function Pricing() {
                             POPULAR
                         </motion.div>
                         <div className="mb-6">
-                            <h4 className="font-sora text-xl font-bold text-neutral-slate mb-2">Pro</h4>
+                            <h4 className="font-['Montserrat'] text-xl font-bold text-neutral-slate mb-2">Pro</h4>
                             <div className="flex items-baseline gap-1">
                                 <span className="text-4xl font-bold text-neutral-slate">₹299</span>
                                 <span className="text-gray-500">/month</span>
                             </div>
-                            <p className="font-inter text-gray-500 mt-2">For growing businesses</p>
+                            <p className="font-['Montserrat'] text-gray-500 mt-2">For growing businesses</p>
                         </div>
                         <ul className="space-y-4 mb-8 flex-1">
                             <li className="flex items-center gap-3 text-gray-600">
@@ -103,9 +103,9 @@ export default function Pricing() {
                         transition={{ duration: 0.6, delay: 0.3 }}
                     >
                         <div className="mb-6">
-                            <h4 className="font-sora text-xl font-bold text-neutral-slate mb-2">Enterprise</h4>
+                            <h4 className="font-['Montserrat'] text-xl font-bold text-neutral-slate mb-2">Enterprise</h4>
                             <div className="text-4xl font-bold text-neutral-slate">Custom</div>
-                            <p className="font-inter text-gray-500 mt-2">For large organizations</p>
+                            <p className="font-['Montserrat'] text-gray-500 mt-2">For large organizations</p>
                         </div>
                         <ul className="space-y-4 mb-8 flex-1">
                             <li className="flex items-center gap-3 text-gray-600">

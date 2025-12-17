@@ -116,14 +116,14 @@ export default function WhoIsItForPage() {
                         </motion.div>
 
                         {/* Main Heading */}
-                        <h1 className="font-sora text-6xl md:text-8xl font-bold text-gray-900 mb-8 leading-tight">
+                        <h1 className="font-['Montserrat'] text-6xl md:text-8xl font-bold text-gray-900 mb-8 leading-tight">
                             Built for{" "}
                             <span className="bg-clip-text text-transparent bg-linear-to-r from-teal-600 to-emerald-600">
                                 Everyone
                             </span>
                         </h1>
 
-                        <p className="font-inter text-xl md:text-2xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
+                        <p className="font-['Montserrat'] text-xl md:text-2xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
                             From students to business owners, SwiftFin adapts to your unique financial journey. No matter where you are in life, we've got you covered.
                         </p>
 
@@ -180,7 +180,7 @@ export default function WhoIsItForPage() {
 
                                         {/* Title & Tagline */}
                                         <div className="mb-6">
-                                            <h3 className="font-sora text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+                                            <h3 className="font-['Montserrat'] text-3xl md:text-4xl font-bold text-gray-900 mb-2">
                                                 {user.title}
                                             </h3>
                                             <p className={`font-semibold text-lg bg-clip-text text-transparent bg-linear-to-r ${user.gradient}`}>
@@ -271,13 +271,13 @@ export default function WhoIsItForPage() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
                     >
-                        <h2 className="font-sora text-5xl md:text-7xl font-bold mb-8 leading-tight">
+                        <h2 className="font-['Montserrat'] text-5xl md:text-7xl font-bold mb-8 leading-tight">
                             Ready to Start Your{" "}
                             <span className="bg-clip-text text-transparent bg-linear-to-r from-teal-400 to-emerald-400">
                                 Financial Journey?
                             </span>
                         </h2>
-                        <p className="font-inter text-xl md:text-2xl text-gray-300 mb-12 leading-relaxed">
+                        <p className="font-['Montserrat'] text-xl md:text-2xl text-gray-300 mb-12 leading-relaxed">
                             Join over 100,000 users who trust SwiftFin to manage their finances.
                             <br className="hidden md:block" />
                             Download now and take control of your money today.

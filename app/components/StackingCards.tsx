@@ -127,7 +127,7 @@ function Card({
           <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-start md:items-center flex-1">
             {/* Image Section */}
             <div className="flex-shrink-0 w-full md:w-auto flex justify-center md:justify-start">
-              <div className="w-32 h-32 md:w-48 md:h-48 lg:w-56 lg:h-56 rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-500 overflow-hidden border-4 border-white/50">
+              <div className="w-40 h-32 md:w-64 md:h-48 lg:w-80 lg:h-56 rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-500 overflow-hidden border-4 border-white/50">
                 <img
                   src={card.image}
                   alt={card.title}
@@ -174,7 +174,7 @@ export default function StackingCards() {
     <section className="relative min-h-screen">
       {/* Dynamic Background with White Overlay */}
       <div className="sticky top-0 h-screen w-full overflow-hidden z-0">
-        <div className="absolute inset-0 bg-white/40 z-20 transition-colors duration-500" />
+        <div className="absolute inset-0 bg-white/80 z-20 transition-colors duration-500" />
         <AnimatePresence mode="popLayout">
           {cards.map((card, index) => (
             index === activeCard && (

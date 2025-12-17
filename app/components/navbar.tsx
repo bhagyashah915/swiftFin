@@ -52,12 +52,6 @@ export default function Navbar() {
                                 Features
                             </Link>
                             <Link
-                                href="/#how-it-works"
-                                className="px-5 py-2 text-sm font-semibold text-slate-700 hover:text-teal-600 hover:bg-gray-50 rounded-full transition-all font-['Montserrat']"
-                            >
-                                How It Works
-                            </Link>
-                            <Link
                                 href="/blog"
                                 className="px-5 py-2 text-sm font-semibold text-slate-700 hover:text-teal-600 hover:bg-gray-50 rounded-full transition-all font-['Montserrat']"
                             >
@@ -127,26 +121,21 @@ export default function Navbar() {
                         <div className="flex-1 overflow-y-auto p-6">
                             <nav className="space-y-2">
                                 <Link
-                                    href="/#features"
+                                    href="/features"
                                     onClick={() => setMobileMenuOpen(false)}
                                     className="block p-4 text-lg font-semibold text-slate-700 hover:text-teal-600 hover:bg-gray-50 rounded-xl transition-all font-['Montserrat']"
                                 >
                                     Features
                                 </Link>
+
                                 <Link
-                                    href="/#how-it-works"
+                                    href="/blog"
                                     onClick={() => setMobileMenuOpen(false)}
                                     className="block p-4 text-lg font-semibold text-slate-700 hover:text-teal-600 hover:bg-gray-50 rounded-xl transition-all font-['Montserrat']"
                                 >
-                                    How It Works
+                                    Blog
                                 </Link>
-                                <Link
-                                    href="/who-is-it-for"
-                                    onClick={() => setMobileMenuOpen(false)}
-                                    className="block p-4 text-lg font-semibold text-slate-700 hover:text-teal-600 hover:bg-gray-50 rounded-xl transition-all font-['Montserrat']"
-                                >
-                                    Who Is It For
-                                </Link>
+
                                 <Link
                                     href="/about"
                                     onClick={() => setMobileMenuOpen(false)}

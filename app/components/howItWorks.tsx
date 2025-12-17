@@ -384,9 +384,9 @@ export default function HowItWorks() {
                     {/* Right Side - Steps with Connecting Lines */}
                     <div className="flex-1 relative w-full">
                         {/* Vertical Connecting Line - Hidden on mobile */}
-                        <div className="hidden lg:block absolute left-6 top-6 bottom-6 w-0.5 bg-slate-200"></div>
+                        <div className="hidden lg:block absolute left-6 top-10 bottom-10 w-0.5 bg-slate-300"></div>
 
-                        <div className="space-y-6 relative">
+                        <div className="space-y-4 relative">
                             {steps.map((step, index) => (
                                 <motion.div
                                     key={step.id}
@@ -396,37 +396,26 @@ export default function HowItWorks() {
                                     transition={{ delay: index * 0.1 }}
                                     onMouseEnter={() => !isMobile && setActiveStep(step.id)}
                                     onClick={() => setActiveStep(step.id)}
-                                    className={`group cursor-pointer flex items-start gap-4 p-5 rounded-2xl transition-all duration-300 border-2 relative overflow-hidden ${activeStep === step.id
-                                        ? 'bg-white shadow-lg border-teal-500'
-                                        : 'bg-white border-slate-200 hover:border-teal-300'
-                                        }`}
+                                    className="group cursor-pointer relative"
                                 >
-                                    {/* Background Image with Overlay */}
-                                    <div className="absolute inset-0 z-0">
-                                        <img
-                                            src={step.bgImage}
-                                            alt={step.title}
-                                            className="w-full h-full object-cover"
-                                        />
-                                        <div className={`absolute inset-0 transition-all duration-300 ${activeStep === step.id ? 'bg-white/80' : 'bg-white/90'}`}></div>
-                                    </div>
+                                    <div className="flex items-start gap-6">
+                                        {/* Step Number Circle */}
+                                        <div
+                                            className={`flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center font-bold text-white transition-all z-10 ${activeStep === step.id ? 'bg-teal-600 scale-110' : 'bg-slate-400'
+                                                }`}
+                                        >
+                                            {step.id}
+                                        </div>
 
-                                    {/* Step Number Circle */}
-                                    <div
-                                        className={`flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center font-bold text-white transition-all z-10 ${activeStep === step.id ? 'bg-teal-500 scale-110' : 'bg-slate-300'
-                                            }`}
-                                    >
-                                        {step.id}
-                                    </div>
-
-                                    {/* Content */}
-                                    <div className="flex-1 pt-1 relative z-10">
-                                        <h3 className="font-semibold text-lg text-slate-900 mb-2">
-                                            {step.title}
-                                        </h3>
-                                        <p className="text-slate-600 text-sm leading-relaxed">
-                                            {step.description}
-                                        </p>
+                                        {/* Content Card */}
+                                        <div className={`flex-1 bg-white rounded-2xl p-6 transition-all duration-300 ${activeStep === step.id ? 'shadow-lg' : 'shadow-md'}`}>
+                                            <h3 className={`font-bold text-xl mb-3 transition-colors ${activeStep === step.id ? 'text-slate-900' : 'text-slate-700'}`}>
+                                                {step.title}
+                                            </h3>
+                                            <p className={`text-base leading-relaxed transition-colors ${activeStep === step.id ? 'text-slate-700' : 'text-slate-600'}`}>
+                                                {step.description}
+                                            </p>
+                                        </div>
                                     </div>
                                 </motion.div>
                             ))}

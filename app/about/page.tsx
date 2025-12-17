@@ -2,10 +2,18 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { Receipt, BarChart3, CreditCard, TrendingUp, Lightbulb, Camera, ArrowRight, Lock, Zap, Users, Target, Globe, HeartHandshake } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export default function About() {
     const [hoveredIndex, setHoveredIndex] = useState(0);
+    const carousel = useRef<HTMLDivElement>(null);
+    const [width, setWidth] = useState(0);
+
+    useEffect(() => {
+        if (carousel.current) {
+            setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
+        }
+    }, [carousel.current]);
 
     const tickerImages = [
         "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
@@ -177,7 +185,7 @@ export default function About() {
                             loop
                             playsInline
                         >
-                            <source src="https://videos.pexels.com/video-files/3129957/3129957-hd_1920_1080_25fps.mp4" type="video/mp4" />
+                            <source src="/about.mp4" type="video/mp4" />
                         </video>
 
                         {/* Overlay */}
@@ -195,8 +203,7 @@ export default function About() {
                                     About Us
                                 </h1>
                                 <p className="text-xl md:text-3xl lg:text-4xl font-light text-white/90 leading-relaxed max-w-4xl mx-auto">
-                                    We're revolutionizing financial management with cutting-edge technology that empowers individuals and businesses to take complete control of their financial future. From smart expense tracking to AI-powered insights, we're building the tools that make financial success accessible to everyone.
-                                </p>
+                                    SwiftFin is a simple, powerful personal finance app. It helps users track expenses, manageEMIs, monitor investments, and get smart money tips.                                </p>
                             </motion.div>
 
                             {/* Scroll Indicator */}
@@ -219,114 +226,7 @@ export default function About() {
                 </div>
             </section>
 
-            {/* Features Section */}
-            <section id="features" className="relative py-24 md:py-32 overflow-hidden bg-slate-900">
-                {/* Dynamic Background Images */}
-                <div className="absolute inset-0 z-0">
-                    <AnimatePresence mode="popLayout">
-                        {features.map((feature, index) => (
-                            index === hoveredIndex && (
-                                <motion.div
-                                    key={index}
-                                    className="absolute inset-0"
-                                    initial={{ opacity: 0, scale: 1.1 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    exit={{ opacity: 0 }}
-                                    transition={{ duration: 0.7 }}
-                                >
-                                    <div
-                                        className="absolute inset-0 bg-cover bg-center"
-                                        style={{ backgroundImage: `url(${feature.image})` }}
-                                    />
-                                    <div className="absolute inset-0 bg-slate-900/80 backdrop-blur-[2px]" />
-                                </motion.div>
-                            )
-                        ))}
-                    </AnimatePresence>
-                </div>
 
-                <div className="container mx-auto px-4 sm:px-6 md:px-12 relative z-10">
-                    <div className="flex flex-col lg:flex-row gap-16 lg:gap-24">
-                        {/* Left Content */}
-                        <div className="flex-1 lg:sticky lg:top-32 h-fit">
-                            <motion.div
-                                className="inline-block px-4 py-1.5 rounded-full bg-[#20C997]/20 border border-[#20C997]/40 mb-6"
-                                whileHover={{ scale: 1.05 }}
-                            >
-                                <span className="text-[#20C997] font-bold text-sm uppercase tracking-widest">
-                                    About SwiftFin
-                                </span>
-                            </motion.div>
-
-                            {/* Dynamic Content based on hovered card */}
-                            <AnimatePresence mode="wait">
-                                <motion.div
-                                    key={hoveredIndex}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0, y: -20 }}
-                                    transition={{ duration: 0.3 }}
-                                >
-                                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
-                                        {features[hoveredIndex].leftTitle.split(' ').slice(0, -1).join(' ')} <br />
-                                        <span className="text-[#20C997]">
-                                            {features[hoveredIndex].leftTitle.split(' ').slice(-1)}
-                                        </span>
-                                    </h2>
-
-                                    <p className="text-gray-300 text-lg leading-relaxed mb-8 max-w-xl">
-                                        {features[hoveredIndex].leftDescription}
-                                    </p>
-                                </motion.div>
-                            </AnimatePresence>
-
-                            <a
-                                href="/download"
-                                className="inline-flex items-center gap-2 group px-8 py-3 rounded-full border border-[#20C997] text-[#20C997] font-semibold hover:bg-[#20C997] hover:text-white transition-all duration-300"
-                            >
-                                Get Started Now
-                                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                            </a>
-                        </div>
-
-                        {/* Right Content - Feature List */}
-                        <div className="flex-1">
-                            <div className="grid gap-4">
-                                {features.map((feature, index) => (
-                                    <motion.div
-                                        key={index}
-                                        className={`relative p-6 rounded-2xl cursor-pointer transition-all duration-300 border ${hoveredIndex === index
-                                            ? 'bg-white/10 border-[#20C997]/50 shadow-lg'
-                                            : 'bg-white/5 border-white/10 hover:bg-white/10'
-                                            }`}
-                                        onMouseEnter={() => setHoveredIndex(index)}
-                                        initial={{ opacity: 0, y: 20 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: index * 0.1 }}
-                                    >
-                                        <div className="flex items-start gap-4">
-                                            <div className={`p-3 rounded-xl transition-colors duration-300 ${hoveredIndex === index ? 'bg-[#20C997] text-white' : 'bg-white/10 text-gray-400'
-                                                }`}>
-                                                {feature.icon}
-                                            </div>
-                                            <div>
-                                                <h3 className={`text-xl font-bold mb-2 transition-colors duration-300 ${hoveredIndex === index ? 'text-white' : 'text-gray-300'
-                                                    }`}>
-                                                    {feature.title}
-                                                </h3>
-                                                <p className="text-gray-400 text-sm leading-relaxed">
-                                                    {feature.description}
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </motion.div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
 
             {/* Why Choose SwiftFin - Bento Grid */}
             <section className="relative bg-white py-20 md:py-32 overflow-hidden">
@@ -571,16 +471,15 @@ export default function About() {
                                 {/* Left Side - Video Loop - Reduced Spacing */}
                                 <div className="w-full lg:w-1/2">
                                     <div className="bg-white rounded-[32px] p-2 shadow-lg border border-slate-100 h-full">
-                                        <div className="relative h-[400px] lg:h-[600px] w-full rounded-3xl overflow-hidden bg-slate-900">
+                                        <div className="relative h-[350px] lg:h-[450px] w-full rounded-3xl overflow-hidden bg-slate-900">
                                             <video
                                                 className="w-full h-full object-cover"
                                                 autoPlay
                                                 muted
                                                 loop
                                                 playsInline
-                                                src="https://videos.pexels.com/video-files/3129957/3129957-hd_1920_1080_25fps.mp4"
-                                            ></video>
-                                            <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent pointer-events-none"></div>
+                                                src="/globe.mp4"                                         ></video>
+                                            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/30 to-transparent pointer-events-none"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -601,14 +500,6 @@ export default function About() {
                                             Our diverse team of engineers, designers, and financial experts comes together with a single mission:
                                             to democratize financial freedom for everyone, everywhere.
                                         </p>
-
-                                        <p className="text-lg text-slate-700 leading-relaxed">
-                                            We believe that when people understand their money, they can build the life they want.
-                                            That's why we pour our hearts into every pixel and every line of code. Every feature is designed
-                                            with real people in mind—students managing their first budget, freelancers tracking irregular income,
-                                            or families planning for their future.
-                                        </p>
-
                                         <div className="bg-teal-50/50 rounded-2xl p-6 border border-teal-100">
                                             <p className="text-lg text-slate-800 leading-relaxed italic">
                                                 "Financial literacy shouldn't be a privilege—it should be a right. We're building tools
@@ -616,21 +507,6 @@ export default function About() {
                                             </p>
                                         </div>
 
-                                        <p className="text-base text-slate-600 leading-relaxed">
-                                            Our team combines decades of experience in fintech, user experience design, and data science
-                                            to create solutions that are not just functional, but delightful to use. We're constantly
-                                            innovating, listening to our users, and pushing the boundaries of what's possible in personal
-                                            finance management.
-                                        </p>
-                                    </div>
-
-                                    <div className="flex items-center gap-4 pt-6 border-t border-slate-200">
-                                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=80" className="w-16 h-16 rounded-full object-cover ring-4 ring-teal-100 shadow-lg" alt="CEO" />
-                                        <div>
-                                            <div className="font-bold text-slate-900 text-lg">Alex Morgan</div>
-                                            <div className="text-sm text-[#20C997] font-semibold">CEO & Founder, SwiftFin</div>
-                                            <div className="text-xs text-slate-500 mt-1">Former VP of Product at Fortune 500 Fintech</div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
