@@ -3,7 +3,6 @@
 import { useRef, useState, useEffect } from "react"
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import { Users, Briefcase, Laptop, Building2 } from "lucide-react"
-import AnimatedDownloadButton from "./AnimatedDownloadButton"
 
 interface Card {
   id: number
@@ -19,38 +18,38 @@ const cards: Card[] = [
   {
     id: 1,
     title: "Students",
-    description: "Track expenses, manage pocket money, and build healthy financial habits early.",
+    description: "Master your finances while you master your subjects. Track every rupee of your pocket money, hostel expenses, and educational costs. Set savings goals for that trip with friends or the new gadget you've been eyeing. Learn financial discipline that'll serve you for life.",
     icon: <Users className="w-full h-full" />,
-    benefits: ["Smart budgeting", "Pocket money tracker", "Savings goals"],
+    benefits: ["Smart budgeting", "Pocket money tracker", "Savings goals", "Expense categories", "Daily spending limits"],
     bgGradient: "from-teal-400 to-teal-600",
-    image: "https://images.unsplash.com/photo-1554224154-260327c00c40?w=1600&q=80"
+    image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2940&auto=format&fit=crop"
   },
   {
     id: 2,
     title: "Working Professionals",
-    description: "Manage salary, track investments, and plan for future financial goals.",
+    description: "Take control of your salary, investments, and future. Track monthly income, manage EMIs, and monitor your investment portfolio all in one place. Get insights on tax savings, plan for major purchases, and build wealth systematically with automated tracking and smart recommendations.",
     icon: <Briefcase className="w-full h-full" />,
-    benefits: ["Salary planning", "Investment tracking", "Tax insights"],
+    benefits: ["Salary planning", "Investment tracking", "Tax insights", "EMI calculator", "Retirement planning"],
     bgGradient: "from-teal-400 to-teal-600",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1600&q=80"
+    image: "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?q=80&w=2938&auto=format&fit=crop"
   },
   {
     id: 3,
     title: "Freelancers",
-    description: "Monitor project income, track business expenses, and manage cash flow.",
+    description: "Navigate the unpredictable income landscape with confidence. Track income from multiple clients, separate business and personal expenses, and manage irregular cash flow. Monitor pending invoices, set aside money for taxes, and ensure you're always prepared for lean months.",
     icon: <Laptop className="w-full h-full" />,
-    benefits: ["Invoice tracking", "Expense separation", "Cash flow view"],
+    benefits: ["Invoice tracking", "Expense separation", "Cash flow view", "Client payments", "Tax provisioning"],
     bgGradient: "from-teal-400 to-teal-600",
-    image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=1600&q=80"
+    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2940&auto=format&fit=crop"
   },
   {
     id: 4,
     title: "Small Business",
-    description: "Manage business finances, track EMIs, and monitor portfolios.",
+    description: "Comprehensive financial management for your growing business. Track multiple revenue streams, manage employee expenses, handle GST compliance, and monitor business loans. Get real-time insights into profit margins, outstanding payments, and cash flow to make informed decisions that drive growth.",
     icon: <Building2 className="w-full h-full" />,
-    benefits: ["GST reports", "EMI management", "Multi-account"],
+    benefits: ["GST reports", "EMI management", "Multi-account", "Profit tracking", "Vendor payments"],
     bgGradient: "from-teal-400 to-teal-600",
-    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1600&q=80"
+    image: "https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&w=2940&auto=format&fit=crop"
   },
 ]
 
@@ -77,11 +76,9 @@ function Card({
 
   useEffect(() => {
     return scrollYProgress.on("change", (latest) => {
-      // Threshold 0.3 means the card has started entering well into view
       if (latest > 0.3) {
         onActive(index)
       }
-      // If we scroll back up and this card drops below threshold, revert to previous
       if (latest < 0.3 && activeCard === index && index > 0) {
         onActive(index - 1)
       }
@@ -91,10 +88,10 @@ function Card({
   return (
     <div
       ref={cardRef}
-      className="h-screen flex items-center justify-center sticky px-6"
+      className="h-screen flex items-center justify-center sticky px-4 md:px-6"
       style={{
         zIndex: index,
-        top: `${index * 30}px`,
+        top: `${index * 12}px`,
       }}
     >
       <motion.div
@@ -103,65 +100,52 @@ function Card({
           opacity,
           transformOrigin: "center",
         }}
-        className="w-full max-w-5xl h-[500px] md:h-[550px] bg-gray-100 rounded-2xl shadow-xl overflow-hidden"
+        className="w-full max-w-6xl h-auto min-h-[520px] md:h-[640px] bg-white/95 backdrop-blur-2xl rounded-3xl md:rounded-[2.5rem] shadow-[0_8px_40px_rgb(0,0,0,0.08)] overflow-hidden relative font-['Montserrat']"
       >
-        <div className="relative p-8 md:p-10 h-full">
-          <div className="flex flex-col md:flex-row gap-8 items-center h-full">
-            {/* Icon */}
-            <div className="flex-shrink-0">
-              <div
-                className={`w-64 h-64 md:w-72 md:h-72 rounded-2xl bg-gradient-to-br ${card.bgGradient} flex items-center justify-center shadow-lg`}
-              >
-                <div className="text-white w-32 h-32 md:w-36 md:h-36">{card.icon}</div>
-              </div>
-            </div>
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-50/50 via-white to-teal-50/30 pointer-events-none" />
 
-            {/* Content */}
-            <div className="flex-1 flex flex-col h-full justify-center">
-              <h3 className="font-sora text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                {card.title}
-              </h3>
-              <p className="font-inter text-lg md:text-xl text-gray-700 mb-6 leading-relaxed">
+        <div className="relative p-8 md:p-16 h-full flex flex-col gap-8 md:gap-10 z-10">
+          {/* Title */}
+          <div className="flex flex-col items-start gap-2">
+            <h3 className="font-bold text-3xl md:text-5xl lg:text-6xl text-slate-900 leading-none tracking-tight">
+              {card.title}
+            </h3>
+            <div className="w-16 h-1 bg-gradient-to-r from-teal-500 to-teal-400 rounded-full mt-2" />
+          </div>
+
+          {/* Content Layout */}
+          <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start flex-1">
+            {/* Text Content */}
+            <div className="flex-1 flex flex-col justify-center space-y-6 md:space-y-8">
+              <p className="text-lg md:text-xl text-slate-600 leading-relaxed font-light">
                 {card.description}
               </p>
 
-              {/* Benefits */}
-              <div className="grid grid-cols-1 gap-3 mb-6">
+              {/* Benefits List - Minimalist */}
+              <div className="flex flex-wrap gap-2.5">
                 {card.benefits.map((benefit, idx) => (
                   <div
                     key={idx}
-                    className="flex items-center gap-3 bg-white/90 backdrop-blur-sm px-4 py-3 rounded-lg shadow-sm"
+                    className="px-4 py-2 rounded-full bg-slate-50 border border-slate-100 hover:border-teal-200 hover:bg-teal-50 transition-all duration-300"
                   >
-                    <div
-                      className={`w-6 h-6 rounded-full bg-gradient-to-br ${card.bgGradient} flex items-center justify-center shrink-0`}
-                    >
-                      <svg
-                        className="w-3.5 h-3.5 text-white"
-                        fill="none"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="3"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <span className="text-gray-800 font-semibold text-base">{benefit}</span>
+                    <span className="text-slate-700 font-medium text-sm">{benefit}</span>
                   </div>
                 ))}
               </div>
+            </div>
 
-              {/* CTA */}
-              <div className="mt-auto">
-                <AnimatedDownloadButton text="Download Now" className="px-8 py-4 text-lg shadow-lg" />
+            {/* Image Section - Minimalist */}
+            <div className="flex-shrink-0 w-full md:w-[45%] flex items-center justify-center">
+              <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-xl">
+                <img
+                  src={card.image}
+                  alt={card.title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
               </div>
             </div>
           </div>
-
-          {/* Decorative blobs */}
-          <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-teal-400 to-teal-600 opacity-10 rounded-full blur-3xl -translate-y-24 translate-x-24" />
-          <div className="absolute bottom-0 left-0 w-40 h-40 bg-gradient-to-br from-teal-400 to-teal-600 opacity-10 rounded-full blur-3xl translate-y-20 -translate-x-20" />
         </div>
       </motion.div>
     </div>
@@ -172,46 +156,40 @@ export default function StackingCards() {
   const [activeCard, setActiveCard] = useState(0)
 
   return (
-    <section className="relative min-h-screen">
-      {/* Dynamic Background */}
+    <section className="relative min-h-screen bg-gradient-to-b from-white via-slate-50/30 to-white">
+      {/* Subtle Dynamic Background */}
       <div className="sticky top-0 h-screen w-full overflow-hidden z-0">
-        <div className="absolute inset-0 bg-slate-900/5 transition-colors duration-500" />
-        <AnimatePresence mode="popLayout">
+        <div className="absolute inset-0 bg-gradient-to-b from-white/95 via-white/90 to-white/95 z-20 transition-colors duration-700" />
+        <AnimatePresence mode="wait">
           {cards.map((card, index) => (
             index === activeCard && (
               <motion.div
                 key={card.id}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.5 }}
+                initial={{ opacity: 0, scale: 1.05 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.7, ease: "easeInOut" }}
                 className="absolute inset-0"
               >
-                <div className="absolute inset-0 bg-white/90 z-10" />
                 <img
                   src={card.image}
                   alt={card.title}
-                  className="w-full h-full object-cover opacity-20"
+                  className="w-full h-full object-cover blur-sm"
                 />
-                {/* Radial fade for better readability */}
-                <div className="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white/80 z-20" />
               </motion.div>
             )
           ))}
         </AnimatePresence>
       </div>
+
       {/* Header */}
-      <div className="container mx-auto px-6 pt-24 pb-12 relative z-10">
-        <div className="text-center max-w-3xl mx-auto">
-          <div className="inline-block px-4 py-1.5 rounded-full bg-teal-50 border border-teal-200 mb-6">
-            <span className="text-teal-600 font-bold text-sm uppercase tracking-widest">Who is it for?</span>
-          </div>
-          <h2 className="font-sora text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+      <div className="container mx-auto px-4 md:px-6 pt-20 md:pt-32 pb-12 md:pb-16 relative z-10">
+        <div className="text-center max-w-4xl mx-auto space-y-6">
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-slate-900 leading-tight tracking-tight font-['Montserrat']">
             Built for <span className="text-teal-600">Everyone</span>
           </h2>
-          <p className="font-inter text-gray-600 text-lg md:text-xl leading-relaxed">
-            Whether you&apos;re a student managing pocket money or a professional planning investments, SwiftFin adapts
-            to your unique financial needs.
+          <p className="text-slate-600 text-lg md:text-xl lg:text-2xl leading-relaxed font-light font-['Montserrat'] max-w-3xl mx-auto">
+            Whether you&apos;re a student managing pocket money or a professional planning investments, SwiftFin adapts to your unique financial needs.
           </p>
         </div>
       </div>
@@ -229,8 +207,26 @@ export default function StackingCards() {
         ))}
       </div>
 
+      {/* CTA Section */}
+      <div className="relative z-10 container mx-auto px-4 md:px-6 py-16 md:py-24">
+        <div className="text-center space-y-8">
+          <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 font-['Montserrat']">
+            Ready to take control?
+          </h3>
+          <a
+            href="/download"
+            className="inline-flex items-center gap-3 px-10 py-5 bg-slate-900 text-white font-semibold rounded-full hover:bg-slate-800 transition-all duration-300 hover:scale-105 shadow-xl hover:shadow-2xl text-lg"
+          >
+            Get Started
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
       {/* Bottom spacing */}
-      <div className="h-screen" />
+      <div className="h-32" />
     </section>
   )
 }

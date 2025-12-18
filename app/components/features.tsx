@@ -71,7 +71,7 @@ export default function Features() {
     ];
 
     return (
-        <section className="relative py-24 overflow-hidden bg-gradient-to-br from-slate-50 via-white to-slate-100" id="features">
+        <section className="relative py-16 md:py-24 overflow-hidden bg-gradient-to-br from-slate-50 via-white to-slate-100" id="features">
             {/* Animated Background Text */}
             <div className="absolute inset-0 z-0 opacity-[0.03] overflow-hidden pointer-events-none">
                 <motion.div
@@ -122,11 +122,9 @@ export default function Features() {
                             viewport={{ once: true }}
                             onMouseEnter={() => setActiveIndex(idx)}
                             onClick={() => setActiveIndex(idx)}
-                            className={`group cursor-pointer p-4 rounded-xl transition-all duration-300 md:col-span-2 lg:col-span-2 ${
-                                idx === 3 ? 'lg:col-start-2' : ''
-                            } ${
-                                idx === 4 ? 'md:col-start-2 lg:col-start-auto' : ''
-                            } ${activeIndex === idx ? 'bg-gray-100' : 'bg-gray-50'}`}
+                            className={`group cursor-pointer p-4 rounded-xl transition-all duration-300 md:col-span-2 lg:col-span-2 ${idx === 3 ? 'lg:col-start-2' : ''
+                                } ${idx === 4 ? 'md:col-start-2 lg:col-start-auto' : ''
+                                } ${activeIndex === idx ? 'bg-gray-100' : 'bg-gray-50'}`}
                         >
                             <div className={`w-12 h-12 rounded-lg ${feature.color} flex items-center justify-center mb-3 ${feature.iconColor} transition-transform`}>
                                 {feature.icon}

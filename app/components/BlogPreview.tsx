@@ -1,158 +1,137 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ChevronRight, Calendar, User, ArrowRight } from "lucide-react";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { ArrowRight, Sparkles } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
+import React, { useRef } from "react";
 
 export default function BlogPreview() {
-    const posts = [
-        {
-            title: "Automated Expense Tracking: The Future of Money Management",
-            excerpt: "Discover how AI-powered receipt scanning and automated categorization can help you reduce overspending by 30%.",
-            date: "Dec 10, 2025",
-            author: "Sarah Johnson",
-            authorImage: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&q=80",
-            category: "Expense Tracking",
-            readTime: "12 min read",
-            image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=1200&q=80"
-        },
-        {
-            title: "EMI Management Made Easy: Never Miss a Payment Again",
-            excerpt: "Learn how smart reminders and visual progress tracking help you stay on top of all your loans and maintain a perfect credit score.",
-            date: "Dec 8, 2025",
-            author: "Michael Chen",
-            authorImage: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80",
-            category: "EMI & Loans",
-            readTime: "8 min read",
-            image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&q=80"
-        },
-        {
-            title: "Smart Investment Tracking: Build Wealth While You Sleep",
-            excerpt: "Monitor your portfolio across multiple platforms in one dashboard. Track mutual funds, stocks, and get real-time alerts.",
-            date: "Dec 5, 2025",
-            author: "Priya Sharma",
-            authorImage: "https://images.unsplash.com/photo-1534751516642-a1af1ef26a56?w=400&q=80",
-            category: "Investment",
-            readTime: "10 min read",
-            image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80"
-        }
-    ];
-
     return (
-        <section className="py-24 bg-slate-50 relative overflow-hidden">
+        <section className="py-24 bg-gradient-to-b from-slate-50 to-white relative overflow-hidden flex items-center justify-center">
             {/* Background Decorations */}
-            <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+            <div className="absolute inset-0 pointer-events-none">
                 <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-teal-500/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
                 <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
             </div>
 
             <div className="container mx-auto px-6 relative z-10">
-                {/* Header */}
-                <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+                <div className="text-center mb-16">
                     <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="max-w-2xl"
                     >
-                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-teal-100/50 text-teal-700 text-sm font-bold uppercase tracking-wider mb-6">
-                            <span className="w-2 h-2 rounded-full bg-teal-500"></span>
-                            Financial Wisdom
-                        </div>
-                        <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6 leading-tight">
-                            Latest Insights for Your <span className="text-teal-600">Wallet</span>
+                        <span className="inline-block text-teal-600 font-bold text-sm uppercase tracking-widest bg-teal-50 px-5 py-2 rounded-full mb-6 border border-teal-100">
+                            Our Blog
+                        </span>
+                        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-tight">
+                            Financial <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-blue-600">Wisdom</span>
                         </h2>
-                        <p className="text-xl text-slate-600 leading-relaxed">
-                            Expert advice, strategies, and tips to help you master your finances and build lasting wealth.
-                        </p>
-                    </motion.div>
-
-                    <motion.div
-                        initial={{ opacity: 0, x: 20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                    >
-                        <Link
-                            href="/blog"
-                            className="group flex items-center gap-2 text-lg font-semibold text-teal-600 hover:text-teal-700 transition-colors"
-                        >
-                            View All Articles
-                            <span className="w-8 h-8 rounded-full bg-teal-50 flex items-center justify-center group-hover:bg-teal-100 transition-colors">
-                                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                            </span>
-                        </Link>
                     </motion.div>
                 </div>
 
-                {/* Cards Grid */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {posts.map((post, index) => (
-                        <motion.article
-                            key={index}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.1 }}
-                            className="group h-full"
-                        >
-                            <Link href="/blog" className="block h-full">
-                                <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-slate-100 h-full flex flex-col transform group-hover:-translate-y-1">
-                                    {/* Image Wrapper */}
-                                    <div className="relative h-60 overflow-hidden">
-                                        <img
-                                            src={post.image}
-                                            alt={post.title}
-                                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                                        />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
-
-                                        <div className="absolute top-4 left-4">
-                                            <div className="px-3 py-1.5 rounded-full bg-white/95 backdrop-blur-sm text-teal-700 text-xs font-bold uppercase tracking-wide shadow-sm">
-                                                {post.category}
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    {/* Content */}
-                                    <div className="p-8 flex-1 flex flex-col">
-                                        <div className="flex items-center gap-3 text-sm text-slate-500 mb-4">
-                                            <div className="flex items-center gap-1">
-                                                <Calendar className="w-4 h-4 text-teal-500" />
-                                                {post.date}
-                                            </div>
-                                            <span className="w-1 h-1 rounded-full bg-slate-300"></span>
-                                            <div>{post.readTime}</div>
-                                        </div>
-
-                                        <h3 className="text-xl font-bold text-slate-900 mb-4 group-hover:text-teal-600 transition-colors leading-snug">
-                                            {post.title}
-                                        </h3>
-
-                                        <p className="text-slate-600 mb-6 flex-1 line-clamp-3 leading-relaxed">
-                                            {post.excerpt}
-                                        </p>
-
-                                        <div className="flex items-center justify-between pt-6 border-t border-slate-100 mt-auto">
-                                            <div className="flex items-center gap-3">
-                                                <img
-                                                    src={post.authorImage}
-                                                    alt={post.author}
-                                                    className="w-10 h-10 rounded-full object-cover border-2 border-white shadow-sm"
-                                                />
-                                                <span className="font-semibold text-slate-900 text-sm">{post.author}</span>
-                                            </div>
-                                            <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-teal-500 group-hover:bg-teal-500 group-hover:text-white transition-all duration-300">
-                                                <ChevronRight className="w-4 h-4" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </Link>
-                        </motion.article>
-                    ))}
+                <div className="flex justify-center">
+                    <TiltCard />
                 </div>
             </div>
         </section>
     );
 }
+
+function TiltCard() {
+    const x = useMotionValue(0);
+    const y = useMotionValue(0);
+
+    const mouseXSpring = useSpring(x);
+    const mouseYSpring = useSpring(y);
+
+    const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["17.5deg", "-17.5deg"]);
+    const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-17.5deg", "17.5deg"]);
+
+    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        const rect = e.currentTarget.getBoundingClientRect();
+
+        const width = rect.width;
+        const height = rect.height;
+
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+
+        const xPct = mouseX / width - 0.5;
+        const yPct = mouseY / height - 0.5;
+
+        x.set(xPct);
+        y.set(yPct);
+    };
+
+    const handleMouseLeave = () => {
+        x.set(0);
+        y.set(0);
+    };
+
+    return (
+        <motion.div
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            style={{
+                rotateY,
+                rotateX,
+                transformStyle: "preserve-3d",
+            }}
+            className="relative w-full max-w-2xl aspect-[1.6/1] rounded-3xl bg-slate-900 group"
+        >
+            <div
+                style={{
+                    transform: "translateZ(75px)",
+                    transformStyle: "preserve-3d",
+                }}
+                className="absolute inset-4 grid place-content-center rounded-2xl bg-white shadow-2xl"
+            >
+                {/* Content Container */}
+                <div className="relative w-full h-full overflow-hidden rounded-2xl flex flex-col md:flex-row">
+                    {/* Image Side */}
+                    <div className="w-full md:w-1/2 h-48 md:h-full relative overflow-hidden">
+                        <img
+                            src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800&q=80"
+                            alt="Financial Growth"
+                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent md:bg-gradient-to-r md:from-transparent md:to-black/60"></div>
+                    </div>
+
+                    {/* Text Side */}
+                    <div className="w-full md:w-1/2 p-8 flex flex-col justify-center bg-white relative z-10">
+                        <div className="bg-teal-50 w-fit px-3 py-1 rounded-full text-teal-600 text-xs font-bold uppercase tracking-wider mb-4">
+                            Latest Insight
+                        </div>
+                        <h3 className="text-2xl font-bold text-slate-900 mb-4 leading-tight group-hover:text-teal-600 transition-colors">
+                            Mastering Your Personal Finances in 2025
+                        </h3>
+                        <p className="text-slate-600 mb-6 text-sm leading-relaxed">
+                            Discover the key strategies to optimize your savings, manage debt effectively, and build a robust investment portfolio for the future.
+                        </p>
+
+                        <Link href="/blog" className="flex items-center gap-2 text-slate-900 font-bold group/link hover:text-teal-600 transition-colors">
+                            Read Article
+                            <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
+                        </Link>
+                    </div>
+                </div>
+
+                {/* Floating Elements (3D Effect) */}
+                <div
+                    style={{ transform: "translateZ(50px)" }}
+                    className="absolute -top-6 -right-6 w-20 h-20 bg-teal-500 rounded-full flex items-center justify-center shadow-lg animate-float-slow"
+                >
+                    <Sparkles className="w-10 h-10 text-white" />
+                </div>
+            </div>
+
+            {/* Edge Highlight */}
+            <div className="absolute inset-0 rounded-3xl border border-white/10 group-hover:border-teal-500/30 transition-colors pointer-events-none"></div>
+        </motion.div>
+    );
+}
+
+// Ensure the animation is available globally or inline it if necessary, but 'animate-float-slow' typically needs Tailwind config or global CSS.
+// Assuming it's part of the existing project or I can rely on Framer Motion for more complex stuff if needed, but the class is used.

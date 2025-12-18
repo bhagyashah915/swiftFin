@@ -10,24 +10,28 @@ const steps = [
         title: "Connect Your Accounts",
         description: "Securely link your bank, credit cards, and investments to get a complete financial overview in one place.",
         icon: <Wallet className="w-5 h-5 text-white" />,
+        bgImage: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=2940&auto=format&fit=crop"
     },
     {
         id: 2,
         title: "Track Expenses",
         description: "Monitor your spending across categories with automatic transaction tracking and real-time updates.",
         icon: <PieChart className="w-5 h-5 text-white" />,
+        bgImage: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?q=80&w=2940&auto=format&fit=crop"
     },
     {
         id: 3,
         title: "Set Budget",
         description: "Create personalized budgets for different categories and get alerts when you're approaching limits.",
         icon: <Target className="w-5 h-5 text-white" />,
+        bgImage: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?q=80&w=2940&auto=format&fit=crop"
     },
     {
         id: 4,
         title: "Monitor Progress",
         description: "Get personalized insights and recommendations to optimize your financial health and reach your goals.",
         icon: <TrendingUp className="w-5 h-5 text-white" />,
+        bgImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2940&auto=format&fit=crop"
     },
 ];
 
@@ -48,7 +52,6 @@ export default function HowItWorks() {
         if (isMobile) {
             const interval = setInterval(() => {
                 setActiveStep((prev) => {
-                    // Cycle through steps 1-4
                     return prev >= 4 ? 1 : prev + 1;
                 });
             }, 3000);
@@ -57,7 +60,7 @@ export default function HowItWorks() {
     }, [isMobile]);
 
     // Function to render phone screen based on active step
-    const renderPhoneScreen = (stepId) => {
+    const renderPhoneScreen = (stepId: number) => {
         switch (stepId) {
             case 1:
                 return (
@@ -115,9 +118,9 @@ export default function HowItWorks() {
                                 </svg>
                             </div>
 
-                            <button className="w-full bg-teal-500 text-white rounded-2xl py-4 font-semibold text-lg mt-6">
+                            <a href="/download" className="block text-center w-full bg-teal-500 text-white rounded-2xl py-4 font-semibold text-lg mt-6">
                                 Connect Now
-                            </button>
+                            </a>
                         </div>
                     </div>
                 );
@@ -294,32 +297,51 @@ export default function HowItWorks() {
     };
 
     return (
-        <section className="relative py-24 bg-white overflow-hidden" id="how-it-works">
-            <div className="container mx-auto px-4 relative z-10 bg-teal-400 p-20 rounded-4xl">
+        <section className="relative py-16 md:py-24 bg-white overflow-hidden" id="how-it-works">
+            {/* Dynamic Background Images */}
+            <div className="absolute inset-0 z-0">
+                <motion.div
+                    key={activeStep}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="absolute inset-0"
+                >
+                    <img
+                        src={steps[activeStep - 1].bgImage}
+                        alt={steps[activeStep - 1].title}
+                        className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-teal-400/85"></div>
+                </motion.div>
+            </div>
+
+            <div className="container mx-auto px-4 relative z-10 p-8 md:p-20 rounded-3xl md:rounded-4xl">
                 {/* Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-center mb-16 "
+                    className="text-center mb-16"
                 >
-                    <span className="inline-block text-teal-600 font-bold text-sm uppercase tracking-widest font-poppins bg-teal-50 px-5 py-2 rounded-full mb-6 border border-teal-100">
+                    <span className="inline-block text-teal-600 font-bold text-sm uppercase tracking-widest bg-teal-50 px-5 py-2 rounded-full mb-6 border border-teal-100">
                         How It Works
                     </span>
-                    <h2 className="font-poppins text-5xl md:text-6xl font-bold text-slate-900 mb-6 leading-tight">
+                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-tight">
                         How <span className="text-white">SwiftFin</span><br />Can Help You
                     </h2>
-                    <p className="font-lato text-slate-600 text-xl leading-relaxed max-w-3xl mx-auto">
+                    <p className="text-blackx text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
                         Follow these simple steps to take control of your finances and achieve your goals.
                     </p>
                 </motion.div>
 
-                <div className="flex items-center justify-center max-w-6xl mx-auto ">
+                <div className="flex flex-col lg:flex-row items-center justify-center max-w-6xl mx-auto gap-8 lg:gap-0">
                     {/* Left Side - Phone Mockup */}
-                    <div className="flex-shrink-0 mr-16">
+                    <div className="flex-shrink-0 lg:mr-16">
                         <div className="relative">
                             {/* Phone Mockup */}
-                            <div className="relative w-[340px] h-[700px] bg-black rounded-[3.5rem] p-3 shadow-2xl">
+                            <div className="relative w-[300px] md:w-[340px] h-[620px] md:h-[700px] bg-black rounded-[3.5rem] p-3 shadow-2xl">
                                 {/* Notch */}
                                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-36 h-8 bg-black rounded-b-3xl z-20"></div>
 
@@ -360,11 +382,11 @@ export default function HowItWorks() {
                     </div>
 
                     {/* Right Side - Steps with Connecting Lines */}
-                    <div className="flex-1 relative">
-                        {/* Vertical Connecting Line */}
-                        <div className="absolute left-6 top-6 bottom-6 w-0.5 bg-slate-200"></div>
+                    <div className="flex-1 relative w-full">
+                        {/* Vertical Connecting Line - Hidden on mobile */}
+                        <div className="hidden lg:block absolute left-6 top-10 bottom-10 w-0.5 bg-slate-300"></div>
 
-                        <div className="space-y-6 relative">
+                        <div className="space-y-4 relative">
                             {steps.map((step, index) => (
                                 <motion.div
                                     key={step.id}
@@ -372,29 +394,43 @@ export default function HowItWorks() {
                                     whileInView={{ opacity: 1, x: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ delay: index * 0.1 }}
-                                    onMouseEnter={() => setActiveStep(step.id)}
+                                    onMouseEnter={() => !isMobile && setActiveStep(step.id)}
                                     onClick={() => setActiveStep(step.id)}
-                                    className={`group cursor-pointer flex items-start gap-4 p-5 rounded-2xl transition-all duration-300 border-2 relative ${activeStep === step.id
-                                        ? 'bg-white shadow-lg border-teal-500'
-                                        : 'bg-white border-slate-200 hover:border-teal-300'
-                                        }`}
+                                    className="group cursor-pointer relative"
                                 >
-                                    {/* Step Number Circle */}
-                                    <div
-                                        className={`flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center font-bold text-white transition-all z-10 ${activeStep === step.id ? 'bg-teal-500 scale-110' : 'bg-slate-300'
+                                    <div className="flex items-center gap-6">
+                                        {/* Step Number Circle */}
+                                        <div
+                                            className={`flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg transition-all duration-300 z-10 ${
+                                                activeStep === step.id
+                                                    ? 'bg-teal-600 text-white scale-110'
+                                                    : 'bg-white text-slate-900 group-hover:bg-teal-600 group-hover:text-white'
                                             }`}
-                                    >
-                                        {step.id}
-                                    </div>
+                                        >
+                                            {step.id}
+                                        </div>
 
-                                    {/* Content */}
-                                    <div className="flex-1 pt-1">
-                                        <h3 className="font-semibold text-lg text-slate-900 mb-2">
-                                            {step.title}
-                                        </h3>
-                                        <p className="text-slate-600 text-sm leading-relaxed">
-                                            {step.description}
-                                        </p>
+                                        {/* Content Card */}
+                                        <div className={`flex-1 rounded-2xl p-6 transition-all duration-300 ${
+                                            activeStep === step.id
+                                                ? 'bg-teal-700 shadow-xl'
+                                                : 'bg-white shadow-md group-hover:bg-teal-700 group-hover:shadow-xl'
+                                        }`}>
+                                            <h3 className={`font-bold text-xl mb-3 transition-colors duration-300 ${
+                                                activeStep === step.id
+                                                    ? 'text-white'
+                                                    : 'text-slate-900 group-hover:text-white'
+                                            }`}>
+                                                {step.title}
+                                            </h3>
+                                            <p className={`text-base leading-relaxed transition-colors duration-300 ${
+                                                activeStep === step.id
+                                                    ? 'text-white/90'
+                                                    : 'text-slate-600 group-hover:text-white/90'
+                                            }`}>
+                                                {step.description}
+                                            </p>
+                                        </div>
                                     </div>
                                 </motion.div>
                             ))}

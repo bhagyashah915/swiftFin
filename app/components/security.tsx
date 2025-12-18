@@ -40,10 +40,10 @@ export default function Security() {
                                 Security
                             </span>
                         </div>
-                        <h2 className="font-sora text-3xl sm:text-4xl md:text-5xl font-bold text-[#495057] mb-6 leading-tight">
+                        <h2 className="font-['Montserrat'] text-3xl sm:text-4xl md:text-5xl font-bold text-[#495057] mb-6 leading-tight">
                             Your Data is Safe with Us
                         </h2>
-                        <p className="font-inter text-gray-600 text-lg leading-relaxed max-w-3xl mx-auto mb-10">
+                        <p className="font-['Montserrat'] text-gray-600 text-lg leading-relaxed max-w-3xl mx-auto mb-10">
                             We use state-of-the-art security measures to ensure your financial information
                             remains private and protected at all times.
                         </p>
@@ -69,7 +69,7 @@ export default function Security() {
                                 <div className="w-10 h-10 rounded-full bg-[#20C997]/10 flex items-center justify-center text-[#20C997]">
                                     {feature.icon}
                                 </div>
-                                <span className="font-inter font-medium text-[#495057]">
+                                <span className="font-['Montserrat'] font-medium text-[#495057]">
                                     {feature.text}
                                 </span>
                             </motion.div>
@@ -85,7 +85,7 @@ export default function Security() {
                         transition={{ delay: 0.6 }}
                     >
                         <CheckCircle className="w-5 h-5 text-[#198754]" />
-                        <span className="font-inter font-semibold text-[#198754] text-sm">
+                        <span className="font-['Montserrat'] font-semibold text-[#198754] text-sm">
                             100% Secure & Private
                         </span>
                     </motion.div>

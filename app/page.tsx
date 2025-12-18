@@ -20,6 +20,10 @@ export default function Home() {
   // Test Firebase connection
   async function testFirebase() {
     try {
+      if (!db) {
+        console.error("Firebase not initialized");
+        return;
+      }
       await addDoc(collection(db, "test"), {
         message: "Firebase is connected!",
         timestamp: new Date(),

@@ -60,7 +60,7 @@ export default function About() {
     ];
 
     return (
-        <section className="relative py-24 md:py-32 overflow-hidden bg-slate-900">
+        <section className="relative py-16 md:py-24 overflow-hidden bg-slate-900">
             {/* Dynamic Background Images */}
             <div className="absolute inset-0 z-0">
                 <AnimatePresence mode="popLayout">
@@ -107,14 +107,14 @@ export default function About() {
                                 exit={{ opacity: 0, y: -20 }}
                                 transition={{ duration: 0.3 }}
                             >
-                                <h2 className="font-sora text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+                                <h2 className="font-['Montserrat'] text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
                                     {features[hoveredIndex].leftTitle.split(' ').slice(0, -1).join(' ')} <br />
                                     <span className="text-[#20C997]">
                                         {features[hoveredIndex].leftTitle.split(' ').slice(-1)}
                                     </span>
                                 </h2>
 
-                                <p className="font-inter text-gray-300 text-lg leading-relaxed mb-8 max-w-xl">
+                                <p className="font-['Montserrat'] text-gray-300 text-lg leading-relaxed mb-8 max-w-xl">
                                     {features[hoveredIndex].leftDescription}
                                 </p>
                             </motion.div>
@@ -151,11 +151,11 @@ export default function About() {
                                             {feature.icon}
                                         </div>
                                         <div>
-                                            <h3 className={`font-sora text-xl font-bold mb-2 transition-colors duration-300 ${hoveredIndex === index ? 'text-white' : 'text-gray-300'
+                                            <h3 className={`font-['Montserrat'] text-xl font-bold mb-2 transition-colors duration-300 ${hoveredIndex === index ? 'text-white' : 'text-gray-300'
                                                 }`}>
                                                 {feature.title}
                                             </h3>
-                                            <p className="font-inter text-gray-400 text-sm leading-relaxed">
+                                            <p className="font-['Montserrat'] text-gray-400 text-sm leading-relaxed">
                                                 {feature.description}
                                             </p>
                                         </div>

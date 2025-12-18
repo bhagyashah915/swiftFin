@@ -33,8 +33,8 @@ export default function FAQ() {
     };
 
     return (
-        <section id="faq" className="relative py-20 overflow-hidden bg-white">
-            <div className="relative z-10 container mx-auto px-6 max-w-4xl">
+        <section id="faq" className="relative py-16 md:py-24 overflow-hidden bg-white">
+            <div className="relative z-10 container mx-auto px-6 max-w-7xl">
                 {/* Header */}
                 <div className="text-center mb-16">
                     <h2 className="text-5xl font-bold text-gray-900 mb-4">
@@ -46,33 +46,39 @@ export default function FAQ() {
                 </div>
 
                 {/* FAQ Grid */}
-                <div className="space-y-4 mb-16">
+                <div className="space-y-6 mb-16">
                     {faqs.map((faq, index) => {
                         const isOpen = openIndex === index;
                         return (
                             <div
                                 key={index}
-                                className="bg-white border-2 border-teal-50 rounded-2xl overflow-hidden transition-all duration-300 hover:border-teal-300 hover:shadow-lg"
+                                className={`rounded-3xl overflow-hidden transition-all duration-300 shadow-lg hover:shadow-xl ${
+                                    isOpen ? 'bg-teal-700' : 'bg-white'
+                                }`}
                             >
                                 <button
                                     onClick={() => toggleFaq(index)}
-                                    className="w-full px-6 py-5 flex items-center justify-between text-left transition-all"
+                                    className="w-full px-10 py-8 flex items-center justify-between text-left transition-all"
                                 >
-                                    <span className="text-lg font-semibold text-gray-900 pr-8">
+                                    <span className={`text-2xl font-bold pr-8 ${
+                                        isOpen ? 'text-white' : 'text-gray-900'
+                                    }`}>
                                         {faq.q}
                                     </span>
-                                    <div className={`flex-shrink-0 w-8 h-8 rounded-full bg-teal-500 flex items-center justify-center transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>
+                                    <div className={`flex-shrink-0 w-12 h-12 flex items-center justify-center transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>
                                         {isOpen ? (
-                                            <Minus className="w-5 h-5 text-white" />
+                                            <Minus className="w-7 h-7 text-white" />
                                         ) : (
-                                            <Plus className="w-5 h-5 text-white" />
+                                            <Plus className="w-7 h-7 text-teal-600" />
                                         )}
                                     </div>
                                 </button>
                                 <div
-                                    className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'}`}
+                                    className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'}`}
                                 >
-                                    <div className="px-6 pb-6 text-gray-700 leading-relaxed border-t border-gray-100 pt-4">
+                                    <div className={`px-10 pb-8 leading-relaxed pt-4 text-lg ${
+                                        isOpen ? 'text-white/90 border-t border-white/20' : 'text-gray-700 border-t border-gray-100'
+                                    }`}>
                                         {faq.a}
                                     </div>
                                 </div>
