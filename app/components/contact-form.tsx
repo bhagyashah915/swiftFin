@@ -72,7 +72,7 @@ export default function ContactForm({ collectionName = "contacts", className = "
                     type="text"
                     placeholder="Name"
                     required
-                    className="w-full px-4 py-3 border-b-2 border-slate-300 focus:border-teal-500 outline-none bg-transparent font-['Montserrat'] transition-colors placeholder-slate-400 text-slate-800"
+                    className="w-full px-4 py-3 border-b-2 border-slate-300 text-white  focus:border-teal-500 outline-none bg-transparent font-['Montserrat'] transition-colors placeholder-white "
                 />
                 <input
                     name="email"
@@ -81,7 +81,7 @@ export default function ContactForm({ collectionName = "contacts", className = "
                     type="email"
                     placeholder="Email"
                     required
-                    className="w-full px-4 py-3 border-b-2 border-slate-300 focus:border-teal-500 outline-none bg-transparent font-['Montserrat'] transition-colors placeholder-slate-400 text-slate-800"
+                    className="w-full px-4 py-3 border-b-2 border-slate-300 text-white focus:border-teal-500 outline-none bg-transparent font-['Montserrat'] transition-colors placeholder-white text-white"
                 />
             </div>
             <input
@@ -90,7 +90,7 @@ export default function ContactForm({ collectionName = "contacts", className = "
                 onChange={handleChange}
                 type="tel"
                 placeholder="Phone Number"
-                className="w-full px-4 py-3 border-b-2 border-slate-300 focus:border-teal-500 outline-none bg-transparent font-['Montserrat'] transition-colors placeholder-slate-400 text-slate-800"
+                className="w-full px-4 py-3 border-b-2 border-slate-300 focus:border-teal-500 outline-none bg-transparent font-['Montserrat'] transition-colors placeholder-white text-white"
             />
             <textarea
                 name="message"
@@ -99,7 +99,7 @@ export default function ContactForm({ collectionName = "contacts", className = "
                 placeholder="Anything we should know?"
                 rows={2}
                 required
-                className="w-full px-4 py-3 border-b-2 border-slate-300 focus:border-teal-500 outline-none bg-transparent resize-none font-['Montserrat'] transition-colors placeholder-slate-400 text-slate-800"
+                className="w-full px-4 py-3 border-b-2 border-slate-300 focus:border-teal-500 outline-none bg-transparent resize-none font-['Montserrat'] transition-colors placeholder-white text-white"
             />
             <div className="flex justify-end pt-4">
                 <button

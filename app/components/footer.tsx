@@ -102,11 +102,11 @@ export default function Footer() {
                                 {/* Links Grid - Centered */}
                                 <div className="grid grid-cols-2 gap-10 lg:gap-12">
                                     {/* Important Column */}
-                                    <div className="text-center">
+                                    <div className="text-left">
                                         <h3 className="text-white font-bold text-lg mb-4 font-['Montserrat']">
                                             Important
                                         </h3>
-                                        <ul className="space-y-3">
+                                        <ul className="space-y-6">
                                             <li>
                                                 <Link href="/about" className="text-white/80 hover:text-white transition-colors font-['Montserrat'] font-semibold text-sm">
                                                     About
@@ -126,11 +126,11 @@ export default function Footer() {
                                     </div>
 
                                     {/* Support Column */}
-                                    <div className="text-center">
+                                    <div className="text-left">
                                         <h3 className="text-white font-bold text-lg mb-4 font-['Montserrat']">
                                             Support
                                         </h3>
-                                        <ul className="space-y-3">
+                                        <ul className="space-y-6">
                                             <li>
                                                 <Link href="/contact" className="text-white/80 hover:text-white transition-colors font-['Montserrat'] font-semibold text-sm">
                                                     Contact

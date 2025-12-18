@@ -169,13 +169,13 @@ export default function About() {
     return (
         <>
             {/* Hero Section - Enhanced with Video Background */}
-            <section className="relative min-h-screen bg-white pt-20 pb-12 overflow-hidden flex items-center">
-                <div className="w-full px-0 sm:px-4 lg:px-8">
+            <section className="relative h-screen bg-white overflow-hidden flex items-center justify-center">
+                <div className="w-full h-full px-0 sm:px-4 lg:px-8 py-2 sm:py-3 lg:py-4 flex items-center justify-center">
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 1, ease: "easeOut" }}
-                        className="relative w-full h-[90vh] rounded-[2rem] sm:rounded-[3rem] overflow-hidden"
+                        className="relative w-full h-[calc(100vh-1rem)] sm:h-[calc(100vh-1.5rem)] lg:h-[calc(100vh-2rem)] rounded-[1.5rem] sm:rounded-[2rem] lg:rounded-[3rem] overflow-hidden"
                     >
                         {/* Video Background */}
                         <video
@@ -192,35 +192,19 @@ export default function About() {
                         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70" />
 
                         {/* Content */}
-                        <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6 md:px-12">
+                        <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6 md:px-12 py-8">
                             <motion.div
                                 initial={{ opacity: 0, y: 30 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.3, duration: 0.8 }}
                                 className="max-w-5xl"
                             >
-                                <h1 className="text-[15vw] md:text-[120px] lg:text-[150px] font-black text-white tracking-tight leading-none uppercase mb-8">
+                                <h1 className="text-[12vw] md:text-[80px] lg:text-[100px] font-black text-white tracking-tight leading-none uppercase mb-6 md:mb-8">
                                     About Us
                                 </h1>
-                                <p className="text-xl md:text-3xl lg:text-4xl font-light text-white/90 leading-relaxed max-w-4xl mx-auto">
+                                <p className="text-lg md:text-xl lg:text-2xl font-light text-white/90 leading-relaxed max-w-3xl mx-auto">
                                     SwiftFin is a simple, powerful personal finance app. It helps users track expenses, manage EMIs, monitor investments, and get smart money tips.
                                 </p>
-                            </motion.div>
-
-                            {/* Scroll Indicator */}
-                            <motion.div
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                transition={{ delay: 1, duration: 1 }}
-                                className="absolute bottom-12 left-1/2 -translate-x-1/2"
-                            >
-                                <div className="w-6 h-10 border-2 border-white/50 rounded-full flex items-start justify-center p-2">
-                                    <motion.div
-                                        animate={{ y: [0, 12, 0] }}
-                                        transition={{ duration: 1.5, repeat: Infinity }}
-                                        className="w-1.5 h-1.5 bg-white rounded-full"
-                                    />
-                                </div>
                             </motion.div>
                         </div>
                     </motion.div>
@@ -280,7 +264,7 @@ export default function About() {
                                         Save up to 5 hours per week with automatic categorization and smart tagging. Track daily coffee runs, monthly subscriptions, and annual memberships with zero effort.
                                     </p>
                                 </div>
-                                <div className="flex gap-3 mt-8">
+                                <div className="flex gap-3 my-4">
                                     <span className="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-semibold">AI Scan</span>
                                     <span className="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-semibold">Smart Sort</span>
                                     <span className="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-semibold">Auto-Tag</span>
@@ -625,31 +609,7 @@ export default function About() {
                         </div>
                     </div>
 
-                    {/* Bottom CTA */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="text-center mt-20"
-                    >
-                        <div className="inline-block bg-gradient-to-r from-slate-50 to-teal-50 rounded-3xl p-12 border-2 border-slate-100">
-                            <Users className="w-16 h-16 text-[#20C997] mx-auto mb-6" />
-                            <h3 className="text-3xl font-bold text-slate-900 mb-4">
-                                Join the Financial Revolution
-                            </h3>
-                            <p className="text-lg text-slate-600 mb-8 max-w-2xl mx-auto">
-                                If still any doubts left we are here to help you out.
-                            </p>
-
-                            <a
-                                href="/contact"
-                                className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[#20C997] text-white font-semibold hover:bg-teal-600 transition-all duration-300 hover:scale-105"
-                            >
-                                Contact Us
-                                <ArrowRight className="w-5 h-5" />
-                            </a>
-                        </div>
-                    </motion.div>
+                  
                 </div >
             </section >
         </>
