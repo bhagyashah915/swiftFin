@@ -198,7 +198,7 @@ export default function StackingCards() {
       </div>
 
       {/* Header */}
-      <div className="container mx-auto px-4 md:px-6 pt-20 md:pt-24 pb-8 md:pb-12 relative z-10">
+      <div className="container mx-auto px-4 md:px-6 pt-16 md:pt-24 pb-8 md:pb-12 relative z-10">
         <div className="text-center max-w-3xl mx-auto">
           <div className="inline-block px-4 py-1.5 rounded-full bg-teal-50 border border-teal-200 mb-4 md:mb-6">
             <span className="text-teal-600 font-bold text-xs md:text-sm uppercase tracking-widest font-['Montserrat']">Who is it for?</span>

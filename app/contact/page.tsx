@@ -1,99 +1,10 @@
 "use client";
 
-import { useState } from "react";
 import { Mail, MapPin, Phone, ArrowLeft } from "lucide-react";
 import Link from "next/link";
-
-import { db } from "@/app/lib/firebaseconfig";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
-
-import { motion, AnimatePresence } from "framer-motion";
-
-// ⭐ PREMIUM POPUP COMPONENT (UI NOT AFFECTING PAGE)
-const SuccessPopup = ({ open, onClose }) => {
-    if (!open) return null;
-
-    return (
-        <AnimatePresence>
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-[999]"
-            >
-                <motion.div
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    exit={{ scale: 0.8, opacity: 0 }}
-                    transition={{ type: "spring", duration: 0.5 }}
-                    className="bg-white/90 backdrop-blur-xl p-6 rounded-2xl shadow-2xl border border-white/40 max-w-sm w-[90%] text-center"
-                >
-                    <h2 className="text-xl font-semibold text-gray-800">
-                        Message Sent 🎉
-                    </h2>
-                    <p className="text-gray-600 mt-1">
-                        Your message has been delivered. Our team will reach out soon!
-                    </p>
-
-                    <button
-                        onClick={onClose}
-                        className="mt-4 px-6 py-2 bg-primary-teal text-white rounded-xl hover:bg-primary-teal/80 transition"
-                    >
-                        Close
-                    </button>
-                </motion.div>
-            </motion.div>
-        </AnimatePresence>
-    );
-};
+import ContactForm from "../components/contact-form";
 
 export default function Contact() {
-    const [form, setForm] = useState({
-        name: "",
-        email: "",
-        phone: "",
-        message: "",
-    });
-
-    const [loading, setLoading] = useState(false);
-    const [successPopup, setSuccessPopup] = useState(false);
-
-    const handleChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.value });
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        if (form.phone.length !== 10) {
-            alert("Phone number must be exactly 10 digits");
-            return;
-        }
-
-        setLoading(true);
-
-        try {
-            await addDoc(collection(db, "contacts_web"), {
-                ...form,
-                timestamp: serverTimestamp(),
-            });
-
-            // Show success popup
-            setSuccessPopup(true);
-
-            // Hide after 2 seconds automatically
-            setTimeout(() => setSuccessPopup(false), 2000);
-
-            // Reset form
-            setForm({ name: "", email: "", phone: "", message: "" });
-        } catch (error) {
-            console.error("Error sending message:", error);
-            alert("Something went wrong!");
-        }
-
-        setLoading(false);
-    };
-
     return (
         <div className="relative min-h-screen overflow-hidden font-['Montserrat']">
             {/* Full Page Background Image */}
@@ -176,89 +87,10 @@ export default function Contact() {
                             <h2 className="text-xl md:text-2xl font-bold text-neutral-slate mb-6 md:mb-8">
                                 Send us a Message
                             </h2>
-
-                            <form onSubmit={handleSubmit} className="space-y-5 md:space-y-6">
-                                {/* Name */}
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                                        Full Name <span className="text-red-500">*</span>
-                                    </label>
-                                    <input
-                                        name="name"
-                                        value={form.name}
-                                        onChange={handleChange}
-                                        className="w-full px-4 py-2.5 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-teal outline-none transition-all"
-                                        placeholder="John Doe"
-                                        required
-                                    />
-                                </div>
-
-                                {/* Email */}
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                                        Email Address <span className="text-red-500">*</span>
-                                    </label>
-                                    <input
-                                        type="email"
-                                        name="email"
-                                        value={form.email}
-                                        onChange={handleChange}
-                                        className="w-full px-4 py-2.5 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-teal outline-none transition-all"
-                                        placeholder="john@example.com"
-                                        required
-                                    />
-                                </div>
-
-                                {/* Phone */}
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                                        Phone Number <span className="text-red-500">*</span>
-                                    </label>
-                                    <input
-                                        type="tel"
-                                        name="phone"
-                                        value={form.phone}
-                                        onChange={handleChange}
-                                        className="w-full px-4 py-2.5 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-teal outline-none transition-all"
-                                        placeholder="9876543210"
-                                        maxLength={10}
-                                        required
-                                    />
-                                </div>
-
-                                {/* Message */}
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                                        Message <span className="text-red-500">*</span>
-                                    </label>
-                                    <textarea
-                                        name="message"
-                                        value={form.message}
-                                        onChange={handleChange}
-                                        rows={4}
-                                        className="w-full px-4 py-2.5 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-teal outline-none transition-all resize-none"
-                                        placeholder="How can we help you?"
-                                        required
-                                    ></textarea>
-                                </div>
-
-                                <button
-                                    type="submit"
-                                    disabled={loading}
-                                    className="w-full bg-primary-teal text-white font-bold py-3 md:py-3.5 rounded-lg hover:bg-opacity-90 transition-all"
-                                >
-                                    {loading ? "Sending..." : "Send Message"}
-                                </button>
-                            </form>
+                            <ContactForm collectionName="contacts_web" />
                         </div>
                     </div>
                 </div>
-
-                {/* PREMIUM SUCCESS POPUP */}
-                <SuccessPopup
-                    open={successPopup}
-                    onClose={() => setSuccessPopup(false)}
-                />
             </div>
         </div>
     );

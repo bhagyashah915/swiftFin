@@ -429,7 +429,7 @@ export default function FeaturesPage() {
                                             alt="Expense Tracking"
                                             className="absolute inset-0 w-full h-full object-cover"
                                         />
-                                        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-transparent lg:hidden pointer-events-none"></div>
+
                                     </div>
                                 </div>
                             </div>

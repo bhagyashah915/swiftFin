@@ -60,7 +60,7 @@ export default function HowItWorks() {
     }, [isMobile]);
 
     // Function to render phone screen based on active step
-    const renderPhoneScreen = (stepId) => {
+    const renderPhoneScreen = (stepId: number) => {
         switch (stepId) {
             case 1:
                 return (
@@ -297,7 +297,7 @@ export default function HowItWorks() {
     };
 
     return (
-        <section className="relative py-24 bg-white overflow-hidden" id="how-it-works">
+        <section className="relative py-16 md:py-24 bg-white overflow-hidden" id="how-it-works">
             {/* Dynamic Background Images */}
             <div className="absolute inset-0 z-0">
                 <motion.div

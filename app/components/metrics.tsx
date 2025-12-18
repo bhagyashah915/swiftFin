@@ -11,7 +11,7 @@ export default function Metrics() {
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
   return (
-    <section ref={ref} className="py-12 md:py-28 relative overflow-hidden bg-white">
+    <section ref={ref} className="py-16 md:py-24 relative overflow-hidden bg-white">
       {/* Video Background */}
       <div className="absolute inset-0 z-0">
         <video

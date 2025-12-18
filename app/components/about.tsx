@@ -60,7 +60,7 @@ export default function About() {
     ];
 
     return (
-        <section className="relative py-24 md:py-32 overflow-hidden bg-slate-900">
+        <section className="relative py-16 md:py-24 overflow-hidden bg-slate-900">
             {/* Dynamic Background Images */}
             <div className="absolute inset-0 z-0">
                 <AnimatePresence mode="popLayout">

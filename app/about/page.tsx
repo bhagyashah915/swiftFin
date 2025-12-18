@@ -470,17 +470,16 @@ export default function About() {
                             <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-stretch">
                                 {/* Left Side - Video Loop - Reduced Spacing */}
                                 <div className="w-full lg:w-1/2">
-                                    <div className="bg-white rounded-[32px] p-2 shadow-lg border border-slate-100 h-full">
-                                        <div className="relative h-[350px] lg:h-[450px] w-full rounded-3xl overflow-hidden bg-slate-900">
-                                            <video
-                                                className="w-full h-full object-cover"
-                                                autoPlay
-                                                muted
-                                                loop
-                                                playsInline
-                                                src="/globe.mp4"                                         ></video>
-                                            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/30 to-transparent pointer-events-none"></div>
-                                        </div>
+                                    <div className="relative h-[350px] lg:h-[450px] w-full rounded-[32px] overflow-hidden bg-slate-900 shadow-xl">
+                                        <video
+                                            className="w-full h-full object-cover"
+                                            autoPlay
+                                            muted
+                                            loop
+                                            playsInline
+                                            src="/globe.mp4"
+                                        ></video>
+                                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/30 to-transparent pointer-events-none"></div>
                                     </div>
                                 </div>
 

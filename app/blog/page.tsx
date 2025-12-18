@@ -203,11 +203,10 @@ export default function BlogPage() {
                     </motion.div>
                 </div>
             </div>
-
             {/* Section 1: Featured + Ticker in Rounded Box */}
             <section className="py-16">
                 <div className="container mx-auto px-4">
-                    <div className="bg-white rounded-[3rem] p-8 md:p-12 shadow-2xl">
+                    <div className="bg-white rounded-[3rem] p-8 md:p-12">
                         <div className="grid lg:grid-cols-3 gap-8">
                             {/* Featured Blog - Left Side */}
                             <div className="lg:col-span-2 order-1">
@@ -324,7 +323,7 @@ export default function BlogPage() {
             {/* Section 2: Carousel in Rounded Box */}
             <section className="py-16">
                 <div className="container mx-auto px-4">
-                    <div className="bg-white rounded-[3rem] p-8 md:p-12 shadow-2xl">
+                    <div className="bg-white rounded-[3rem] p-8 md:p-12 ">
                         <div className="text-center mb-12">
                             <h2 className="text-4xl font-bold text-slate-900 mb-4">Trending Stories</h2>
                             <p className="text-slate-600 text-lg">Popular articles our readers are loving right now</p>
@@ -348,7 +347,7 @@ export default function BlogPage() {
                                 {[...carouselBlogs, ...carouselBlogs, ...carouselBlogs].map((blog, index) => (
                                     <div
                                         key={`${blog.id}-${index}`}
-                                        className="flex-shrink-0 w-[400px] bg-slate-50 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group cursor-pointer"
+                                        className="flex-shrink-0 w-[400px] bg-slate-50 rounded-2xl overflow-hidden transition-all duration-300 group cursor-pointer"
                                     >
                                         <div className="relative h-56 overflow-hidden">
                                             <img
@@ -397,7 +396,7 @@ export default function BlogPage() {
             {/* Section 3: Grid Layout in Rounded Box */}
             <section className="py-16 pb-24">
                 <div className="container mx-auto px-4">
-                    <div className="bg-white rounded-[3rem] p-8 md:p-12 shadow-2xl">
+                    <div className="bg-white rounded-[3rem] p-8 md:p-12 ">
                         <div className="text-center mb-12">
                             <h2 className="text-4xl font-bold text-slate-900 mb-4">More Insights</h2>
                             <p className="text-slate-600 text-lg">Explore our comprehensive library of financial wisdom</p>
@@ -411,7 +410,7 @@ export default function BlogPage() {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ delay: index * 0.1 }}
-                                    className="bg-slate-50 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group cursor-pointer"
+                                    className="bg-slate-50 rounded-2xl overflow-hidden hover: transition-all duration-300 group cursor-pointer"
                                 >
                                     <div className="relative h-52 overflow-hidden">
                                         <img
