@@ -160,7 +160,7 @@ export default function About() {
             <section className="relative bg-gradient-to-b from-white to-teal-50 py-20 overflow-hidden">
                 <div className="container mx-auto px-4 sm:px-6 md:px-12">
                     <div className="text-center mb-16">
-                        <h2 className="text-5xl md:text-6xl font-bold mb-6">
+                        <h2 className="text-5xl md:text-6xl text-black font-bold mb-6">
                             About <span className="text-[#20C997]">SwiftFin</span>
                         </h2>
                         <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
@@ -171,18 +171,19 @@ export default function About() {
 
                     {/* Zigzag Cards with Ticker Effect */}
                     <div className="relative">
-                        {/* Left Fade - UPDATED TO 100% */}
-                        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-teal-50 to-transparent z-10 pointer-events-none opacity-100"></div>
+                        {/* Left Fade - Fixed to viewport */}
+                        <div className="absolute left-0 top-0 bottom-0 w-1/4 bg-gradient-to-r from-teal-50 via-teal-50 to-transparent z-10 pointer-events-none" style={{ marginLeft: 'calc(-50vw + 50%)' }}></div>
 
-                        {/* Right Fade - UPDATED TO 100% */}
-                        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-teal-50 to-transparent z-10 pointer-events-none opacity-100"></div>
+                        {/* Right Fade - Fixed to viewport */}
+                        <div className="absolute right-0 top-0 bottom-0 w-1/4 bg-gradient-to-l from-teal-50 via-teal-50 to-transparent z-10 pointer-events-none" style={{ marginRight: 'calc(-50vw + 50%)' }}></div>
 
-                        <motion.div
-                            animate={{ x: [0, -2000] }}
-                            transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-                            className="flex gap-8 whitespace-nowrap py-8"
-                        >
-                            {[...Array(3)].map((_, setIndex) => (
+                        <div className="-mx-4 sm:-mx-6 md:-mx-12 overflow-hidden">
+                            <motion.div
+                                animate={{ x: [0, -2000] }}
+                                transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+                                className="flex gap-8 whitespace-nowrap py-8 px-4 sm:px-6 md:px-12"
+                            >
+                                {[...Array(3)].map((_, setIndex) => (
                                 <div key={setIndex} className="flex gap-8 items-center">
                                     {/* Large Card */}
                                     <div className="relative w-[400px] h-[280px] rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300">
@@ -236,6 +237,7 @@ export default function About() {
                                 </div>
                             ))}
                         </motion.div>
+                    </div>
                     </div>
                 </div>
             </section>
@@ -680,17 +682,18 @@ export default function About() {
 
                     {/* Values Section with Ticker Animation */}
                     <div className="relative">
-                        {/* Left Fade - UPDATED TO 100% */}
-                        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none opacity-100"></div>
+                        {/* Left Fade - Fixed to viewport */}
+                        <div className="absolute left-0 top-0 bottom-0 w-1/4 bg-gradient-to-r from-white via-white to-transparent z-10 pointer-events-none" style={{ marginLeft: 'calc(-50vw + 50%)' }}></div>
 
-                        {/* Right Fade - UPDATED TO 100% */}
-                        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none opacity-100"></div>
+                        {/* Right Fade - Fixed to viewport */}
+                        <div className="absolute right-0 top-0 bottom-0 w-1/4 bg-gradient-to-l from-white via-white to-transparent z-10 pointer-events-none" style={{ marginRight: 'calc(-50vw + 50%)' }}></div>
 
-                        <motion.div
-                            animate={{ x: ["0%", "-100%"] }}
-                            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                            className="flex gap-8 whitespace-nowrap py-8"
-                        >
+                        <div className="-mx-4 sm:-mx-6 md:-mx-12 overflow-hidden">
+                            <motion.div
+                                animate={{ x: ["0%", "-100%"] }}
+                                transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+                                className="flex gap-8 whitespace-nowrap py-8 px-4 sm:px-6 md:px-12"
+                            >
                             {[...Array(3)].map((_, setIndex) => (
                                 <div key={setIndex} className="flex gap-8">
                                     {values.map((value, index) => (
@@ -722,6 +725,7 @@ export default function About() {
                             ))}
                         </motion.div>
                     </div>
+                    </div>
 
                     {/* Testimonials Section */}
                     <div className="relative py-20">
@@ -743,17 +747,18 @@ export default function About() {
 
                         {/* Maxed Out Fade Ticker */}
                         <div className="relative">
-                            {/* Left Fade - MAXED OUT (33% width) */}
-                            <div className="absolute left-0 top-0 bottom-0 w-1/3 bg-gradient-to-r from-white via-white/80 to-transparent z-20 pointer-events-none"></div>
+                            {/* Left Fade - Fixed to viewport */}
+                            <div className="absolute left-0 top-0 bottom-0 w-1/4 bg-gradient-to-r from-white via-white to-transparent z-20 pointer-events-none" style={{ marginLeft: 'calc(-50vw + 50%)' }}></div>
 
-                            {/* Right Fade - MAXED OUT (33% width) */}
-                            <div className="absolute right-0 top-0 bottom-0 w-1/3 bg-gradient-to-l from-white via-white/80 to-transparent z-20 pointer-events-none"></div>
+                            {/* Right Fade - Fixed to viewport */}
+                            <div className="absolute right-0 top-0 bottom-0 w-1/4 bg-gradient-to-l from-white via-white to-transparent z-20 pointer-events-none" style={{ marginRight: 'calc(-50vw + 50%)' }}></div>
 
-                            <motion.div
-                                animate={{ x: [0, -2000] }}
-                                transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
-                                className="flex gap-6 whitespace-nowrap py-4"
-                            >
+                            <div className="-mx-4 sm:-mx-6 md:-mx-12 overflow-hidden">
+                                <motion.div
+                                    animate={{ x: [0, -2000] }}
+                                    transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
+                                    className="flex gap-6 whitespace-nowrap py-4 px-4 sm:px-6 md:px-12"
+                                >
                                 {[...Array(3)].map((_, setIndex) => (
                                     <div key={setIndex} className="flex gap-6">
                                         {testimonials.map((testimonial, index) => (
@@ -789,6 +794,7 @@ export default function About() {
                                     </div>
                                 ))}
                             </motion.div>
+                        </div>
                         </div>
                     </div>
 
