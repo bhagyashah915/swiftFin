@@ -43,9 +43,9 @@ export default function Footer() {
                             <div className="ticker-wrapper">
                                 <div className="ticker-content flex items-center">
                                     {[...Array(20)].map((_, i) => (
-                                        <span key={i} className="ticker-item text-white text-4xl md:text-6xl font-bold font-['Montserrat'] mx-12 inline-flex items-center justify-center gap-6">
-                                            <span>Swift<span className="text-teal-900">Fin</span></span>
-                                            <span className="text-teal-700 text-5xl md:text-7xl leading-none">✷</span>
+                                        <span key={i} className="ticker-item text-white text-4xl md:text-6xl font-bold font-['Montserrat'] inline-flex items-center justify-center">
+                                            <span className="flex items-center mx-8">Swift<span className="text-teal-900">Fin</span></span>
+                                            <span className="text-white/40 text-4xl md:text-5xl flex items-center justify-center mx-8 rotate-45">✦</span>
                                         </span>
                                     ))}
                                 </div>
