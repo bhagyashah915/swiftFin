@@ -111,8 +111,8 @@ export default function Features() {
                     </p>
                 </div>
 
-                {/* Features Grid - Top Section - Hide on mobile */}
-                <div className="hidden md:grid md:grid-cols-4 lg:grid-cols-6 gap-5 w-full max-w-7xl mb-20">
+                {/* Features Grid - Top Section */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-5 w-full max-w-7xl mb-12 md:mb-20">
                     {features.map((feature, idx) => (
                         <motion.div
                             key={idx}
@@ -154,10 +154,10 @@ export default function Features() {
                                 className="flex h-full items-start"
                                 animate={{
                                     x: isMobile
-                                        ? `calc(50% - ${activeIndex * 250}px - 115px)`
+                                        ? `calc(50% - ${activeIndex * 250}px - 125px)`
                                         : `calc(50% - ${activeIndex * 400}px - 190px)`
                                 }}
-                                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                                transition={{ type: "spring", stiffness: 200, damping: 25 }}
                             >
                                 {features.map((feature, idx) => (
                                     <div

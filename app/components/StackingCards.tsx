@@ -98,26 +98,26 @@ function Card({
         style={{
           scale,
           opacity,
-          transformOrigin: "center",
+          transformOrigin: "bottom center",
         }}
-        className="w-full max-w-6xl h-auto min-h-[520px] md:h-[640px] bg-white/95 backdrop-blur-2xl rounded-3xl md:rounded-[2.5rem] shadow-[0_8px_40px_rgb(0,0,0,0.08)] overflow-hidden relative font-['Montserrat']"
+        className="w-full max-w-6xl h-auto min-h-[420px] md:min-h-[520px] md:h-[640px] bg-white/95 backdrop-blur-2xl rounded-3xl md:rounded-[2.5rem] shadow-[0_8px_40px_rgb(0,0,0,0.08)] overflow-hidden relative font-['Montserrat'] transition-all duration-300 ease-out"
       >
         <div className="absolute inset-0 bg-gradient-to-br from-slate-50/50 via-white to-teal-50/30 pointer-events-none" />
 
-        <div className="relative p-8 md:p-16 h-full flex flex-col gap-8 md:gap-10 z-10">
+        <div className="relative p-6 md:p-16 h-full flex flex-col gap-6 md:gap-10 z-10">
           {/* Title */}
           <div className="flex flex-col items-start gap-2">
-            <h3 className="font-bold text-3xl md:text-5xl lg:text-6xl text-slate-900 leading-none tracking-tight">
+            <h3 className="font-bold text-2xl md:text-5xl lg:text-6xl text-slate-900 leading-none tracking-tight">
               {card.title}
             </h3>
             <div className="w-16 h-1 bg-gradient-to-r from-teal-500 to-teal-400 rounded-full mt-2" />
           </div>
 
           {/* Content Layout */}
-          <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start flex-1">
+          <div className="flex flex-col md:flex-row gap-6 md:gap-12 items-start flex-1">
             {/* Text Content */}
-            <div className="flex-1 flex flex-col justify-center space-y-6 md:space-y-8">
-              <p className="text-lg md:text-xl text-slate-600 leading-relaxed font-light">
+            <div className="flex-1 flex flex-col justify-center space-y-4 md:space-y-8">
+              <p className="text-base md:text-xl text-slate-600 leading-relaxed font-light">
                 {card.description}
               </p>
 
@@ -126,9 +126,9 @@ function Card({
                 {card.benefits.map((benefit, idx) => (
                   <div
                     key={idx}
-                    className="px-4 py-2 rounded-full bg-slate-50 border border-slate-100 hover:border-teal-200 hover:bg-teal-50 transition-all duration-300"
+                    className="px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-slate-50 border border-slate-100 hover:border-teal-200 hover:bg-teal-50 transition-all duration-300"
                   >
-                    <span className="text-slate-700 font-medium text-sm">{benefit}</span>
+                    <span className="text-slate-700 font-medium text-xs md:text-sm">{benefit}</span>
                   </div>
                 ))}
               </div>

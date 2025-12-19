@@ -87,7 +87,7 @@ export default function Contact() {
                             <h2 className="text-xl md:text-2xl font-bold text-neutral-slate mb-6 md:mb-8">
                                 Send us a Message
                             </h2>
-                            <ContactForm collectionName="contacts_web" />
+                            <ContactForm collectionName="contacts_web" theme="light" />
                         </div>
                     </div>
                 </div>
