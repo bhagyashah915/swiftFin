@@ -109,7 +109,7 @@ export default function Hero() {
                 </div>
 
                 {/* Main Content */}
-                <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center pt-12 pb-48 lg:py-12">
+                <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center pt-12 pb-24 md:pb-48 lg:py-12">
                     <div className="w-full flex flex-col lg:grid lg:grid-cols-12 gap-8 lg:gap-4 items-start lg:items-center">
 
                         {/* Left Content - Text (Order 1 on mobile, original position on desktop) */}

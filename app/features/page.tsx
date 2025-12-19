@@ -212,7 +212,7 @@ export default function FeaturesPage() {
                             transition={{ duration: 0.8 }}
                             className="mb-16"
                         >
-                            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-slate-900 mb-6 leading-tight">
+                            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-slate-900 mb-6 leading-tight">
                                 Your Finance <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-teal-400">Solutions</span>
                             </h1>
                             <p className="text-xl md:text-2xl text-slate-600 mb-8 leading-relaxed max-w-3xl mx-auto">
@@ -358,7 +358,7 @@ export default function FeaturesPage() {
             {/* Key Features Section - 3 Layer Layout with Scroll Hijack */}
             <section className="relative bg-gradient-to-b from-white to-white overflow-hidden">
                 {/* Header - Fixed Position */}
-                <div className="container mx-auto px-6 pt-20 pb-12 relative z-10">
+                <div className="container mx-auto px-6 pt-20 pb-12 relative z-0">
                     <div className="text-center">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
@@ -366,10 +366,10 @@ export default function FeaturesPage() {
                             viewport={{ once: true }}
                         >
                             <span className="text-sm font-bold text-teal-600 uppercase tracking-wider">Our Features</span>
-                            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mt-4 mb-6">
+                            <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mt-4 mb-6">
                                 Everything You Need to Master Your Finances
                             </h2>
-                            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+                            <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">
                                 Three powerful layers of financial management working together seamlessly
                             </p>
                         </motion.div>
@@ -377,9 +377,9 @@ export default function FeaturesPage() {
                 </div>
 
                 {/* Stacking Cards Container */}
-                <div className="relative">
+                <div className="relative z-10">
                     {/* Layer 1 - Top Layer (Expense Tracking) */}
-                    <div className="h-screen flex items-center justify-center sticky px-4 md:px-6" style={{ top: '12px', zIndex: 1 }}>
+                    <div className="h-screen flex items-center justify-center sticky px-4 md:px-6" style={{ top: '60px', zIndex: 1 }}>
                         <motion.div
                             initial={{ scale: 0.95, opacity: 0 }}
                             whileInView={{ scale: 1, opacity: 1 }}
@@ -387,13 +387,13 @@ export default function FeaturesPage() {
                             transition={{ duration: 0.5 }}
                             className="w-full max-w-6xl">
                             {/* Layer Label */}
-                            <div className="flex items-center gap-4 mb-10">
-                                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-teal-100 to-teal-200 flex items-center justify-center">
+                            <div className="flex items-center gap-4 mb-6 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-sm border border-slate-100">
+                                <div className="w-12 h-12 shrink-0 rounded-2xl bg-gradient-to-br from-teal-100 to-teal-200 flex items-center justify-center">
                                     <span className="text-2xl font-bold text-teal-700">1</span>
                                 </div>
                                 <div>
-                                    <h3 className="text-2xl font-bold text-slate-800">Core Management</h3>
-                                    <p className="text-slate-600">Essential tracking for daily finances</p>
+                                    <h3 className="text-xl md:text-2xl font-bold text-slate-800">Core Management</h3>
+                                    <p className="text-sm md:text-base text-slate-600">Essential tracking for daily finances</p>
                                 </div>
                             </div>
 
@@ -434,7 +434,7 @@ export default function FeaturesPage() {
                     </div>
 
                     {/* Layer 2 - Middle Layer (Financial Reports) */}
-                    <div className="h-screen flex items-center justify-center sticky px-4 md:px-6" style={{ top: '24px', zIndex: 2 }}>
+                    <div className="h-screen flex items-center justify-center sticky px-4 md:px-6" style={{ top: '80px', zIndex: 2 }}>
                         <motion.div
                             initial={{ scale: 0.95, opacity: 0 }}
                             whileInView={{ scale: 1, opacity: 1 }}
@@ -442,13 +442,13 @@ export default function FeaturesPage() {
                             transition={{ duration: 0.5 }}
                             className="w-full max-w-6xl">
                             {/* Layer Label */}
-                            <div className="flex items-center gap-4 mb-10">
-                                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-teal-200 to-teal-300 flex items-center justify-center">
+                            <div className="flex items-center gap-4 mb-6 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-sm border border-slate-100">
+                                <div className="w-12 h-12 shrink-0 rounded-2xl bg-gradient-to-br from-teal-200 to-teal-300 flex items-center justify-center">
                                     <span className="text-2xl font-bold text-teal-800">2</span>
                                 </div>
                                 <div>
-                                    <h3 className="text-2xl font-bold text-slate-800">Advanced Analytics</h3>
-                                    <p className="text-slate-600">Deep insights and visualization</p>
+                                    <h3 className="text-xl md:text-2xl font-bold text-slate-800">Advanced Analytics</h3>
+                                    <p className="text-sm md:text-base text-slate-600">Deep insights and visualization</p>
                                 </div>
                             </div>
 
@@ -489,21 +489,21 @@ export default function FeaturesPage() {
                     </div>
 
                     {/* Layer 3 - Bottom Layer (EMI Management) */}
-                    <div className="h-screen flex items-center justify-center sticky px-4 md:px-6" style={{ top: '36px', zIndex: 3 }}>
+                    <div className="h-screen flex items-center justify-center sticky px-4 md:px-6" style={{ top: '100px', zIndex: 3 }}>
                         <motion.div
                             initial={{ scale: 0.95, opacity: 0 }}
                             whileInView={{ scale: 1, opacity: 1 }}
                             viewport={{ once: false, amount: 0.3 }}
                             transition={{ duration: 0.5 }}
                             className="w-full max-w-6xl">
-                            {/* Layer Label */}
-                            <div className="flex items-center gap-4 mb-10">
-                                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-teal-300 to-teal-400 flex items-center justify-center">
+                            {/* Feature Card */}
+                            <div className="flex items-center gap-4 mb-6 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-sm border border-slate-100">
+                                <div className="w-12 h-12 shrink-0 rounded-2xl bg-gradient-to-br from-teal-300 to-teal-400 flex items-center justify-center">
                                     <span className="text-2xl font-bold text-white">3</span>
                                 </div>
                                 <div>
-                                    <h3 className="text-2xl font-bold text-slate-800">Strategic Planning</h3>
-                                    <p className="text-slate-600">Long-term financial management</p>
+                                    <h3 className="text-xl md:text-2xl font-bold text-slate-800">Strategic Planning</h3>
+                                    <p className="text-sm md:text-base text-slate-600">Long-term financial management</p>
                                 </div>
                             </div>
 
@@ -600,7 +600,7 @@ export default function FeaturesPage() {
                                                     hover: { x: -30, y: -30, opacity: 1, scale: 1 }
                                                 }}
                                                 transition={{ duration: 0.5, ease: "easeOut" }}
-                                                className="absolute top-8 left-8 w-16 h-16 bg-white rounded-full shadow-2xl flex items-center justify-center text-teal-600"
+                                                className="absolute top-4 left-4 md:top-8 md:left-8 w-10 h-10 md:w-16 md:h-16 bg-white rounded-full shadow-2xl flex items-center justify-center text-teal-600"
                                                 style={{ zIndex: 1 }}
                                             >
                                                 <Receipt className="w-8 h-8" />
@@ -613,7 +613,7 @@ export default function FeaturesPage() {
                                                     hover: { x: 30, y: -30, opacity: 1, scale: 1 }
                                                 }}
                                                 transition={{ duration: 0.5, ease: "easeOut", delay: 0.05 }}
-                                                className="absolute top-8 right-8 w-16 h-16 bg-white rounded-full shadow-2xl flex items-center justify-center text-teal-600"
+                                                className="absolute top-4 right-4 md:top-8 md:right-8 w-10 h-10 md:w-16 md:h-16 bg-white rounded-full shadow-2xl flex items-center justify-center text-teal-600"
                                                 style={{ zIndex: 1 }}
                                             >
                                                 <TrendingUp className="w-8 h-8" />
@@ -626,7 +626,7 @@ export default function FeaturesPage() {
                                                     hover: { x: -30, y: 30, opacity: 1, scale: 1 }
                                                 }}
                                                 transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
-                                                className="absolute bottom-8 left-8 w-16 h-16 bg-white rounded-full shadow-2xl flex items-center justify-center text-teal-600"
+                                                className="absolute bottom-20 left-4 md:bottom-8 md:left-8 w-10 h-10 md:w-16 md:h-16 bg-white rounded-full shadow-2xl flex items-center justify-center text-teal-600"
                                                 style={{ zIndex: 1 }}
                                             >
                                                 <PieChart className="w-8 h-8" />
@@ -639,7 +639,7 @@ export default function FeaturesPage() {
                                                     hover: { x: 30, y: 30, opacity: 1, scale: 1 }
                                                 }}
                                                 transition={{ duration: 0.5, ease: "easeOut", delay: 0.15 }}
-                                                className="absolute bottom-8 right-8 w-16 h-16 bg-white rounded-full shadow-2xl flex items-center justify-center text-teal-600"
+                                                className="absolute bottom-20 right-4 md:bottom-8 md:right-8 w-10 h-10 md:w-16 md:h-16 bg-white rounded-full shadow-2xl flex items-center justify-center text-teal-600"
                                                 style={{ zIndex: 1 }}
                                             >
                                                 <Wallet className="w-8 h-8" />
@@ -652,7 +652,7 @@ export default function FeaturesPage() {
                                                     hover: { x: -40, y: 0, opacity: 1, scale: 1 }
                                                 }}
                                                 transition={{ duration: 0.5, ease: "easeOut", delay: 0.08 }}
-                                                className="absolute top-1/2 -translate-y-1/2 left-8 w-16 h-16 bg-white rounded-full shadow-2xl flex items-center justify-center text-teal-600"
+                                                className="absolute top-1/2 -translate-y-1/2 left-4 md:left-8 w-10 h-10 md:w-16 md:h-16 bg-white rounded-full shadow-2xl flex items-center justify-center text-teal-600"
                                                 style={{ zIndex: 1 }}
                                             >
                                                 <BarChart3 className="w-8 h-8" />
@@ -665,7 +665,7 @@ export default function FeaturesPage() {
                                                     hover: { x: 40, y: 0, opacity: 1, scale: 1 }
                                                 }}
                                                 transition={{ duration: 0.5, ease: "easeOut", delay: 0.12 }}
-                                                className="absolute top-1/2 -translate-y-1/2 right-8 w-16 h-16 bg-white rounded-full shadow-2xl flex items-center justify-center text-teal-600"
+                                                className="absolute top-1/2 -translate-y-1/2 right-4 md:right-8 w-10 h-10 md:w-16 md:h-16 bg-white rounded-full shadow-2xl flex items-center justify-center text-teal-600"
                                                 style={{ zIndex: 1 }}
                                             >
                                                 <CreditCard className="w-8 h-8" />
@@ -692,10 +692,10 @@ export default function FeaturesPage() {
 
                                     {/* Text Content at Bottom */}
                                     <div className="text-left mt-auto">
-                                        <h3 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+                                        <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900 mb-4">
                                             Smart Expense Tracking
                                         </h3>
-                                        <p className="text-slate-600 text-lg">
+                                        <p className="text-slate-600 text-base md:text-lg">
                                             Automatically track and categorize every expense with AI-powered insights. Get real-time notifications and detailed breakdowns of your spending habits across all your accounts.
                                         </p>
                                     </div>
@@ -718,7 +718,7 @@ export default function FeaturesPage() {
                                         <BarChart3 className="w-8 h-8" />
                                     </div>
 
-                                    <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
+                                    <h3 className="text-xl md:text-3xl font-bold text-slate-900 mb-4">
                                         Interactive Reports
                                     </h3>
                                     <p className="text-slate-600">
@@ -756,7 +756,7 @@ export default function FeaturesPage() {
                                         <CreditCard className="w-8 h-8" />
                                     </div>
 
-                                    <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
+                                    <h3 className="text-xl md:text-3xl font-bold text-slate-900 mb-4">
                                         EMI & Loan Management
                                     </h3>
                                     <p className="text-slate-600 mb-6">
