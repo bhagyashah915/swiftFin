@@ -111,8 +111,8 @@ export default function Features() {
                     </p>
                 </div>
 
-                {/* Features Grid - Top Section */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-5 w-full max-w-7xl mb-12 md:mb-20">
+                {/* Features Grid - Top Section - Hidden on Mobile */}
+                <div className="hidden md:grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-5 w-full max-w-7xl mb-12 md:mb-20">
                     {features.map((feature, idx) => (
                         <motion.div
                             key={idx}
@@ -148,13 +148,13 @@ export default function Features() {
                     {/* iPhone Frame Container */}
                     <div className="relative w-full h-[600px] md:h-[800px] flex justify-center items-start overflow-visible">
                         {/* Feature Screenshots Carousel - Behind the frame - Wider to show sliding effect */}
-                        <div className="absolute top-[3px] md:top-1 left-1/2 -translate-x-1/2 h-[570px] md:h-[760px] flex justify-center items-start overflow-visible" style={{ width: isMobile ? '800px' : '1400px' }}>
+                        <div className="absolute top-[8px] md:top-1 left-1/2 -translate-x-1/2 h-[560px] md:h-[760px] flex justify-center items-start overflow-visible" style={{ width: isMobile ? '900px' : '1400px' }}>
                             {/* Horizontal sliding carousel */}
                             <motion.div
                                 className="flex h-full items-start"
                                 animate={{
                                     x: isMobile
-                                        ? `calc(50% - ${activeIndex * 250}px - 125px)`
+                                        ? `calc(50% - ${activeIndex * 300}px - 140px)`
                                         : `calc(50% - ${activeIndex * 400}px - 190px)`
                                 }}
                                 transition={{ type: "spring", stiffness: 200, damping: 25 }}
@@ -164,8 +164,8 @@ export default function Features() {
                                         key={idx}
                                         className="relative shrink-0 rounded-[2rem] md:rounded-[3rem] overflow-hidden"
                                         style={{
-                                            width: isMobile ? '230px' : '380px',
-                                            height: isMobile ? '570px' : '760px',
+                                            width: isMobile ? '280px' : '380px',
+                                            height: isMobile ? '560px' : '760px',
                                             filter: idx === activeIndex ? 'blur(0px)' : 'blur(6px)',
                                             opacity: idx === activeIndex ? 1 : 0.4,
                                             transform: idx === activeIndex ? 'scale(1)' : 'scale(0.9)',
@@ -196,17 +196,12 @@ export default function Features() {
                             />
                         </div>
 
-                        {/* Centered bottom white fade/blur effect for phone frame */}
-                        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[90%] h-48 pointer-events-none z-20">
-                            <div className="absolute inset-0 bg-linear-to-t from-white via-white/80 to-transparent blur-sm"></div>
-                            <div className="absolute inset-0 bg-linear-to-t from-white via-white/40 to-transparent"></div>
-                        </div>
+                        {/* Centered bottom white fade/blur effect for phone frame - Removed */}
                     </div>
                 </div>
             </div>
 
-            {/* Bottom white fade effect */}
-            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
+            {/* Bottom white fade effect - Removed */}
         </section>
     );
 }
