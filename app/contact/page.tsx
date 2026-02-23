@@ -54,10 +54,10 @@ export default function Contact() {
                                             Email
                                         </h3>
                                         <p className="text-gray-600 text-sm md:text-base">
-                                            support@swiftfin.com
+                                            support@finco.com
                                         </p>
                                         <p className="text-gray-600 text-sm md:text-base">
-                                            sales@swiftfin.com
+                                            sales@finco.com
                                         </p>
                                     </div>
                                 </div>

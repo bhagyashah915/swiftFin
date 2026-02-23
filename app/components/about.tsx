@@ -15,7 +15,7 @@ export default function About() {
             description: "Track every rupee with smart categorization.",
             image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1920&q=80",
             leftTitle: "Smart Expense Tracking",
-            leftDescription: "Keep track of every transaction with intelligent categorization. SwiftFin automatically sorts your expenses, helping you understand where your money goes with minimal effort."
+            leftDescription: "Keep track of every transaction with intelligent categorization. FINCO automatically sorts your expenses, helping you understand where your money goes with minimal effort."
         },
         {
             icon: <BarChart3 className="w-6 h-6" />,
@@ -94,7 +94,7 @@ export default function About() {
                             whileHover={{ scale: 1.05 }}
                         >
                             <span className="text-[#20C997] font-bold text-sm uppercase tracking-widest">
-                                About SwiftFin
+                                About FINCO
                             </span>
                         </motion.div>
 

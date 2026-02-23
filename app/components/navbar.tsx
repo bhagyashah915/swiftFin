@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import Logo from "./Logo";
 
 export default function Navbar() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -33,13 +34,7 @@ export default function Navbar() {
                         {/* Left - Logo */}
                         <Link href="/" className="flex items-center group">
                             <div className="relative w-16 h-16 flex items-center justify-center group-hover:scale-105 transition-all duration-300">
-                                <Image
-                                    src="/images/logo.png"
-                                    alt="SwiftFin Logo"
-                                    width={64}
-                                    height={64}
-                                    className="w-16 h-16 object-contain"
-                                />
+                                <Logo className="w-16 h-16" />
                             </div>
                         </Link>
 
@@ -79,13 +74,7 @@ export default function Navbar() {
                     {/* Mobile Logo (centered when menu is closed) */}
                     <Link href="/" className="md:hidden absolute left-1/2 -translate-x-1/2">
                         <div className="relative w-12 h-12 flex items-center justify-center">
-                            <Image
-                                src="/images/logo.png"
-                                alt="SwiftFin Logo"
-                                width={48}
-                                height={48}
-                                className="w-12 h-12 object-contain"
-                            />
+                            <Logo className="w-12 h-12" />
                         </div>
                     </Link>
 
@@ -106,8 +95,8 @@ export default function Navbar() {
                         {/* Header */}
                         <div className="flex items-center justify-between p-6 border-b border-gray-100">
                             <div className="flex items-center gap-3">
-                                <Image src="/images/logo.png" alt="Logo" width={40} height={40} className="w-10 h-10 object-contain" />
-                                <span className="font-['Montserrat'] font-bold text-xl">SwiftFin</span>
+                                <Logo className="w-10 h-10" />
+                                <span className="font-['Montserrat'] font-bold text-xl uppercase">FINCO</span>
                             </div>
                             <button
                                 onClick={() => setMobileMenuOpen(false)}

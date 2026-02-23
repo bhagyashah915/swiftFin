@@ -3,6 +3,7 @@
 import { useRef, useEffect, useState } from 'react';
 import { ArrowRight, Plus, TrendingUp, Lightbulb, PieChart, Home, Receipt, Target, MoreHorizontal, Wallet, CreditCard, DollarSign } from 'lucide-react';
 import Image from 'next/image';
+import Logo from './Logo';
 
 export default function Hero() {
     const [scrollY, setScrollY] = useState(0);
@@ -79,17 +80,10 @@ export default function Hero() {
                 {/* Content */}
                 <div className="relative z-10 flex flex-col items-center justify-center space-y-6">
                     <div className="w-32 h-32 md:w-40 md:h-40 bg-white/10 backdrop-blur-md rounded-3xl p-6 flex items-center justify-center border border-white/20 shadow-2xl animate-fade-in-up">
-                        <Image
-                            src="/images/logo.png"
-                            alt="SwiftFin Logo"
-                            width={160}
-                            height={160}
-                            className="object-contain"
-                            priority
-                        />
+                        <Logo className="w-full h-full" light />
                     </div>
                     <h1 className="text-4xl md:text-6xl font-black text-white tracking-widest font-['Montserrat'] animate-fade-in-up delay-200">
-                        SwiftFin
+                        FINCO
                     </h1>
                 </div>
             </div>
@@ -116,7 +110,7 @@ export default function Hero() {
                         <div className={`order-1 lg:order-none lg:col-span-4 transition-all duration-1000 lg:-mt-56 text-center lg:text-left ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'}`}>
                             <div className="space-y-4">
                                 <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold leading-tight tracking-wide text-white">
-                                    <span className="tracking-wider">Welcome to SwiftFin</span>
+                                    <span className="tracking-wider uppercase">Welcome to FINCO</span>
                                     <br />
                                     <span className="text-teal-600 tracking-wider">Your Personal Finance Buddy</span>
                                 </h1>
@@ -147,7 +141,7 @@ export default function Hero() {
                                 <div className="relative w-[280px] h-[373px] sm:w-[400px] sm:h-[533px] lg:w-[600px] lg:h-[800px] transform transition-all duration-500">
                                     <Image
                                         src="/herophone2.png"
-                                        alt="SwiftFin App Hero Phone"
+                                        alt="FINCO App Hero Phone"
                                         fill
                                         className="object-contain drop-shadow-2xl"
                                         priority

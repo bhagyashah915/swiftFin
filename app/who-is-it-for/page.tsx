@@ -124,7 +124,7 @@ export default function WhoIsItForPage() {
                         </h1>
 
                         <p className="font-['Montserrat'] text-xl md:text-2xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
-                            From students to business owners, SwiftFin adapts to your unique financial journey. No matter where you are in life, we've got you covered.
+                            From students to business owners, FINCO adapts to your unique financial journey. No matter where you are in life, we've got you covered.
                         </p>
 
                         {/* Stats Bar */}
@@ -278,7 +278,7 @@ export default function WhoIsItForPage() {
                             </span>
                         </h2>
                         <p className="font-['Montserrat'] text-xl md:text-2xl text-gray-300 mb-12 leading-relaxed">
-                            Join over 100,000 users who trust SwiftFin to manage their finances.
+                            Join over 100,000 users who trust FINCO to manage their finances.
                             <br className="hidden md:block" />
                             Download now and take control of your money today.
                         </p>

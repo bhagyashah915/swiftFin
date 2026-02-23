@@ -32,8 +32,8 @@ export default function SecurityPage() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
                     >
-                        <h1 className="text-6xl md:text-7xl font-black text-white mb-6 font-['Montserrat']">
-                            Security at SwiftFin
+                        <h1 className="text-6xl md:text-7xl font-black text-white mb-6 font-['Montserrat'] uppercase">
+                            Security at FINCO
                         </h1>
                         <p className="text-xl text-gray-300 max-w-3xl font-['Montserrat']">
                             Your financial data security is our top priority. Learn how we protect your information.
@@ -48,7 +48,7 @@ export default function SecurityPage() {
                     <div className="prose prose-lg max-w-none font-['Montserrat']">
                         <h2 className="text-3xl font-bold text-slate-900 mb-6 font-['Montserrat']">Our Security Architecture</h2>
                         <p className="text-slate-600 mb-8 font-['Montserrat']">
-                            SwiftFin uses bank-grade security protocols to ensure your data remains private and secure. We employ a multi-layered approach to security that shields your information from unauthorized access.
+                            FINCO uses bank-grade security protocols to ensure your data remains private and secure. We employ a multi-layered approach to security that shields your information from unauthorized access.
                         </p>
 
                         <div className="grid md:grid-cols-2 gap-8 my-12">

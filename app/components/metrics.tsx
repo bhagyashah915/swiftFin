@@ -63,7 +63,7 @@ export default function Metrics() {
           </h2>
 
           <p className="font-['Montserrat'] text-teal-600 text-lg max-w-2xl mx-auto">
-            SwiftFin empowers Indians to take control of their financial future with ease.
+            FINCO empowers Indians to take control of their financial future with ease.
           </p>
         </motion.div>
 
@@ -148,7 +148,7 @@ export default function Metrics() {
             transition={{ duration: 0.5, delay: 0.35 }}
             className="rounded-3xl bg-gradient-to-br from-[#20C997] to-[#198754] p-6 flex items-center justify-center shadow-lg"
           >
-            <span className="font-['Montserrat'] text-4xl font-bold text-white">SWIFTFIN</span>
+            <span className="font-['Montserrat'] text-4xl font-bold text-white">FINCO</span>
           </motion.div>
 
           {/* Card 6 – Transactions */}

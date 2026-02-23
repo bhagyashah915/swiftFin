@@ -31,7 +31,7 @@ export default function About() {
             description: "Track every rupee with smart categorization.",
             image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1920&q=80",
             leftTitle: "Smart Expense Tracking",
-            leftDescription: "Keep track of every transaction with intelligent categorization. SwiftFin automatically sorts your expenses, helping you understand where your money goes with minimal effort."
+            leftDescription: "Keep track of every transaction with intelligent categorization. FINCO automatically sorts your expenses, helping you understand where your money goes with minimal effort."
         },
         {
             icon: <BarChart3 className="w-6 h-6" />,
@@ -143,13 +143,13 @@ export default function About() {
         {
             name: "Michael Chang",
             role: "Startup Founder",
-            content: "We use SwiftFin for all our company expenses. The multi-currency support is a lifesaver for our international team.",
+            content: "We use FINCO for all our company expenses. The multi-currency support is a lifesaver for our international team.",
             image: "https://images.unsplash.com/photo-1463453091185-61582044d556?w=400&q=80"
         },
         {
             name: "Lisa Anderson",
             role: "Digital Nomad",
-            content: "Traveling the world is easier when your finances are sorted. SwiftFin handles conversions and categories automatically.",
+            content: "Traveling the world is easier when your finances are sorted. FINCO handles conversions and categories automatically.",
             image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80"
         },
         {
@@ -203,7 +203,7 @@ export default function About() {
                                     About Us
                                 </h1>
                                 <p className="text-lg md:text-xl lg:text-2xl font-light text-white/90 leading-relaxed max-w-3xl mx-auto">
-                                    SwiftFin is a simple, powerful personal finance app. It helps users track expenses, manage EMIs, monitor investments, and get smart money tips.
+                                    FINCO is a simple, powerful personal finance app. It helps users track expenses, manage EMIs, monitor investments, and get smart money tips.
                                 </p>
                             </motion.div>
                         </div>
@@ -213,7 +213,7 @@ export default function About() {
 
 
 
-            {/* Why Choose SwiftFin - Bento Grid */}
+            {/* Why Choose FINCO - Bento Grid */}
             <section className="relative bg-white py-20 md:py-32 overflow-hidden">
                 <div className="container mx-auto px-4 sm:px-6 md:px-12">
                     {/* Header */}
@@ -225,7 +225,7 @@ export default function About() {
                             className="inline-block px-6 py-2 rounded-full bg-[#20C997]/10 border border-[#20C997]/20 mb-6"
                         >
                             <span className="text-[#20C997] font-bold text-sm uppercase tracking-widest">
-                                Why Choose SwiftFin
+                                Why Choose FINCO
                             </span>
                         </motion.div>
                         <motion.h2
@@ -480,7 +480,7 @@ export default function About() {
 
                                     <div className="space-y-6">
                                         <p className="text-lg text-slate-700 leading-relaxed">
-                                            At SwiftFin, we're not just building software; we're crafting the future of personal finance.
+                                            At FINCO, we're not just building software; we're crafting the future of personal finance.
                                             Our diverse team of engineers, designers, and financial experts comes together with a single mission:
                                             to democratize financial freedom for everyone, everywhere.
                                         </p>
@@ -609,7 +609,7 @@ export default function About() {
                         </div>
                     </div>
 
-                  
+
                 </div >
             </section >
         </>

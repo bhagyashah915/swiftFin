@@ -329,7 +329,7 @@ export default function HowItWorks() {
                         How It Works
                     </span>
                     <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-tight">
-                        How <span className="text-white">SwiftFin</span><br />Can Help You
+                        How <span className="text-white uppercase">FINCO</span><br />Can Help You
                     </h2>
                     <p className="text-blackx text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
                         Follow these simple steps to take control of your finances and achieve your goals.
@@ -401,33 +401,29 @@ export default function HowItWorks() {
                                     <div className="flex items-center gap-6">
                                         {/* Step Number Circle */}
                                         <div
-                                            className={`flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg transition-all duration-300 z-10 ${
-                                                activeStep === step.id
+                                            className={`flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg transition-all duration-300 z-10 ${activeStep === step.id
                                                     ? 'bg-teal-600 text-white scale-110'
                                                     : 'bg-white text-slate-900 group-hover:bg-teal-600 group-hover:text-white'
-                                            }`}
+                                                }`}
                                         >
                                             {step.id}
                                         </div>
 
                                         {/* Content Card */}
-                                        <div className={`flex-1 rounded-2xl p-6 transition-all duration-300 ${
-                                            activeStep === step.id
+                                        <div className={`flex-1 rounded-2xl p-6 transition-all duration-300 ${activeStep === step.id
                                                 ? 'bg-teal-700 shadow-xl'
                                                 : 'bg-white shadow-md group-hover:bg-teal-700 group-hover:shadow-xl'
-                                        }`}>
-                                            <h3 className={`font-bold text-xl mb-3 transition-colors duration-300 ${
-                                                activeStep === step.id
+                                            }`}>
+                                            <h3 className={`font-bold text-xl mb-3 transition-colors duration-300 ${activeStep === step.id
                                                     ? 'text-white'
                                                     : 'text-slate-900 group-hover:text-white'
-                                            }`}>
+                                                }`}>
                                                 {step.title}
                                             </h3>
-                                            <p className={`text-base leading-relaxed transition-colors duration-300 ${
-                                                activeStep === step.id
+                                            <p className={`text-base leading-relaxed transition-colors duration-300 ${activeStep === step.id
                                                     ? 'text-white/90'
                                                     : 'text-slate-600 group-hover:text-white/90'
-                                            }`}>
+                                                }`}>
                                                 {step.description}
                                             </p>
                                         </div>

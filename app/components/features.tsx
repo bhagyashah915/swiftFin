@@ -79,7 +79,7 @@ export default function Features() {
                     transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
                     className="absolute top-20 whitespace-nowrap text-[180px] font-black text-slate-900"
                 >
-                    SWIFTFIN • SWIFTFIN • SWIFTFIN • SWIFTFIN •
+                    FINCO • FINCO • FINCO • FINCO •
                 </motion.div>
                 <motion.div
                     animate={{ x: ["0%", "-100%"] }}

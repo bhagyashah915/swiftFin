@@ -35,7 +35,7 @@ export default function PrivacyPolicy() {
                     {/* Introduction */}
                     <section className="mb-12">
                         <p className="text-gray-600 leading-relaxed text-lg">
-                            At SwiftFin, we take your privacy seriously. This Privacy Policy explains how we
+                            At FINCO, we take your privacy seriously. This Privacy Policy explains how we
                             collect, use, disclose, and safeguard your information when you use our mobile
                             application and services. Please read this policy carefully to understand our practices
                             regarding your personal data.
@@ -104,7 +104,7 @@ export default function PrivacyPolicy() {
                         <h3 className="text-xl font-bold text-neutral-slate mb-3 mt-6">1.3 Usage Information</h3>
                         <p className="text-gray-600 leading-relaxed mb-4">
                             We automatically collect certain information about your device and how you interact
-                            with SwiftFin:
+                            with FINCO:
                         </p>
                         <ul className="list-disc list-inside text-gray-600 space-y-2 ml-4">
                             <li>Device type, operating system, and version</li>
@@ -122,7 +122,7 @@ export default function PrivacyPolicy() {
                             We use the collected information for the following purposes:
                         </p>
                         <ul className="list-disc list-inside text-gray-600 space-y-2 ml-4">
-                            <li><strong>Service Delivery:</strong> To provide, maintain, and improve SwiftFin's features</li>
+                            <li><strong>Service Delivery:</strong> To provide, maintain, and improve FINCO's features</li>
                             <li><strong>Personalization:</strong> To generate personalized financial insights and recommendations</li>
                             <li><strong>Analytics:</strong> To understand usage patterns and improve user experience</li>
                             <li><strong>Communication:</strong> To send important updates, notifications, and support messages</li>
@@ -161,7 +161,7 @@ export default function PrivacyPolicy() {
 
                         <h3 className="text-xl font-bold text-neutral-slate mb-3 mt-6">4.1 Service Providers</h3>
                         <p className="text-gray-600 leading-relaxed mb-4">
-                            We may share data with trusted third-party service providers who help us operate SwiftFin:
+                            We may share data with trusted third-party service providers who help us operate FINCO:
                         </p>
                         <ul className="list-disc list-inside text-gray-600 space-y-2 ml-4">
                             <li>Cloud hosting providers (AWS, Google Cloud)</li>
@@ -202,7 +202,7 @@ export default function PrivacyPolicy() {
                             <li><strong>Restriction:</strong> Request limitation of processing in certain circumstances</li>
                         </ul>
                         <p className="text-gray-600 leading-relaxed mt-4">
-                            To exercise these rights, please contact us at privacy@swiftfin.com or through the
+                            To exercise these rights, please contact us at privacy@finco.com or through the
                             app settings.
                         </p>
                     </section>
@@ -230,7 +230,7 @@ export default function PrivacyPolicy() {
                         </p>
                         <ul className="list-disc list-inside text-gray-600 space-y-2 ml-4">
                             <li><strong>Essential Cookies:</strong> Required for basic app functionality</li>
-                            <li><strong>Analytics Cookies:</strong> Help us understand how you use SwiftFin</li>
+                            <li><strong>Analytics Cookies:</strong> Help us understand how you use FINCO</li>
                             <li><strong>Preference Cookies:</strong> Remember your settings and preferences</li>
                         </ul>
                         <p className="text-gray-600 leading-relaxed mt-4">
@@ -243,7 +243,7 @@ export default function PrivacyPolicy() {
                     <section className="mb-12">
                         <h2 className="text-3xl font-bold text-neutral-slate mb-4">8. Children's Privacy</h2>
                         <p className="text-gray-600 leading-relaxed">
-                            SwiftFin is not intended for children under 13 years of age. We do not knowingly collect
+                            FINCO is not intended for children under 13 years of age. We do not knowingly collect
                             personal information from children. If you believe we have collected information from a
                             child, please contact us immediately, and we will delete it.
                         </p>
@@ -277,8 +277,8 @@ export default function PrivacyPolicy() {
                             personal data, please contact us:
                         </p>
                         <ul className="text-gray-600 space-y-2">
-                            <li><strong>Privacy Email:</strong> privacy@swiftfin.com</li>
-                            <li><strong>Support Email:</strong> support@swiftfin.com</li>
+                            <li><strong>Privacy Email:</strong> privacy@finco.com</li>
+                            <li><strong>Support Email:</strong> support@finco.com</li>
                             <li><strong>Phone:</strong> +91 98765 43210</li>                        </ul>
                     </section>
 

@@ -4,6 +4,7 @@ import { Receipt, BarChart3, CreditCard, TrendingUp, PieChart, Wallet, Camera, C
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
+import Logo from "../components/Logo";
 
 export default function FeaturesPage() {
     const [activeStep, setActiveStep] = useState(0);
@@ -49,7 +50,7 @@ export default function FeaturesPage() {
             icon: <Receipt className="w-8 h-8" />,
             title: "Expense Tracking",
             subtitle: "Record and categorize expenses automatically or manually",
-            description: "Track every rupee with intelligent expense tracking. Scan receipts using your camera, manually enter transactions, or let SwiftFin automatically categorize your spending. Get real-time insights into where your money goes with detailed breakdowns by category, merchant, and time period.",
+            description: "Track every rupee with intelligent expense tracking. Scan receipts using your camera, manually enter transactions, or let FINCO automatically categorize your spending. Get real-time insights into where your money goes with detailed breakdowns by category, merchant, and time period.",
             image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1000&q=80",
             benefits: [
                 "Automatic categorization with AI",
@@ -408,7 +409,7 @@ export default function FeaturesPage() {
                                         <h3 className="text-3xl font-bold text-slate-900 mb-4">Expense Tracking</h3>
                                         <p className="text-lg text-slate-600 mb-6">Record and categorize expenses automatically or manually</p>
                                         <p className="text-slate-700 leading-relaxed mb-8">
-                                            Track every rupee with intelligent expense tracking. Scan receipts using your camera, manually enter transactions, or let SwiftFin automatically categorize your spending.
+                                            Track every rupee with intelligent expense tracking. Scan receipts using your camera, manually enter transactions, or let FINCO automatically categorize your spending.
                                         </p>
                                         <div className="space-y-4">
                                             {keyFeatures[0].benefits.map((benefit, i) => (
@@ -830,8 +831,8 @@ export default function FeaturesPage() {
                                         {/* App Logo */}
                                         <div className="mb-6">
                                             <div className="w-20 h-20 rounded-2xl bg-white shadow-lg flex items-center justify-center">
-                                                {/* SwiftFin Logo */}
-                                                <img src="/images/logo.png" className="w-16 h-16 object-contain" alt="SwiftFin Logo" />
+                                                {/* FINCO Logo */}
+                                                <Logo className="w-16 h-16" />
                                             </div>
                                         </div>
 
@@ -841,7 +842,7 @@ export default function FeaturesPage() {
                                                 Start Your Financial Journey
                                             </h3>
                                             <p className="text-teal-100 text-lg mb-6">
-                                                Join thousands mastering their finances with SwiftFin
+                                                Join thousands mastering their finances with FINCO
                                             </p>
 
                                             {/* Benefits */}

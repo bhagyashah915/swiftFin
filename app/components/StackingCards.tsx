@@ -189,7 +189,7 @@ export default function StackingCards() {
             Built for <span className="text-teal-600">Everyone</span>
           </h2>
           <p className="text-slate-600 text-lg md:text-xl lg:text-2xl leading-relaxed font-light font-['Montserrat'] max-w-3xl mx-auto">
-            Whether you&apos;re a student managing pocket money or a professional planning investments, SwiftFin adapts to your unique financial needs.
+            Whether you&apos;re a student managing pocket money or a professional planning investments, FINCO adapts to your unique financial needs.
           </p>
         </div>
       </div>

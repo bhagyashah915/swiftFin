@@ -11,16 +11,16 @@ export default function FAQ() {
             category: "Getting Started",
             questions: [
                 {
-                    q: "What is SwiftFin and how does it work?",
-                    a: "SwiftFin is a comprehensive financial management platform designed to streamline your business finances. We provide real-time analytics, automated invoicing, expense tracking, and seamless integration with your existing tools. Our AI-powered insights help you make smarter financial decisions."
+                    q: "What is FINCO and how does it work?",
+                    a: "FINCO is a comprehensive financial management platform designed to streamline your business finances. We provide real-time analytics, automated invoicing, expense tracking, and seamless integration with your existing tools. Our AI-powered insights help you make smarter financial decisions."
                 },
                 {
-                    q: "How quickly can I get started with SwiftFin?",
+                    q: "How quickly can I get started with FINCO?",
                     a: "You can be up and running in under 5 minutes! Simply sign up, connect your bank accounts or import your data, and our intelligent onboarding wizard will guide you through the setup. Most users complete their first transaction within 10 minutes of signing up."
                 },
                 {
                     q: "Is there a free trial available?",
-                    a: "Yes! We offer a 14-day free trial with full access to all premium features. No credit card required to start. Experience everything SwiftFin has to offer before making a commitment."
+                    a: "Yes! We offer a 14-day free trial with full access to all premium features. No credit card required to start. Experience everything FINCO has to offer before making a commitment."
                 }
             ]
         },
@@ -62,16 +62,16 @@ export default function FAQ() {
             category: "Features & Integration",
             questions: [
                 {
-                    q: "What integrations does SwiftFin support?",
-                    a: "SwiftFin integrates with over 150+ popular tools including QuickBooks, Xero, Stripe, PayPal, Salesforce, Slack, and more. We also offer a robust API for custom integrations. New integrations are added regularly based on user feedback."
+                    q: "What integrations does FINCO support?",
+                    a: "FINCO integrates with over 150+ popular tools including QuickBooks, Xero, Stripe, PayPal, Salesforce, Slack, and more. We also offer a robust API for custom integrations. New integrations are added regularly based on user feedback."
                 },
                 {
-                    q: "Can I access SwiftFin on mobile devices?",
-                    a: "Absolutely! SwiftFin is fully responsive and works seamlessly on all devices. We also offer native iOS and Android apps with offline capabilities, so you can manage your finances on the go, even without internet connection."
+                    q: "Can I access FINCO on mobile devices?",
+                    a: "Absolutely! FINCO is fully responsive and works seamlessly on all devices. We also offer native iOS and Android apps with offline capabilities, so you can manage your finances on the go, even without internet connection."
                 },
                 {
                     q: "How does the automated invoicing feature work?",
-                    a: "Create invoice templates once, then set up recurring schedules or trigger invoices based on specific events. SwiftFin automatically generates, sends, and tracks invoices. You'll receive notifications when clients view or pay invoices, and we handle automatic payment reminders."
+                    a: "Create invoice templates once, then set up recurring schedules or trigger invoices based on specific events. FINCO automatically generates, sends, and tracks invoices. You'll receive notifications when clients view or pay invoices, and we handle automatic payment reminders."
                 }
             ]
         }
@@ -107,7 +107,7 @@ export default function FAQ() {
                         </span>
                     </h2>
                     <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                        Everything you need to know about SwiftFin. Can't find what you're looking for? Our support team is here to help.
+                        Everything you need to know about FINCO. Can't find what you're looking for? Our support team is here to help.
                     </p>
                 </div>
 
