@@ -7,40 +7,61 @@ interface LogoProps {
     light?: boolean;
 }
 
-export default function Logo({ className = "w-12 h-12", light = false }: LogoProps) {
+export default function Logo({ className = "h-8 w-auto", light = false }: LogoProps) {
+    const color = light ? "white" : "black";
+
     return (
         <div className={`flex items-center justify-center ${className}`}>
             <svg
-                viewBox="0 0 100 100"
+                viewBox="0 0 240 120"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
                 className="w-full h-full"
+                preserveAspectRatio="xMidYMid meet"
             >
-                {/* Background Shape - Consistent with the original square/rounded container */}
-                <rect
-                    width="100"
-                    height="100"
-                    rx="24"
-                    className={light ? "fill-white/10" : "fill-teal-600"}
+                {/* Horizontal line under the wordmark */}
+                <path
+                    d="M30 110H210"
+                    stroke={color}
+                    strokeWidth="5"
+                    strokeLinecap="round"
                 />
 
-                {/* FINCO "F" Symbol - Modern Fintech Style */}
+                {/* Jagged Line Chart - Positioned high above the text */}
                 <path
-                    d="M35 25V75M35 25H65M35 50H60"
-                    stroke="white"
-                    strokeWidth="10"
+                    d="M55 25L75 35L95 15L115 30L145 32L180 25"
+                    stroke={color}
+                    strokeWidth="4"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                 />
 
-                {/* Modern Growth Arrow integration */}
+                {/* Dots on the chart line points */}
+                <circle cx="55" cy="25" r="3.5" fill={color} />
+                <circle cx="180" cy="25" r="3.5" fill={color} />
+
+                {/* Growth Arrow at the end of the chart */}
                 <path
-                    d="M45 45L75 25M75 25V40M75 25H60"
-                    stroke={light ? "#20C997" : "#FFA500"}
-                    strokeWidth="8"
+                    d="M185 22L215 8M215 8V22M215 8H200"
+                    stroke={color}
+                    strokeWidth="4"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                 />
+
+                {/* FINCO Wordmark - Shifted lower to ensure zero overlap with the chart */}
+                <text
+                    x="120"
+                    y="95"
+                    fill={color}
+                    fontSize="46"
+                    fontWeight="900"
+                    fontFamily="Montserrat, sans-serif"
+                    textAnchor="middle"
+                    style={{ letterSpacing: '0.04em' }}
+                >
+                    FINCO
+                </text>
             </svg>
         </div>
     );

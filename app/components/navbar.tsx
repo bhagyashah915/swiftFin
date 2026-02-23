@@ -33,9 +33,7 @@ export default function Navbar() {
                     <div className="hidden md:flex items-center justify-between w-full">
                         {/* Left - Logo */}
                         <Link href="/" className="flex items-center group">
-                            <div className="relative w-16 h-16 flex items-center justify-center group-hover:scale-105 transition-all duration-300">
-                                <Logo className="w-16 h-16" />
-                            </div>
+                            <Logo className="h-14 w-40 group-hover:scale-105 transition-all duration-300" />
                         </Link>
 
                         {/* Right - Nav Links + Download Button in Capsule */}
@@ -73,9 +71,7 @@ export default function Navbar() {
 
                     {/* Mobile Logo (centered when menu is closed) */}
                     <Link href="/" className="md:hidden absolute left-1/2 -translate-x-1/2">
-                        <div className="relative w-12 h-12 flex items-center justify-center">
-                            <Logo className="w-12 h-12" />
-                        </div>
+                        <Logo className="h-14 w-40" />
                     </Link>
 
                     {/* Mobile empty div for layout balance */}
@@ -94,9 +90,8 @@ export default function Navbar() {
                     >
                         {/* Header */}
                         <div className="flex items-center justify-between p-6 border-b border-gray-100">
-                            <div className="flex items-center gap-3">
-                                <Logo className="w-10 h-10" />
-                                <span className="font-['Montserrat'] font-bold text-xl uppercase">FINCO</span>
+                            <div className="flex items-center">
+                                <Logo className="h-12 w-36" />
                             </div>
                             <button
                                 onClick={() => setMobileMenuOpen(false)}

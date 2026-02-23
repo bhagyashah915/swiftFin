@@ -830,9 +830,9 @@ export default function FeaturesPage() {
                                     <div className="flex-grow">
                                         {/* App Logo */}
                                         <div className="mb-6">
-                                            <div className="w-20 h-20 rounded-2xl bg-white shadow-lg flex items-center justify-center">
+                                            <div className="w-48 h-20 rounded-2xl bg-white shadow-lg flex items-center justify-center p-4">
                                                 {/* FINCO Logo */}
-                                                <Logo className="w-16 h-16" />
+                                                <Logo className="w-full h-auto" />
                                             </div>
                                         </div>
 

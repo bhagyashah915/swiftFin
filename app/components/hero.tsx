@@ -79,12 +79,9 @@ export default function Hero() {
 
                 {/* Content */}
                 <div className="relative z-10 flex flex-col items-center justify-center space-y-6">
-                    <div className="w-32 h-32 md:w-40 md:h-40 bg-white/10 backdrop-blur-md rounded-3xl p-6 flex items-center justify-center border border-white/20 shadow-2xl animate-fade-in-up">
+                    <div className="w-64 h-32 md:w-80 md:h-40 bg-white/10 backdrop-blur-md rounded-3xl p-6 flex items-center justify-center border border-white/20 shadow-2xl animate-fade-in-up">
                         <Logo className="w-full h-full" light />
                     </div>
-                    <h1 className="text-4xl md:text-6xl font-black text-white tracking-widest font-['Montserrat'] animate-fade-in-up delay-200">
-                        FINCO
-                    </h1>
                 </div>
             </div>
 

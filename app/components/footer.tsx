@@ -44,9 +44,9 @@ export default function Footer() {
                                 <div className="ticker-wrapper">
                                     <div className="ticker-content flex items-center">
                                         {[...Array(20)].map((_, i) => (
-                                            <span key={i} className="ticker-item text-white text-4xl md:text-6xl font-bold font-['Montserrat'] inline-flex items-center justify-center">
-                                                <span className="flex items-center mx-8 uppercase">FINCO</span>
-                                                <span className="text-white/40 text-4xl md:text-5xl flex items-center justify-center mx-8 rotate-45">✦</span>
+                                            <span key={i} className="ticker-item inline-flex items-center justify-center mx-12">
+                                                <span className="text-white font-black text-6xl md:text-8xl tracking-[0.2em] font-['Montserrat']">FINCO</span>
+                                                <span className="text-white/40 text-4xl md:text-5xl flex items-center justify-center ml-12 rotate-45">✦</span>
                                             </span>
                                         ))}
                                     </div>
@@ -56,11 +56,8 @@ export default function Footer() {
                                 {/* Left Side - Logo, Description, Social Icons */}
                                 <div className="flex flex-col items-start gap-6">
                                     {/* Logo and Title */}
-                                    <div className="flex items-center gap-4">
-                                        <Logo className="w-16 h-16" />
-                                        <h2 className="text-2xl md:text-3xl font-bold font-['Montserrat'] uppercase">
-                                            <span className="text-white">FINCO</span>
-                                        </h2>
+                                    <div className="flex items-center">
+                                        <Logo className="h-16 w-48" light={true} />
                                     </div>
 
                                     {/* Description */}
