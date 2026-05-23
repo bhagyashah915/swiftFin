@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Plus, Minus, Search, Mail } from 'lucide-react';
 
 export default function FAQ() {
-    const [openIndex, setOpenIndex] = useState(null);
+    const [openIndex, setOpenIndex] = useState<string | null>(null);
     const [searchTerm, setSearchTerm] = useState('');
 
     const faqs = [
@@ -85,7 +85,7 @@ export default function FAQ() {
         )
     })).filter(category => category.questions.length > 0);
 
-    const toggleFaq = (categoryIndex, questionIndex) => {
+    const toggleFaq = (categoryIndex: number, questionIndex: number) => {
         const key = `${categoryIndex}-${questionIndex}`;
         setOpenIndex(openIndex === key ? null : key);
     };
